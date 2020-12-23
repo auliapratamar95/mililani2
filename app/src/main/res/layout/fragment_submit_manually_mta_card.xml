@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_group_66"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="@dimen/fo_size_150"
+          android:layout_marginTop="@dimen/fo_spacing_40"
+          android:src="@drawable/ic_card"/>
+
+    </RelativeLayout>
+
+  </RelativeLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_enter_manually"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/fo_spacing_10"
+        android:padding="@dimen/margin_default">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/insert_your"
+          android:textSize="@dimen/text_xlarge"
+          android:gravity="center"
+          android:padding="@dimen/margin_xsmall"/>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@string/mta_card_number_manually"
+          android:textSize="@dimen/text_xlarge"/>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/fo_size_256"
+          android:padding="@dimen/margin_default"
+          android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_layout_mta_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xlarge">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/ed_mta_card"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:backgroundTint="@color/colorPrimary"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+      </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:padding="@dimen/margin_large"
+        android:orientation="vertical">
+
+      <Button
+          android:id="@+id/btn_barcode_mta_card"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_xlarge"
+          android:background="@drawable/bg_button_grey"
+          android:foreground="?attr/selectableItemBackground"
+          android:text="@string/scan_barcode"
+          android:textColor="@color/white"/>
+
+      <Button
+          android:id="@+id/btn_skip_personal_information"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_large"
+          android:background="@drawable/bg_button_round_grey_primary"
+          android:foreground="?attr/selectableItemBackground"
+          android:text="@string/do_this_later"
+          android:textColor="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</LinearLayout>

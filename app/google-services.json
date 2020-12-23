@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "780099102597",
+    "project_id": "mililani2-5a3fd",
+    "storage_bucket": "mililani2-5a3fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780099102597:android:dde7060f36a6477885c6ec",
+        "android_client_info": {
+          "package_name": "com.strategies360.mililani2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780099102597-i0nd4pe15v51ehbrhgi4pdij8v8d2akg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.strategies360.mililani2",
+            "certificate_hash": "230fd91bbfff31283750171f6732fae4dc428fde"
+          }
+        },
+        {
+          "client_id": "780099102597-hh8hsobhfc4el73vojljj464ng69qvfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYbeyAxlzPgOr4wNLITpjOPEFGvd-xg00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780099102597-hh8hsobhfc4el73vojljj464ng69qvfk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "780099102597-no6r8sj5i4q0phqnqmo42u2o31r1av3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.strategies360.mililani2"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780099102597:android:a8469811799c562985c6ec",
+        "android_client_info": {
+          "package_name": "com.strategies360.mililani2.mock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780099102597-jka5934torcug5vfqmeu37bm8e38glqd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.strategies360.mililani2.mock",
+            "certificate_hash": "230fd91bbfff31283750171f6732fae4dc428fde"
+          }
+        },
+        {
+          "client_id": "780099102597-hh8hsobhfc4el73vojljj464ng69qvfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYbeyAxlzPgOr4wNLITpjOPEFGvd-xg00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780099102597-hh8hsobhfc4el73vojljj464ng69qvfk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "780099102597-no6r8sj5i4q0phqnqmo42u2o31r1av3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.strategies360.mililani2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

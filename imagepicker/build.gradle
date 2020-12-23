@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 29
+        versionName "2.13"
+    }
+}
+
+dependencies {
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
+}

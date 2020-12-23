@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="accent">#FF4081</color>
+
+    <color name="colorPrimary">#3d5f6c</color>
+    <color name="colorPrimaryDark">#00574B</color>1
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="cyan">#00FFFF</color>
+    <color name="gray">#bdbdbd</color>
+    <color name="splash_background">#FFFFFF</color>
+
+    <color name="color_primary">#3F51B5</color>
+    <color name="color_primary_dark">#4951aa</color>
+    <color name="activity_main_row_title_color">#cccccc</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="blue">#00549E</color>
+    <color name="softblue">#CCECFC</color>
+    <color name="metal">#A7A9AC</color>
+    <color name="metal2">#A4A5A6</color>
+    <color name="red">#A2030A</color>
+    <color name="green">#047915</color>
+    <color name="softgreen">#9DE397</color>
+    <color name="softgreentextfield">#5ACF6B</color>
+    <color name="colorheader">#FFFFFF</color>
+    <color name="colortitleheader">#00ADEF</color>
+    <color name="colorbody">#FFFFFF</color>
+    <color name="colorsplash">#FFFFFF</color>
+    <color name="colorpopup">#000000</color>
+    <color name="colorbutton_focus">#00ADEF</color>
+    <color name="colorbutton_notfocus">#313131</color>
+    <color name="textcolorbutton_focus">#A4A4A5</color>
+    <color name="textcolorbutton_notfocus">#616063</color>
+    <color name="textcolorbutton2_focus">#2C91C7</color>
+    <color name="bg_light_blue">#EBF5FF</color>
+    <color name="menu_bg">#101F2D</color>
+
+    <color name="borderlayout_news_stream_stroke">#606A6F71</color>
+    <color name="news_stream_bg">#FEFEFE</color>
+    <color name="news_shadow_bg">#80DAE0E4</color>
+    <color name="news_text">#56585A</color>
+    <color name="news_text2">#56585A</color>
+    <color name="news_hours">#747779</color>
+    <color name="news_leftmenu_bg">#40C9CFD2</color>
+    <color name="news_leftmenu_text4">#464748</color>
+    <color name="news_leftmenu_text5">#4B4E50</color>
+    <color name="news_leftmenu_separatortext_bg">#607C868E</color>
+    <color name="news_list_divider">#50D2DBE0</color>
+
+    <color name="chats_separator_listmenuitemtext">#DAE0E4</color>
+
+    <color name="window_background">#FFF5F5F5</color>
+    <color name="transparentCollapsingToolbar">#90000000</color>
+
+    <color name="form_field_text">#666666</color>
+
+    <color name="blue_dsg">#4394D0</color>
+    <color name="default_upline_color">#047915</color>
+    <color name="default_green">#8fb93e</color>
+    <color name="default_blue">#4394D0</color>
+
+    <color name="search_layover_bg">#50000000</color>
+    <color name="blue_nstyle_ok">#74b5dc</color>
+    <color name="green_nstyle_ok">#99DB5F</color>
+    <color name="green_nstyle_ok_80">#8099DB5F</color>
+
+    <!--green color-->
+    <color name="em_green_100">#ff00ba6e</color>
+    <color name="em_green_87">#dd00ba6e</color>
+    <color name="em_green_54">#8900ba6e</color>
+    <color name="em_green_38">#6100ba6e</color>
+    <color name="em_green_12">#1e00ba6e</color>
+
+    <!--black color-->
+    <color name="em_black_100">#ff232323</color>
+    <color name="em_black_87">#dd232323</color>
+    <color name="em_black_58">#95232323</color>
+    <color name="em_black_54">#89232323</color>
+    <color name="em_black_50">#81232323</color>
+    <color name="em_black_44">#71232323</color>
+    <color name="em_black_42">#66232323</color>
+    <color name="em_black_38">#61232323</color>
+    <color name="em_black_28">#51232323</color>
+    <color name="em_black_18">#31232323</color>
+    <color name="em_black_15">#25232323</color>
+    <color name="em_black_12">#1e232323</color>
+    <color name="em_black_10">#0e232323</color>
+    <color name="em_black_8">#40595959</color>
+    <color name="em_black_4">#30595959</color>
+    <color name="em_black_2">#05232323</color>
+
+    <!--white color-->
+    <color name="em_white_100">#ffffff</color>
+    <color name="em_white_87">#f0ffffff</color>
+    <color name="em_white_80">#99ffffff</color>
+    <color name="em_white_64">#90ffffff</color>
+    <color name="em_white_54">#89ffffff</color>
+    <color name="em_white_38">#61ffffff</color>
+    <color name="em_white_12">#1effffff</color>
+    <color name="em_gray">#50cccccc</color>
+
+    <!--red color -->
+    <color name="em_red_100">#ffe62f17</color>
+    <color name="em_red_87">#dde62f17</color>
+    <color name="em_red_54">#89e62f17</color>
+    <color name="em_red_38">#42e62f17</color>
+
+    <color name="dark_background">#243e55</color>
+    <!--<color name="dark_background">#29166F</color>-->
+
+    <color name="em_transparent">#00000000</color>
+
+    <color name="blue90">#10507c</color>
+    <color name="blue_transp_8">#8074b5dc</color>
+    <color name="bgbtnpayvip">#f2f2f2</color>
+    <color name="sepbtnpayvip">#a3a3a3</color>
+
+    <color name="bgbtnmethodpayvip">#f7f9fb</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+
+    <color name="light_grey1">#F6F6F6</color>
+    <color name="light_grey2">#ECEEED</color>
+    <color name="yellow">#F6E642</color>
+    <color name="orange">#FF922A</color>
+    <color name="violet">#620A87</color>
+    <color name="pink">#F6B1D7</color>
+    <color name="brown">#74341F</color>
+
+    <color name="shimmer_background">#dddddd</color>
+
+    <!--<color name="default_background">#234551</color>-->
+    <color name="default_background">#243e55</color>
+    <!--<color name="default_background">#29166F</color>-->
+
+    <color name="edit_text_normal_login">#437e99</color>
+    <color name="tab_off">#b2b2b2</color>
+    <!--<color name="tab_off">#746364</color>-->
+    <color name="Setting_Bg">#fafafa</color>
+    <color name="Setting_Title">#4c4c4d</color>
+    <color name="Setting_Content_Text">#4c4c4d</color>
+    <color name="Setting_Separator_1">#c8c7cc</color>
+    <!--<color name="Setting_Separator_Bottom">#452f30</color>-->
+    <color name="Setting_Separator_Bottom">#b2b2b2</color>
+
+    <color name="Register_Text_Hint">#b2b2b2</color>
+    <color name="Register_Main_Layout">#04d8cbc3</color>
+    <!--<color name="Dashboard_bg_carpooling">#d8d7d7</color>-->
+    <color name="Dashboard_bg_carpooling">#E7E6E6</color>
+    <color name="Dashboard_Card_Gradient_Start">#ffffff</color>
+    <!--<color name="Dashboard_Card_Gradient_Center">#E1E1E1</color>-->
+    <color name="Dashboard_Card_Gradient_Center">#e6e6e6</color>
+    <color name="Dashboard_Card_Gradient_End">#ffffff</color>
+    <color name="Dashboard_Card_Dot_Border">#b2b2b2</color>
+
+    <color name="Transponder_Text_Button">#008299</color>
+    <color name="Transponder_Border_Line_Button">#008299</color>
+    <color name="Transponder_Opaque_Text_Button">#10008299</color>
+
+    <!--<color name="PaymentMethod_Fill_Button">#009cde</color>-->
+    <color name="PaymentMethod_Fill_Button">#008299</color>
+    <color name="PaymentMethod_Fill_Button_GPay">#000000</color>
+    <color name="MainMenu1_Bg">#f5f5f5</color>
+
+    <color name="RecentAct_Toll">#0e8d12</color>
+
+    <!--<color name="Dialog_Default_Text">#56585A</color>-->
+    <color name="Dialog_Default_Text">#4c4c4d</color>
+
+    <color name="BillingAdress_List_ItemChoosed">#e6e6e6</color>
+
+    <color name="Dot_Setup_Progress_Gray">#e6e6e6</color>
+
+    <color name="Error_Info_Overlay_Background">#452f30</color>
+
+    <color name="Dashboard_Card_Report_Chart_Bar_Bg">#008299</color>
+
+    <color name="Dashboard_Card_Setup_Left">#452f30</color>
+
+    <color name="Recent_Activity_List_Bg">#F1F1F1</color>
+
+    <color name="Dashboard_Map_Text_Desc">#b2b2b2</color>
+
+    <!--<color name="Map_BottomCard_Alert">#ec0000</color>-->
+    <color name="Map_BottomCard_Alert">#ffffff</color>
+
+    <color name="Map_BottomCard_Alert_Border">#e6e6e6</color>
+
+    <color name="Dashboard_Gray_Bg">#80DAE0E4</color>
+
+    <!--<color name="Dashboard_Gray_Bg_2">#80C5C9CE</color>-->
+    <color name="Dashboard_Gray_Bg_2">#80D0D4D9</color>
+</resources>

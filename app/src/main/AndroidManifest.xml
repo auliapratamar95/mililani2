@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.strategies360.mililani2">
+
+    <!-- Internet permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Account permission -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
+    <!-- Sync permission -->
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+
+    <!-- Camera / storage permission -->
+    <!-- TODO: Remove these when it isn't required -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.strategies360.mililani2.App"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:resizeableActivity="false"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:allowBackup,android:supportsRtl"
+        tools:targetApi="n">
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.core.UncaughtExceptionActivity" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.authentication.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.ImageCropActivity" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.SampleSelectionActivity" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.SampleProductListActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.SampleAuthActivity" />
+
+        <!-- class initialization mililani -->
+        <activity
+            android:name="com.strategies360.mililani2.activity.LoginActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.SubmitScanMtaCardActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.SubmitManuallyMtaCardActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.SubmitFinishMtaCardActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- Account auth service -->
+        <service
+            android:name="itsmagic.present.simpleaccountmanager.AccountAuthService"
+            android:exported="false">
+            <intent-filter>
+                <action
+                    android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/account_auth" />
+        </service>
+
+        <!-- Profile sync provider and service -->
+        <provider
+            android:name="com.strategies360.mililani2.account.profile.ProfileSyncProvider"
+            android:authorities="@string/account_manager_account_provider_profile"
+            android:exported="false"
+            android:label="@string/account_sync_profile_information"
+            android:syncable="true" />
+        <service
+            android:name="com.strategies360.mililani2.account.profile.ProfileSyncService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/account_sync_profile" />
+        </service>
+
+        <!-- Fabric -->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${FABRIC_API_KEY}" />
+
+    </application>
+
+</manifest>

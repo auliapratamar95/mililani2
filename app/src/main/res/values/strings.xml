@@ -1,0 +1,75 @@
+<resources>
+
+    <string name="account_sync_profile_information">Account Information</string>
+
+    <string name="emoji_sad" translatable="false">:(</string>
+
+    <string name="info_loading">Loading…</string>
+    <string name="info_warning">Warning</string>
+    <string name="info_no_data">No Data</string>
+
+    <string name="action_done">Done</string>
+    <string name="action_remove_image">Remove image</string>
+    <string name="action_rotate">Rotate</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_tap_to_retry">Tap to retry</string>
+    <string name="action_open_app_settings">Open app settings</string>
+    <string name="action_restart_app">Restart App</string>
+    <string name="action_share">Share</string>
+    <string name="action_show_hide_stacktrace">Show/hide stacktrace</string>
+
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_permission_denied">Permission denied</string>
+    <string name="error_json">JSON Error</string>
+    <string name="error_fatal_restarting">Oops, an unexpected error has occurred.\nSorry for the inconvenience.</string>
+    <string name="error_message_generic">An error occurred, please try again later.</string>
+    <string name="error_message_generic_detail">An error occurred, please try again later.\n%1$s</string>
+    <string name="error_message_generic_detail_code">An error occurred, please try again later.\nError %1$d: %2$s</string>
+    <string name="error_conn_generic">Connection problem</string>
+    <string name="error_conn_400">Bad Request</string>
+    <string name="error_conn_401">Unauthorized</string>
+    <string name="error_conn_403">Forbidden</string>
+    <string name="error_conn_404">Not Found</string>
+    <string name="error_conn_408">Request Timeout</string>
+    <string name="error_conn_500">Internal Server Error</string>
+    <string name="error_conn_501">Not Implemented</string>
+    <string name="error_conn_502">Bad Gateway</string>
+    <string name="error_conn_503">Service Unavailable</string>
+    <string name="error_conn_504">Gateway Timeout</string>
+    <string name="error_conn_maintenance">Server Under Maintenance</string>
+    <string name="error_conn_time_out">Connection Timed Out</string>
+    <string name="error_auth_not_logged_in">You are not logged in.</string>
+    <string name="error_auth_already_logged_in">You are already logged in as %1$s.</string>
+    <string name="error_auth_log_in_expired">Your login has expired.</string>
+    <string name="error_input_username">Username is required</string>
+    <string name="error_input_password">Password is required</string>
+
+    <string name="warning_storage_space">Your internal storage space is running out, please free some spaces on your internal storage.</string>
+    <string name="desc_term_condition">By tapping ‘SIGN UP,’ I confirm that I agree to Mililani’s Terms of Use and Privacy Policy</string>
+    <string name="hint_enter_your_mobile_number">Enter your mobile number</string>
+    <string name="hint_enter_complete_phone_number">Enter a complete phone number or an email address.</string>
+    <string name="enter_your_otp_that_was_sent_to">Enter your OTP that was sent to</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="verify_now">Verify Now</string>
+    <string name="close_apps">Do you want to close apps?</string>
+    <string name="yes">Yes</string>
+  <string name="signUp">SignUp</string>
+  <string name="next">Next</string>
+    <string name="do_this_later">Do This Later</string>
+    <string name="address">Address</string>
+  <string name="email">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="title_personal_information">personal Information</string>
+    <string name="title_please_complete_your">Please complete your</string>
+    <string name="title_scan_the_barcode_on_your">Scan the barcode on your</string>
+    <string name="title_mta_card_to_save_it">MTA card to save it</string>
+    <string name="insert_your">Insert your</string>
+  <string name="mta_card_number_manually">MTA card number manually.</string>
+  <string name="congratulations">Congratulations!</string>
+  <string name="your_id_card_has_been_regsitered">Your ID Card has been regsitered.</string>
+  <string name="finish">Finish</string>
+  <string name="scan_barcode">Scan Barcode</string>
+  <string name="enter_manually">Enter Manually</string>
+
+</resources>
