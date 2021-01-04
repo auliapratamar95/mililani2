@@ -4,7 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -13,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isNotEmpty
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -24,12 +29,15 @@ import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCall
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.core.CoreActivity
+import com.strategies360.mililani2.util.Common
+import com.strategies360.mililani2.viewmodel.AuthMililaniViewModel
 import kotlinx.android.synthetic.main.activity_login.btn_send_otp
 import kotlinx.android.synthetic.main.activity_login.edit_phone_number
 import kotlinx.android.synthetic.main.activity_login.layout_send_otp
 import kotlinx.android.synthetic.main.activity_login.layout_verify_otp
 import kotlinx.android.synthetic.main.layout_verification_otp.btn_verify_otp
 import kotlinx.android.synthetic.main.layout_verification_otp.edit_otp_view
+import kotlinx.android.synthetic.main.layout_verification_otp.privacy_policy
 import kotlinx.android.synthetic.main.layout_verification_otp.txt_otp
 import kotlinx.android.synthetic.main.layout_verification_otp.txt_sample
 import kotlinx.coroutines.Deferred
@@ -52,6 +60,9 @@ class LoginActivity : CoreActivity() {
   var mCallback: OnVerificationStateChangedCallbacks? = null
   var verificationCode: String = ""
   var phoneNumber: String = ""
+
+  /** The view model for sign in */
+  private val authViewModel by lazy { ViewModelProviders.of(this).get(AuthMililaniViewModel::class.java) }
 
   private fun Activity.hideKeyboard() = hideKeyboard(currentFocus ?: View(this))
 
@@ -130,7 +141,7 @@ class LoginActivity : CoreActivity() {
             if (task.isSuccessful) {
               val idToken = task.result?.token
               txt_sample.text = idToken
-              Toast.makeText(this, "Token = $idToken", Toast.LENGTH_SHORT).show()
+//              Toast.makeText(this, "Token = $idToken", Toast.LENGTH_SHORT).show()
 //              txt_phone_number.text = user.phoneNumber
               SubmitScanMtaCardActivity.launchIntent(this)
             }
@@ -179,7 +190,10 @@ class LoginActivity : CoreActivity() {
       }
 
       override fun onVerificationFailed(e: FirebaseException) {
-        Toast.makeText(this@LoginActivity, "The format of the phone number provided is incorrect.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this@LoginActivity, "The format of the phone number provided is incorrect.",
+            Toast.LENGTH_SHORT
+        ).show()
         Log.d("FirebaseException", e.toString())
       }
 
@@ -190,8 +204,7 @@ class LoginActivity : CoreActivity() {
         super.onCodeSent(s, forceResendingToken)
         verificationCode = s
 
-        layout_send_otp.visibility = View.GONE
-        layout_verify_otp.visibility = View.VISIBLE
+        initLayoutVerificationOTP()
 
         if (edit_phone_number.text.isNotEmpty()) {
           phoneNumber = edit_phone_number.text.toString()
@@ -199,10 +212,10 @@ class LoginActivity : CoreActivity() {
         }
 
         job = if (job == null || job!!.isCancelled)
-          countDown()
+          countDownAsync()
         else {
           job!!.cancel()
-          countDown()
+          countDownAsync()
         }
       }
     }
@@ -230,10 +243,10 @@ class LoginActivity : CoreActivity() {
     dialog.show()
   }
 
-  private fun countDown() = GlobalScope.async(Dispatchers.IO) {
+  private fun countDownAsync() = GlobalScope.async(Dispatchers.IO) {
     hideKeyboard()
 
-    repeat(TIME_OUT+1) {
+    repeat(TIME_OUT + 1) {
       val res = DecimalFormat("00").format(TIME_OUT - it)
       println("Kotlin Coroutines World! $res")
       withContext(Dispatchers.Main) {
@@ -241,7 +254,36 @@ class LoginActivity : CoreActivity() {
       }
       delay(1000)
     }
-    txt_otp.text = "Resend code"
+    txt_otp.text = resources.getString(R.string.resend_code)
+  }
+
+  private fun initLayoutVerificationOTP() {
+    layout_send_otp.visibility = View.GONE
+    layout_verify_otp.visibility = View.VISIBLE
+
+    initPrivacyPolice()
+  }
+
+  private fun initPrivacyPolice() {
+    val fontType: Typeface? = f?.let { Common.setFont(it, Common.FontType.ROBOTO_REGULAR) }
+    privacy_policy.typeface = fontType
+
+    val wordToSpan: Spannable? = f?.let {
+      Common.openDialogPrivacyPolicy(
+          it, privacy_policy.text.toString(),
+          arrayOf("Terms of Use", "https://www.strategies360.com/privacy-policy/"), 58, 71, 0
+      )
+    }
+    val wordToSpan2: Spannable? = f?.let {
+      Common.openDialogPrivacyPolicy(
+          it, wordToSpan, arrayOf("Privacy Policy", "https://www.strategies360.com/privacy-policy/"),
+          76, 90, 1
+      )
+    }
+
+    privacy_policy.text = wordToSpan2
+    privacy_policy.movementMethod = LinkMovementMethod.getInstance()
+    privacy_policy.highlightColor = Color.TRANSPARENT
   }
 
   companion object {

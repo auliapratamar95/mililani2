@@ -13,7 +13,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_group_66"/>
+        android:background="@drawable/ic_header_background"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -68,6 +68,7 @@
             android:id="@+id/ed_layout_mta_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
             android:layout_marginTop="@dimen/margin_xlarge">
 
           <com.google.android.material.textfield.TextInputEditText
@@ -75,6 +76,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center"
+              android:foregroundTint="@color/colorPrimary"
               android:backgroundTint="@color/colorPrimary"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -101,7 +103,7 @@
           android:textColor="@color/white"/>
 
       <Button
-          android:id="@+id/btn_skip_personal_information"
+          android:id="@+id/btn_skip_submit_manual"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/margin_large"

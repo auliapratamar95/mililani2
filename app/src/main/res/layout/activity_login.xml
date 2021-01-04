@@ -9,14 +9,13 @@
   <ImageView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@drawable/ic_group_66"/>
+      android:background="@drawable/ic_header_background"/>
 
   <LinearLayout
       android:id="@+id/layout_send_otp"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-    android:orientation="vertical"
-      tools:visibility="gone">
+      android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,22 +62,26 @@
             android:padding="@dimen/margin_default"
             android:layout_marginLeft="@dimen/margin_small"
             android:layout_gravity="center"
+            android:visibility="gone"
             android:src="@drawable/ic_flag_country_america"/>
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:background="@color/grey_300"
-            android:layout_marginTop="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:layout_marginBottom="@dimen/margin_default"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="@dimen/text_large"
             android:gravity="center"
+            android:layout_marginStart="@dimen/margin_default"
+            android:textColor="@color/grey_300"
             android:text="+1"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="35dp"
+            android:background="@color/grey_300"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginBottom="@dimen/margin_default"/>
 
         <EditText
             android:id="@+id/edit_phone_number"
@@ -95,6 +98,7 @@
             android:textColorHint="@color/Register_Text_Hint"
             android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
             android:textSize="@dimen/fo_font_16"
+            tools:text="80893923092"
             tools:ignore="TextFields"/>
 
       </LinearLayout>
@@ -117,8 +121,7 @@
       android:id="@+id/layout_verify_otp"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:visibility="gone"
-      tools:visibility="visible">
+      android:visibility="gone">
 
     <include layout="@layout/layout_verification_otp" />
 

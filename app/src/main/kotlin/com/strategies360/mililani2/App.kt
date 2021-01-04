@@ -5,12 +5,13 @@ import android.app.Application
 import android.content.Context
 import android.util.Pair
 import cat.ereza.customactivityoncrash.config.CaocConfig
-import com.strategies360.mililani2.account.AccountConstant
-import com.strategies360.mililani2.activity.SampleAuthActivity
-import com.strategies360.mililani2.activity.core.UncaughtExceptionActivity
 import com.ashokvarma.gander.Gander
 import com.ashokvarma.gander.persistence.GanderPersistence
 import com.crashlytics.android.Crashlytics
+import com.orhanobut.hawk.Hawk
+import com.strategies360.mililani2.account.AccountConstant
+import com.strategies360.mililani2.activity.SampleAuthActivity
+import com.strategies360.mililani2.activity.core.UncaughtExceptionActivity
 import io.fabric.sdk.android.Fabric
 import itsmagic.present.simpleaccountmanager.AccountHelper
 import java.util.concurrent.TimeUnit
@@ -40,6 +41,9 @@ class App : Application() {
         // Initialize the account helper
         AccountHelper.init(AccountConstant.ACCOUNT_TYPE, SampleAuthActivity::class.java,
                 Pair(AccountConstant.ACCOUNT_PROVIDER_PROFILE, TimeUnit.DAYS.toMillis(7)))
+
+        //Hawk
+        Hawk.init(this).build()
     }
 
     companion object {

@@ -1,12 +1,12 @@
 package com.strategies360.mililani2.api
 
-import com.strategies360.mililani2.util.JNIUtil
 import com.strategies360.mililani2.api.util.OkHttpClientHelper
 import com.strategies360.mililani2.model.remote.auth.ProfileResponse
+import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
+import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.auth.SignInRequest
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
-
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,7 +25,7 @@ object APIService {
     /** The [APIInterface] object */
     val apiInterface: APIInterface by lazy {
         val retrofit = Retrofit.Builder()
-                .baseUrl(JNIUtil.apiUrl)
+                .baseUrl("https://api-mililani2-dev.app.s360.is/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(OkHttpClientHelper().initOkHttpClient())
                 .build()
@@ -44,6 +44,21 @@ object APIService {
                 //                @Header("Api-Key") String apiKey,
                 @Body body: SignInRequest?)
                 : Call<SignInResponse>
+
+
+      /** Logs the user into the system */
+      @POST("users/login")
+      fun signInMililani(
+        @Body body: SignInMililaniRequest?)
+          : Call<SignInMililaniResponse>
+
+      /** Logs the user into the system */
+      @POST("cards")
+      fun submitMTACard(
+        @Header("Authorization") accessToken: String?,
+        @Body body: String?)
+          : Call<SignInMililaniResponse>
+
 
         /** Obtain the user profile */
         @GET("profile")

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:id="@+id/layout_header_home"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/margin_default"
+      android:layout_marginTop="@dimen/margin_xlarge"
+      android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="2">
+
+      <de.hdodenhof.circleimageview.CircleImageView
+          android:id="@+id/profile_image"
+          android:layout_width="@dimen/fo_spacing_70"
+          android:layout_height="@dimen/fo_spacing_70"
+          android:src="@drawable/img_splash_mililani_one"
+          app:civ_border_width="1dp"
+          app:civ_border_color="@color/colorPrimary"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:orientation="vertical">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Hallo Pratama!"
+          android:textColor="@color/white"/>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Lorem ipsum dolor sit amet"
+          android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="right|center"
+        android:layout_weight="1">
+
+      <ImageView
+          android:id="@+id/btn_scan_barcode"
+          android:layout_width="@dimen/fo_spacing_30"
+          android:layout_height="@dimen/fo_spacing_30"
+          android:src="@drawable/ic_scan_barcode"
+          android:layout_marginRight="@dimen/margin_default"
+          android:backgroundTint="@color/white"
+          android:background="?attr/selectableItemBackground"/>
+    </RelativeLayout>
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@+id/layout_header_home"
+      android:layout_alignParentBottom="true"
+      android:layout_marginTop="@dimen/margin_large"
+      android:gravity="center"
+      android:background="@drawable/fo_bg_bottom_sheet">
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      android:text="Logout"
+      android:textColor="@color/colorPrimary"
+      android:layout_margin="@dimen/margin_xxlarge"
+      android:background="@drawable/bg_button_round_grey_primary"/>
+
+
+  </LinearLayout>
+
+</RelativeLayout>

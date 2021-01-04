@@ -1,12 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     >
-  <!--  android:src="@drawable/ic_screen_effect"-->
+
+  <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/ic_header_background"/>
+
+  <LinearLayout
+      android:id="@+id/layout_send_otp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      tools:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_default"
+        android:padding="@dimen/margin_default">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="ALOHA, "
+          android:textSize="@dimen/text_xlarge"
+          android:textStyle="bold"
+          android:padding="@dimen/margin_small"/>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="let's start with your phone number"
+          android:textSize="@dimen/text_xlarge"
+          android:padding="@dimen/margin_small"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:orientation="vertical">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:gravity="center"
+          android:background="@drawable/bg_button_round_white_primary">
+
+        <ImageView
+            android:layout_width="@dimen/fo_spacing_40"
+            android:layout_height="@dimen/fo_spacing_50"
+            android:padding="@dimen/margin_default"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_flag_country_america"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_300"
+            android:layout_marginTop="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginBottom="@dimen/margin_default"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/text_large"
+            android:gravity="center"
+            android:text="+1"/>
+
+        <EditText
+            android:id="@+id/edit_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_small"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_enter_your_mobile_number"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="textFilter|textNoSuggestions|phone"
+            android:padding="8dp"
+            android:textColorHint="@color/Register_Text_Hint"
+            android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+            android:textSize="@dimen/fo_font_16"
+            tools:ignore="TextFields"/>
+
+      </LinearLayout>
+
+      <Button
+          android:id="@+id/btn_send_otp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_xlarge"
+          android:background="@drawable/bg_button_grey"
+          android:foreground="?attr/selectableItemBackground"
+          android:text="@string/verification_code"
+          android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+  </LinearLayout>
 
   <LinearLayout
       android:id="@+id/main_layout"
@@ -77,7 +183,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Didn’t receive the code?"
+                android:text="@string/didn_t_receive_the_code"
                 android:textSize="@dimen/fo_font_13"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/margin_xsmall"/>
@@ -86,12 +192,12 @@
                 android:id="@+id/txt_otp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Resend Code"
+                android:text="@string/resend_code"
                 android:textStyle="bold"
                 android:textSize="@dimen/fo_font_13"
                 android:textColor="@color/colorPrimary"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_xsmall"
                 android:background="?attr/selectableItemBackground"/>
 
@@ -168,4 +274,4 @@
 
   </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

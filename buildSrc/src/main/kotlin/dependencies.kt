@@ -69,6 +69,11 @@ object LibAndroidX {
         const val exifInterface = "1.0.0"
         const val constraintLayout = "1.1.3"
         const val material = "1.0.0"
+
+        const val navigationFragment = "2.2.2"
+        const val navigationUi = "2.2.2"
+        const val navigationFragmentKtx = "2.2.2"
+        const val navigationUiKtx = "2.2.2"
     }
 
     const val appCompat = "androidx.appcompat:appcompat:${Version.appCompat}"
@@ -76,6 +81,11 @@ object LibAndroidX {
     const val exifInterface = "androidx.exifinterface:exifinterface:${Version.exifInterface}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
     const val material = "com.google.android.material:material:${Version.material}"
+
+    const val navigationFragment = "androidx.navigation:navigation-fragment:${Version.navigationFragment}"
+    const val navigationUi = "androidx.navigation:navigation-ui:${Version.navigationUi}"
+    const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Version.navigationFragmentKtx}"
+    const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Version.navigationUiKtx}"
 }
 
 object LibAndroidXLifecycle {
@@ -117,6 +127,9 @@ object Lib {
         const val coroutinesAndroid = "1.3.2"
         const val otpView = "v1.1.2-ktx"
         const val barcode = "1.9.8"
+        const val hawk = "2.0.1"
+        const val circleImage = "3.1.0"
+        const val MaskEditText = "3.1.1"
     }
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
@@ -136,6 +149,9 @@ object Lib {
     const val firebaseAuth = "com.google.firebase:firebase-auth:${Version.firebaseAuth}"
     const val otpView = "com.github.aabhasr1:OtpView:${Version.otpView}"
     const val barcode = "me.dm7.barcodescanner:zxing:${Version.barcode}"
+    const val hawk = "com.orhanobut:hawk:${Version.hawk}"
+    const val circleImage = "de.hdodenhof:circleimageview:${Version.circleImage}"
+    const val MaskEditText = "com.vicmikhailau:MaskedEditText:${Version.MaskEditText}"
 }
 
 object ProGuard {

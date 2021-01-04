@@ -41,6 +41,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
     // Set the source path
     sourceSets["main"].java.srcDir("src/main/kotlin")
     sourceSets["test"].java.srcDir("src/test/kotlin")
@@ -147,6 +153,12 @@ dependencies {
     implementation(LibAndroidX.exifInterface)
     implementation(LibAndroidX.constraintLayout)
     implementation(LibAndroidX.material)
+
+    implementation(LibAndroidX.navigationFragment)
+    implementation(LibAndroidX.navigationFragmentKtx)
+    implementation(LibAndroidX.navigationUi)
+    implementation(LibAndroidX.navigationUiKtx)
+
     implementation(LibAndroidXLifecycle.extension)
     implementation(LibAndroidXLifecycle.viewModel)
     implementation(LibAndroidXLifecycle.liveData)
@@ -172,9 +184,13 @@ dependencies {
     implementation(Lib.coroutinesAndroid)
     implementation(Lib.otpView)
     implementation(Lib.barcode)
+    implementation(Lib.hawk)
+    implementation(Lib.circleImage)
+    implementation(Lib.MaskEditText)
 
     implementation(Lib.firebaseAnalytic)
     implementation(Lib.firebaseAuth)
+
 }
 
 dexcount {

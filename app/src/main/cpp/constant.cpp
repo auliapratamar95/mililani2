@@ -8,13 +8,13 @@ Java_com_appschef_baseproject_util_JNIUtil_getWebUrlMock(JNIEnv *env, jobject /*
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_appschef_baseproject_util_JNIUtil_getApiUrlMock(JNIEnv *env, jobject /* this */) {
-    return env->NewStringUTF("http://private-778487-alvinrusliappschef.apiary-mock.com/");
+    return env->NewStringUTF("https://api-mililani2-dev.app.s360.is/v1/");
 }
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_appschef_baseproject_util_JNIUtil_getApiKeyMock(JNIEnv *env, jobject /* this */) {
-    return env->NewStringUTF("mymockapikey");
-}
+//extern "C" JNIEXPORT jstring JNICALL
+//Java_com_appschef_baseproject_util_JNIUtil_getApiKeyMock(JNIEnv *env, jobject /* this */) {
+//    return env->NewStringUTF("mymockapikey");
+//}
 
 
 // Staging

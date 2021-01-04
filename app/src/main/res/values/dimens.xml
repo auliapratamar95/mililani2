@@ -33,7 +33,10 @@
 
     <dimen name="fo_spacing_2">2dp</dimen>
     <dimen name="fo_spacing_3">3dp</dimen>
+    <dimen name="fo_spacing_4">5dp</dimen>
     <dimen name="fo_spacing_5">5dp</dimen>
+    <dimen name="fo_spacing_6">6dp</dimen>
+    <dimen name="fo_spacing_7">7dp</dimen>
     <dimen name="fo_spacing_8">8dp</dimen>
     <dimen name="fo_spacing_9">9dp</dimen>
     <dimen name="fo_spacing_10">10dp</dimen>

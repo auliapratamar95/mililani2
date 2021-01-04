@@ -50,6 +50,15 @@
             android:name="com.strategies360.mililani2.activity.ImageCropActivity" />
 
         <activity
+            android:name="com.strategies360.mililani2.activity.LoginPhoneNumberActivity" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.VerificationOTPActivity" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.BottomMenuNavigatonActivity" />
+
+        <activity
             android:name="com.strategies360.mililani2.activity.SampleSelectionActivity" />
 
         <activity

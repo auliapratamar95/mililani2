@@ -13,7 +13,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_group_66"/>
+        android:background="@drawable/ic_header_background"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -72,8 +72,8 @@
             android:gravity="center"
             android:padding="@dimen/margin_default"
             android:text="34324343423243242"
-            android:textSize="@dimen/text_xlarge"
-            android:textColor="@color/black"/>
+            android:textSize="@dimen/fo_font_24"
+            android:textStyle="bold"/>
 
       </RelativeLayout>
 

@@ -1,5 +1,6 @@
 package com.strategies360.mililani2.api
 
+import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.api.callback.AppCallback
 import com.strategies360.mililani2.api.callback.ProductListCallback
 import com.strategies360.mililani2.api.callback.SignInCallback
@@ -7,10 +8,12 @@ import com.strategies360.mililani2.api.callback.core.CoreCallback
 import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.model.core.AppResponse
 import com.strategies360.mililani2.model.remote.auth.ProfileResponse
+import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
+import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.auth.SignInRequest
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
-import com.strategies360.mililani2.util.JNIUtil
+import com.strategies360.mililani2.util.Constant
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -24,7 +27,7 @@ class APICaller<RESPONSE : AppResponse> {
     private var accessToken: String? = null
 
     /** The api key for API calls */
-    private var apiKey: String? = JNIUtil.apiKey
+    private var apiKey: String? = "mock"
 
     /**
      * Determines if this API call uses a specific access token,
@@ -94,7 +97,7 @@ class APICaller<RESPONSE : AppResponse> {
 
     /** Refresh the current access token with the token from the profile */
     private fun refreshAccessToken() {
-        if (!isUsingCustomToken) accessToken = "new-access-token"
+        if (Hawk.contains(Constant.KEY_TOKEN)) accessToken = "Bearer " + Hawk.get(Constant.KEY_TOKEN)
 //        if (!isUsingCustomToken) accessToken = AccountHelper.getToken(App.context)
     }
 
@@ -110,6 +113,32 @@ class APICaller<RESPONSE : AppResponse> {
         callback = SignInCallback(listener as OnAPIListener<SignInResponse>)
         call = APIService.apiInterface.signIn(apiKey, data)
         (call as Call<SignInResponse>).enqueue(callback as SignInCallback)
+    }
+
+    /**
+     * Calls the sign in API.
+     * Logs the user in to the system.
+     * @param data the data to be posted
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun signInMililani(data: SignInMililaniRequest) {
+        callback = AppCallback(listener as OnAPIListener<SignInMililaniResponse>)
+        call = APIService.apiInterface.signInMililani(data)
+        (call as Call<SignInMililaniResponse>).enqueue(callback as AppCallback<SignInMililaniResponse>)
+    }
+
+    /**
+     * Calls the sign in API.
+     * Logs the user in to the system.
+     * @param data the data to be posted
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun submitMTACard(data: String) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<SignInMililaniResponse>)
+        call = APIService.apiInterface.submitMTACard(accessToken, data)
+        (call as Call<SignInMililaniResponse>).enqueue(callback as AppCallback<SignInMililaniResponse>)
     }
 
     /**

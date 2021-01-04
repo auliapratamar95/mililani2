@@ -11,8 +11,8 @@
     <!-- Base application theme -->
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimaryDark">@color/primary</item>
+        <item name="colorAccent">@color/primary</item>
     </style>
 
     <style name="AppTheme.Toolbar" parent="AppTheme">
@@ -44,7 +44,7 @@
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorAccent">@color/primary</item>
     </style>
 
     <style name="AppTheme.Dialog.Alert" parent="AppTheme.Dialog">
@@ -53,7 +53,7 @@
     </style>
 
     <style name="AppTheme.Dialog.Alert.Title">
-        <item name="android:textColor">@color/accent</item>
+        <item name="android:textColor">@color/primary</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
 
@@ -83,7 +83,17 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:statusBarColor">@color/em_transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textColor">@color/titleMenuBlack</item>
 
     </style>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+    </style>
+
 
 </resources>

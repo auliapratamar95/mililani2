@@ -18,6 +18,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="titleMenuBlack">#262626</color>
     <color name="blue">#00549E</color>
     <color name="softblue">#CCECFC</color>
     <color name="metal">#A7A9AC</color>
@@ -191,6 +192,7 @@
     <color name="Map_BottomCard_Alert_Border">#e6e6e6</color>
 
     <color name="Dashboard_Gray_Bg">#80DAE0E4</color>
+    <color name="colorTextMEnu">#27C5BF</color>
 
     <!--<color name="Dashboard_Gray_Bg_2">#80C5C9CE</color>-->
     <color name="Dashboard_Gray_Bg_2">#80D0D4D9</color>
