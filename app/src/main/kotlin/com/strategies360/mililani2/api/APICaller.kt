@@ -12,6 +12,9 @@ import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
 import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.auth.SignInRequest
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
+import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
+import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
 import com.strategies360.mililani2.util.Constant
 import retrofit2.Call
@@ -133,12 +136,67 @@ class APICaller<RESPONSE : AppResponse> {
      * @param data the data to be posted
      */
     @Suppress("UNCHECKED_CAST")
-    fun submitMTACard(data: String) {
+    fun submitMTACard(data: MTACardRequest?) {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<SignInMililaniResponse>)
         call = APIService.apiInterface.submitMTACard(accessToken, data)
         (call as Call<SignInMililaniResponse>).enqueue(callback as AppCallback<SignInMililaniResponse>)
+    }
+
+    /**
+     * Calls the sign in API.
+     * Logs the user in to the system.
+     * @param data the data to be posted
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun editNicknameMTACard(cardNumber: String?, data: MTACardRequest?) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
+        call = APIService.apiInterface.editNicknameMTACard(accessToken, cardNumber, data)
+        (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
+    }
+
+    /**
+     * Calls the delete card in API.
+     * Logs the user in to the system.
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun deleteMTACard(dataList: DeleteMtaCardRequest?) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
+        call = APIService.apiInterface.deleteMTACard(accessToken, dataList)
+        (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
+    }
+
+    /**
+     * Calls the sign in API.
+     * Logs the user in to the system.
+     * @param data the data to be posted
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun defaultMTACard(cardNumber: String??) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
+        call = APIService.apiInterface.defaultMTACard(accessToken, cardNumber)
+        (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
+    }
+
+    /**
+     * Calls the MTA Card in API.
+     * Logs the user in to the system.
+     * @param data the data to be posted
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun getMTACard() {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
+        call = APIService.apiInterface.getMTACard(accessToken)
+        (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
     }
 
     /**

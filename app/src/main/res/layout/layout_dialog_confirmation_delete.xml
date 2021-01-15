@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_large">
+
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/margin_small"
+      android:src="@drawable/ic_close_confirmation_dialog"/>
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:padding="@dimen/margin_small"
+      android:layout_marginTop="@dimen/margin_default"
+      android:text="@string/are_you_sure_you_want_to"/>
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:padding="@dimen/margin_small"
+      android:text="@string/delete_this_card"/>
+
+  <Button
+      android:id="@+id/btn_delete_card"
+      android:layout_width="@dimen/fo_spacing_300"
+      android:layout_height="wrap_content"
+      android:text="@string/delete_card"
+      android:layout_marginTop="@dimen/margin_xlarge"
+      android:foreground="?attr/selectableItemBackground"
+      android:background="@drawable/bg_button_round_grey_primary"/>
+
+  <Button
+      android:id="@+id/btn_cancel"
+      android:layout_width="@dimen/fo_spacing_300"
+      android:layout_height="wrap_content"
+      android:text="@string/cancel"
+      android:textColor="@color/white"
+      android:layout_marginTop="@dimen/margin_default"
+      android:foreground="?attr/selectableItemBackground"
+      android:background="@drawable/bg_button_round_primary"/>
+
+
+</LinearLayout>

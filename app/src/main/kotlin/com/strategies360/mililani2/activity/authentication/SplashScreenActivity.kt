@@ -22,7 +22,7 @@ import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.anim
 import com.strategies360.mililani2.R.color
-import com.strategies360.mililani2.activity.BottomMenuNavigatonActivity
+import com.strategies360.mililani2.activity.BottomMenuNavigationActivity
 import com.strategies360.mililani2.activity.LoginPhoneNumberActivity
 import com.strategies360.mililani2.activity.core.CoreActivity
 import com.strategies360.mililani2.util.Common
@@ -216,7 +216,7 @@ class SplashScreenActivity : CoreActivity() {
           logo_mililani.layoutParams = layoutParamsTitleApps
           logo_mililani.requestLayout()
           if (Hawk.contains(Constant.KEY_TOKEN))
-            BottomMenuNavigatonActivity.launchIntent(this)
+            BottomMenuNavigationActivity.launchIntent(this)
           else
             LoginPhoneNumberActivity.launchIntent(this)
 

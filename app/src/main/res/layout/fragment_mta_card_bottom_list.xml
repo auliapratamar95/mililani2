@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:behavior_hideable="true"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_margin="@dimen/margin_default"
+      android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <RelativeLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/margin_large"
+          android:padding="@dimen/margin_default">
+
+        <LinearLayout
+            android:id="@+id/btn_help"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fo_spacing_30"
+            android:padding="@dimen/margin_default"
+            android:gravity="center"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/bg_button_round_grey_primary_two">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:text="@string/Help"
+              android:textAllCaps="true"
+              android:textSize="@dimen/fo_font_11"
+              android:layout_marginStart="@dimen/margin_small"
+              android:gravity="center"/>
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:src="@drawable/ic_question"
+              android:layout_marginStart="@dimen/margin_default"
+              android:layout_marginEnd="@dimen/margin_small"/>
+        </LinearLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_help"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="@dimen/fo_size_25"-->
+<!--            android:text="@string/Help"-->
+<!--            android:textSize="@dimen/fo_font_12"-->
+<!--            android:foreground="?attr/selectableItemBackground"-->
+<!--            android:background="@drawable/bg_button_round_grey_primary_two"-->
+<!--            android:drawableEnd="@drawable/ic_question"-->
+<!--            android:padding="@dimen/margin_small"-->
+<!--            android:gravity="center"-->
+<!--            android:visibility="gone"/>-->
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/margin_large"
+          android:gravity="center|right"
+          android:padding="@dimen/margin_default"
+          tools:ignore="RtlHardcoded">
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_default"
+            android:text="@string/Help"
+            android:src="@drawable/ic_close"
+            android:foreground="?selectableItemBackground"/>
+
+      </RelativeLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="520dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_recycler_mta_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recycler_mta_card"
+          android:layout_width="wrap_content"
+          android:layout_height="@dimen/fo_size_450"
+          android:layout_marginStart="@dimen/margin_small"
+          android:layout_marginEnd="@dimen/margin_small"
+          android:clipToPadding="false"
+          android:overScrollMode="never"
+          tools:listitem="@layout/adapter_recycler_mta_card_product"
+          android:visibility="gone"/>
+
+      <androidx.viewpager.widget.ViewPager
+          android:foregroundGravity="center"
+          android:id="@+id/viewPager"
+          android:overScrollMode="never"
+          android:clipToPadding="false"
+          android:layout_width="match_parent"
+          android:layout_height="450dp"/>
+
+      <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+          android:id="@+id/indicator"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/margin_default"
+          app:spi_dotSelectedColor="@color/colorPrimary"/>
+
+      <ImageView
+          android:id="@+id/indicator_nol"
+          android:layout_width="@dimen/fo_spacing_10"
+          android:layout_height="@dimen/fo_spacing_10"
+          android:layout_margin="@dimen/margin_default"
+          android:visibility="gone"
+          android:background="@drawable/bg_icon_circle_primary"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xxlarge"
+        android:orientation="horizontal">
+
+      <Button
+          android:id="@+id/btn_delete_card"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/delete_this_card"
+          android:layout_marginEnd="@dimen/margin_default"
+          android:foreground="?attr/selectableItemBackground"
+          android:background="@drawable/bg_button_round_grey_primary"/>
+
+      <Button
+          android:id="@+id/btn_add_mta_card"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/add_card"
+          android:textColor="@color/white"
+          android:layout_marginStart="@dimen/margin_default"
+          android:foreground="?attr/selectableItemBackground"
+          android:background="@drawable/bg_button_round_primary"/>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</RelativeLayout>

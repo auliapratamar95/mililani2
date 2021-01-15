@@ -10,6 +10,7 @@ import android.text.SpannableString
 import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View
+import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -238,10 +239,39 @@ object Common {
                 .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             val currentFocusedView = activity.currentFocus
             if (currentFocusedView != null) {
-                inputManager.hideSoftInputFromWindow(currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                inputManager.hideSoftInputFromWindow(
+                    currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
+                )
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    // slide the view from below itself to the current position
+    fun slideUp(view: View) {
+        view.visibility = View.VISIBLE
+        val animate = TranslateAnimation(
+            0F,  // fromXDelta
+            0F,  // toXDelta
+            view.height.toFloat(),  // fromYDelta
+            0F
+        ) // toYDelta
+        animate.duration = 500
+        animate.fillAfter = true
+        view.startAnimation(animate)
+    }
+
+    // slide the view from its current position to below itself
+    fun slideDown(view: View) {
+        val animate = TranslateAnimation(
+            0F,  // fromXDelta
+            0F,  // toXDelta
+            0F,  // fromYDelta
+            view.height.toFloat()
+        ) // toYDelta
+        animate.duration = 500
+        animate.fillAfter = true
+        view.startAnimation(animate)
     }
 }

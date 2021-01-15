@@ -95,5 +95,23 @@
         <item name="android:textSize">11sp</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/recycler_adapter_top_bottom </item>
+        <item name="android:windowExitAnimation">@anim/recycler_adapter_bottom_top </item>
+        <item name="android:fragmentCloseExitAnimation">@anim/recycler_adapter_bottom_top </item>
+    </style>
+
+    <!-- set the rounded drawable as background to your bottom sheet -->
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <style name="BaseBottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:maxHeight">700dp</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/fo_bg_bottom_sheet</item>
+    </style>
 
 </resources>

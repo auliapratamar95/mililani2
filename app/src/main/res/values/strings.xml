@@ -47,13 +47,14 @@
   <string name="warning_storage_space">Your internal storage space is running out, please free some spaces on your internal storage.</string>
   <string name="desc_term_condition">By tapping ‘SIGN UP,’ I confirm that I agree to Mililani’s Terms of Use and Privacy Policy</string>
   <string name="hint_enter_your_mobile_number">Enter your mobile number</string>
+  <string name="hint_enter_your_card_number">Enter your card number</string>
   <string name="hint_enter_complete_phone_number">Enter a complete phone number or an email address.</string>
   <string name="enter_your_otp_that_was_sent_to">Enter your OTP that was sent to</string>
   <string name="verification_code">Verification Code</string>
   <string name="verify_now">Verify Now</string>
   <string name="close_apps">Do you want to close apps?</string>
   <string name="yes">Yes</string>
-  <string name="signUp">SignUp</string>
+  <string name="signUp">Sign Up</string>
   <string name="next">Next</string>
   <string name="do_this_later">Do This Later</string>
   <string name="address">Address</string>
@@ -62,12 +63,12 @@
   <string name="first_name">First Name</string>
   <string name="title_personal_information">personal Information</string>
   <string name="title_please_complete_your">Please complete your</string>
-  <string name="title_scan_the_barcode_on_your">Scan the barcode on your</string>
-  <string name="title_mta_card_to_save_it">MTA card to save it</string>
-  <string name="insert_your">Insert your</string>
-  <string name="mta_card_number_manually">MTA card number manually.</string>
+  <string name="title_scan_the_barcode_on_your">Scan the barcode on </string>
+  <string name="title_mta_card_to_save_it">your MTA card.</string>
+  <string name="insert_your">Enter your</string>
+  <string name="mta_card_number_manually">MTA card number.</string>
   <string name="congratulations">Congratulations!</string>
-  <string name="your_id_card_has_been_regsitered">Your ID Card has been regsitered.</string>
+  <string name="your_id_card_has_been_regsitered">Your ID Card has been registered.</string>
   <string name="finish">Finish</string>
   <string name="scan_barcode">Scan Barcode</string>
   <string name="enter_manually">Enter Manually</string>
@@ -85,14 +86,45 @@
   <string name="title_facility_schedule">Schedule</string>
   <string name="Help">help</string>
   <string name="add_manually">Add Manually</string>
-  <string name="please_wait">Please wait ...</string>
+  <string name="add_mta_card">Add New MTA Card</string>
+  <string name="please_wait">Please wait …</string>
 
 
+  <string name="prefs_card_number" translatable="false">CARD_NUMBER</string>
+  <string name="prefs_is_add_mta_card" translatable="false">IS_ADD_MTA_CARD</string>
   <string name="prefs_phone_number" translatable="false">PHONE_NUMBER</string>
   <string name="prefs_phone_number_unmask" translatable="false">PHONE_NUMBER_UNMASK</string>
   <string name="prefs_code_barcode" translatable="false">CODE_BARCODE</string>
+  <string name="prefs_is_bottom_card_list" translatable="false">IS_BOTTOM_CARD_LIST</string>
+  <string name="prefs_is_add_bottom_card_list" translatable="false">IS_ADD_BOTTOM_CARD_LIST</string>
+
   <string name="please_enter_it_below">Please enter it below</string>
   <string name="we_ve_just_sent_you_a_verification_code">We\'ve just sent you a verification code.</string>
   <string name="you_can_request_a_new_code_in">You can request a new code in</string>
+  <string name="save">Save</string>
+  <string name="more">More</string>
+  <string name="delete_this_card">delete this card</string>
+  <string name="add_card">Add New</string>
+  <string name="set_as_primary">Set As Primary</string>
+  <string name="add_new_mta_card">Add New MTA Card</string>
+  <string name="are_you_sure_want_to">Are you sure want to</string>
+  <string name="are_you_sure_you_want_to">Are you sure you want to </string>
+  <string name="delete_card">Delete Card</string>
+  <string name="cancel">Cancel</string>
+  <string name="mta_card_based_on_nickname">MTA card based on nickname</string>
+  <string name="skip_this_step">Skip this step</string>
+  <string name="cafe">Cafe</string>
+  <string name="pay_assessments">Pay Assessments</string>
+  <string name="recreation_centers">Recreation Centers</string>
+  <string name="activities">Activities</string>
+  <string name="news">News</string>
+  <string name="help_page">Help</string>
+
+  <string name="message_mta_card_success_Added">MTA card data successfully added</string>
+  <string name="log_out">log out?</string>
+  <string name="enter_nickname">Enter Nickname</string>
+  <string name="your_id_card_has_been_registered">Your ID Card has been registered.</string>
+  <string name="add_optional_nickname">Add optional nickname.</string>
+  <string name="input_nickname_here">Input Nickname here</string>
 
 </resources>

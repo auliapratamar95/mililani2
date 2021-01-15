@@ -8,24 +8,25 @@
   <fragment
       android:id="@+id/navigation_home"
       android:name="com.strategies360.mililani2.fragment.HomeFragment"
-      android:label="@string/title_home"
       tools:layout="@layout/fragment_home" />
 
   <fragment
-      android:id="@+id/navigation_dashboard"
+      android:id="@+id/navigation_registration"
       android:name="com.strategies360.mililani2.fragment.RegistrationFragment"
-      android:label="@string/title_dashboard"
       tools:layout="@layout/fragment_registration" />
 
   <fragment
-      android:id="@+id/navigation_notifications"
+      android:id="@+id/navigation_schedule"
       android:name="com.strategies360.mililani2.fragment.HomeFragment"
-      android:label="@string/title_notifications"
       tools:layout="@layout/fragment_home" />
 
   <fragment
-      android:id="@+id/notifications"
-      android:name="com.strategies360.mililani2.fragment.RegistrationFragment"
-      android:label="@string/title_notifications"
-      tools:layout="@layout/fragment_registration" />
+      android:id="@+id/navigation_events"
+      android:name="com.strategies360.mililani2.fragment.HomeFragment"
+      tools:layout="@layout/fragment_home" />
+
+  <fragment
+      android:id="@+id/navigation_setting"
+      android:name="com.strategies360.mililani2.fragment.SettingMtaFragment"
+      tools:layout="@layout/fragment_setting_mta_card" />
 </navigation>

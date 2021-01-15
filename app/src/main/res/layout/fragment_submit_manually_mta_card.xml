@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     >
 
@@ -58,11 +59,12 @@
           android:text="@string/mta_card_number_manually"
           android:textSize="@dimen/text_xlarge"/>
 
-      <RelativeLayout
+      <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="@dimen/fo_size_256"
           android:padding="@dimen/margin_default"
-          android:gravity="center">
+          android:gravity="center"
+          android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ed_layout_mta_card"
@@ -76,12 +78,65 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center"
+              android:maxLength="7"
+              android:imeOptions="actionDone"
+              android:inputType="number"
               android:foregroundTint="@color/colorPrimary"
-              android:backgroundTint="@color/colorPrimary"/>
+              android:backgroundTint="@color/colorPrimary"
+              android:visibility="gone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-      </RelativeLayout>
+        <com.vicmikhailau.maskededittext.MaskedEditText
+            android:id="@+id/edit_mask_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_enter_your_card_number"
+            android:imeOptions="actionNext"
+            android:backgroundTint="@color/em_transparent"
+            android:importantForAutofill="no"
+            android:inputType="textFilter|textNoSuggestions|phone"
+            android:padding="@dimen/margin_default"
+            android:textColorHint="@color/Register_Text_Hint"
+            android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+            android:textSize="@dimen/fo_font_19"
+            android:maxLength="11"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:visibility="gone"/>
+
+        <mk.webfactory.dz.maskededittext.MaskedEditText
+            android:id="@+id/edit_masked_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:gravity="center_horizontal"
+            android:imeOptions="actionNext"
+            android:backgroundTint="@color/em_transparent"
+            android:importantForAutofill="no"
+            android:inputType="textFilter|textNoSuggestions|phone"
+            android:padding="@dimen/margin_default"
+            android:textColorHint="@color/Register_Text_Hint"
+            android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+            android:textSize="@dimen/fo_font_19"
+            android:maxLength="11"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            app:maskededittext_enforceMaskLength="false"
+            app:maskededittext_mask="MTA########"
+            app:maskededittext_maskCharacter="#"
+            android:hint="@string/hint_enter_your_card_number"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/fo_spacing_3"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:background="@color/colorPrimary"/>
+
+      </LinearLayout>
+
 
     </LinearLayout>
 
@@ -99,7 +154,7 @@
           android:layout_marginTop="@dimen/margin_xlarge"
           android:background="@drawable/bg_button_grey"
           android:foreground="?attr/selectableItemBackground"
-          android:text="@string/scan_barcode"
+          android:text="@string/save"
           android:textColor="@color/white"/>
 
       <Button

@@ -104,7 +104,8 @@
           android:background="@drawable/bg_button_round_grey_primary"
           android:foreground="?attr/selectableItemBackground"
           android:text="@string/do_this_later"
-          android:textColor="@color/colorPrimary"/>
+          android:textColor="@color/colorPrimary"
+          android:visibility="gone"/>
 
     </LinearLayout>
 

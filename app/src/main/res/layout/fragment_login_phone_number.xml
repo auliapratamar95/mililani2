@@ -99,9 +99,9 @@
             android:textColorHint="@color/Register_Text_Hint"
             android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
             android:textSize="@dimen/fo_font_19"
+            android:visibility="gone"
             tools:text="089898080980980"
-            tools:ignore="TextFields"
-            android:visibility="gone"/>
+            tools:ignore="TextFields"/>
 
         <com.vicmikhailau.maskededittext.MaskedEditText
             android:id="@+id/edit_mask_phone_number"
@@ -120,7 +120,8 @@
             android:textSize="@dimen/fo_font_19"
             android:maxLength="15"
             tools:text="082398293892"
-            app:mask="(###) ###-####" />
+            app:mask="(###) ###-####"
+            android:visibility="visible"/>
 
       </LinearLayout>
 

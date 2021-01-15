@@ -15,6 +15,7 @@
     <dimen name="margin_small">4dp</dimen>
     <dimen name="margin_default">8dp</dimen>
     <dimen name="margin_large">12dp</dimen>
+    <dimen name="margin_larges">15dp</dimen>
     <dimen name="margin_xlarge">20dp</dimen>
     <dimen name="margin_xxlarge">40dp</dimen>
 
@@ -63,9 +64,13 @@
     <dimen name="fo_spacing_70">70dp</dimen>
     <dimen name="fo_spacing_72">72dp</dimen>
     <dimen name="fo_spacing_80">80dp</dimen>
+    <dimen name="fo_spacing_90">90dp</dimen>
+    <dimen name="fo_spacing_100">100dp</dimen>
     <dimen name="fo_spacing_114">114dp</dimen>
     <dimen name="fo_spacing_125">125dp</dimen>
     <dimen name="fo_spacing_180">180dp</dimen>
+    <dimen name="fo_spacing_250">250dp</dimen>
+    <dimen name="fo_spacing_300">300dp</dimen>
 
     <dimen name="fo_spacing_negative_1">-1dp</dimen>
     <dimen name="fo_spacing_negative_2">-2dp</dimen>
@@ -106,7 +111,9 @@
     <dimen name="fo_font_large_ssp">18sp</dimen>
     <dimen name="fo_font_normal_ssp">18sp</dimen>
 
+    <dimen name="fo_font_9">9sp</dimen>
     <dimen name="fo_font_10">10sp</dimen>
+    <dimen name="fo_font_11">11sp</dimen>
     <dimen name="fo_font_12">12sp</dimen>
     <dimen name="fo_font_13">13sp</dimen>
     <dimen name="fo_font_14">14sp</dimen>
@@ -185,7 +192,9 @@
     <dimen name="fo_size_300">300dp</dimen>
     <dimen name="fo_size_340">340dp</dimen>
     <dimen name="fo_size_372">372dp</dimen>
+    <dimen name="fo_size_400">400dp</dimen>
     <dimen name="fo_size_450">450dp</dimen>
+    <dimen name="fo_size_480">480dp</dimen>
     <dimen name="fo_size_500">500dp</dimen>
     <dimen name="fo_size_600">600dp</dimen>
 

@@ -3,8 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:animateLayoutChanges="true"
+    tools:visibility="visible">
 
   <LinearLayout
       android:id="@+id/layout_header_home"
@@ -24,9 +28,11 @@
           android:id="@+id/profile_image"
           android:layout_width="@dimen/fo_spacing_70"
           android:layout_height="@dimen/fo_spacing_70"
-          android:src="@drawable/img_splash_mililani_one"
+          android:padding="@dimen/margin_small"
+          android:src="@drawable/ic_baseline_person"
+          android:background="@drawable/bg_icon_circle_white"
           app:civ_border_width="1dp"
-          app:civ_border_color="@color/colorPrimary"/>
+          app:civ_border_color="@color/white"/>
 
     </RelativeLayout>
 
@@ -40,14 +46,9 @@
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Hallo Pratama!"
+          android:text="Hello"
           android:textColor="@color/white"/>
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Lorem ipsum dolor sit amet"
-          android:textColor="@color/white"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -63,7 +64,7 @@
           android:src="@drawable/ic_scan_barcode"
           android:layout_marginRight="@dimen/margin_default"
           android:backgroundTint="@color/white"
-          android:background="?attr/selectableItemBackground"/>
+          android:foreground="?attr/selectableItemBackground"/>
     </RelativeLayout>
 
   </LinearLayout>
@@ -81,12 +82,14 @@
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      android:text="Logout"
-      android:textColor="@color/colorPrimary"
-      android:layout_margin="@dimen/margin_xxlarge"
-      android:background="@drawable/bg_button_round_grey_primary"/>
-
+        android:text="Logout"
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="@dimen/margin_xxlarge"
+        android:background="@drawable/bg_button_round_grey_primary"/>
 
   </LinearLayout>
+
+<!--  <include-->
+<!--    layout="@layout/fragment_mta_card_list"/>-->
 
 </RelativeLayout>

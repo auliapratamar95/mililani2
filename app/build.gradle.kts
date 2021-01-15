@@ -137,7 +137,8 @@ android {
 }
 
 dependencies {
-    testImplementation(LibTest.junit)
+    implementation("androidx.viewpager:viewpager:1.0.0")
+  testImplementation(LibTest.junit)
     androidTestImplementation(LibTest.testRunner)
     androidTestImplementation(LibTest.espresso)
 
@@ -187,6 +188,10 @@ dependencies {
     implementation(Lib.hawk)
     implementation(Lib.circleImage)
     implementation(Lib.MaskEditText)
+    implementation(Lib.Coil)
+    implementation(Lib.eventBus)
+    implementation(Lib.scrollPagerIndicator)
+    implementation(Lib.customMasked)
 
     implementation(Lib.firebaseAnalytic)
     implementation(Lib.firebaseAuth)

@@ -56,7 +56,7 @@
             android:name="com.strategies360.mililani2.activity.VerificationOTPActivity" />
 
         <activity
-            android:name="com.strategies360.mililani2.activity.BottomMenuNavigatonActivity" />
+            android:name="com.strategies360.mililani2.activity.BottomMenuNavigationActivity" />
 
         <activity
             android:name="com.strategies360.mililani2.activity.SampleSelectionActivity" />
@@ -85,6 +85,18 @@
             android:name="com.strategies360.mililani2.activity.SubmitFinishMtaCardActivity"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name="com.strategies360.mililani2.activity.AddScanMtaCardActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.HelpMtaActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.SubmitNicknameMtaCardActivity"
+            android:windowSoftInputMode="stateHidden" />
+
         <!-- Account auth service -->
         <service
             android:name="itsmagic.present.simpleaccountmanager.AccountAuthService"
@@ -105,16 +117,6 @@
             android:exported="false"
             android:label="@string/account_sync_profile_information"
             android:syncable="true" />
-        <service
-            android:name="com.strategies360.mililani2.account.profile.ProfileSyncService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.content.SyncAdapter" />
-            </intent-filter>
-            <meta-data
-                android:name="android.content.SyncAdapter"
-                android:resource="@xml/account_sync_profile" />
-        </service>
 
         <!-- Fabric -->
         <meta-data

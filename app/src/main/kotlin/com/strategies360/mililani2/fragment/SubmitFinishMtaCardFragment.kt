@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.string
-import com.strategies360.mililani2.activity.BottomMenuNavigatonActivity
+import com.strategies360.mililani2.activity.BottomMenuNavigationActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import kotlinx.android.synthetic.main.fragment_submit_finish_mta_card.btn_finish_mta_card
 import kotlinx.android.synthetic.main.fragment_submit_finish_mta_card.btn_skip_personal_information
@@ -34,10 +34,10 @@ class SubmitFinishMtaCardFragment : CoreFragment(), View.OnClickListener{
   override fun onClick(view: View?) {
     when (view?.id) {
       R.id.btn_finish_mta_card -> {
-        BottomMenuNavigatonActivity.launchIntent(requireContext())
+        BottomMenuNavigationActivity.launchIntent(requireContext())
       }
       R.id.btn_skip_personal_information -> {
-        BottomMenuNavigatonActivity.launchIntent(requireContext())
+        BottomMenuNavigationActivity.launchIntent(requireContext())
       }
       else -> {
         /* nothing to do in here */

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_mta_card_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:visibility="invisible"
+    tools:visibility="visible"
+    tools:background="@color/red">
+
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      android:id="@+id/swipe_refresh_data_list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="@dimen/fo_size_120"
+          android:background="@drawable/fo_bg_bottom_sheet"
+          android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+          <RelativeLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:layout_margin="@dimen/margin_large"
+              android:padding="@dimen/margin_default">
+
+            <Button
+                android:id="@+id/btn_help"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fo_spacing_30"
+                android:text="@string/Help"
+                android:textSize="@dimen/fo_font_12"
+                android:background="@drawable/bg_button_round_grey_primary"
+                android:drawableEnd="@drawable/ic_question"
+                android:padding="@dimen/margin_small"/>
+
+          </RelativeLayout>
+
+          <RelativeLayout
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:layout_margin="@dimen/margin_large"
+              android:gravity="center|right"
+              android:padding="@dimen/margin_default"
+              tools:ignore="RtlHardcoded">
+
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_default"
+                android:text="@string/Help"
+                android:src="@drawable/ic_close"
+                android:foreground="?selectableItemBackground"/>
+
+          </RelativeLayout>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_mta_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_large"
+            android:scrollbars="horizontal"
+            tools:scrollbars="horizontal"
+            tools:listitem="@layout/adapter_recycler_mta_card_product"
+            android:layout_marginBottom="@dimen/fo_spacing_100"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btn_delete_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/delete_this_card"
+            android:layout_margin="@dimen/margin_xlarge"
+            android:background="@drawable/bg_button_round_grey_primary"/>
+
+        <Button
+            android:id="@+id/btn_add_mta_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_card"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/margin_xlarge"
+            android:background="@drawable/bg_button_round_primary"/>
+
+      </LinearLayout>
+
+    </RelativeLayout>
+
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</FrameLayout>

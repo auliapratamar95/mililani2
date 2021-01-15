@@ -6,6 +6,7 @@ import com.strategies360.extension.api.withListener
 import com.strategies360.mililani2.api.APICaller
 import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
+import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 
 class SubmitMTACardViewModel : ViewModel() {
 
@@ -16,7 +17,7 @@ class SubmitMTACardViewModel : ViewModel() {
     private var apiCaller: APICaller<SignInMililaniResponse>? = null
 
     /** Fetches a sample list from a remote server */
-    fun signInMililani(request: String) {
+    fun submitInMililani(request: MTACardRequest?) {
         liveData.value = Resource.loading()
 
         if (apiCaller == null) {

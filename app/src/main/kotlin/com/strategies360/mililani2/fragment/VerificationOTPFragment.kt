@@ -25,7 +25,7 @@ import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCall
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.string
-import com.strategies360.mililani2.activity.BottomMenuNavigatonActivity
+import com.strategies360.mililani2.activity.BottomMenuNavigationActivity
 import com.strategies360.mililani2.activity.LoginPhoneNumberActivity
 import com.strategies360.mililani2.activity.SubmitScanMtaCardActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
@@ -292,7 +292,7 @@ class VerificationOTPFragment : CoreFragment() {
       if (isNewUser)
         SubmitScanMtaCardActivity.launchIntent(requireContext())
       else
-        BottomMenuNavigatonActivity.launchIntent(requireContext())
+        BottomMenuNavigationActivity.launchIntent(requireContext())
     }
   }
 

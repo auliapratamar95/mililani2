@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:id="@+id/layout_send_otp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="@dimen/margin_large"
+      android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_scan_barcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/fo_spacing_10"
+        android:padding="@dimen/margin_default">
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/title_scan_the_barcode_on_your"
+          android:textSize="@dimen/text_xlarge"
+          android:gravity="center"
+          android:padding="@dimen/margin_xsmall"/>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@string/title_mta_card_to_save_it"
+          android:textSize="@dimen/text_xlarge"
+          />
+
+      <FrameLayout
+          android:id="@+id/frame_layout_camera"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/fo_size_200"
+          android:layout_marginTop="@dimen/margin_xlarge"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:padding="@dimen/margin_large"
+        android:orientation="vertical">
+
+      <Button
+          android:id="@+id/btn_manually_mta_card"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_xlarge"
+          android:background="@drawable/bg_button_grey"
+          android:foreground="?attr/selectableItemBackground"
+          android:text="@string/enter_manually"
+          android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</LinearLayout>

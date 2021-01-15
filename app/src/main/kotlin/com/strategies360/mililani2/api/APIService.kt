@@ -6,13 +6,18 @@ import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
 import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.auth.SignInRequest
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
+import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
+import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -56,8 +61,36 @@ object APIService {
       @POST("cards")
       fun submitMTACard(
         @Header("Authorization") accessToken: String?,
-        @Body body: String?)
+        @Body body: MTACardRequest?)
           : Call<SignInMililaniResponse>
+
+      /** Change Nickname the user into the system */
+      @PATCH("cards")
+      fun editNicknameMTACard(
+        @Header("Authorization") accessToken: String?,
+        @Query("card_number") cardNumber: String?,
+        @Body mtaCardRequest: MTACardRequest?)
+          : Call<MTACardListResponse>
+
+      /** Change Nickname the user into the system */
+      @PATCH("cards/make-default")
+      fun defaultMTACard(
+        @Header("Authorization") accessToken: String?,
+        @Query("card_number") cardNumber: String?)
+          : Call<MTACardListResponse>
+
+      /** Logs the user into the system */
+      @HTTP(method = "DELETE", path = "cards", hasBody = true)
+      fun deleteMTACard(
+        @Header("Authorization") accessToken: String?,
+        @Body deleteMtaCardRequest: DeleteMtaCardRequest?)
+          : Call<MTACardListResponse>
+
+      /** Obtain the MTA Card list */
+      @GET("cards")
+      fun getMTACard(
+        @Header("Authorization") accessToken: String?)
+          : Call<MTACardListResponse>
 
 
         /** Obtain the user profile */

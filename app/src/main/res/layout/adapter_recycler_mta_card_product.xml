@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/fo_size_280"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/fo_size_280"
+        android:layout_height="@dimen/fo_spacing_40"
+        android:layout_marginTop="@dimen/margin_default"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/sample"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.7"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/fo_font_14"
+                android:maxLength="18"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:hint="@string/enter_nickname"
+                tools:text="Sam"
+                android:gravity="center"
+                android:backgroundTint="@color/colorPrimary"/>
+
+            <ImageView
+                android:layout_width="@dimen/margin_larges"
+                android:layout_height="@dimen/margin_larges"
+                android:layout_gravity="center|right"
+                android:background="@drawable/bg_icon_circle_primary"
+                android:src="@drawable/ic_baseline_check"
+                android:layout_margin="3dp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_set_primary"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/fo_spacing_30"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_orange"
+            android:foreground="?attr/selectableItemBackground"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fo_font_9"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:text="@string/set_as_primary"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_gravity="center_vertical"
+            tools:visibility="visible"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default">
+
+        <ImageView
+            android:id="@+id/img_mta_card"
+            android:layout_width="@dimen/fo_size_256"
+            android:layout_height="@dimen/fo_size_400"
+            android:layout_marginStart="@dimen/margin_xlarge"
+            android:src="@drawable/ic_bg_mta_card_sample_two"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center|bottom">
+
+            <ImageView
+                android:id="@+id/barcode_mta_card"
+                android:layout_width="@dimen/fo_spacing_300"
+                android:layout_height="@dimen/fo_spacing_60"
+                android:rotation="90"
+                android:layout_marginBottom="160dp"
+                android:layout_marginStart="-60dp"
+                app:srcCompat="?attr/actionBarDivider"/>
+
+            <TextView
+                android:id="@+id/txt_card_number"
+                android:layout_width="@dimen/fo_spacing_300"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textAllCaps="true"
+                android:rotation="90"
+                android:layout_marginBottom="@dimen/margin_larges"
+                android:layout_marginStart="-115dp"
+                android:layout_alignBottom="@+id/barcode_mta_card"
+                tools:text="MTA12332131"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

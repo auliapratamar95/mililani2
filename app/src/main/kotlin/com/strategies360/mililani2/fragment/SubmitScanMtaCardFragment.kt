@@ -11,13 +11,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.zxing.Result
 import com.strategies360.mililani2.R
-import com.strategies360.mililani2.activity.BottomMenuNavigatonActivity
+import com.strategies360.mililani2.activity.BottomMenuNavigationActivity
 import com.strategies360.mililani2.activity.SubmitFinishMtaCardActivity
 import com.strategies360.mililani2.activity.SubmitManuallyMtaCardActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.AppError
 import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
+import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.CustomViewFinderView
 import com.strategies360.mililani2.viewmodel.SubmitMTACardViewModel
@@ -32,7 +33,6 @@ class SubmitScanMtaCardFragment : CoreFragment(), ZXingScannerView.ResultHandler
   private lateinit var mScannerView: ZXingScannerView
 
   private var code: String = ""
-  private var lastText: String? = null
 
   /** The view model for sign in */
   private val submitMTACardViewModel by lazy {
@@ -107,11 +107,11 @@ class SubmitScanMtaCardFragment : CoreFragment(), ZXingScannerView.ResultHandler
     when (v?.id) {
       R.id.btn_manually_mta_card -> {
         mScannerView.resumeCameraPreview(this)
-        SubmitManuallyMtaCardActivity.launchIntent(requireContext())
+        SubmitManuallyMtaCardActivity.launchIntent(requireContext(), false)
       }
       R.id.btn_skip_personal_information -> {
         mScannerView.resumeCameraPreview(this)
-        BottomMenuNavigatonActivity.launchIntent(requireContext())
+        BottomMenuNavigationActivity.launchIntent(requireContext())
       }
       else -> {
         /* nothing to do in here */
@@ -123,9 +123,12 @@ class SubmitScanMtaCardFragment : CoreFragment(), ZXingScannerView.ResultHandler
     try {
       val  notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
       val r = RingtoneManager.getRingtone(context, notification)
+      val mtaCardRequest = MTACardRequest()
       r.play()
       code = rawResult?.text.toString()
-      submitMTACard(code)
+
+      mtaCardRequest.cardNumber = code
+      submitMTACard(mtaCardRequest)
     } catch (e: Exception) {
 
     }
@@ -143,8 +146,8 @@ class SubmitScanMtaCardFragment : CoreFragment(), ZXingScannerView.ResultHandler
   }
 
   /** Load user's profile from a remote server (async)  */
-  private fun submitMTACard(data: String) {
-    submitMTACardViewModel.signInMililani(data)
+  private fun submitMTACard(data: MTACardRequest) {
+    submitMTACardViewModel.submitInMililani(data)
   }
 
   private fun onSubmitMTACardLoading() {

@@ -24,6 +24,10 @@ class LoginPhoneNumberFragment : CoreFragment() {
 
   private fun initLogin() {
     btn_send_otp.setOnClickListener {
+//      if (edit_phone_number.text != null && edit_phone_number.text!!.isNotEmpty()) {
+//        val phoneNumberUnMask = "+62" + edit_phone_number.text.toString()
+//        VerificationOTPActivity.launchIntent(requireContext(), phoneNumberUnMask, phoneNumberUnMask)
+//      }
       if (edit_mask_phone_number.text != null && edit_mask_phone_number.text!!.isNotEmpty()) {
         val phoneNumber = "+1" + edit_mask_phone_number.unMaskedText
         val phoneNumberUnMask = "+1" + edit_mask_phone_number.text.toString()

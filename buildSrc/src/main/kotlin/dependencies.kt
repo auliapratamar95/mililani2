@@ -130,6 +130,10 @@ object Lib {
         const val hawk = "2.0.1"
         const val circleImage = "3.1.0"
         const val MaskEditText = "3.1.1"
+        const val Coil = "1.1.0"
+        const val eventbus = "3.2.0"
+        const val customMasked = "2.0"
+        const val scrollPagerIndicator = "1.0.6"
     }
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
@@ -152,6 +156,10 @@ object Lib {
     const val hawk = "com.orhanobut:hawk:${Version.hawk}"
     const val circleImage = "de.hdodenhof:circleimageview:${Version.circleImage}"
     const val MaskEditText = "com.vicmikhailau:MaskedEditText:${Version.MaskEditText}"
+    const val Coil = "io.coil-kt:coil:${Version.Coil}"
+    const val eventBus = "org.greenrobot:eventbus:${Version.eventbus}"
+    const val customMasked = "mk.webfactory.dz:maskededittext:${Version.customMasked}"
+    const val scrollPagerIndicator = "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:${Version.scrollPagerIndicator}"
 }
 
 object ProGuard {
