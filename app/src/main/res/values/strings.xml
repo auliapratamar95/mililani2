@@ -104,6 +104,7 @@
   <string name="save">Save</string>
   <string name="more">More</string>
   <string name="delete_this_card">delete this card</string>
+  <string name="confirm_delete_this_card">delete this card?</string>
   <string name="add_card">Add New</string>
   <string name="set_as_primary">Set As Primary</string>
   <string name="add_new_mta_card">Add New MTA Card</string>
@@ -126,5 +127,8 @@
   <string name="your_id_card_has_been_registered">Your ID Card has been registered.</string>
   <string name="add_optional_nickname">Add optional nickname.</string>
   <string name="input_nickname_here">Input Nickname here</string>
+  <string name="cannot_complete_action">Cannot complete action.</string>
+  <string name="card_was_already_added">Card was already added</string>
+  <string name="on_this_device">on this device</string>
 
 </resources>

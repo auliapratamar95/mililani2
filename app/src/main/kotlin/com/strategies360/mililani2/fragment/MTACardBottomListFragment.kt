@@ -254,8 +254,7 @@ class MTACardBottomListFragment : BottomSheetDialogFragment(), View.OnClickListe
     progress_bar.visibility = View.GONE
     if (dataList.size == 0) {
       AddScanMtaCardActivity.launchIntent(requireContext(), true)
-    }
-    else {
+    } else {
       layout_recycler_mta_card.visibility = View.VISIBLE
     }
   }
@@ -294,7 +293,8 @@ class MTACardBottomListFragment : BottomSheetDialogFragment(), View.OnClickListe
       AddScanMtaCardActivity.launchIntent(requireContext())
     } else if (view == btn_delete_card) {
       if (dataList.size != 0) {
-        idsDeleteMtaCard = dataList[0].id.toString()
+        viewPager.currentItem
+        idsDeleteMtaCard = dataList[viewPager.currentItem].id.toString()
         val deleteMtaCardRequest = DeleteMtaCardRequest()
         val idMtaCard = ArrayList<String>()
         idMtaCard.add(idsDeleteMtaCard!!)

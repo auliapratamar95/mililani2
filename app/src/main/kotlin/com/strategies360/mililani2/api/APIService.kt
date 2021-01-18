@@ -9,6 +9,7 @@ import com.strategies360.mililani2.model.remote.auth.SignInResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
+import com.strategies360.mililani2.model.remote.news.NewsResponse
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -93,7 +94,15 @@ object APIService {
           : Call<MTACardListResponse>
 
 
-        /** Obtain the user profile */
+      /** Obtain the MTA Card list */
+      @GET("news")
+      fun getNews(
+        @Header("Authorization") accessToken: String?)
+          : Call<NewsResponse>
+
+
+
+      /** Obtain the user profile */
         @GET("profile")
         fun getProfile(
                 // For easy visibility (test purposes), this sample will use a query

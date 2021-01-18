@@ -7,11 +7,11 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.zxing.Result
 import com.strategies360.mililani2.R
-import com.strategies360.mililani2.activity.SubmitFinishMtaCardActivity
 import com.strategies360.mililani2.activity.SubmitManuallyMtaCardActivity
 import com.strategies360.mililani2.activity.SubmitNicknameMtaCardActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
@@ -174,10 +174,18 @@ class AddScanMtaCardFragment : CoreFragment(),
     activity?.let {
       Common.dismissProgressDialog()
       if (error.code == 1000) {
-        SubmitFinishMtaCardActivity.launchIntent(requireContext(), code)
-        requireActivity().finishAffinity()
+        initBarcodeMTA()
+        openDialogNotice()
       } else
         Common.showMessageDialog(it, "Error", error.message)
+    }
+  }
+
+  private fun openDialogNotice() {
+    val fragManager: FragmentManager? = fragmentManager
+    if (fragManager != null) {
+      DialogNoticeAddCard()
+          .show(fragManager, "Dialog")
     }
   }
 }

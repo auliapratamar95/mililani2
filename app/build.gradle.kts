@@ -23,8 +23,8 @@ android {
         applicationId = "com.strategies360.mililani2"
         minSdkVersion(Android.min)
         targetSdkVersion(Android.target)
-        versionCode = 54
-        versionName = "base-5.0.6"
+        versionCode = 1
+        versionName = "ver-1.0.2-debug"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Add a BuildConfig timestamp

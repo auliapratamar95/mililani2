@@ -22,63 +22,38 @@
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="@string/title_scan_the_barcode_on_your"
-          android:textStyle="bold"
-          android:textSize="@dimen/text_xlarge"
-          android:padding="@dimen/margin_xsmall"/>
+        android:text="Tips for scanning barcode"
+        android:textSize="@dimen/fo_font_18"
+        android:textStyle="bold"/>
 
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_default"
-          android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
-
+          android:layout_marginTop="@dimen/margin_large"
+          android:text="Position your phone so the barcode appears in the camera viewfinder. The camera should automatically find the barcode."/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/fo_spacing_10"
         android:padding="@dimen/margin_default">
 
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Excepteur sint occaecat"
-          android:textStyle="bold"
-          android:textSize="@dimen/text_xlarge"
-          android:padding="@dimen/margin_xsmall"/>
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_default"
-          android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
-
+          android:text="Keep in mind, the right distance and angle can help. If your camera is too angled, the app may have trouble recognizing the barcode, so a straight-on approach is best."/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/fo_spacing_10"
         android:padding="@dimen/margin_default">
-
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Quis autem vel eum"
-          android:textStyle="bold"
-          android:textSize="@dimen/text_xlarge"
-          android:padding="@dimen/margin_xsmall"/>
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_default"
-          android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
-
+          android:text="Hold camera steady and try to avoid too much movement so the barcode stays visible."/>
     </LinearLayout>
 
   </LinearLayout>

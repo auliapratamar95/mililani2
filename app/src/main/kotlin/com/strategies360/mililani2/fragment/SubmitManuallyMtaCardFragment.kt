@@ -3,6 +3,7 @@ package com.strategies360.mililani2.fragment
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.strategies360.mililani2.R
@@ -50,45 +51,40 @@ class SubmitManuallyMtaCardFragment : CoreFragment(), View.OnClickListener {
   }
 
   override fun onClick(view: View?) {
-    when (view?.id) {
-      R.id.btn_barcode_mta_card -> {
-        when {
-          edit_masked_input.length() == 11 -> {
-            val mtaCardRequest = MTACardRequest()
-            code = edit_masked_input.text.toString()
-            mtaCardRequest.cardNumber = code
+    if (view?.id == R.id.btn_barcode_mta_card) {
+      if (edit_masked_input.length() == 11) {
+        val mtaCardRequest = MTACardRequest()
+        code = edit_masked_input.text.toString()
+        mtaCardRequest.cardNumber = code
 
-            submitMTACard(mtaCardRequest)
-          }
-          edit_masked_input.length() < 8 -> {
-            Common.hideKeyboard(requireActivity())
-            Toast
-                .makeText(
-                    requireActivity(),
-                    "Please enter 8 digit MTA Card number",
-                    Toast.LENGTH_SHORT
-                )
-                .show()
-          }
-          else -> {
-            Common.hideKeyboard(requireActivity())
-            Toast
-                .makeText(
-                    requireActivity(),
-                    "Please type MTA card number",
-                    Toast.LENGTH_SHORT
-                )
-                .show()
-          }
-        }
+        submitMTACard(mtaCardRequest)
+      } else if (edit_masked_input.length() < 11) {
+        Common.hideKeyboard(requireActivity())
+        Toast
+            .makeText(
+                requireActivity(),
+                "Please enter 8 digit MTA Card number",
+                Toast.LENGTH_SHORT
+            )
+            .show()
+      }
+      else {
+        Common.hideKeyboard(requireActivity())
+        Toast
+            .makeText(
+                requireActivity(),
+                "Please type MTA card number",
+                Toast.LENGTH_SHORT
+            )
+            .show()
+      }
 
-      }
-      R.id.btn_skip_submit_manual -> {
-        BottomMenuNavigationActivity.launchIntent(requireContext())
-      }
-      else -> {
-        /* nothing to do in here */
-      }
+    }
+    else if (view?.id == R.id.btn_skip_submit_manual) {
+      BottomMenuNavigationActivity.launchIntent(requireContext())
+    }
+    else {
+      /* nothing to do in here */
     }
   }
 
@@ -131,9 +127,17 @@ class SubmitManuallyMtaCardFragment : CoreFragment(), View.OnClickListener {
     activity?.let {
       Common.dismissProgressDialog()
       if (error.code == 1000)
-        SubmitFinishMtaCardActivity.launchIntent(requireContext(), code)
+        openDialogNotice()
       else
         Common.showMessageDialog(it, "Error", error.message)
+    }
+  }
+
+  private fun openDialogNotice() {
+    val fragManager: FragmentManager? = fragmentManager
+    if (fragManager != null) {
+      DialogNoticeAddCard()
+          .show(fragManager, "Dialog")
     }
   }
 }

@@ -1,23 +1,36 @@
 package com.strategies360.mililani2.fragment
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.orhanobut.hawk.Hawk
-import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.R.string
-import com.strategies360.mililani2.activity.LoginPhoneNumberActivity
+import com.strategies360.mililani2.adapter.viewpager.ViewPagerNewsAdapter
 import com.strategies360.mililani2.fragment.core.CoreFragment
+import com.strategies360.mililani2.model.core.Resource
+import com.strategies360.mililani2.model.remote.news.News
+import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
+import com.strategies360.mililani2.viewmodel.NewsListViewModel
 import kotlinx.android.synthetic.main.fragment_home.btn_logout
 import kotlinx.android.synthetic.main.fragment_home.btn_scan_barcode
+import kotlinx.android.synthetic.main.fragment_home.newsViewPager
 
 class HomeFragment : CoreFragment(), View.OnClickListener {
 
   private var isBottomCardList = false
+  private var customAdapter = ViewPagerNewsAdapter()
+
+  private val dataList = ArrayList<News>()
+
+  private val viewModel by lazy {
+    ViewModelProviders.of(this)
+        .get(NewsListViewModel::class.java)
+  }
+
   override val viewRes: Int? = layout.fragment_home
 
   override fun onViewCreated(
@@ -26,36 +39,18 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
   ) {
     super.onViewCreated(view, savedInstanceState)
 
+//    initViewModel()
+//    viewModel.fetchData()
+
     Hawk.put((Constant.FLAG_ON_BACK_MENU), true)
     isBottomCardList = (requireActivity().intent.getBooleanExtra(getString(string.prefs_is_bottom_card_list), false))
 
     if (isBottomCardList) openBottomCardList()
 
+    btn_logout.visibility = View.VISIBLE
+    newsViewPager.visibility = View.GONE
     btn_logout.setOnClickListener(this)
     btn_scan_barcode.setOnClickListener(this)
-  }
-
-  private fun showMessageDialog(
-    dismissListener: DialogInterface.OnDismissListener? = null
-  ) {
-    val builder = AlertDialog.Builder(requireContext(), R.style.AppTheme_Dialog_Alert)
-    builder.setMessage(getString(string.close_apps))
-    builder.setPositiveButton(android.R.string.yes)
-    { dialog, _ ->
-      dialog.dismiss()
-      LoginPhoneNumberActivity.launchIntent(requireContext())
-    }
-    builder.setNegativeButton(
-        android.R.string.no
-    ) { dialog, _ -> dialog.dismiss() }
-
-    val dialog = builder.create()
-    if (dismissListener != null) {
-      dialog.setOnDismissListener(dismissListener)
-      dialog.setCancelable(false)
-      dialog.setCanceledOnTouchOutside(false)
-    }
-    dialog.show()
   }
 
   private fun openBottomCardList() {
@@ -72,6 +67,46 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
       DialogConfirmationLogout()
           .show(fragManager, "Dialog")
     }
+  }
+
+  private fun initViewModel() {
+    viewModel.resource.observe(viewLifecycleOwner, Observer {
+      when (it?.status) {
+        Resource.LOADING -> onMTACardListLoading()
+        Resource.SUCCESS -> onMTACardListSuccess()
+        Resource.ERROR -> onMTACardListFailure()
+      }
+    })
+
+    viewModel.dataList.observe(viewLifecycleOwner, Observer {
+      dataList.clear()
+      dataList.addAll(it)
+      initRecyclerCategory()
+    })
+    lifecycle.addObserver(viewModel)
+  }
+
+  private fun onMTACardListLoading() {
+    activity?.let {
+      Common.showProgressDialog(it, onBackPress = {
+        viewModel.cancel()
+        Common.dismissProgressDialog()
+      })
+    }
+  }
+
+  private fun onMTACardListSuccess() {
+    Common.dismissProgressDialog()
+  }
+
+  private fun onMTACardListFailure() {
+    Common.dismissProgressDialog()
+  }
+
+  private fun initRecyclerCategory() {
+    customAdapter.viewPagerKotlinAdapter(dataList, requireContext())
+    newsViewPager.adapter = customAdapter
+    newsViewPager.setPadding(50, 0, 50, 0)
   }
 
   override fun onClick(view: View?) {

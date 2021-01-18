@@ -13,18 +13,18 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/fo_size_280"
         android:layout_height="@dimen/fo_spacing_40"
         android:layout_marginTop="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_xxlarge"
         android:orientation="horizontal">
 
       <LinearLayout
           android:id="@+id/sample"
           android:layout_width="0dp"
           android:layout_height="match_parent"
-          android:layout_weight="1.7"
+          android:layout_weight="1.5"
           android:orientation="horizontal">
 
         <EditText
@@ -60,7 +60,7 @@
           android:textColor="@color/white"
           android:textSize="@dimen/fo_font_9"
           android:text="@string/set_as_primary"
-          android:layout_marginStart="@dimen/margin_small"
+          android:layout_marginRight="@dimen/margin_xlarge"
           android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
@@ -86,7 +86,7 @@
             android:rotation="90"
             android:layout_marginTop="@dimen/fo_spacing_10"
             android:layout_marginBottom="@dimen/margin_default"
-            android:layout_marginStart="-120dp"
+            android:layout_marginStart="-100dp"
             app:srcCompat="?attr/actionBarDivider"/>
 
         <TextView
@@ -99,7 +99,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:rotation="90"
-            android:layout_marginStart="-140dp"
+            android:layout_marginStart="-120dp"
             android:layout_marginEnd="10dp"
             android:layout_alignParentBottom="true"
             />

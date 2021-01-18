@@ -2,9 +2,11 @@ package com.strategies360.mililani2.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.core.CoreActivity
+import kotlinx.android.synthetic.main.activity_submit_manually_mta_card.btn_back
 
 /**
  * A Submit Scan MTA Card activity.
@@ -12,6 +14,14 @@ import com.strategies360.mililani2.activity.core.CoreActivity
 class SubmitManuallyMtaCardActivity : CoreActivity() {
 
     override val viewRes = R.layout.activity_submit_manually_mta_card
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        btn_back.setOnClickListener {
+            onBackPressed()
+        }
+    }
 
     companion object {
 

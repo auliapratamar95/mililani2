@@ -15,6 +15,7 @@ import com.strategies360.mililani2.model.remote.auth.SignInResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
+import com.strategies360.mililani2.model.remote.news.NewsResponse
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
 import com.strategies360.mililani2.util.Constant
 import retrofit2.Call
@@ -197,6 +198,15 @@ class APICaller<RESPONSE : AppResponse> {
         callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
         call = APIService.apiInterface.getMTACard(accessToken)
         (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getNews() {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<NewsResponse>)
+        call = APIService.apiInterface.getNews(accessToken)
+        (call as Call<NewsResponse>).enqueue(callback as AppCallback<NewsResponse>)
     }
 
     /**
