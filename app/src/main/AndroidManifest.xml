@@ -58,12 +58,9 @@
         <activity
             android:name="com.strategies360.mililani2.activity.BottomMenuNavigationActivity" />
 
-        <activity
-            android:name="com.strategies360.mililani2.activity.SampleSelectionActivity" />
-
-        <activity
-            android:name="com.strategies360.mililani2.activity.SampleProductListActivity"
-            android:windowSoftInputMode="stateHidden" />
+<!--        <activity-->
+<!--            android:name="com.strategies360.mililani2.activity.SampleProductListActivity"-->
+<!--            android:windowSoftInputMode="stateHidden" />-->
 
         <activity
             android:name="com.strategies360.mililani2.activity.SampleAuthActivity" />

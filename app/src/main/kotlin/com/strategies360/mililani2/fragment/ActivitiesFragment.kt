@@ -11,16 +11,13 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
-import com.strategies360.mililani2.activity.ProfileMtaActivity
 import com.strategies360.mililani2.adapter.recycler.ActivitiesAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.fragment.core.DataListFragment
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
 import com.strategies360.mililani2.viewmodel.AllClassesListViewModel
-import kotlinx.android.synthetic.main.fragment_activities.btn_back
 import kotlinx.android.synthetic.main.fragment_activities.btn_filter
 import kotlinx.android.synthetic.main.fragment_activities.recycler_activities
-import kotlinx.android.synthetic.main.fragment_home.btn_scan_barcode
 
 class ActivitiesFragment : DataListFragment() {
 
@@ -44,18 +41,18 @@ class ActivitiesFragment : DataListFragment() {
       openBottomFilter()
     }
 
-    btn_back.setOnClickListener {
-      openProfile()
-    }
-
-    btn_scan_barcode.setOnClickListener {
-      openBottomCardList()
-    }
+//    btn_back.setOnClickListener {
+//      openProfile()
+//    }
+//
+//    btn_scan_barcode.setOnClickListener {
+//      openBottomCardList()
+//    }
   }
 
-  private fun openProfile() {
-    ProfileMtaActivity.launchIntent(requireContext())
-  }
+//  private fun openProfile() {
+//    ProfileMtaActivity.launchIntent(requireContext())
+//  }
 
   private fun initViewModel() {
     viewModel.resource.observe(viewLifecycleOwner, Observer {
@@ -96,11 +93,11 @@ class ActivitiesFragment : DataListFragment() {
     }
   }
 
-  private fun openBottomCardList() {
-    val fragManager: FragmentManager? = fragmentManager
-    if (fragManager != null) {
-      MTACardBottomListFragment()
-          .show(fragManager, "Dialog")
-    }
-  }
+//  private fun openBottomCardList() {
+//    val fragManager: FragmentManager? = fragmentManager
+//    if (fragManager != null) {
+//      MTACardBottomListFragment()
+//          .show(fragManager, "Dialog")
+//    }
+//  }
 }
