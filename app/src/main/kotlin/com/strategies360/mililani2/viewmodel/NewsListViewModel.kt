@@ -23,9 +23,6 @@ class NewsListViewModel : ViewModel(), LifecycleObserver {
     /** The API Caller */
     private var apiCaller: APICaller<NewsResponse>? = null
 
-    /** The pagination variable */
-    private var page = 1
-
     /** Determines if this view model has completed **ALL** of its fetching process */
     var isLoadFinished = false
         private set
@@ -36,14 +33,6 @@ class NewsListViewModel : ViewModel(), LifecycleObserver {
 
     fun fetchData() {
         fetchFromRemote()
-    }
-
-    fun onRefresh() {
-        page = 1
-        isLoadFinished = false
-        dataList.value = ArrayList()
-        resource.value = Resource.success()
-        fetchData()
     }
 
     /** Fetches a sample list from a remote server */

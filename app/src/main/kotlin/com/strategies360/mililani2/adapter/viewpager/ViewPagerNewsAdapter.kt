@@ -11,7 +11,7 @@ import com.strategies360.mililani2.model.remote.news.News
 import kotlinx.android.synthetic.main.adapter_news.view.desc
 import kotlinx.android.synthetic.main.adapter_news.view.title
 
-class ViewPagerNewsAdapter: PagerAdapter() {
+class ViewPagerNewsAdapter : PagerAdapter() {
 
   private var models: ArrayList<News> = ArrayList()
   private var context: Context? = null
@@ -39,10 +39,12 @@ class ViewPagerNewsAdapter: PagerAdapter() {
     container: ViewGroup,
     position: Int
   ): Any {
-    val item = LayoutInflater.from(container.context).inflate(R.layout.adapter_news, container, false)
+    val item =
+      LayoutInflater.from(container.context).inflate(R.layout.adapter_news, container, false)
 
     item.title.text = models[position].postTitle
-    item.desc.text = HtmlCompat.fromHtml(models[position].postContent.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+    item.desc.text =
+      HtmlCompat.fromHtml(models[position].postContent.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
 
     container.addView(item)
     return item

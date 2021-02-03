@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+  <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      app:cardCornerRadius="10dp">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+          android:id="@+id/btn_layout_class"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="@dimen/fo_spacing_normal"
+          android:orientation="vertical"
+          android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+          <TextView
+              android:id="@+id/txt_title"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="2"
+              android:textColor="#262626"
+              android:textSize="16sp"
+              android:textStyle="bold"
+              tools:text="Let's Danse 2021"/>
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:gravity="right"
+              android:orientation="horizontal"
+              android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="@dimen/fo_spacing_90"
+                android:layout_height="@dimen/fo_spacing_20"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/bg_button_registered">
+
+              <TextView
+                  android:id="@+id/txt_status"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:textColor="@color/white"
+                  android:textStyle="bold"
+                  android:textSize="@dimen/fo_font_9"
+                  android:gravity="center"
+                  tools:text="Registered"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_default"
+                android:src="@drawable/ic_calender_active"/>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:orientation="horizontal">
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_date"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/txt_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="3:00 pm - 4:00"
+                android:textSize="@dimen/fo_font_tiny"
+                android:layout_marginStart="@dimen/margin_default"/>
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:gravity="right"
+              android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_date"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/txt_rsvd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="RSVD Jane Doe"
+                android:layout_marginStart="@dimen/margin_default"/>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_day"
+              android:layout_gravity="center"/>
+
+          <TextView
+              android:id="@+id/txt_day"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              tools:text="Mon, Wed, Tue"
+              android:textSize="@dimen/fo_font_tiny"
+              android:layout_marginStart="@dimen/margin_default"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_detail_activities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/elgibility"
+              android:textStyle="bold"
+              android:layout_marginTop="@dimen/margin_xlarge"/>
+
+          <TextView
+              android:id="@+id/txt_elgibility"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/fo_font_tiny"
+              tools:text="Transaction Date/Time after 12/19/20 @10:00 am"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/meeting_details"
+              android:textStyle="bold"
+              android:layout_marginTop="@dimen/margin_large"/>
+
+          <TextView
+              android:id="@+id/txt_meeting_details"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/fo_font_tiny"
+              tools:text="MTA REC 2 94-300 Anania Drive, Mililani, HI, 96789
+            (808)440-2602 Facility: Rec 2 Pool "/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/location"
+              android:textStyle="bold"
+              android:layout_marginTop="@dimen/margin_large"/>
+
+          <TextView
+              android:id="@+id/txt_location"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              tools:text="Recreation Center 2"
+              android:textSize="@dimen/fo_font_tiny"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/fee_s"
+              android:textStyle="bold"
+              android:layout_marginTop="@dimen/margin_large"/>
+
+          <TextView
+              android:id="@+id/txt_fee"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/fo_font_tiny"
+              tools:text="Jr. Masters Novice (Standard Fee): $80.00"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/comment_s"
+              android:textStyle="bold"
+              android:layout_marginTop="@dimen/margin_large"/>
+
+          <TextView
+              android:id="@+id/txt_comment"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/fo_font_tiny"
+              tools:text="Participants, ages 8-17 years old, work on stroke refinement and endurance necessary to become proficient swimmers. This program is a non-competitive alternative to swim teams. Prerequisite: Participants must have passed Level 6 of MTA’s Learn-to-Swim program. If the interested participant did not attend MTA’s swim programs, please contact the Aquatics Manager to set up a swim test. Interested participants must be able to perform the back and front crawl stroke, breaststroke, elementary backstroke, sidestroke, butterfly and open and flip turns."/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/enrollment_counts"
+              android:textStyle="bold"
+              android:layout_marginTop="@dimen/margin_large"/>
+
+          <TextView
+              android:id="@+id/txt_enrollment_max_count"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/fo_font_tiny"
+              tools:text="Overall Max Count: 6"/>
+
+          <TextView
+              android:id="@+id/txt_enrollment_total_count"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/fo_font_tiny"
+              tools:text="Overall Total Enrolled: 1"/>
+
+
+          <Button
+              android:id="@+id/btn_register"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/title_register"
+              android:textColor="@color/white"
+              android:layout_marginTop="@dimen/margin_xlarge"
+              android:background="@drawable/bg_button_round_primary"/>
+
+        </LinearLayout>
+
+      </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+  </androidx.cardview.widget.CardView>
+
+</LinearLayout>

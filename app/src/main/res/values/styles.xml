@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- The application theme -->
     <style name="AppTheme" parent="AppTheme.Base" />
@@ -10,9 +10,10 @@
 
     <!-- Base application theme -->
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary</item>
-        <item name="colorAccent">@color/primary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
     </style>
 
     <style name="AppTheme.Toolbar" parent="AppTheme">
@@ -83,12 +84,13 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:statusBarColor">@color/em_transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">@font/avenir_book</item>
         <item name="android:textColor">@color/titleMenuBlack</item>
 
     </style>
 
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
     <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
@@ -104,6 +106,8 @@
     <!-- set the rounded drawable as background to your bottom sheet -->
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
 
+    <style name="BottomFilterSheetDialogTheme" parent="BaseBottomFilterSheetDialog" />
+
     <style name="BaseBottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:maxHeight">700dp</item>
@@ -113,5 +117,34 @@
     <style name="BottomSheet" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/fo_bg_bottom_sheet</item>
     </style>
+
+    <style name="BaseBottomFilterSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:maxHeight">800dp</item>
+        <item name="bottomSheetStyle">@style/BottomFilterSheet</item>
+    </style>
+
+    <style name="BottomFilterSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/fo_bg_bottom_filter_sheet</item>
+    </style>
+
+    <style name="AppTheme.DatePicker" parent="android:Widget.Holo.DatePicker" >
+        <item name="colorAccent">@android:color/holo_green_dark</item>
+
+    </style>
+
+    <style name="MyDatePicker" parent="android:Widget.Material.Light.DatePicker">
+        <item name="android:textColorPrimary">@color/yellow</item>
+        <item name="colorAccent">@android:color/holo_green_dark</item>
+    </style>
+
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker" tools:targetApi="lollipop">
+        <item name="android:headerBackground">@color/colorPrimary</item>
+        <item name="android:calendarTextColor">@color/colorPrimaryDark</item>
+        <item name="android:dayOfWeekBackground">@color/colorPrimaryDark</item>
+        <item name="android:yearListSelectorColor">@color/colorAccent</item>
+        <item name="android:datePickerMode">calendar</item>
+    </style>
+
 
 </resources>

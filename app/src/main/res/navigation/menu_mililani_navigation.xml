@@ -11,8 +11,8 @@
       tools:layout="@layout/fragment_home" />
 
   <fragment
-      android:id="@+id/navigation_registration"
-      android:name="com.strategies360.mililani2.fragment.RegistrationFragment"
+      android:id="@+id/navigation_classes"
+      android:name="com.strategies360.mililani2.fragment.AllActivitiesFragment"
       tools:layout="@layout/fragment_registration" />
 
   <fragment

@@ -12,6 +12,7 @@ import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
 import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.auth.SignInRequest
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
@@ -207,6 +208,24 @@ class APICaller<RESPONSE : AppResponse> {
         callback = AppCallback(listener as OnAPIListener<NewsResponse>)
         call = APIService.apiInterface.getNews(accessToken)
         (call as Call<NewsResponse>).enqueue(callback as AppCallback<NewsResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getClass() {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<ClassesListResponse>)
+        call = APIService.apiInterfaceMockup.getClass(accessToken)
+        (call as Call<ClassesListResponse>).enqueue(callback as AppCallback<ClassesListResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getClassAll() {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<ClassesListResponse>)
+        call = APIService.apiInterfaceMockup.getClassAll(accessToken)
+        (call as Call<ClassesListResponse>).enqueue(callback as AppCallback<ClassesListResponse>)
     }
 
     /**

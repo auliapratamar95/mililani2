@@ -250,20 +250,29 @@ object Common {
 
     // slide the view from below itself to the current position
     fun slideUp(view: View) {
-        view.visibility = View.VISIBLE
         val animate = TranslateAnimation(
             0F,  // fromXDelta
             0F,  // toXDelta
-            view.height.toFloat(),  // fromYDelta
+            0F,  // fromYDelta
             0F
         ) // toYDelta
         animate.duration = 500
         animate.fillAfter = true
         view.startAnimation(animate)
+        view.visibility = View.GONE
+    }
+
+    fun slideToTop(view: View) {
+        val animate = TranslateAnimation(0F, 0F, 0F, (-view.height).toFloat())
+        animate.duration = 500
+        animate.fillAfter = true
+        view.startAnimation(animate)
+        view.visibility = View.GONE
     }
 
     // slide the view from its current position to below itself
     fun slideDown(view: View) {
+        view.visibility = View.VISIBLE
         val animate = TranslateAnimation(
             0F,  // fromXDelta
             0F,  // toXDelta

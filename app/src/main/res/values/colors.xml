@@ -32,13 +32,13 @@
     <color name="colorbody">#FFFFFF</color>
     <color name="colorsplash">#FFFFFF</color>
     <color name="colorpopup">#000000</color>
-    <color name="colorbutton_focus">#00ADEF</color>
-    <color name="colorbutton_notfocus">#313131</color>
-    <color name="textcolorbutton_focus">#A4A4A5</color>
-    <color name="textcolorbutton_notfocus">#616063</color>
+    <color name="colorbutton_registered">#1cbbb4</color>
+    <color name="colorbutton_pending">#ce5353</color>
+    <color name="colorbutton_canceled">#8b8b8b</color>
     <color name="textcolorbutton2_focus">#2C91C7</color>
     <color name="bg_light_blue">#EBF5FF</color>
     <color name="menu_bg">#101F2D</color>
+    <color name="primary_card">#e55934</color>
 
     <color name="borderlayout_news_stream_stroke">#606A6F71</color>
     <color name="news_stream_bg">#FEFEFE</color>
@@ -122,6 +122,7 @@
 
     <color name="bgbtnmethodpayvip">#f7f9fb</color>
     <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#FAFAFA</color>
     <color name="grey_300">#E0E0E0</color>
 
     <color name="light_grey1">#F6F6F6</color>
@@ -197,4 +198,5 @@
 
     <!--<color name="Dashboard_Gray_Bg_2">#80C5C9CE</color>-->
     <color name="Dashboard_Gray_Bg_2">#80D0D4D9</color>
+
 </resources>

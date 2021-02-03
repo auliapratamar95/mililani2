@@ -6,6 +6,7 @@ import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
 import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.auth.SignInRequest
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
@@ -37,6 +38,17 @@ object APIService {
                 .build()
 
         retrofit.create(APIInterface::class.java)
+    }
+
+    /** The [APIInterface] object */
+    val apiInterfaceMockup: APIInterface by lazy {
+      val retrofit = Retrofit.Builder()
+          .baseUrl("https://private-9e2182-mililani.apiary-mock.com/")
+          .addConverterFactory(GsonConverterFactory.create())
+          .client(OkHttpClientHelper().initOkHttpClient())
+          .build()
+
+      retrofit.create(APIInterface::class.java)
     }
 
     /** The interface for retrofit's API calls */
@@ -100,7 +112,17 @@ object APIService {
         @Header("Authorization") accessToken: String?)
           : Call<NewsResponse>
 
+      /** Obtain the MTA Card list */
+      @GET("classes")
+      fun getClass(
+        @Header("Authorization") accessToken: String?)
+          : Call<ClassesListResponse>
 
+      /** Obtain the MTA Card list */
+      @GET("classes/all")
+      fun getClassAll(
+        @Header("Authorization") accessToken: String?)
+          : Call<ClassesListResponse>
 
       /** Obtain the user profile */
         @GET("profile")

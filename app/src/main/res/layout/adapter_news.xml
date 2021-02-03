@@ -46,7 +46,7 @@
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
                 android:textSize="@dimen/fo_font_11"
-                tools:text="Description jaklsjdlja akjdlakjdlaj/.,aak;slk;d ;lak;dlak a;lk;slka ;;a;lke;ak lak sadla lkjdlajdlajlsdkj akjdlkajslkjdlaj akjdlakjdlkajldj ;ajd;ajdjalksjd ;adj;akjd;ajs; ;aljd;ajd;a ;k;alkd a;"
+                tools:text="Description jaklsjdlja akjdlakjdlaj/.,aak;slk;d ;lak;dlak a;lk;slka ;;a;lke;ak lak sadla lkjdlajdlajlsdkj akjdlkajslkjdlaj akjdlakjdlkajldj ;ajd;ajdjalksjd ;adj;akjd;ajs; ;aljd;ajd;a ;k;alkd a; Description jaklsjdlja akjdlakjdlaj/.,aak;slk;d ;lak;dlak a;lk;slka ;;a;lke;ak lak sadla lkjdlajdlajlsdkj akjdlkajslkjdlaj akjdlakjdlkajldj ;ajd;ajdjalksjd ;adj;akjd;ajs; ;aljd;ajd;a ;k;alkd a;"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

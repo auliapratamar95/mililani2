@@ -97,6 +97,22 @@
             android:name="com.strategies360.mililani2.activity.SubmitNicknameMtaCardActivity"
             android:windowSoftInputMode="stateHidden" />
 
+<!--        <activity-->
+<!--            android:name="com.strategies360.mililani2.activity.ClassesActivity"-->
+<!--            android:windowSoftInputMode="stateHidden" />-->
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.ActivitiesActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.ProfileMtaActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.WebviewRegisterActivity"
+            android:windowSoftInputMode="stateHidden" />
+
         <!-- Account auth service -->
         <service
             android:name="itsmagic.present.simpleaccountmanager.AccountAuthService"

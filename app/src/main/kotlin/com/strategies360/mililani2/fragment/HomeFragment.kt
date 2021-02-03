@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.R.string
+import com.strategies360.mililani2.activity.ProfileMtaActivity
 import com.strategies360.mililani2.adapter.viewpager.ViewPagerNewsAdapter
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.Resource
@@ -16,6 +17,7 @@ import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.NewsListViewModel
 import kotlinx.android.synthetic.main.fragment_home.btn_logout
+import kotlinx.android.synthetic.main.fragment_home.btn_open_profile
 import kotlinx.android.synthetic.main.fragment_home.btn_scan_barcode
 import kotlinx.android.synthetic.main.fragment_home.newsViewPager
 
@@ -31,7 +33,7 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
         .get(NewsListViewModel::class.java)
   }
 
-  override val viewRes: Int? = layout.fragment_home
+  override val viewRes: Int = layout.fragment_home
 
   override fun onViewCreated(
     view: View,
@@ -39,18 +41,27 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
   ) {
     super.onViewCreated(view, savedInstanceState)
 
-//    initViewModel()
-//    viewModel.fetchData()
+    initView()
+  }
+
+  private fun initView() {
+    initViewModel()
+    viewModel.fetchData()
 
     Hawk.put((Constant.FLAG_ON_BACK_MENU), true)
-    isBottomCardList = (requireActivity().intent.getBooleanExtra(getString(string.prefs_is_bottom_card_list), false))
+    isBottomCardList = (requireActivity().intent.getBooleanExtra(
+        getString(
+            string.prefs_is_bottom_card_list
+        ), false
+    ))
 
     if (isBottomCardList) openBottomCardList()
 
-    btn_logout.visibility = View.VISIBLE
-    newsViewPager.visibility = View.GONE
+    btn_logout.visibility = View.GONE
+    newsViewPager.visibility = View.VISIBLE
     btn_logout.setOnClickListener(this)
     btn_scan_barcode.setOnClickListener(this)
+    btn_open_profile.setOnClickListener(this)
   }
 
   private fun openBottomCardList() {
@@ -109,6 +120,11 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
     newsViewPager.setPadding(50, 0, 50, 0)
   }
 
+  private fun openProfile() {
+    Hawk.put((Constant.FLAG_ON_BACK_MENU), false)
+    ProfileMtaActivity.launchIntent(requireContext())
+  }
+
   override fun onClick(view: View?) {
     when (view) {
       btn_logout -> {
@@ -116,6 +132,9 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
       }
       btn_scan_barcode -> {
         openBottomCardList()
+      }
+      btn_open_profile -> {
+        openProfile()
       }
     }
   }

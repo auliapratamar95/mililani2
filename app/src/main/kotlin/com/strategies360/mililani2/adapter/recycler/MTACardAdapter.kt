@@ -15,6 +15,7 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.strategies360.extension.android.view.inflate
 import com.strategies360.mililani2.App
+import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.adapter.recycler.MTACardAdapter.ViewHolder
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
@@ -89,6 +90,7 @@ class MTACardAdapter : DataListRecyclerViewAdapter<MTACard, ViewHolder>() {
         itemView.btn_set_primary.visibility = View.VISIBLE
       } else {
         itemView.sample.gravity = Gravity.CENTER
+        itemView.txt_nickname.setTextColor(App.context.getColor(R.color.primary_card))
         itemView.btn_set_primary.visibility = View.GONE
       }
 

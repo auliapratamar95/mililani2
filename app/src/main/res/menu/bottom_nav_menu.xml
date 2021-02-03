@@ -7,14 +7,14 @@
       android:title="@string/title_home" />
 
   <item
-      android:id="@+id/navigation_dashboard"
+      android:id="@+id/navigation_classes"
       android:icon="@drawable/ic_selector_registration"
-      android:title="@string/title_registration" />
+      android:title="@string/classes" />
 
   <item
       android:id="@+id/navigation_schedule"
       android:icon="@drawable/ic_selector_facility_schedule"
-      android:title="@string/title_facility_schedule" />
+      android:title="Reservation" />
 
   <item
       android:id="@+id/navigation_events"
