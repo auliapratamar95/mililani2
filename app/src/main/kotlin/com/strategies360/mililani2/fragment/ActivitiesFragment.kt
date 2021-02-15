@@ -13,11 +13,15 @@ import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.adapter.recycler.ActivitiesAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
+import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.fragment.core.DataListFragment
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
 import com.strategies360.mililani2.viewmodel.AllClassesListViewModel
 import kotlinx.android.synthetic.main.fragment_activities.btn_filter
 import kotlinx.android.synthetic.main.fragment_activities.recycler_activities
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode.MAIN
 
 class ActivitiesFragment : DataListFragment() {
 
@@ -40,19 +44,7 @@ class ActivitiesFragment : DataListFragment() {
     btn_filter.setOnClickListener{
       openBottomFilter()
     }
-
-//    btn_back.setOnClickListener {
-//      openProfile()
-//    }
-//
-//    btn_scan_barcode.setOnClickListener {
-//      openBottomCardList()
-//    }
   }
-
-//  private fun openProfile() {
-//    ProfileMtaActivity.launchIntent(requireContext())
-//  }
 
   private fun initViewModel() {
     viewModel.resource.observe(viewLifecycleOwner, Observer {
@@ -89,15 +81,7 @@ class ActivitiesFragment : DataListFragment() {
     val fragManager: FragmentManager? = fragmentManager
     if (fragManager != null) {
       CustomFilterBottomListFragment()
-          .show(fragManager, "Dialog")
+          .show(fragManager, "activities")
     }
   }
-
-//  private fun openBottomCardList() {
-//    val fragManager: FragmentManager? = fragmentManager
-//    if (fragManager != null) {
-//      MTACardBottomListFragment()
-//          .show(fragManager, "Dialog")
-//    }
-//  }
 }

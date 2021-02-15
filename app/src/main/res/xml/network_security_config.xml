@@ -2,6 +2,6 @@
 <network-security-config>
     <!-- TODO: Configure your domains -->
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">apiary-mock.com</domain>
+        <domain includeSubdomains="true">api.mililanitown.s360.is</domain>
     </domain-config>
 </network-security-config>

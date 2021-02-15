@@ -19,12 +19,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.R.style
+import com.strategies360.mililani2.activity.ActivitiesActivity
+import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.widget.DatePickerDialog
 import kotlinx.android.synthetic.clearFindViewByIdCache
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_category
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_date_range
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_location
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_reset
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_show
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ed_end_date
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ed_start_date
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_category
@@ -33,6 +36,7 @@ import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_lo
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_category
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_date_range
 import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_location
+import org.greenrobot.eventbus.EventBus
 import java.util.Calendar
 
 class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClickListener,
@@ -45,6 +49,9 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
   private var startDate: String? = ""
   private var endDate: String? = ""
   private var isDateFilter = false
+
+  private var edStartDate: String? = ""
+  private var edEndDate: String? = ""
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -64,6 +71,7 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
     btn_date_range.setOnClickListener(this)
     btn_category.setOnClickListener(this)
     btn_reset.setOnClickListener(this)
+    btn_show.setOnClickListener(this)
 
     ed_start_date.keyListener = null
     ed_end_date.keyListener = null
@@ -155,6 +163,18 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
       btn_reset -> {
         clearDataValue()
       }
+      btn_show -> {
+        if (tag.equals("activities")) {
+          ActivitiesActivity.launchIntent(requireContext())
+          requireActivity().finish()
+        } else {
+          EventBus.getDefault().postSticky(
+              EventFilterResult("","One on One LTS", edStartDate.toString(),
+              edEndDate.toString(),"")
+          )
+          dismiss()
+        }
+      }
     }
   }
 
@@ -232,6 +252,8 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
           resources.getString(R.string.date_filter_dd_mm_yyyy), mSelectedYear, mSelectedMonth,
           mSelectedDay
       )
+
+      edStartDate = startDate
       // Automatically requests focus to the address EditText
       ed_end_date?.requestFocus()
     } else {
@@ -246,6 +268,7 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
           resources.getString(R.string.date_filter_dd_mm_yyyy), mSelectedYear, mSelectedMonth,
           mSelectedDay
       )
+      edEndDate = endDate
     }
   }
 

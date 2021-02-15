@@ -116,7 +116,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = SignInCallback(listener as OnAPIListener<SignInResponse>)
-        call = APIService.apiInterface.signIn(apiKey, data)
+        call = APIService.apiInterfaceMililani.signIn(apiKey, data)
         (call as Call<SignInResponse>).enqueue(callback as SignInCallback)
     }
 
@@ -128,7 +128,7 @@ class APICaller<RESPONSE : AppResponse> {
     @Suppress("UNCHECKED_CAST")
     fun signInMililani(data: SignInMililaniRequest) {
         callback = AppCallback(listener as OnAPIListener<SignInMililaniResponse>)
-        call = APIService.apiInterface.signInMililani(data)
+        call = APIService.apiInterfaceMililani.signInMililani(data)
         (call as Call<SignInMililaniResponse>).enqueue(callback as AppCallback<SignInMililaniResponse>)
     }
 
@@ -142,7 +142,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<SignInMililaniResponse>)
-        call = APIService.apiInterface.submitMTACard(accessToken, data)
+        call = APIService.apiInterfaceMililani.submitMTACard(accessToken, data)
         (call as Call<SignInMililaniResponse>).enqueue(callback as AppCallback<SignInMililaniResponse>)
     }
 
@@ -156,7 +156,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
-        call = APIService.apiInterface.editNicknameMTACard(accessToken, cardNumber, data)
+        call = APIService.apiInterfaceMililani.editNicknameMTACard(accessToken, cardNumber, data)
         (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
     }
 
@@ -169,7 +169,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
-        call = APIService.apiInterface.deleteMTACard(accessToken, dataList)
+        call = APIService.apiInterfaceMililani.deleteMTACard(accessToken, dataList)
         (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
     }
 
@@ -183,7 +183,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
-        call = APIService.apiInterface.defaultMTACard(accessToken, cardNumber)
+        call = APIService.apiInterfaceMililani.defaultMTACard(accessToken, cardNumber)
         (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
     }
 
@@ -197,7 +197,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<MTACardListResponse>)
-        call = APIService.apiInterface.getMTACard(accessToken)
+        call = APIService.apiInterfaceMililani.getMTACard(accessToken)
         (call as Call<MTACardListResponse>).enqueue(callback as AppCallback<MTACardListResponse>)
     }
 
@@ -206,7 +206,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<NewsResponse>)
-        call = APIService.apiInterface.getNews(accessToken)
+        call = APIService.apiInterfaceMililani.getNews(accessToken)
         (call as Call<NewsResponse>).enqueue(callback as AppCallback<NewsResponse>)
     }
 
@@ -215,7 +215,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<ClassesListResponse>)
-        call = APIService.apiInterfaceMockup.getClass(accessToken)
+        call = APIService.apiInterfaceMililani.getClass(accessToken)
         (call as Call<ClassesListResponse>).enqueue(callback as AppCallback<ClassesListResponse>)
     }
 
@@ -224,7 +224,16 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<ClassesListResponse>)
-        call = APIService.apiInterfaceMockup.getClassAll(accessToken)
+        call = APIService.apiInterfaceMililani.getClassAll(accessToken)
+        (call as Call<ClassesListResponse>).enqueue(callback as AppCallback<ClassesListResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getFilterClass(activityType: String, subType: String, beginDate: String, endDate: String, location: String) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<ClassesListResponse>)
+        call = APIService.apiInterfaceMililani.getFilterClass(accessToken, activityType, subType, beginDate, endDate, location)
         (call as Call<ClassesListResponse>).enqueue(callback as AppCallback<ClassesListResponse>)
     }
 
@@ -237,7 +246,7 @@ class APICaller<RESPONSE : AppResponse> {
         refreshAccessToken()
 
         callback = AppCallback(listener as OnAPIListener<ProfileResponse>)
-        call = APIService.apiInterface.getProfile(apiKey, accessToken)
+        call = APIService.apiInterfaceMililani.getProfile(apiKey, accessToken)
         (call as Call<ProfileResponse>).enqueue(callback as AppCallback<ProfileResponse>)
     }
 
@@ -249,7 +258,7 @@ class APICaller<RESPONSE : AppResponse> {
     fun getProducts(page: Int) {
         refreshAccessToken()
         callback = ProductListCallback(listener as OnAPIListener<SampleProductListResponse>)
-        call = APIService.apiInterface.getProducts(apiKey, accessToken, page)
+        call = APIService.apiInterfaceMililani.getProducts(apiKey, accessToken, page)
         (call as Call<SampleProductListResponse>).enqueue(callback as ProductListCallback)
     }
 }

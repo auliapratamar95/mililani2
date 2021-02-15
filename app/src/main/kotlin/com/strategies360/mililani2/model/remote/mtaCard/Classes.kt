@@ -11,13 +11,13 @@ class Classes {
     @SerializedName("title")
     var title: String? = null
 
-    @SerializedName("date")
+    @SerializedName("time")
     var date: String? = null
 
-    @SerializedName("day")
+    @SerializedName("days")
     var day: String? = null
 
-    @SerializedName("description")
+    @SerializedName("short_description")
     var description: String? = null
 
     @SerializedName("status")
@@ -26,10 +26,10 @@ class Classes {
     @SerializedName("elgibility")
     var elgibility: String? = null
 
-    @SerializedName("fee")
+    @SerializedName("fees")
     var fee: String? = null
 
-    @SerializedName("comment")
+    @SerializedName("comments")
     var comment: String? = null
 
     @SerializedName("meeting_details")
@@ -41,10 +41,10 @@ class Classes {
     @SerializedName("isCalender")
     var isCalender: Boolean? = null
 
-    @SerializedName("max_count")
+    @SerializedName("overall_max_count")
     var maxCount: String? = null
 
-    @SerializedName("total_count")
+    @SerializedName("overall_total_enrolled")
     var totalCount: String? = null
 
     class DiffUtilCallback(

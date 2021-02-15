@@ -19,11 +19,17 @@ class ActivitiesActivity : CoreActivity() {
 
     btn_back.setOnClickListener {
       onBackPressed()
+      finish()
     }
 
     btn_scan_barcode.setOnClickListener {
       openBottomCardList()
     }
+  }
+
+  override fun onBackPressed() {
+    ProfileMtaActivity.launchIntent(this)
+    finish()
   }
 
   private fun openBottomCardList() {

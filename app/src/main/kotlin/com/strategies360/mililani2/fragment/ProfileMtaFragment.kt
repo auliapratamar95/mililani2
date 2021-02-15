@@ -45,6 +45,7 @@ class ProfileMtaFragment : CoreFragment(), View.OnClickListener {
       }
       btn_my_activities -> {
         openActivitiesFragment()
+        requireActivity().finish()
       }
 //      btn_back -> {
 //        val isUpComingActivities = this.arguments?.getString("keyUpcomingActivities")

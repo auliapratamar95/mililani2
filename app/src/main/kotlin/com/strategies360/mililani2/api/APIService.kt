@@ -30,20 +30,9 @@ import retrofit2.http.Query
 object APIService {
 
     /** The [APIInterface] object */
-    val apiInterface: APIInterface by lazy {
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://api-mililani2-dev.app.s360.is/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(OkHttpClientHelper().initOkHttpClient())
-                .build()
-
-        retrofit.create(APIInterface::class.java)
-    }
-
-    /** The [APIInterface] object */
-    val apiInterfaceMockup: APIInterface by lazy {
+    val apiInterfaceMililani: APIInterface by lazy {
       val retrofit = Retrofit.Builder()
-          .baseUrl("https://private-9e2182-mililani.apiary-mock.com/")
+          .baseUrl("http://api.mililanitown.s360.is/v1/")
           .addConverterFactory(GsonConverterFactory.create())
           .client(OkHttpClientHelper().initOkHttpClient())
           .build()
@@ -119,9 +108,20 @@ object APIService {
           : Call<ClassesListResponse>
 
       /** Obtain the MTA Card list */
-      @GET("classes/all")
+      @GET("classes")
       fun getClassAll(
         @Header("Authorization") accessToken: String?)
+          : Call<ClassesListResponse>
+
+      /** Obtain the MTA Card list */
+      @GET("classes")
+      fun getFilterClass(
+        @Header("Authorization") accessToken: String?,
+        @Query("activity_type") activityType: String?,
+        @Query("sub_type") subType: String?,
+        @Query("begin_date") beginDate: String?,
+        @Query("end_date") endDate: String?,
+        @Query("location") location: String?)
           : Call<ClassesListResponse>
 
       /** Obtain the user profile */

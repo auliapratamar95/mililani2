@@ -59,11 +59,11 @@ class ActivitiesAdapter : DataListRecyclerViewAdapter<Classes, ViewHolder>() {
         }
       }
 
-      if (data.isCalender!!) {
-        itemView.img_calender.setImageDrawable(App.context.getDrawable(R.drawable.ic_calender_active))
-      } else {
+//      if (data.isCalender!!) {
+//        itemView.img_calender.setImageDrawable(App.context.getDrawable(R.drawable.ic_calender_active))
+//      } else {
         itemView.img_calender.setImageDrawable(App.context.getDrawable(R.drawable.ic_calender_nonactive))
-      }
+//      }
 
       itemView.txt_title.text = data.title
       itemView.txt_date.text = data.date

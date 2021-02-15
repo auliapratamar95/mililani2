@@ -12,7 +12,7 @@ import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 
-class AllClassesListViewModel : ViewModel(), LifecycleObserver {
+class FilterClassesListViewModel : ViewModel(), LifecycleObserver {
 
     /** The LiveData for resource state */
     val resource = MutableLiveData<Resource<Any>>()
@@ -34,20 +34,20 @@ class AllClassesListViewModel : ViewModel(), LifecycleObserver {
         dataList.value = ArrayList()
     }
 
-    fun fetchData() {
-        fetchFromRemote()
-    }
-
-    fun onRefresh() {
-        page = 1
-        isLoadFinished = false
-        dataList.value = ArrayList()
-        resource.value = Resource.success()
-        fetchData()
-    }
+//    fun fetchData() {
+//        fetchFromRemote()
+//    }
+//
+//    fun onRefresh() {
+//        page = 1
+//        isLoadFinished = false
+//        dataList.value = ArrayList()
+//        resource.value = Resource.success()
+//        fetchData()
+//    }
 
     /** Fetches a sample list from a remote server */
-    private fun fetchFromRemote() {
+    private fun fetchFromRemote(activityType: String, subType: String, beginDate: String, endDate: String, location: String) {
         resource.value = Resource.loading()
 
         if (apiCaller == null) {
@@ -63,29 +63,6 @@ class AllClassesListViewModel : ViewModel(), LifecycleObserver {
                     { error ->
                         resource.postValue(Resource.error(error))
                     }
-            )
-        }
-
-        apiCaller?.getClassAll()
-    }
-
-    /** Fetches a sample list from a remote server */
-    fun fetchFilterFromRemote(activityType: String, subType: String, beginDate: String, endDate: String, location: String) {
-        resource.value = Resource.loading()
-
-        if (apiCaller == null) {
-            apiCaller = APICaller<ClassesListResponse>().withListener(
-                { response ->
-                    if (response.classListResponse != null) {
-                        dataList.postValue(response.classListResponse)
-                        resource.postValue(Resource.success())
-                    } else {
-                        resource.postValue(Resource.error(AppError(AppError.DEVELOPMENT_UNKNOWN, "Data list is null!")))
-                    }
-                },
-                { error ->
-                    resource.postValue(Resource.error(error))
-                }
             )
         }
 

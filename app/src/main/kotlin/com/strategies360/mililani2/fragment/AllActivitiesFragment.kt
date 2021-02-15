@@ -14,6 +14,7 @@ import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.ProfileMtaActivity
 import com.strategies360.mililani2.adapter.recycler.AllActivitiesAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
+import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.fragment.core.DataListFragment
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
 import com.strategies360.mililani2.util.Constant
@@ -22,6 +23,9 @@ import kotlinx.android.synthetic.main.fragment_all_activities.btn_filter
 import kotlinx.android.synthetic.main.fragment_all_activities.btn_open_profile
 import kotlinx.android.synthetic.main.fragment_all_activities.btn_scan_barcode
 import kotlinx.android.synthetic.main.fragment_all_activities.recycler_activities
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode.MAIN
 
 class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
 
@@ -40,6 +44,16 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
   ) {
     super.onViewCreated(view, savedInstanceState)
     initView()
+  }
+
+  override fun onStart() {
+    super.onStart()
+    EventBus.getDefault().register(this)
+  }
+
+  override fun onStop() {
+    super.onStop()
+    EventBus.getDefault().unregister(this)
   }
 
   private fun initView() {
@@ -115,5 +129,11 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
         openBottomCardList()
       }
     }
+  }
+
+  @Subscribe(sticky = true, threadMode = MAIN)
+  fun onSetFilterResult(event: EventFilterResult) {
+    viewModel.fetchFilterFromRemote(event.activityType, event.subType, event.beginDate, event.endDate, event.location)
+    EventBus.getDefault().removeStickyEvent(event)
   }
 }
