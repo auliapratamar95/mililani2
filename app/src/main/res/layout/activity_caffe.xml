@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_header_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_default">
+
+                <RelativeLayout
+                    android:id="@+id/btn_open_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/btn_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="@dimen/margin_large"
+                        android:src="@drawable/ic_arrow_back_white" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/btn_scan_barcode"
+                        android:layout_width="@dimen/fo_spacing_30"
+                        android:layout_height="@dimen/fo_spacing_30"
+                        android:layout_marginEnd="@dimen/margin_larges"
+                        android:backgroundTint="@color/white"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="@dimen/fo_spacing_2"
+                        android:src="@drawable/ic_scan_barcode" />
+
+                    <ImageView
+                        android:id="@+id/btn_open_notification"
+                        android:layout_width="@dimen/fo_spacing_30"
+                        android:layout_height="@dimen/fo_spacing_30"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:padding="@dimen/fo_spacing_2"
+                        android:backgroundTint="@color/white"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:src="@drawable/ic_notification" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/fo_bg_bottom_sheet"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/btn_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/fo_spacing_normal"
+                        android:padding="@dimen/fo_spacing_normal"
+                        android:src="@drawable/ic_more_category"
+                        android:foreground="?attr/selectableItemBackground"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:tabGravity="fill"
+                            app:tabMode="scrollable" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey_300" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager_caffe"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_float_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fo_spacing_large"
+        android:backgroundTint="@color/white"
+        android:elevation="2dp"
+        android:src="@drawable/ic_cart" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.strategies360.mililani2.api.callback
 
 import android.os.Bundle
+import com.google.gson.Gson
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.account.AccountConstant
 import com.strategies360.mililani2.api.callback.core.CoreCallback
@@ -9,7 +10,6 @@ import com.strategies360.mililani2.model.core.AppError
 import com.strategies360.mililani2.model.local.auth.SavedAccount
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
 import com.strategies360.mililani2.util.Debugger
-import com.google.gson.Gson
 import itsmagic.present.simpleaccountmanager.AccountHelper
 import retrofit2.Response
 

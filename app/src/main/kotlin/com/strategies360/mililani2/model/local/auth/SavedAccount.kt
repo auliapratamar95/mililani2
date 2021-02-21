@@ -1,7 +1,7 @@
 package com.strategies360.mililani2.model.local.auth
 
-import com.strategies360.mililani2.model.remote.auth.Profile
 import com.google.gson.annotations.SerializedName
+import com.strategies360.mililani2.model.remote.auth.Profile
 
 data class SavedAccount(@SerializedName("id") var id: String? = null) {
 

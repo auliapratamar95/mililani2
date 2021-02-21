@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.strategies360.mililani2.R
 import com.strategies360.extension.android.view.inflate
+import com.strategies360.mililani2.R
 import itsmagic.present.easierspinner.adapter.EasierSpinnerAdapterCore
 import itsmagic.present.easierspinner.adapter.EasierSpinnerStringAdapter
 import itsmagic.present.easierspinner.adapter.EasierSpinnerViewHolder

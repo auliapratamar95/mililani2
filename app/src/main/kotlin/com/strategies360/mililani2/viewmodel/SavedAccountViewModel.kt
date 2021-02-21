@@ -1,14 +1,14 @@
 package com.strategies360.mililani2.viewmodel
 
 import android.accounts.Account
-import androidx.lifecycle.*
 import android.util.Log
+import androidx.lifecycle.*
+import com.google.gson.Gson
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.account.AccountConstant
 import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.local.auth.SavedAccount
 import com.strategies360.mililani2.util.Debugger
-import com.google.gson.Gson
 import itsmagic.present.simpleaccountmanager.AccountHelper
 
 class SavedAccountViewModel : ViewModel(), LifecycleObserver {

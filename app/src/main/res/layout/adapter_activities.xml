@@ -6,175 +6,175 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-  <androidx.cardview.widget.CardView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="8dp"
-      app:cardCornerRadius="10dp">
-
-    <LinearLayout
-        android:id="@+id/btn_layout_class"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/fo_spacing_normal"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:foreground="?attr/selectableItemBackground">
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:gravity="center"
-          android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txt_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#262626"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Let's Danse 2021"/>
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical|right"
-            android:orientation="horizontal">
-
-          <RelativeLayout
-              android:layout_width="@dimen/fo_spacing_100"
-              android:layout_height="@dimen/fo_spacing_24"
-              android:background="@drawable/bg_button_registered">
-
-            <TextView
-                android:id="@+id/txt_status"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/fo_font_9"
-                android:gravity="center"
-                tools:text="Registered"/>
-
-          </RelativeLayout>
-
-          <ImageView
-              android:id="@+id/img_calender"
-              android:layout_width="@dimen/fo_spacing_18"
-              android:layout_height="@dimen/fo_spacing_18"
-              android:layout_marginStart="@dimen/margin_default"
-              android:src="@drawable/ic_calender_active"/>
-
-        </LinearLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_default"
-          android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@drawable/ic_date"
-              android:layout_gravity="center"/>
-
-          <TextView
-              android:id="@+id/txt_date"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              tools:text="3:00 pm - 4:00"
-              android:textSize="@dimen/fo_font_tiny"
-              android:layout_marginStart="@dimen/margin_default"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:layout_marginRight="@dimen/margin_xlarge">
-
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@drawable/ic_date"
-              android:layout_gravity="center"/>
-
-          <TextView
-              android:id="@+id/txt_rsvd"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="RSVD Jane Doe"
-              android:textSize="@dimen/fo_font_tiny"
-              android:layout_marginStart="@dimen/margin_default"/>
-
-        </LinearLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_day"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:id="@+id/txt_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Mon, Wed, Tue"
-            android:textSize="@dimen/fo_font_tiny"
-            android:layout_marginStart="@dimen/margin_default"/>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:id="@+id/layout_detail_class"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_default"
-          android:orientation="vertical"
-          android:visibility="gone"
-          tools:visibility="visible">
-
-        <TextView
-            android:id="@+id/txt_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Participants, ages 8-17 years old, work on stroke refinement and endurance necessary to become proficient swimmers. This program is a non-competitive alternative to swim teams. Prerequisite: Participants must have passed Level 6 of MTA’s Learn-to-Swim program. If the interested participant did not attend MTA’s swim programs, please contact the Aquatics Manager to set up a swim test. Interested participants must be able to perform the back and front crawl stroke, breaststroke, elementary backstroke, sidestroke, butterfly and open and flip turns."/>
-
-        <Button
-            android:id="@+id/btn_cancel_class"
+            android:id="@+id/btn_layout_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cancel_class"
-            android:layout_marginTop="@dimen/margin_xlarge"
-            android:background="@drawable/bg_button_round_grey_primary"/>
+            android:padding="@dimen/fo_spacing_normal"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#262626"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Let's Danse 2021"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/fo_spacing_100"
+                        android:layout_height="@dimen/fo_spacing_24"
+                        android:background="@drawable/bg_button_registered">
+
+                        <TextView
+                            android:id="@+id/txt_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/fo_font_9"
+                            android:gravity="center"
+                            tools:text="Registered"/>
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/img_calender"
+                        android:layout_width="@dimen/fo_spacing_18"
+                        android:layout_height="@dimen/fo_spacing_18"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:src="@drawable/ic_calender_active"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_date"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/txt_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="3:00 pm - 4:00"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:layout_marginStart="@dimen/margin_default"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="@dimen/margin_xlarge">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_date"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/txt_rsvd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RSVD Jane Doe"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:layout_marginStart="@dimen/margin_default"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_day"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/txt_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Mon, Wed, Tue"
+                    android:textSize="@dimen/fo_font_tiny"
+                    android:layout_marginStart="@dimen/margin_default"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_detail_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/txt_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Participants, ages 8-17 years old, work on stroke refinement and endurance necessary to become proficient swimmers. This program is a non-competitive alternative to swim teams. Prerequisite: Participants must have passed Level 6 of MTA’s Learn-to-Swim program. If the interested participant did not attend MTA’s swim programs, please contact the Aquatics Manager to set up a swim test. Interested participants must be able to perform the back and front crawl stroke, breaststroke, elementary backstroke, sidestroke, butterfly and open and flip turns."/>
+
+                <Button
+                    android:id="@+id/btn_cancel_class"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel_class"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:background="@drawable/bg_button_round_grey_primary"/>
 
 
 
-      </LinearLayout>
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-  </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

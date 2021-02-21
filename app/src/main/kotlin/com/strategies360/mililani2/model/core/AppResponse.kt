@@ -1,11 +1,10 @@
 package com.strategies360.mililani2.model.core
 
+import com.google.gson.annotations.SerializedName
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.util.Debugger
 import com.strategies360.mililani2.util.ValidationHelper
-import com.google.gson.annotations.SerializedName
-
 import org.json.JSONException
 import org.json.JSONObject
 

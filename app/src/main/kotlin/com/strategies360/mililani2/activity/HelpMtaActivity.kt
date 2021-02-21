@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.core.CoreActivity
-import kotlinx.android.synthetic.main.include_toolbar.btn_back
-import kotlinx.android.synthetic.main.include_toolbar.btn_barcode
-import kotlinx.android.synthetic.main.include_toolbar.title_toolbar
+import kotlinx.android.synthetic.main.include_toolbar.*
 
 /**
  * A Submit Scan MTA Card activity.

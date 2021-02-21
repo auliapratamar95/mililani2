@@ -9,135 +9,135 @@
     android:orientation="vertical"
     >
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/colorPrimary"
-      android:orientation="vertical">
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/layout_header_home"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="@dimen/margin_default"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:visibility="gone">-->
-
-<!--      <RelativeLayout-->
-<!--          android:id="@+id/btn_open_profile"-->
-<!--          android:layout_width="0dp"-->
-<!--          android:layout_height="wrap_content"-->
-<!--          android:layout_weight="2">-->
-
-<!--        <de.hdodenhof.circleimageview.CircleImageView-->
-<!--            android:id="@+id/profile_image"-->
-<!--            android:layout_width="@dimen/fo_spacing_60"-->
-<!--            android:layout_height="@dimen/fo_spacing_60"-->
-<!--            android:padding="@dimen/margin_small"-->
-<!--            android:src="@drawable/ic_baseline_person"-->
-<!--            android:background="@drawable/bg_icon_circle_white"-->
-<!--            app:civ_border_width="1dp"-->
-<!--            app:civ_border_color="@color/white"-->
-<!--            android:visibility="gone"/>-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/btn_back"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="@dimen/margin_large"-->
-<!--            android:src="@drawable/ic_arrow_back_white"-->
-<!--            android:background="?attr/selectableItemBackground"/>-->
-
-
-<!--      </RelativeLayout>-->
-
-<!--      <RelativeLayout-->
-<!--          android:layout_width="0dp"-->
-<!--          android:layout_height="match_parent"-->
-<!--          android:gravity="right|center"-->
-<!--          android:layout_weight="1">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/btn_scan_barcode"-->
-<!--            android:layout_width="@dimen/fo_spacing_30"-->
-<!--            android:layout_height="@dimen/fo_spacing_30"-->
-<!--            android:src="@drawable/ic_scan_barcode"-->
-<!--            android:layout_marginEnd="@dimen/margin_default"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:foreground="?attr/selectableItemBackground"/>-->
-<!--      </RelativeLayout>-->
-
-<!--    </LinearLayout>-->
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@drawable/fo_bg_bottom_sheet"
-      android:layout_marginTop="@dimen/margin_default"
-      android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/upcoming_activities"
-        android:textSize="@dimen/fo_font_16"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/margin_default"
-        android:padding="@dimen/margin_default"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/grey_300"/>
-
     <LinearLayout
-        android:id="@+id/btn_filter"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/fo_spacing_30"
-        android:layout_marginStart="@dimen/margin_larges"
-        android:layout_marginTop="@dimen/margin_larges"
-        android:background="@drawable/bg_button_round_grey_primary_two"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:padding="@dimen/margin_default"
-        >
-
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:src="@drawable/ic_filter"
-          android:layout_marginEnd="@dimen/margin_small"/>
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:text="@string/filter"
-          android:textAllCaps="true"
-          android:textSize="@dimen/fo_font_11"
-          android:textColor="@color/colorPrimary"/>
-
-
-    </LinearLayout>
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/recycler_activities"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:padding="@dimen/margin_default"
-          android:scrollbars="vertical"
-          app:layout_behavior="@string/appbar_scrolling_view_behavior"
-          tools:listitem="@layout/adapter_activities"
-          />
+        <!--    <LinearLayout-->
+        <!--        android:id="@+id/layout_header_home"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:padding="@dimen/margin_default"-->
+        <!--        android:orientation="horizontal"-->
+        <!--        android:visibility="gone">-->
 
-    </RelativeLayout>
-  </LinearLayout>
+        <!--      <RelativeLayout-->
+        <!--          android:id="@+id/btn_open_profile"-->
+        <!--          android:layout_width="0dp"-->
+        <!--          android:layout_height="wrap_content"-->
+        <!--          android:layout_weight="2">-->
 
-  </LinearLayout>
+        <!--        <de.hdodenhof.circleimageview.CircleImageView-->
+        <!--            android:id="@+id/profile_image"-->
+        <!--            android:layout_width="@dimen/fo_spacing_60"-->
+        <!--            android:layout_height="@dimen/fo_spacing_60"-->
+        <!--            android:padding="@dimen/margin_small"-->
+        <!--            android:src="@drawable/ic_baseline_person"-->
+        <!--            android:background="@drawable/bg_icon_circle_white"-->
+        <!--            app:civ_border_width="1dp"-->
+        <!--            app:civ_border_color="@color/white"-->
+        <!--            android:visibility="gone"/>-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/btn_back"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:padding="@dimen/margin_large"-->
+        <!--            android:src="@drawable/ic_arrow_back_white"-->
+        <!--            android:background="?attr/selectableItemBackground"/>-->
+
+
+        <!--      </RelativeLayout>-->
+
+        <!--      <RelativeLayout-->
+        <!--          android:layout_width="0dp"-->
+        <!--          android:layout_height="match_parent"-->
+        <!--          android:gravity="right|center"-->
+        <!--          android:layout_weight="1">-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/btn_scan_barcode"-->
+        <!--            android:layout_width="@dimen/fo_spacing_30"-->
+        <!--            android:layout_height="@dimen/fo_spacing_30"-->
+        <!--            android:src="@drawable/ic_scan_barcode"-->
+        <!--            android:layout_marginEnd="@dimen/margin_default"-->
+        <!--            android:backgroundTint="@color/white"-->
+        <!--            android:foreground="?attr/selectableItemBackground"/>-->
+        <!--      </RelativeLayout>-->
+
+        <!--    </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fo_bg_bottom_sheet"
+            android:layout_marginTop="@dimen/margin_default"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/upcoming_activities"
+                android:textSize="@dimen/fo_font_16"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_default"
+                android:padding="@dimen/margin_default"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_300"/>
+
+            <LinearLayout
+                android:id="@+id/btn_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fo_spacing_30"
+                android:layout_marginStart="@dimen/margin_larges"
+                android:layout_marginTop="@dimen/margin_larges"
+                android:background="@drawable/bg_button_round_grey_primary_two"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/margin_default"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_filter"
+                    android:layout_marginEnd="@dimen/margin_small"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/filter"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/fo_font_11"
+                    android:textColor="@color/colorPrimary"/>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_activities"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/margin_default"
+                    android:scrollbars="vertical"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:listitem="@layout/adapter_activities"
+                    />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

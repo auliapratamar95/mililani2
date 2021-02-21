@@ -16,7 +16,7 @@ import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.DeleteMTACardViewModel
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.progress_bar
+import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.*
 import org.greenrobot.eventbus.EventBus
 
 class DialogConfirmationDeleteCard : DialogFragment(), View.OnClickListener {

@@ -18,11 +18,8 @@ import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.fragment.core.DataListFragment
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
 import com.strategies360.mililani2.util.Constant
-import com.strategies360.mililani2.viewmodel.AllClassesListViewModel
-import kotlinx.android.synthetic.main.fragment_all_activities.btn_filter
-import kotlinx.android.synthetic.main.fragment_all_activities.btn_open_profile
-import kotlinx.android.synthetic.main.fragment_all_activities.btn_scan_barcode
-import kotlinx.android.synthetic.main.fragment_all_activities.recycler_activities
+import com.strategies360.mililani2.viewmodel.FilterClassesListViewModel
+import kotlinx.android.synthetic.main.fragment_all_activities.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode.MAIN
@@ -31,9 +28,14 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
 
   private val adapter = AllActivitiesAdapter()
 
+//  private val viewModel by lazy {
+//    ViewModelProviders.of(this)
+//        .get(AllClassesListViewModel::class.java)
+//  }
+
   private val viewModel by lazy {
     ViewModelProviders.of(this)
-        .get(AllClassesListViewModel::class.java)
+            .get(FilterClassesListViewModel::class.java)
   }
 
   override val viewRes: Int = R.layout.fragment_all_activities
@@ -93,7 +95,8 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
   }
 
   override fun fetchData() {
-    viewModel.fetchData()
+    val listHash: HashMap<String, String> = HashMap()
+    viewModel.fetchFilterFromRemote(listHash)
   }
 
   private fun openBottomFilter() {
@@ -133,7 +136,7 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
 
   @Subscribe(sticky = true, threadMode = MAIN)
   fun onSetFilterResult(event: EventFilterResult) {
-    viewModel.fetchFilterFromRemote(event.activityType, event.subType, event.beginDate, event.endDate, event.location)
+    viewModel.fetchFilterFromRemote(event.listHash)
     EventBus.getDefault().removeStickyEvent(event)
   }
 }

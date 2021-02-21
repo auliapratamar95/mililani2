@@ -13,10 +13,8 @@ import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.core.CoreActivity
 import com.strategies360.mililani2.fragment.MTACardBottomListFragment
 import com.strategies360.mililani2.view.ProgressDialog
-import kotlinx.android.synthetic.main.activity_webview_register.web_view
-import kotlinx.android.synthetic.main.include_toolbar.btn_back
-import kotlinx.android.synthetic.main.include_toolbar.btn_barcode
-import kotlinx.android.synthetic.main.include_toolbar.title_toolbar
+import kotlinx.android.synthetic.main.activity_webview_register.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 
 class WebviewRegisterActivity : CoreActivity() {
   var prDialog: ProgressDialog? = null

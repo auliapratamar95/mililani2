@@ -29,10 +29,7 @@ import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Config
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.view.BackgroundTransitionGenerator
-import kotlinx.android.synthetic.main.activity_splash_screen.bg_screen
-import kotlinx.android.synthetic.main.activity_splash_screen.layout_send_otp
-import kotlinx.android.synthetic.main.activity_splash_screen.logo_mililani
-import kotlinx.android.synthetic.main.activity_splash_screen.main_layout
+import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 /**
  *

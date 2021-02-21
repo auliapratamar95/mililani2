@@ -1,10 +1,9 @@
 package com.strategies360.mililani2.view.widget
 
 import android.content.Context
-import androidx.appcompat.widget.AppCompatTextView
 import android.util.AttributeSet
 import android.widget.TextView
-
+import androidx.appcompat.widget.AppCompatTextView
 import com.strategies360.mililani2.BuildConfig
 import com.strategies360.mililani2.util.Config
 

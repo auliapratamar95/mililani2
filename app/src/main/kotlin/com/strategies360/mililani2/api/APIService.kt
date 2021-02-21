@@ -1,11 +1,10 @@
 package com.strategies360.mililani2.api
 
 import com.strategies360.mililani2.api.util.OkHttpClientHelper
-import com.strategies360.mililani2.model.remote.auth.ProfileResponse
-import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
-import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
-import com.strategies360.mililani2.model.remote.auth.SignInRequest
-import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.auth.*
+import com.strategies360.mililani2.model.remote.caffe.CaffeListResponse
+import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
+import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
@@ -15,13 +14,8 @@ import com.strategies360.mililani2.model.remote.product.SampleProductListRespons
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.HTTP
-import retrofit2.http.Header
-import retrofit2.http.PATCH
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
+
 
 /**
  *
@@ -39,6 +33,28 @@ object APIService {
 
       retrofit.create(APIInterface::class.java)
     }
+
+    /** The [APIInterface] object */
+    val apiInterfaceApiaryMililani: APIInterface by lazy {
+      val retrofit = Retrofit.Builder()
+              .baseUrl("https://private-9e2182-mililani.apiary-mock.com/")
+              .addConverterFactory(GsonConverterFactory.create())
+              .client(OkHttpClientHelper().initOkHttpClient())
+              .build()
+
+      retrofit.create(APIInterface::class.java)
+    }
+
+  /** The [APIInterface] object */
+  val apiInterfaceCaffeMililani: APIInterface by lazy {
+    val retrofit = Retrofit.Builder()
+            .baseUrl("https://rec7cafe.myncrsilver.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClientHelper().initOkHttpClient())
+            .build()
+
+    retrofit.create(APIInterface::class.java)
+  }
 
     /** The interface for retrofit's API calls */
     interface APIInterface {
@@ -114,6 +130,20 @@ object APIService {
           : Call<ClassesListResponse>
 
       /** Obtain the MTA Card list */
+      @GET("catalog/categories/{categoryId}/products")
+      fun getCaffeAll(
+              @Path(value = "categoryId", encoded = false) categoryId: String?,
+              @Query("p") page: Int?,
+              @Query("s") size: Int?)
+              : Call<PayloadResponse>
+
+      /** Obtain the MTA Card list */
+      @GET("catalog/categories")
+      fun getCategory(
+              @Query("includeSubCategories") includeSubCategories: Boolean?)
+              : Call<CategoryListResponse>
+
+      /** Obtain the MTA Card list */
       @GET("classes")
       fun getFilterClass(
         @Header("Authorization") accessToken: String?,
@@ -124,14 +154,17 @@ object APIService {
         @Query("location") location: String?)
           : Call<ClassesListResponse>
 
+      @GET("classes")
+      fun getCustomFilterClass(
+              @QueryMap options: MutableMap<String, String>
+      ): Call<ClassesListResponse>?
+
       /** Obtain the user profile */
         @GET("profile")
         fun getProfile(
                 // For easy visibility (test purposes), this sample will use a query
                 @Query("Api-Key") apiKey: String?,
                 @Query("Token") accessToken: String?)
-//                @Header("Api-Key") String apiKey,
-//                @Header("Token") String accessToken);
                 : Call<ProfileResponse>
 
         /** Obtain the product list */

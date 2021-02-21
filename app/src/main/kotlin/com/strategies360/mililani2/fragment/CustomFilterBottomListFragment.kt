@@ -22,22 +22,12 @@ import com.strategies360.mililani2.R.style
 import com.strategies360.mililani2.activity.ActivitiesActivity
 import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.widget.DatePickerDialog
-import kotlinx.android.synthetic.clearFindViewByIdCache
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_category
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_date_range
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_location
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_reset
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_show
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ed_end_date
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ed_start_date
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_category
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_date
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_location
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_category
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_date_range
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_location
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.*
 import org.greenrobot.eventbus.EventBus
-import java.util.Calendar
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClickListener,
     DatePickerDialog.OnDateSetListener {
@@ -52,6 +42,16 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
 
   private var edStartDate: String? = ""
   private var edEndDate: String? = ""
+
+  private var isCheckedAquatics = false
+
+  private var listActivityType: ArrayList<String> = ArrayList()
+  private var listSubTypeAquatics: ArrayList<String> = ArrayList()
+  private var listSubTypeSeniors: ArrayList<String> = ArrayList()
+  private var listSubTypeTinyTots: ArrayList<String> = ArrayList()
+  private var listSubTypeWomen: ArrayList<String> = ArrayList()
+
+  var listHash: HashMap<String, String> = HashMap()
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -75,6 +75,11 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
 
     ed_start_date.keyListener = null
     ed_end_date.keyListener = null
+
+    checkedAquatics()
+    checkedSeniors()
+    checkedTinyTots()
+    checkedWomenExercise()
 
     ed_start_date.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
       if (hasFocus) {
@@ -168,11 +173,7 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
           ActivitiesActivity.launchIntent(requireContext())
           requireActivity().finish()
         } else {
-          EventBus.getDefault().postSticky(
-              EventFilterResult("","One on One LTS", edStartDate.toString(),
-              edEndDate.toString(),"")
-          )
-          dismiss()
+          submitDataFilter()
         }
       }
     }
@@ -273,4 +274,211 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
   }
 
   override fun onCancelled(dialog: DatePickerDialog?) {}
+
+  private fun checkedAquatics() {
+    cb_aquatics_adult.setOnCheckedChangeListener { compoundButton, b ->
+      cb_aquatics.isChecked = true
+      isCheckedAquatics = true
+    }
+
+    cb_aquatics_master.setOnCheckedChangeListener { compoundButton, b ->
+      cb_aquatics.isChecked = true
+      isCheckedAquatics = true
+    }
+
+    cb_aquatics_mlearn.setOnCheckedChangeListener { compoundButton, b ->
+      cb_aquatics.isChecked = true
+      isCheckedAquatics = true
+    }
+
+    cb_aquatics_one.setOnCheckedChangeListener { compoundButton, b ->
+      cb_aquatics.isChecked = true
+      isCheckedAquatics = true
+    }
+
+    cb_aquatics_parent.setOnCheckedChangeListener { compoundButton, b ->
+      cb_aquatics.isChecked = true
+      isCheckedAquatics = true
+    }
+
+    cb_aquatics_specials.setOnCheckedChangeListener { compoundButton, b ->
+      cb_aquatics.isChecked = true
+      isCheckedAquatics = true
+    }
+
+    cb_aquatics.setOnCheckedChangeListener { compoundButton, b ->
+      if(!cb_aquatics.isChecked) {
+        cb_aquatics_adult.isChecked = false
+        cb_aquatics_specials.isChecked = false
+        cb_aquatics_parent.isChecked = false
+        cb_aquatics_one.isChecked = false
+        cb_aquatics_master.isChecked = false
+        cb_aquatics_mlearn.isChecked = false
+        cb_aquatics.isChecked = false
+      }
+    }
+  }
+
+  private fun checkedSeniors() {
+    cb_seniors_detail.setOnCheckedChangeListener { compoundButton, b ->
+      cb_seniors.isChecked = true
+    }
+
+    cb_seniors.setOnCheckedChangeListener { compoundButton, b ->
+      if(!cb_seniors.isChecked) {
+        cb_seniors_detail.isChecked = false
+        cb_seniors.isChecked = false
+      }
+    }
+  }
+
+  private fun checkedTinyTots() {
+    cb_tiny_tots_detail.setOnCheckedChangeListener { compoundButton, b ->
+      cb_tiny_tots.isChecked = true
+    }
+
+    cb_tiny_tots.setOnCheckedChangeListener { compoundButton, b ->
+      if(!cb_tiny_tots.isChecked) {
+        cb_tiny_tots_detail.isChecked = false
+        cb_tiny_tots.isChecked = false
+      }
+    }
+  }
+
+  private fun checkedWomenExercise() {
+    cb_womens_detail.setOnCheckedChangeListener { compoundButton, b ->
+      cb_women.isChecked = true
+    }
+
+    cb_women.setOnCheckedChangeListener { compoundButton, b ->
+      if (!cb_women.isChecked) {
+        cb_womens_detail.isChecked = false
+        cb_women.isChecked = false
+      }
+    }
+  }
+
+  private fun submitDataFilter() {
+    var detailAquatics = ""
+    if (cb_aquatics.isChecked) {
+      var isCheckedDetailAquatics = false
+      if (cb_aquatics_adult.isChecked) {
+        isCheckedDetailAquatics = true
+        detailAquatics = if (detailAquatics != "") {
+          "Adult LTS,$detailAquatics"
+        } else {
+          "Adult LTS"
+        }
+        listSubTypeAquatics.add("Adult LTS")
+      }
+
+      if (cb_aquatics_master.isChecked) {
+        isCheckedDetailAquatics = true
+        detailAquatics = if (detailAquatics != "") {
+          "JR Masters,$detailAquatics"
+        } else {
+          "JR Masters"
+        }
+        listSubTypeAquatics.add("JR Masters")
+      }
+
+      if (cb_aquatics_mlearn.isChecked) {
+        isCheckedDetailAquatics = true
+        detailAquatics = if (detailAquatics != "") {
+          "Learn To Swim,$detailAquatics"
+        } else {
+          "Learn To Swim"
+        }
+        listSubTypeAquatics.add("Learn To Swim")
+      }
+
+      if (cb_aquatics_one.isChecked) {
+        isCheckedDetailAquatics = true
+        detailAquatics = if (detailAquatics != "") {
+          "One On One LTS,$detailAquatics"
+        } else {
+          "One On One LTS"
+        }
+        listSubTypeAquatics.add("One On One LTS")
+      }
+
+      if (cb_aquatics_parent.isChecked) {
+        isCheckedDetailAquatics = true
+        detailAquatics = if (detailAquatics != "") {
+          "Parent Aid,$detailAquatics"
+        } else {
+          "Parent Aid"
+        }
+        listSubTypeAquatics.add("Parent Aid")
+      }
+
+      if (cb_aquatics_parent.isChecked) {
+        isCheckedDetailAquatics = true
+        detailAquatics = if (detailAquatics != "") {
+          "Specials Needs LTS,$detailAquatics"
+        } else {
+          "Specials Needs LTS"
+        }
+        listSubTypeAquatics.add("Specials Needs LTS")
+      }
+
+      if (isCheckedDetailAquatics) listActivityType.add("Aquatics")
+    }
+    if (cb_seniors.isChecked) {
+      var isCheckedDetailSeniors = false
+      if (cb_seniors_detail.isChecked) {
+        isCheckedDetailSeniors = true
+        listSubTypeSeniors.add("Seniors")
+      }
+      if (isCheckedDetailSeniors) listActivityType.add("Seniors")
+    }
+    if (cb_tiny_tots.isChecked) {
+      var isCheckedDetailTiny = false
+      if (cb_tiny_tots_detail.isChecked) {
+        isCheckedDetailTiny = true
+        listSubTypeTinyTots.add("Tiny Tots")
+      }
+      if (isCheckedDetailTiny) listActivityType.add("Tiny Tots")
+    }
+    if (cb_women.isChecked) {
+      var isCheckedDetailWomen = false
+      if (cb_womens_detail.isChecked) {
+        isCheckedDetailWomen = true
+        listSubTypeWomen.add("Women Exercise")
+      }
+      if (isCheckedDetailWomen) listActivityType.add("Women Exercise")
+    }
+
+    if (listActivityType.size != 0) {
+      for (i in listActivityType.indices) {
+        listHash["activity_type[$i]"] = listActivityType[i]
+        when {
+            listActivityType[i] == "Aquatics" -> {
+              if (detailAquatics != "") {
+               listHash["sub_type[0]"] = detailAquatics
+              }
+            }
+            listActivityType[i] == "Seniors" -> {
+              for (i in listSubTypeSeniors.indices) {
+                if (listSubTypeSeniors.size != 0) listHash["sub_type[1]"] = listSubTypeSeniors[i]
+              }
+            }
+            listActivityType[i] == "Seniors" -> {
+              for (i in listSubTypeTinyTots.indices) {
+                if (listSubTypeTinyTots.size != 0) listHash["sub_type[2]"] = listSubTypeTinyTots[i]
+              }
+            }
+            else -> {
+              for (i in listSubTypeTinyTots.indices) {
+                if (listSubTypeWomen.size != 0) listHash["sub_type[3]"] = listSubTypeWomen[i]
+              }
+            }
+        }
+      }
+      EventBus.getDefault().postSticky(
+              EventFilterResult(listHash)
+      )
+      dismiss()
+    }
+  }
 }

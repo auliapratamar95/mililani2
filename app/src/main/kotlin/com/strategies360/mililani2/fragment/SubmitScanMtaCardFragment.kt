@@ -22,9 +22,7 @@ import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.CustomViewFinderView
 import com.strategies360.mililani2.viewmodel.SubmitMTACardViewModel
-import kotlinx.android.synthetic.main.fragment_submit_scan_mta_card.btn_manually_mta_card
-import kotlinx.android.synthetic.main.fragment_submit_scan_mta_card.btn_skip_personal_information
-import kotlinx.android.synthetic.main.fragment_submit_scan_mta_card.frame_layout_camera
+import kotlinx.android.synthetic.main.fragment_submit_scan_mta_card.*
 import me.dm7.barcodescanner.core.IViewFinder
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 

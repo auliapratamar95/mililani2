@@ -1,9 +1,8 @@
 package com.strategies360.mililani2.api.callback
 
-import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.api.callback.core.CoreCallback
+import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.model.core.AppResponse
-
 import retrofit2.Response
 
 /**

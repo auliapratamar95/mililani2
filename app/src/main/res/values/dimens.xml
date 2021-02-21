@@ -203,5 +203,6 @@
     <dimen name="fo_radius_small">12dp</dimen>
     <dimen name="fo_radius_normal">20dp</dimen>
     <dimen name="fo_radius_large">60dp</dimen>
+    <dimen name="fo_spacing_88">88dp</dimen>
 
 </resources>

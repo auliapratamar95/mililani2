@@ -7,11 +7,10 @@ import com.strategies360.mililani2.api.callback.SignInCallback
 import com.strategies360.mililani2.api.callback.core.CoreCallback
 import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.model.core.AppResponse
-import com.strategies360.mililani2.model.remote.auth.ProfileResponse
-import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
-import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
-import com.strategies360.mililani2.model.remote.auth.SignInRequest
-import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.auth.*
+import com.strategies360.mililani2.model.remote.caffe.CaffeListResponse
+import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
+import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
@@ -235,6 +234,33 @@ class APICaller<RESPONSE : AppResponse> {
         callback = AppCallback(listener as OnAPIListener<ClassesListResponse>)
         call = APIService.apiInterfaceMililani.getFilterClass(accessToken, activityType, subType, beginDate, endDate, location)
         (call as Call<ClassesListResponse>).enqueue(callback as AppCallback<ClassesListResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getCustomFilterClass(data: MutableMap<String, String>) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<ClassesListResponse>)
+        call = APIService.apiInterfaceMililani.getCustomFilterClass(data)
+        (call as Call<ClassesListResponse>).enqueue(callback as AppCallback<ClassesListResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getCaffeAll(categoryId: String, page: Int, size: Int) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<PayloadResponse>)
+        call = APIService.apiInterfaceCaffeMililani.getCaffeAll(categoryId, page, size)
+        (call as Call<PayloadResponse>).enqueue(callback as AppCallback<PayloadResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getCategory() {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<CategoryListResponse>)
+        call = APIService.apiInterfaceCaffeMililani.getCategory(true)
+        (call as Call<CategoryListResponse>).enqueue(callback as AppCallback<CategoryListResponse>)
     }
 
     /**

@@ -1,10 +1,6 @@
 package com.strategies360.mililani2.viewmodel
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.strategies360.extension.api.withListener
 import com.strategies360.mililani2.api.APICaller
 import com.strategies360.mililani2.model.core.AppError
@@ -47,7 +43,7 @@ class FilterClassesListViewModel : ViewModel(), LifecycleObserver {
 //    }
 
     /** Fetches a sample list from a remote server */
-    private fun fetchFromRemote(activityType: String, subType: String, beginDate: String, endDate: String, location: String) {
+    fun fetchFilterFromRemote(data: MutableMap<String, String>) {
         resource.value = Resource.loading()
 
         if (apiCaller == null) {
@@ -66,7 +62,7 @@ class FilterClassesListViewModel : ViewModel(), LifecycleObserver {
             )
         }
 
-        apiCaller?.getFilterClass(activityType, subType, beginDate, endDate, location)
+        apiCaller?.getCustomFilterClass(data)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

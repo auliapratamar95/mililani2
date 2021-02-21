@@ -31,21 +31,16 @@ import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.core.CoreActivity
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.viewmodel.AuthMililaniViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.btn_send_otp
 import kotlinx.android.synthetic.main.activity_login.edit_phone_number
 import kotlinx.android.synthetic.main.activity_login.layout_send_otp
-import kotlinx.android.synthetic.main.activity_login.layout_verify_otp
 import kotlinx.android.synthetic.main.layout_verification_otp.btn_verify_otp
 import kotlinx.android.synthetic.main.layout_verification_otp.edit_otp_view
 import kotlinx.android.synthetic.main.layout_verification_otp.privacy_policy
 import kotlinx.android.synthetic.main.layout_verification_otp.txt_otp
 import kotlinx.android.synthetic.main.layout_verification_otp.txt_sample
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.text.DecimalFormat
 import java.util.concurrent.TimeUnit
 

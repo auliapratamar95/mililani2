@@ -18,9 +18,7 @@ import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.viewmodel.SubmitMTACardViewModel
-import kotlinx.android.synthetic.main.fragment_submit_manually_mta_card.btn_barcode_mta_card
-import kotlinx.android.synthetic.main.fragment_submit_manually_mta_card.btn_skip_submit_manual
-import kotlinx.android.synthetic.main.fragment_submit_manually_mta_card.edit_masked_input
+import kotlinx.android.synthetic.main.fragment_submit_manually_mta_card.*
 
 class SubmitManuallyMtaCardFragment : CoreFragment(), View.OnClickListener {
 

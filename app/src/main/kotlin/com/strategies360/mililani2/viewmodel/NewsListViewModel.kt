@@ -1,10 +1,6 @@
 package com.strategies360.mililani2.viewmodel
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.strategies360.extension.api.withListener
 import com.strategies360.mililani2.api.APICaller
 import com.strategies360.mililani2.model.core.AppError

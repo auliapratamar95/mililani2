@@ -11,7 +11,7 @@ import com.strategies360.mililani2.R.id
 import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.core.CoreActivity
 import com.strategies360.mililani2.util.Constant
-import kotlinx.android.synthetic.main.activity_bottom_nav_menu.nav_view
+import kotlinx.android.synthetic.main.activity_bottom_nav_menu.*
 
 class BottomMenuNavigationActivity : CoreActivity() {
 

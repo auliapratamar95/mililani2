@@ -3,8 +3,6 @@ package itsmagic.present.easierspinner.adapter;
 import android.content.Context;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 /**
  * <p/>
  * A core adapter class for this library.

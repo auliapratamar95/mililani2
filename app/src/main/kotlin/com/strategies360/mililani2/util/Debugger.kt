@@ -1,8 +1,8 @@
 package com.strategies360.mililani2.util
 
 import android.util.Log
-import com.strategies360.mililani2.BuildConfig
 import com.crashlytics.android.Crashlytics
+import com.strategies360.mililani2.BuildConfig
 
 /**
  *

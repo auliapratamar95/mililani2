@@ -7,10 +7,10 @@ import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.strategies360.extension.android.view.inflate
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.model.core.Resource
-import com.strategies360.extension.android.view.inflate
 import kotlinx.android.synthetic.main.base_adapter_recycler_empty.view.*
 import kotlinx.android.synthetic.main.base_adapter_recycler_error_full.view.*
 import kotlinx.android.synthetic.main.base_adapter_recycler_error_pagination.view.*

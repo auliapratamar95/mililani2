@@ -110,6 +110,10 @@
             android:name="com.strategies360.mililani2.activity.WebviewRegisterActivity"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name="com.strategies360.mililani2.activity.CaffeActivity"
+            android:windowSoftInputMode="stateHidden" />
+
         <!-- Account auth service -->
         <service
             android:name="itsmagic.present.simpleaccountmanager.AccountAuthService"

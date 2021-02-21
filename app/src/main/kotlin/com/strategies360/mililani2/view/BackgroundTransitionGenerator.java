@@ -2,6 +2,7 @@ package com.strategies360.mililani2.view;
 
 import android.graphics.RectF;
 import android.view.animation.Interpolator;
+
 import com.flaviofaria.kenburnsview.Transition;
 import com.flaviofaria.kenburnsview.TransitionGenerator;
 

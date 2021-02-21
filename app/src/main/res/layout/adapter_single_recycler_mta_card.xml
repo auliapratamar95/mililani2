@@ -30,7 +30,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:hint="@string/enter_nickname"
-                android:backgroundTint="@color/colorPrimary"/>
+                android:backgroundTint="@color/colorPrimary" />
 
             <ImageView
                 android:layout_width="@dimen/margin_larges"
@@ -38,7 +38,7 @@
                 android:layout_gravity="center|right"
                 android:background="@drawable/bg_icon_circle_primary"
                 android:src="@drawable/ic_baseline_check"
-                android:layout_margin="3dp"/>
+                android:layout_margin="3dp" />
 
         </LinearLayout>
 
@@ -56,7 +56,7 @@
             android:text="@string/set_as_primary"
             android:layout_marginStart="@dimen/margin_large"
             android:layout_gravity="center_vertical"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
     </LinearLayout>
 
 
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/fo_size_450"
             android:padding="@dimen/margin_default"
-            android:src="@drawable/ic_bg_mta_card_sample_two"/>
+            android:src="@drawable/ic_bg_mta_card_sample_two" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginStart="-60dp"
                 android:layout_marginBottom="165dp"
-                app:srcCompat="?attr/actionBarDivider"/>
+                app:srcCompat="?attr/actionBarDivider" />
 
             <TextView
                 android:id="@+id/txt_card_number"
@@ -98,7 +98,7 @@
                 android:layout_marginStart="-115dp"
                 android:layout_marginBottom="@dimen/margin_larges"
                 android:layout_alignBottom="@+id/barcode_mta_card"
-                tools:text="MTA12332131"/>
+                tools:text="MTA12332131" />
 
         </RelativeLayout>
 

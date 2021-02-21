@@ -1,7 +1,7 @@
 package com.strategies360.mililani2.model.remote.product
 
-import com.strategies360.mililani2.model.core.AppResponse
 import com.google.gson.annotations.SerializedName
+import com.strategies360.mililani2.model.core.AppResponse
 
 class SampleProductListResponse : AppResponse() {
 

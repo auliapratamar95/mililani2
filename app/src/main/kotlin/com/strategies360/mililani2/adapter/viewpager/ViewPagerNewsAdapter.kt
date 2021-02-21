@@ -8,8 +8,7 @@ import androidx.core.text.HtmlCompat
 import androidx.viewpager.widget.PagerAdapter
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.model.remote.news.News
-import kotlinx.android.synthetic.main.adapter_news.view.desc
-import kotlinx.android.synthetic.main.adapter_news.view.title
+import kotlinx.android.synthetic.main.adapter_news.view.*
 
 class ViewPagerNewsAdapter : PagerAdapter() {
 

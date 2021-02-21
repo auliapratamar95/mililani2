@@ -9,153 +9,153 @@
     android:animateLayoutChanges="true"
     tools:visibility="visible">
 
-  <FrameLayout
-      android:id="@+id/frame_container"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@color/colorPrimary">
-
-      <LinearLayout
-          android:id="@+id/layout_header_home"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="@dimen/margin_default"
-          android:layout_marginTop="@dimen/margin_xlarge"
-          android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/btn_open_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="2"
-            android:foreground="?attr/selectableItemBackground">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/colorPrimary">
 
-          <de.hdodenhof.circleimageview.CircleImageView
-              android:id="@+id/profile_image"
-              android:layout_width="@dimen/fo_spacing_70"
-              android:layout_height="@dimen/fo_spacing_70"
-              android:padding="@dimen/margin_small"
-              android:src="@drawable/ic_baseline_person"
-              android:background="@drawable/bg_icon_circle_white"
-              app:civ_border_width="1dp"
-              app:civ_border_color="@color/white"/>
+            <LinearLayout
+                android:id="@+id/layout_header_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_xlarge"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/btn_open_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="@dimen/fo_spacing_70"
+                        android:layout_height="@dimen/fo_spacing_70"
+                        android:padding="@dimen/margin_small"
+                        android:src="@drawable/ic_baseline_person"
+                        android:background="@drawable/bg_icon_circle_white"
+                        app:civ_border_width="1dp"
+                        app:civ_border_color="@color/white"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hello"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/btn_scan_barcode"
+                        android:layout_width="@dimen/fo_spacing_30"
+                        android:layout_height="@dimen/fo_spacing_30"
+                        android:src="@drawable/ic_scan_barcode"
+                        android:layout_marginRight="@dimen/margin_default"
+                        android:backgroundTint="@color/white"
+                        android:foreground="?attr/selectableItemBackground"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_header_home"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/margin_large"
+                android:background="@drawable/fo_bg_bottom_sheet"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:layout_marginStart="@dimen/margin_large"
+                        android:padding="@dimen/margin_default">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:text="@string/recent_news"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/fo_font_16"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|right"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:layout_marginEnd="@dimen/margin_xlarge"
+                        tools:ignore="RtlHardcoded">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:text="@string/see_all"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/fo_font_tiny"
+                            android:textStyle="bold"
+                            android:gravity="right"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/newsViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/fo_spacing_250"
+                    android:foregroundGravity="center"
+                    android:overScrollMode="never"
+                    android:clipToPadding="false"/>
+
+                <Button
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_margin="@dimen/margin_xxlarge"
+                    android:visibility="gone"
+                    android:background="@drawable/bg_button_round_grey_primary"/>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:gravity="center"
-            android:orientation="vertical">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Hello"
-              android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="right|center"
-            android:layout_weight="1">
-
-          <ImageView
-              android:id="@+id/btn_scan_barcode"
-              android:layout_width="@dimen/fo_spacing_30"
-              android:layout_height="@dimen/fo_spacing_30"
-              android:src="@drawable/ic_scan_barcode"
-              android:layout_marginRight="@dimen/margin_default"
-              android:backgroundTint="@color/white"
-              android:foreground="?attr/selectableItemBackground"/>
-        </RelativeLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_below="@+id/layout_header_home"
-          android:layout_alignParentBottom="true"
-          android:layout_marginTop="@dimen/margin_large"
-          android:background="@drawable/fo_bg_bottom_sheet"
-          android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:layout_marginTop="@dimen/margin_large"
-              android:layout_marginStart="@dimen/margin_large"
-              android:padding="@dimen/margin_default">
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@string/recent_news"
-                android:textStyle="bold"
-                android:textSize="@dimen/fo_font_16"/>
-
-          </RelativeLayout>
-
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
-              android:gravity="center|right"
-              android:layout_marginTop="@dimen/margin_large"
-              android:layout_marginEnd="@dimen/margin_xlarge"
-              tools:ignore="RtlHardcoded">
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@string/see_all"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/fo_font_tiny"
-                android:textStyle="bold"
-                android:gravity="right"/>
-
-          </RelativeLayout>
-
-        </LinearLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/newsViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/fo_spacing_250"
-            android:foregroundGravity="center"
-            android:overScrollMode="never"
-            android:clipToPadding="false"/>
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:textColor="@color/colorPrimary"
-            android:layout_margin="@dimen/margin_xxlarge"
-            android:visibility="gone"
-            android:background="@drawable/bg_button_round_grey_primary"/>
-
-      </LinearLayout>
-
-    </RelativeLayout>
-
-  </FrameLayout>
+    </FrameLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

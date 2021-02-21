@@ -1,8 +1,8 @@
 package itsmagic.present.simpleaccountmanager.util;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.Iterator;
 import java.util.Set;

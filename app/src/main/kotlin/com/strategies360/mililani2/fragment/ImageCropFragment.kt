@@ -1,12 +1,12 @@
 package com.strategies360.mililani2.fragment
 
 import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.AppError

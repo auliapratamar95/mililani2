@@ -6,8 +6,7 @@ import androidx.fragment.app.FragmentManager
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.ActivitiesActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
-import kotlinx.android.synthetic.main.fragment_profile_mta_card.btn_logout
-import kotlinx.android.synthetic.main.fragment_profile_mta_card.btn_my_activities
+import kotlinx.android.synthetic.main.fragment_profile_mta_card.*
 
 /**
  * A Profile activity.
@@ -47,24 +46,6 @@ class ProfileMtaFragment : CoreFragment(), View.OnClickListener {
         openActivitiesFragment()
         requireActivity().finish()
       }
-//      btn_back -> {
-//        val isUpComingActivities = this.arguments?.getString("keyUpcomingActivities")
-//        if (isUpComingActivities != null) {
-//          if (isUpComingActivities == "isUpcomingActivities") {
-//            openActivitiesFragment()
-//          } else {
-//            Hawk.put((Constant.FLAG_ON_BACK_MENU_ACTIVITIES), true)
-//            openAllActivitiesFragment()
-//          }
-//        } else {
-//          BottomMenuNavigationActivity.launchIntent(requireContext())
-//        }
-//      }
-//      btn_barcode -> {
-//        openBottomCardList()
-//      }
-
-
     }
   }
 }

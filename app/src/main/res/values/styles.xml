@@ -13,6 +13,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/avenir_book</item>
         <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
     </style>
 

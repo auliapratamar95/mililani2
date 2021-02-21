@@ -19,11 +19,7 @@ import com.strategies360.mililani2.R
 import com.strategies360.mililani2.eventbus.EventDefaultCardNumber
 import com.strategies360.mililani2.eventbus.EventPrimaryCardNumber
 import com.strategies360.mililani2.model.remote.mtaCard.MTACard
-import kotlinx.android.synthetic.main.adapter_custom_card_list.view.barcode_mta_card
-import kotlinx.android.synthetic.main.adapter_custom_card_list.view.btn_set_primary
-import kotlinx.android.synthetic.main.adapter_custom_card_list.view.sample
-import kotlinx.android.synthetic.main.adapter_custom_card_list.view.txt_card_number
-import kotlinx.android.synthetic.main.adapter_custom_card_list.view.txt_nickname
+import kotlinx.android.synthetic.main.adapter_custom_card_list.view.*
 import org.greenrobot.eventbus.EventBus
 
 class ViewPagerKotlinAdapter: PagerAdapter() {

@@ -18,15 +18,7 @@ import androidx.fragment.app.FragmentActivity
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.color
-import com.strategies360.mililani2.util.Common.FontType.DROID_SANS
-import com.strategies360.mililani2.util.Common.FontType.GIBSON_BOLD
-import com.strategies360.mililani2.util.Common.FontType.GIBSON_REGULAR
-import com.strategies360.mililani2.util.Common.FontType.ROBOTO_BOLD
-import com.strategies360.mililani2.util.Common.FontType.ROBOTO_REGULAR
-import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_BOLD
-import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_LIGHT
-import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_REGULAR
-import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_SEMIBOLD
+import com.strategies360.mililani2.util.Common.FontType.*
 import com.strategies360.mililani2.view.OnProgressBackPressed
 import com.strategies360.mililani2.view.ProgressDialog
 

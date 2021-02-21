@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.gson.GsonBuilder
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.AppError
@@ -15,7 +16,6 @@ import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.ValidationHelper
 import com.strategies360.mililani2.viewmodel.SampleAuthViewModel
 import com.strategies360.mililani2.viewmodel.SavedAccountViewModel
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_sample_auth.*
 
 /**

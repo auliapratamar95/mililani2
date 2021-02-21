@@ -35,15 +35,7 @@ import com.strategies360.mililani2.viewmodel.DefaultMTACardViewModel
 import com.strategies360.mililani2.viewmodel.DeleteMTACardViewModel
 import com.strategies360.mililani2.viewmodel.MTACardListViewModel
 import com.strategies360.mililani2.viewmodel.SubmitNicknameMTACardViewModel
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.btn_add_mta_card
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.btn_close
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.btn_delete_card
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.btn_help
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.indicator
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.indicator_nol
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.layout_recycler_mta_card
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.progress_bar
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.viewPager
+import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode.MAIN

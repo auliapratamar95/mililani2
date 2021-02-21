@@ -16,10 +16,7 @@ import com.strategies360.mililani2.model.remote.news.News
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.NewsListViewModel
-import kotlinx.android.synthetic.main.fragment_home.btn_logout
-import kotlinx.android.synthetic.main.fragment_home.btn_open_profile
-import kotlinx.android.synthetic.main.fragment_home.btn_scan_barcode
-import kotlinx.android.synthetic.main.fragment_home.newsViewPager
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : CoreFragment(), View.OnClickListener {
 

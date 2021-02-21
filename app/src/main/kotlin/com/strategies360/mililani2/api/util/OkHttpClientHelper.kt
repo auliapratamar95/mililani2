@@ -1,8 +1,8 @@
 package com.strategies360.mililani2.api.util
 
+import com.ashokvarma.gander.GanderInterceptor
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.BuildConfig
-import com.ashokvarma.gander.GanderInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit

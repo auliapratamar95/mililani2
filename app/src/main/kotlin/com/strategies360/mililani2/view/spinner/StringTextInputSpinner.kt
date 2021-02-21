@@ -3,11 +3,8 @@ package com.strategies360.mililani2.view.spinner
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-
 import com.strategies360.mililani2.view.spinner.core.CoreTextInputSpinner
-
-import java.util.ArrayList
-import java.util.Random
+import java.util.*
 
 
 class StringTextInputSpinner : CoreTextInputSpinner<String> {

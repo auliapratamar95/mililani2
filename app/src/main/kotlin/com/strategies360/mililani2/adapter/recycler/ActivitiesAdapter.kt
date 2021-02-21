@@ -11,14 +11,7 @@ import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.adapter.recycler.ActivitiesAdapter.ViewHolder
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
-import kotlinx.android.synthetic.main.adapter_activities.view.btn_layout_class
-import kotlinx.android.synthetic.main.adapter_activities.view.img_calender
-import kotlinx.android.synthetic.main.adapter_activities.view.layout_detail_class
-import kotlinx.android.synthetic.main.adapter_activities.view.txt_date
-import kotlinx.android.synthetic.main.adapter_activities.view.txt_day
-import kotlinx.android.synthetic.main.adapter_activities.view.txt_description
-import kotlinx.android.synthetic.main.adapter_activities.view.txt_status
-import kotlinx.android.synthetic.main.adapter_activities.view.txt_title
+import kotlinx.android.synthetic.main.adapter_activities.view.*
 
 class ActivitiesAdapter : DataListRecyclerViewAdapter<Classes, ViewHolder>() {
   private var tmpPosition = 0
@@ -65,7 +58,7 @@ class ActivitiesAdapter : DataListRecyclerViewAdapter<Classes, ViewHolder>() {
         itemView.img_calender.setImageDrawable(App.context.getDrawable(R.drawable.ic_calender_nonactive))
 //      }
 
-      itemView.txt_title.text = data.title
+      itemView.txt_title.text = data.description
       itemView.txt_date.text = data.date
       itemView.txt_day.text = data.day
       itemView.txt_description.text = data.description

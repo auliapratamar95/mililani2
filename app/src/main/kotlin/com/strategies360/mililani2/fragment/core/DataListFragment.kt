@@ -2,10 +2,10 @@ package com.strategies360.mililani2.fragment.core
 
 import android.os.Bundle
 import android.os.Parcelable
-import com.google.android.material.appbar.AppBarLayout
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.appbar.AppBarLayout
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.model.core.AppError

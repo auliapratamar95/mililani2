@@ -14,8 +14,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.R.style
-import kotlinx.android.synthetic.main.layout_dialog_filter.btn_start_date
-import java.util.Calendar
+import kotlinx.android.synthetic.main.layout_dialog_filter.*
+import java.util.*
 
 class FilterBottomListFragment : BottomSheetDialogFragment(), View.OnClickListener {
   private var picker: DatePickerDialog? = null

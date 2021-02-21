@@ -1,12 +1,12 @@
 package com.strategies360.mililani2.viewmodel
 
 import androidx.lifecycle.*
+import com.strategies360.extension.api.withListener
 import com.strategies360.mililani2.api.APICaller
 import com.strategies360.mililani2.model.core.AppError
 import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.product.SampleProduct
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
-import com.strategies360.extension.api.withListener
 
 class SampleProductListViewModel : ViewModel(), LifecycleObserver {
 

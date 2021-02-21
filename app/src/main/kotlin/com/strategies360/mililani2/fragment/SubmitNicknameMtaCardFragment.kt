@@ -13,10 +13,7 @@ import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.viewmodel.SubmitNicknameMTACardViewModel
-import kotlinx.android.synthetic.main.fragment_submit_nickname_mta_card.btn_save_mta_card
-import kotlinx.android.synthetic.main.fragment_submit_nickname_mta_card.btn_skip_submit_nickname
-import kotlinx.android.synthetic.main.fragment_submit_nickname_mta_card.ed_nickname_mta_card
-import kotlinx.android.synthetic.main.fragment_submit_nickname_mta_card.txt_card_number
+import kotlinx.android.synthetic.main.fragment_submit_nickname_mta_card.*
 
 class SubmitNicknameMtaCardFragment : CoreFragment(), View.OnClickListener {
 

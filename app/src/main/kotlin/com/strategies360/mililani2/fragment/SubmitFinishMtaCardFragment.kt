@@ -6,9 +6,7 @@ import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.BottomMenuNavigationActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
-import kotlinx.android.synthetic.main.fragment_submit_finish_mta_card.btn_finish_mta_card
-import kotlinx.android.synthetic.main.fragment_submit_finish_mta_card.btn_skip_personal_information
-import kotlinx.android.synthetic.main.fragment_submit_finish_mta_card.txt_number_register_mta
+import kotlinx.android.synthetic.main.fragment_submit_finish_mta_card.*
 
 class SubmitFinishMtaCardFragment : CoreFragment(), View.OnClickListener{
 

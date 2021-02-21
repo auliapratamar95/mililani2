@@ -13,15 +13,10 @@ import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.adapter.recycler.ActivitiesAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
-import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.fragment.core.DataListFragment
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
 import com.strategies360.mililani2.viewmodel.AllClassesListViewModel
-import kotlinx.android.synthetic.main.fragment_activities.btn_filter
-import kotlinx.android.synthetic.main.fragment_activities.recycler_activities
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode.MAIN
+import kotlinx.android.synthetic.main.fragment_activities.*
 
 class ActivitiesFragment : DataListFragment() {
 

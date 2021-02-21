@@ -8,567 +8,570 @@
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     app:behavior_hideable="true">
 
-  <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="@dimen/fo_spacing_14"
-      android:layout_marginTop="@dimen/margin_xlarge"
-      android:layout_marginBottom="60dp">
-
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/margin_small"
-          android:layout_marginTop="@dimen/margin_default"
-          android:text="@string/filter"
-          android:textAllCaps="true"
-          android:textSize="@dimen/fo_font_normal"
-          android:textStyle="bold"/>
-
-      <LinearLayout
-          android:id="@+id/btn_date_range"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/margin_small"
-          android:layout_marginTop="@dimen/margin_default"
-          android:orientation="vertical"
-          android:foreground="?attr/selectableItemBackground">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/fo_spacing_14"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-          <TextView
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:text="@string/date_range"
-              android:textSize="@dimen/fo_font_normal"
-              android:layout_marginTop="@dimen/margin_larges"/>
-
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
-              android:layout_marginTop="@dimen/margin_larges"
-              android:gravity="right">
-
-            <ImageView
-                android:id="@+id/ic_plus_min_date"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_plus"
-                android:layout_marginEnd="@dimen/margin_small"/>
-
-          </RelativeLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey_300"
-            android:layout_marginTop="@dimen/margin_default"/>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:id="@+id/layout_date_range"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="@color/grey_200"
-          android:orientation="horizontal"
-          android:animateLayoutChanges="true"
-          android:visibility="gone"
-          tools:visibility="visible">
-
-        <EditText
-            android:id="@+id/ed_start_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="40"
-            android:drawableEnd="@drawable/ic_choice_calender"
-            android:hint="@string/start_date"
-            tools:text="21/08/2021"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fo_font_tiny"
-            android:layout_marginTop="@dimen/margin_larges"
-            android:focusable="false"
-            android:backgroundTint="@color/colorPrimary"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:layout_marginTop="@dimen/margin_larges"/>
-
-        <EditText
-            android:id="@+id/ed_end_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="40"
-            android:drawableEnd="@drawable/ic_choice_calender"
-            android:layout_marginTop="@dimen/margin_larges"
-            android:hint="@string/end_date"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fo_font_tiny"
-            android:focusable="false"
-            android:backgroundTint="@color/colorPrimary"/>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:id="@+id/btn_location"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/margin_small"
-          android:layout_marginTop="@dimen/margin_default"
-          android:orientation="vertical"
-          android:foreground="?attr/selectableItemBackground">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-          <TextView
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:text="@string/location"
-              android:textSize="@dimen/fo_font_normal"
-              android:layout_marginTop="@dimen/margin_larges"/>
-
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
-              android:layout_marginTop="@dimen/margin_larges"
-              android:gravity="right">
-
-            <ImageView
-                android:id="@+id/ic_plus_min_location"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_plus"
-                android:layout_marginEnd="@dimen/margin_small"/>
-
-          </RelativeLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey_300"
-            android:layout_marginTop="@dimen/margin_default"/>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:id="@+id/layout_location"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:visibility="gone"
-          tools:visibility="visible">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/grey_200"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC1"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@string/filter"
+                android:textAllCaps="true"
+                android:textSize="@dimen/fo_font_normal"
+                android:textStyle="bold"/>
 
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC2"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
+            <LinearLayout
+                android:id="@+id/btn_date_range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="vertical"
+                android:foreground="?attr/selectableItemBackground">
 
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC3"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC4"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/date_range"
+                        android:textSize="@dimen/fo_font_normal"
+                        android:layout_marginTop="@dimen/margin_larges"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/margin_larges"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:id="@+id/ic_plus_min_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_plus"
+                            android:layout_marginEnd="@dimen/margin_small"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/grey_300"
+                    android:layout_marginTop="@dimen/margin_default"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_date_range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_200"
+                android:orientation="horizontal"
+                android:animateLayoutChanges="true"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <EditText
+                    android:id="@+id/ed_start_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:drawableEnd="@drawable/ic_choice_calender"
+                    android:hint="@string/start_date"
+                    tools:text="21/08/2021"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fo_font_tiny"
+                    android:layout_marginTop="@dimen/margin_larges"
+                    android:focusable="false"
+                    android:backgroundTint="@color/colorPrimary"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="@dimen/margin_larges"/>
+
+                <EditText
+                    android:id="@+id/ed_end_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:drawableEnd="@drawable/ic_choice_calender"
+                    android:layout_marginTop="@dimen/margin_larges"
+                    android:hint="@string/end_date"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fo_font_tiny"
+                    android:focusable="false"
+                    android:backgroundTint="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="vertical"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/location"
+                        android:textSize="@dimen/fo_font_normal"
+                        android:layout_marginTop="@dimen/margin_larges"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/margin_larges"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:id="@+id/ic_plus_min_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_plus"
+                            android:layout_marginEnd="@dimen/margin_small"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/grey_300"
+                    android:layout_marginTop="@dimen/margin_default"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/grey_200"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC1"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC2"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC3"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC4"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/grey_200"
+                    android:orientation="vertical"
+                    tools:visibility="visible">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC1"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC5"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC6"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC7"
+                        android:textSize="@dimen/fo_font_tiny"
+                        android:buttonTint="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="vertical"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/category"
+                        android:textSize="@dimen/fo_font_normal"
+                        android:layout_marginTop="@dimen/margin_larges"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/margin_larges"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:id="@+id/ic_plus_min_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:src="@drawable/ic_plus"
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/grey_300"
+                    android:layout_marginTop="@dimen/margin_default"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_200"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp"
+                        tools:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="@dimen/margin_larges">
+
+                            <CheckBox
+                                android:id="@+id/cb_aquatics"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Aquatics"
+                                android:textSize="@dimen/fo_font_tiny"
+                                android:buttonTint="@color/colorPrimary"/>
+
+                            <LinearLayout
+                                android:id="@+id/layout_aquatics"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_larges"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/cb_aquatics_adult"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Adult LTS"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:buttonTint="@color/colorPrimary"/>
+
+                                <CheckBox
+                                    android:id="@+id/cb_aquatics_master"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="JR Masters"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:buttonTint="@color/colorPrimary"/>
+
+                                <CheckBox
+                                    android:id="@+id/cb_aquatics_mlearn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Learn To Swim"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:buttonTint="@color/colorPrimary"/>
+
+                                <CheckBox
+                                    android:id="@+id/cb_aquatics_one"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="One On One LTS"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:buttonTint="@color/colorPrimary"/>
+
+                                <CheckBox
+                                    android:id="@+id/cb_aquatics_parent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Parent Aid"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:buttonTint="@color/colorPrimary"/>
+
+                                <CheckBox
+                                    android:id="@+id/cb_aquatics_specials"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Special Needs LTS"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:buttonTint="@color/colorPrimary"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_seniors"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/margin_larges">
+
+                        <CheckBox
+                            android:id="@+id/cb_seniors"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Seniors"
+                            android:textSize="@dimen/fo_font_tiny"
+                            android:buttonTint="@color/colorPrimary"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_larges"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:id="@+id/cb_seniors_detail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Seniors"
+                                android:textSize="@dimen/fo_font_tiny"
+                                android:buttonTint="@color/colorPrimary"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/layout_tiny_toots"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="@dimen/margin_larges">
+
+                            <CheckBox
+                                android:id="@+id/cb_tiny_tots"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Tiny Toots"
+                                android:textSize="@dimen/fo_font_tiny"
+                                android:buttonTint="@color/colorPrimary"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_larges"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/cb_tiny_tots_detail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Tiny Tots"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:buttonTint="@color/colorPrimary"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_women_excercise"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/margin_larges">
+
+                        <CheckBox
+                            android:id="@+id/cb_women"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Women Excercise"
+                            android:textSize="@dimen/fo_font_tiny"
+                            android:buttonTint="@color/colorPrimary"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_larges"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:id="@+id/cb_womens_detail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Women Excercise"
+                                android:textSize="@dimen/fo_font_tiny"
+                                android:buttonTint="@color/colorPrimary"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xxlarge"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/margin_xlarge"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btn_reset"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fo_spacing_60"
             android:layout_weight="1"
-            android:background="@color/grey_200"
-            android:orientation="vertical"
-            tools:visibility="visible">
+            android:background="@drawable/bg_button_round_grey_primary"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/reset"/>
 
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC1"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
-
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC5"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
-
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC6"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
-
-          <CheckBox
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="REC7"
-              android:textSize="@dimen/fo_font_tiny"
-              android:buttonTint="@color/colorPrimary"/>
-
-        </LinearLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:id="@+id/btn_category"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/margin_small"
-          android:layout_marginTop="@dimen/margin_default"
-          android:orientation="vertical"
-          android:foreground="?attr/selectableItemBackground">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_show"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-          <TextView
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:text="@string/category"
-              android:textSize="@dimen/fo_font_normal"
-              android:layout_marginTop="@dimen/margin_larges"/>
-
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
-              android:layout_marginTop="@dimen/margin_larges"
-              android:gravity="right">
-
-            <ImageView
-                android:id="@+id/ic_plus_min_category"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/margin_small"
-                android:src="@drawable/ic_plus"
-                />
-
-          </RelativeLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey_300"
-            android:layout_marginTop="@dimen/margin_default"/>
-
-      </LinearLayout>
-
-      <LinearLayout
-          android:id="@+id/layout_category"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="@color/grey_200"
-          android:visibility="gone"
-          tools:visibility="visible"
-          android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-          <LinearLayout
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:orientation="vertical"
-              android:layout_marginBottom="10dp"
-              tools:visibility="visible">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/margin_larges">
-
-              <CheckBox
-                  android:id="@+id/cb_aquatics"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="Aquatics"
-                  android:textSize="@dimen/fo_font_tiny"
-                  android:buttonTint="@color/colorPrimary"/>
-
-              <LinearLayout
-                  android:id="@+id/layout_aquatics"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginStart="@dimen/margin_larges"
-                  android:orientation="vertical">
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-              </LinearLayout>
-
-            </LinearLayout>
-
-          </LinearLayout>
-
-          <LinearLayout
-              android:id="@+id/layout_seniors"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:orientation="vertical"
-              android:layout_marginTop="@dimen/margin_larges">
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Seniors"
-                android:textSize="@dimen/fo_font_tiny"
-                android:buttonTint="@color/colorPrimary"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_larges"
-                android:orientation="vertical">
-
-              <CheckBox
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="1"
-                  android:text="Seniors"
-                  android:textSize="@dimen/fo_font_tiny"
-                  android:buttonTint="@color/colorPrimary"/>
-
-            </LinearLayout>
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-          <LinearLayout
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:orientation="vertical"
-              android:layout_marginBottom="10dp">
-
-            <LinearLayout
-                android:id="@+id/layout_tiny_toots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/margin_larges">
-
-              <CheckBox
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="Tiny Toots"
-                  android:textSize="@dimen/fo_font_tiny"
-                  android:buttonTint="@color/colorPrimary"/>
-
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginStart="@dimen/margin_larges"
-                  android:orientation="vertical">
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Seniors"
-                    android:textSize="@dimen/fo_font_tiny"
-                    android:buttonTint="@color/colorPrimary"/>
-
-              </LinearLayout>
-
-            </LinearLayout>
-
-          </LinearLayout>
-
-          <LinearLayout
-              android:id="@+id/layout_women_excercise"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:orientation="vertical"
-              android:layout_marginTop="@dimen/margin_larges">
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Women Excercise"
-                android:textSize="@dimen/fo_font_tiny"
-                android:buttonTint="@color/colorPrimary"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_larges"
-                android:orientation="vertical">
-
-              <CheckBox
-                  android:id="@+id/cb_seniors"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="1"
-                  android:text="Seniors"
-                  android:textSize="@dimen/fo_font_tiny"
-                  android:buttonTint="@color/colorPrimary"/>
-
-            </LinearLayout>
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-      </LinearLayout>
+            android:layout_marginStart="@dimen/fo_spacing_60"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_round_primary"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/show"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
-
-
-  </androidx.core.widget.NestedScrollView>
-
-  <LinearLayout
-      android:id="@+id/layout_btn"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/margin_xxlarge"
-      android:layout_alignParentBottom="true"
-      android:padding="@dimen/margin_xlarge"
-      android:orientation="horizontal"
-      >
-
-    <Button
-        android:id="@+id/btn_reset"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/fo_spacing_60"
-        android:layout_weight="1"
-        android:background="@drawable/bg_button_round_grey_primary"
-        android:foreground="?attr/selectableItemBackground"
-        android:text="@string/reset"/>
-
-    <Button
-        android:id="@+id/btn_show"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fo_spacing_60"
-        android:layout_weight="1"
-        android:background="@drawable/bg_button_round_primary"
-        android:foreground="?attr/selectableItemBackground"
-        android:text="@string/show"
-        android:textColor="@color/white"/>
-
-  </LinearLayout>
 
 </RelativeLayout>

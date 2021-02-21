@@ -13,4 +13,6 @@
       android:layout_height="match_parent"
       android:layout_marginTop="@dimen/margin_default"/>
 
+    <include layout="@layout/include_toolbar" />
+
 </LinearLayout>

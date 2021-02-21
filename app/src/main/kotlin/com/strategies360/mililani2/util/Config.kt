@@ -5,9 +5,9 @@ import android.content.Context
 import android.os.Build
 import android.os.Environment
 import android.os.StatFs
-import androidx.core.app.ActivityManagerCompat
 import android.util.DisplayMetrics
 import android.view.WindowManager
+import androidx.core.app.ActivityManagerCompat
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.BuildConfig
 import java.util.*

@@ -22,11 +22,7 @@ import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAda
 import com.strategies360.mililani2.eventbus.EventDefaultCardNumber
 import com.strategies360.mililani2.eventbus.EventPrimaryCardNumber
 import com.strategies360.mililani2.model.remote.mtaCard.MTACard
-import kotlinx.android.synthetic.main.adapter_recycler_mta_card_product.view.barcode_mta_card
-import kotlinx.android.synthetic.main.adapter_recycler_mta_card_product.view.btn_set_primary
-import kotlinx.android.synthetic.main.adapter_recycler_mta_card_product.view.sample
-import kotlinx.android.synthetic.main.adapter_recycler_mta_card_product.view.txt_card_number
-import kotlinx.android.synthetic.main.adapter_recycler_mta_card_product.view.txt_nickname
+import kotlinx.android.synthetic.main.adapter_recycler_mta_card_product.view.*
 import org.greenrobot.eventbus.EventBus
 
 class MTACardAdapter : DataListRecyclerViewAdapter<MTACard, ViewHolder>() {

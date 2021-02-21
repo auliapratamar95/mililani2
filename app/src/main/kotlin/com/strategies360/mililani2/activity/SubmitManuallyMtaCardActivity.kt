@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.core.CoreActivity
-import kotlinx.android.synthetic.main.activity_submit_manually_mta_card.btn_back
+import kotlinx.android.synthetic.main.activity_submit_manually_mta_card.*
 
 /**
  * A Submit Scan MTA Card activity.
