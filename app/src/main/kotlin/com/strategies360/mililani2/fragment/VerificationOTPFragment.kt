@@ -45,7 +45,12 @@ import kotlinx.android.synthetic.main.fragment_verification_otp.txt_resend_code
 import kotlinx.android.synthetic.main.layout_verification_otp.btn_verify_otp
 import kotlinx.android.synthetic.main.layout_verification_otp.edit_otp_view
 import kotlinx.android.synthetic.main.layout_verification_otp.privacy_policy
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 import java.util.concurrent.TimeUnit
 
@@ -208,7 +213,6 @@ class VerificationOTPFragment : CoreFragment() {
 
     repeat(TIME_OUT + 1) {
       val res = DecimalFormat("00").format(TIME_OUT - it)
-      println("Kotlin Coroutines World! $res")
       withContext(Dispatchers.Main) {
         txt_countdown_timer.text = "00:$res"
       }

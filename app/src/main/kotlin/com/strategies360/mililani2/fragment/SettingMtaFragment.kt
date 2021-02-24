@@ -11,18 +11,24 @@ import com.strategies360.mililani2.activity.BottomMenuNavigationActivity
 import com.strategies360.mililani2.activity.CaffeActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.Resource
-import com.strategies360.mililani2.model.remote.caffe.CaffeListResponse
-import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
+import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.CaffeListViewModel
-import com.strategies360.mililani2.viewmodel.CategoryListViewModel
-import kotlinx.android.synthetic.main.fragment_setting_mta_card.*
-import kotlinx.android.synthetic.main.include_toolbar.*
+import kotlinx.android.synthetic.main.fragment_setting_mta_card.btn_caffe
+import kotlinx.android.synthetic.main.fragment_setting_mta_card.layout_setting
+import kotlinx.android.synthetic.main.fragment_setting_mta_card.progress_setting
+import kotlinx.android.synthetic.main.include_toolbar.btn_back
+import kotlinx.android.synthetic.main.include_toolbar.btn_barcode
 
 class SettingMtaFragment: CoreFragment() {
+//  private val viewModel by lazy {
+//    ViewModelProviders.of(this)
+//            .get(CategoryListViewModel::class.java)
+//  }
+
   private val viewModel by lazy {
     ViewModelProviders.of(this)
-            .get(CategoryListViewModel::class.java)
+        .get(CaffeListViewModel::class.java)
   }
 
   override val viewRes = R.layout.fragment_setting_mta_card
@@ -35,7 +41,7 @@ class SettingMtaFragment: CoreFragment() {
     Hawk.put((Constant.FLAG_ON_BACK_MENU), false)
 
     initView()
-    viewModel.fetchCategoryFromRemote()
+    viewModel.fetchProductCaffe()
 
     btn_barcode.setOnClickListener {
       openBottomCardList()
@@ -55,26 +61,28 @@ class SettingMtaFragment: CoreFragment() {
   }
 
   private fun initViewModel() {
-    viewModel.resource.observe(viewLifecycleOwner, Observer {
+    viewModel.resourceProductCaffe.observe(viewLifecycleOwner, Observer {
       when (it?.status) {
-        Resource.LOADING -> onCategoryLoading()
-        Resource.ERROR -> onCategoryFailure()
-        Resource.SUCCESS -> onCategorySuccess(it.data!!)
+        Resource.LOADING -> onProductCaffeLoading()
+        Resource.ERROR -> onProductCaffeFailure()
+        Resource.SUCCESS -> onProductCaffeSuccess(it.data!!)
       }
     })
   }
 
-  private fun onCategoryLoading() {
+  private fun onProductCaffeLoading() {
     progress_setting.visibility = View.VISIBLE
   }
 
-  private fun onCategorySuccess(categoryList: CategoryListResponse) {
-    Hawk.put((Constant.FLAG_ON_CATEGORY), categoryList.categoryListResponse)
+  private fun onProductCaffeSuccess(productCaffeResponse: ProductCaffeResponse) {
+    Hawk.delete(Constant.PRODUCT_CAFFE_LIST)
+    Hawk.delete(Constant.KEY_ID_CATEGORY)
+    Hawk.put((Constant.PRODUCT_CAFFE_LIST), productCaffeResponse.caffeListResponse)
     progress_setting.visibility = View.GONE
     layout_setting.visibility = View.VISIBLE
   }
 
-  private fun onCategoryFailure() {
+  private fun onProductCaffeFailure() {
     layout_setting.visibility = View.VISIBLE
     progress_setting.visibility = View.GONE
   }

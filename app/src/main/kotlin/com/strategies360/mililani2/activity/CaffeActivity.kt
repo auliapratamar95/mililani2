@@ -11,15 +11,23 @@ import com.google.android.material.tabs.TabLayout
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.core.CoreActivity
+import com.strategies360.mililani2.eventbus.EventChangeViewCategoryCaffe
+import com.strategies360.mililani2.eventbus.EventFlagGetProductCaffe
+import com.strategies360.mililani2.eventbus.EventFlagGetSubProductCaffe
 import com.strategies360.mililani2.fragment.CaffeFragment
 import com.strategies360.mililani2.fragment.CategoryProductListFragment
 import com.strategies360.mililani2.fragment.MTACardBottomListFragment
-import com.strategies360.mililani2.model.remote.caffe.Caffe
-import com.strategies360.mililani2.model.remote.caffe.CategoryProduct
+import com.strategies360.mililani2.fragment.SubCaffeFragment
+import com.strategies360.mililani2.model.remote.caffe.ProductCaffe
 import com.strategies360.mililani2.util.Constant
-import kotlinx.android.synthetic.main.activity_caffe.*
-import kotlinx.android.synthetic.main.fragment_mta_card_bottom_list.*
-
+import kotlinx.android.synthetic.main.activity_caffe.btn_back
+import kotlinx.android.synthetic.main.activity_caffe.btn_category
+import kotlinx.android.synthetic.main.activity_caffe.btn_scan_barcode
+import kotlinx.android.synthetic.main.activity_caffe.tabs
+import kotlinx.android.synthetic.main.activity_caffe.viewpager_caffe
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode.MAIN
 
 class CaffeActivity : CoreActivity() {
 
@@ -45,9 +53,14 @@ class CaffeActivity : CoreActivity() {
     }
   }
 
-  override fun onBackPressed() {
-    ProfileMtaActivity.launchIntent(this)
-    finish()
+  override fun onStart() {
+    super.onStart()
+    EventBus.getDefault().register(this)
+  }
+
+  override fun onStop() {
+    super.onStop()
+    EventBus.getDefault().unregister(this)
   }
 
   private fun openBottomCardList() {
@@ -58,20 +71,15 @@ class CaffeActivity : CoreActivity() {
 
   private fun setupViewPager(viewPager: ViewPager) {
     val adapter = ViewPagerAdapter(supportFragmentManager)
-    if (Hawk.contains(Constant.FLAG_ON_CATEGORY)) {
-      val categoryProduct: ArrayList<CategoryProduct> = Hawk.get(Constant.FLAG_ON_CATEGORY)
-      for (i in categoryProduct.indices) {
-        adapter.addFrag(CaffeFragment(), categoryProduct[i].title.toString())
+    if (Hawk.contains(Constant.PRODUCT_CAFFE_LIST)) {
+      val productCaffe: ArrayList<ProductCaffe> = Hawk.get(Constant.PRODUCT_CAFFE_LIST)
+      for (i in productCaffe.indices) {
+        if (productCaffe[i].subProductCaffeList!!.size != 0) {
+          adapter.addFrag(SubCaffeFragment(), productCaffe[i].title.toString())
+        } else {
+          adapter.addFrag(CaffeFragment(), productCaffe[i].title.toString())
+        }
       }
-    } else {
-      adapter.addFrag(CaffeFragment(), "Coffe & Espresso")
-      adapter.addFrag(CaffeFragment(), "Frappucino")
-      adapter.addFrag(CaffeFragment(), "Startbuck Refresher")
-      adapter.addFrag(CaffeFragment(), "Frappucino")
-      adapter.addFrag(CaffeFragment(), "Tea")
-      adapter.addFrag(CaffeFragment(), "Frozen Drinks")
-      adapter.addFrag(CaffeFragment(), "Other Drinks")
-      adapter.addFrag(CaffeFragment(), "Food and Snack")
     }
     viewPager.adapter = adapter
   }
@@ -98,24 +106,30 @@ class CaffeActivity : CoreActivity() {
   }
 
   private fun openCategory() {
-    val fragManager: FragmentManager? = supportFragmentManager
-    if (fragManager != null) {
-      CategoryProductListFragment()
-              .show(fragManager, "Dialog")
-    }
+    val fragManager: FragmentManager = supportFragmentManager
+    CategoryProductListFragment()
+            .show(fragManager, "Dialog")
   }
 
   private fun usingTabOnClick() {
     tabs!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
       override fun onTabSelected(tab: TabLayout.Tab) {
-        val categoryProduct: ArrayList<CategoryProduct> = Hawk.get(Constant.FLAG_ON_CATEGORY)
-        for (i in categoryProduct.indices) {
-          if(i == tab.position-1) {
-            val adapter = ViewPagerAdapter(supportFragmentManager)
-            adapter.addFrag(CaffeFragment(), tab.text.toString())
-
-            Hawk.put((Constant.KEY_ID_CATEGORY), categoryProduct[i].id)
-            viewpager_caffe.adapter = adapter
+        if (Hawk.contains(Constant.PRODUCT_CAFFE_LIST)) {
+          val productCaffe: ArrayList<ProductCaffe> = Hawk.get(Constant.PRODUCT_CAFFE_LIST)
+          for (i in productCaffe.indices) {
+            if (productCaffe[i].title == tab.text.toString()) {
+              Hawk.delete(Constant.KEY_ID_CATEGORY)
+              Hawk.put((Constant.KEY_ID_CATEGORY), productCaffe[i].id)
+              if (productCaffe[i].subProductCaffeList?.size == 0) {
+                EventBus.getDefault().postSticky(
+                    EventFlagGetProductCaffe(true, tab.text.toString())
+                )
+              } else {
+                EventBus.getDefault().postSticky(
+                    EventFlagGetSubProductCaffe(true, tab.text.toString()))
+              }
+              break
+            }
           }
         }
       }
@@ -126,6 +140,14 @@ class CaffeActivity : CoreActivity() {
 
       }
     })
+  }
+
+  @Subscribe(sticky = true, threadMode = MAIN)
+  fun onChangeViewCategory(event: EventChangeViewCategoryCaffe) {
+    if (event.isGetProductCaffe) {
+      viewpager_caffe.currentItem = event.currentItem
+      EventBus.getDefault().removeStickyEvent(event)
+    }
   }
 
   companion object {

@@ -8,9 +8,9 @@ import com.strategies360.mililani2.api.callback.core.CoreCallback
 import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.model.core.AppResponse
 import com.strategies360.mililani2.model.remote.auth.*
-import com.strategies360.mililani2.model.remote.caffe.CaffeListResponse
 import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
 import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
+import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
@@ -252,6 +252,15 @@ class APICaller<RESPONSE : AppResponse> {
         callback = AppCallback(listener as OnAPIListener<PayloadResponse>)
         call = APIService.apiInterfaceCaffeMililani.getCaffeAll(categoryId, page, size)
         (call as Call<PayloadResponse>).enqueue(callback as AppCallback<PayloadResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getProductCaffe() {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<ProductCaffeResponse>)
+        call = APIService.apiInterfaceMililani.getProductCaffe(accessToken)
+        (call as Call<ProductCaffeResponse>).enqueue(callback as AppCallback<ProductCaffeResponse>)
     }
 
     @Suppress("UNCHECKED_CAST")

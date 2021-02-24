@@ -1,10 +1,14 @@
 package com.strategies360.mililani2.api
 
 import com.strategies360.mililani2.api.util.OkHttpClientHelper
-import com.strategies360.mililani2.model.remote.auth.*
-import com.strategies360.mililani2.model.remote.caffe.CaffeListResponse
+import com.strategies360.mililani2.model.remote.auth.ProfileResponse
+import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
+import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
+import com.strategies360.mililani2.model.remote.auth.SignInRequest
+import com.strategies360.mililani2.model.remote.auth.SignInResponse
 import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
 import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
+import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
@@ -14,7 +18,15 @@ import com.strategies360.mililani2.model.remote.product.SampleProductListRespons
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.HTTP
+import retrofit2.http.Header
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 
 /**
@@ -136,6 +148,11 @@ object APIService {
               @Query("p") page: Int?,
               @Query("s") size: Int?)
               : Call<PayloadResponse>
+
+      /** Obtain the MTA Card list */
+      @GET("cafes/catalog")
+      fun getProductCaffe(@Header("Authorization") accessToken: String?)
+          : Call<ProductCaffeResponse>
 
       /** Obtain the MTA Card list */
       @GET("catalog/categories")

@@ -12,7 +12,20 @@ import com.strategies360.mililani2.activity.WebviewRegisterActivity
 import com.strategies360.mililani2.adapter.recycler.AllActivitiesAdapter.ViewHolder
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
-import kotlinx.android.synthetic.main.adapter_all_activities.view.*
+import kotlinx.android.synthetic.main.adapter_all_activities.view.btn_layout_class
+import kotlinx.android.synthetic.main.adapter_all_activities.view.btn_register
+import kotlinx.android.synthetic.main.adapter_all_activities.view.layout_detail_activities
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_comment
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_date
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_day
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_elgibility
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_enrollment_max_count
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_enrollment_total_count
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_fee
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_location
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_meeting_details
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_status
+import kotlinx.android.synthetic.main.adapter_all_activities.view.txt_title
 
 class AllActivitiesAdapter : DataListRecyclerViewAdapter<Classes, ViewHolder>() {
   private var tmpPosition = 0
@@ -71,25 +84,12 @@ class AllActivitiesAdapter : DataListRecyclerViewAdapter<Classes, ViewHolder>() 
         } else {
           itemView.layout_detail_activities.visibility = View.GONE
         }
-//        tmpPosition = adapterPosition
         notifyDataSetChanged()
-//        isLayoutClickItem = true
       }
 
       itemView.btn_register.setOnClickListener{
         WebviewRegisterActivity.launchIntent(App.context)
       }
-
-//      if (isLayoutClickItem) {
-//        if (tmpPosition == adapterPosition) {
-//            isLayoutClickItem = false
-//            itemView.layout_detail_activities.visibility = View.VISIBLE
-//        } else {
-//          itemView.layout_detail_activities.visibility = View.GONE
-//        }
-//      } else {
-//        itemView.layout_detail_activities.visibility = View.GONE
-//      }
     }
   }
 }

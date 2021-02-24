@@ -10,30 +10,27 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.adapter.recycler.CaffeAdapter
+import com.strategies360.mililani2.adapter.recycler.SubProductCaffeAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
-import com.strategies360.mililani2.eventbus.EventFlagGetProductCaffe
+import com.strategies360.mililani2.eventbus.EventFlagGetSubProductCaffe
 import com.strategies360.mililani2.fragment.core.DataListFragment
-import com.strategies360.mililani2.model.remote.caffe.ProductCaffeDetail
+import com.strategies360.mililani2.model.remote.caffe.SubProductCaffe
 import com.strategies360.mililani2.viewmodel.CaffeListViewModel
-import kotlinx.android.synthetic.main.fragment_caffe.recycler_caffe
-import kotlinx.android.synthetic.main.fragment_caffe.txt_title_category
+import kotlinx.android.synthetic.main.fragment_sub_caffe.recycler_sub_caffe
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode.MAIN
 
-class CaffeFragment : DataListFragment() {
+class SubCaffeFragment : DataListFragment() {
 
   private val adapter = CaffeAdapter()
-
-  private var categoryId: String? = null
-  private var isGetProductCaffe = false
-
+  private val subAdapter = SubProductCaffeAdapter()
   private val viewModel by lazy {
     ViewModelProviders.of(this)
-        .get(CaffeListViewModel::class.java)
+            .get(CaffeListViewModel::class.java)
   }
 
-  override val viewRes: Int = R.layout.fragment_caffe
+  override val viewRes: Int = R.layout.fragment_sub_caffe
 
   override fun onViewCreated(
     view: View,
@@ -62,22 +59,23 @@ class CaffeFragment : DataListFragment() {
       updateResource(it)
       if (viewModel.isLoadFinished) disableInfiniteScrolling()
     })
-    viewModel.dataProductList.observe(viewLifecycleOwner, Observer {
+    viewModel.dataSubProductCaffeList.observe(viewLifecycleOwner, Observer {
+
       updateDataList(it)
     })
     lifecycle.addObserver(viewModel)
   }
 
   override fun initRecyclerView(): RecyclerView {
-    return recycler_caffe
+    return recycler_sub_caffe
   }
 
   override fun initRecyclerAdapter(): DataListRecyclerViewAdapter<Any, ViewHolder> {
-    adapter.emptyText = resources.getString(R.string.info_no_data)
-    adapter.setDiffUtilNotifier { oldList, newList ->
-      ProductCaffeDetail.DiffUtilCallback(oldList, newList)
+    subAdapter.emptyText = resources.getString(R.string.info_no_data)
+    subAdapter.setDiffUtilNotifier { oldList, newList ->
+      SubProductCaffe.DiffUtilCallback(oldList, newList)
     }
-    return adapter as DataListRecyclerViewAdapter<Any, ViewHolder>
+    return subAdapter as DataListRecyclerViewAdapter<Any, ViewHolder>
   }
 
   override fun initRecyclerLayoutManager(): LayoutManager {
@@ -85,15 +83,14 @@ class CaffeFragment : DataListFragment() {
   }
 
   override fun fetchData() {
-    viewModel.fetchProductFromLocal()
+    viewModel.fetchSubProductFromLocal()
   }
 
   @Subscribe(sticky = true, threadMode = MAIN)
-  fun onGetDataProductCaffe(event: EventFlagGetProductCaffe) {
+  fun onGetDataSubProductCaffe(event: EventFlagGetSubProductCaffe) {
     if (event.isGetProductCaffe) {
-      txt_title_category.text = event.categoryName
       adapter.notifyDataSetChanged()
-      viewModel.fetchProductFromLocal()
+      viewModel.fetchSubProductFromLocal()
       EventBus.getDefault().removeStickyEvent(event)
     }
   }

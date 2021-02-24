@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.strategies360.extension.android.view.inflate
 import com.strategies360.mililani2.R.layout
-import com.strategies360.mililani2.adapter.recycler.CaffeAdapter.ViewHolder
+import com.strategies360.mililani2.adapter.recycler.SubProductDetailAdapter.ViewHolder
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeDetail
 import com.strategies360.mililani2.util.Constant
-import kotlinx.android.synthetic.main.adapter_caffe.view.img_product
-import kotlinx.android.synthetic.main.adapter_caffe.view.txt_description
-import kotlinx.android.synthetic.main.adapter_caffe.view.txt_price
-import kotlinx.android.synthetic.main.adapter_caffe.view.txt_title
+import kotlinx.android.synthetic.main.adapter_sub_product_detail.view.img_product
+import kotlinx.android.synthetic.main.adapter_sub_product_detail.view.txt_description
+import kotlinx.android.synthetic.main.adapter_sub_product_detail.view.txt_price
+import kotlinx.android.synthetic.main.adapter_sub_product_detail.view.txt_title
 
-class CaffeAdapter : DataListRecyclerViewAdapter<ProductCaffeDetail, ViewHolder>() {
+class SubProductDetailAdapter : DataListRecyclerViewAdapter<ProductCaffeDetail, ViewHolder>() {
   private var tmpPosition = 0
   private var isLayoutClickItem = false
 
@@ -25,7 +25,7 @@ class CaffeAdapter : DataListRecyclerViewAdapter<ProductCaffeDetail, ViewHolder>
     parent: ViewGroup,
     viewType: Int
   ): ViewHolder {
-    return ViewHolder(parent.inflate(layout.adapter_caffe))
+    return ViewHolder(parent.inflate(layout.adapter_sub_product_detail))
   }
 
   override fun onBindDataViewHolder(

@@ -18,9 +18,11 @@ import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.R.style
 import com.strategies360.mililani2.adapter.recycler.CategoryProductAdapter
-import com.strategies360.mililani2.model.remote.caffe.Caffe
+import com.strategies360.mililani2.eventbus.EventChangeViewCategoryCaffe
+import com.strategies360.mililani2.model.remote.caffe.ProductCaffe
 import com.strategies360.mililani2.util.Constant
-import kotlinx.android.synthetic.main.layout_bottom_category.*
+import kotlinx.android.synthetic.main.layout_bottom_category.recycler_category
+import org.greenrobot.eventbus.EventBus
 
 class CategoryProductListFragment : BottomSheetDialogFragment() {
 
@@ -77,12 +79,15 @@ class CategoryProductListFragment : BottomSheetDialogFragment() {
     }
 
     private fun initData() {
-        if (Hawk.contains(Constant.FLAG_ON_CATEGORY)) {
-            val categoryList: ArrayList<Caffe> = Hawk.get(Constant.FLAG_ON_CATEGORY)
+        if (Hawk.contains(Constant.PRODUCT_CAFFE_LIST)) {
+            val productCaffe: ArrayList<ProductCaffe> = Hawk.get(Constant.PRODUCT_CAFFE_LIST)
             recycler_category.setHasFixedSize(true)
             recycler_category.layoutManager = LinearLayoutManager(requireContext())
-
-            adapter.setDataList(categoryList)
+            adapter.setDataList(productCaffe)
+            adapter.onItemClick = {
+                EventBus.getDefault().postSticky(EventChangeViewCategoryCaffe(true, it))
+                dismiss()
+            }
             recycler_category.adapter = adapter
         }
     }
