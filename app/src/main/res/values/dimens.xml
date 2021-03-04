@@ -70,6 +70,7 @@
     <dimen name="fo_spacing_114">114dp</dimen>
     <dimen name="fo_spacing_125">125dp</dimen>
     <dimen name="fo_spacing_180">180dp</dimen>
+    <dimen name="fo_spacing_220">220dp</dimen>
     <dimen name="fo_spacing_250">250dp</dimen>
     <dimen name="fo_spacing_300">300dp</dimen>
 
@@ -204,5 +205,6 @@
     <dimen name="fo_radius_normal">20dp</dimen>
     <dimen name="fo_radius_large">60dp</dimen>
     <dimen name="fo_spacing_88">88dp</dimen>
+  <dimen name="fo_spacing_200">200dp</dimen>
 
 </resources>

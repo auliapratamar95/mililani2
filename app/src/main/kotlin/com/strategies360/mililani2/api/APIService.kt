@@ -6,6 +6,7 @@ import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
 import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
 import com.strategies360.mililani2.model.remote.auth.SignInRequest
 import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.caffe.CategoryDetailsProductResponse
 import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
 import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
@@ -159,6 +160,13 @@ object APIService {
       fun getCategory(
               @Query("includeSubCategories") includeSubCategories: Boolean?)
               : Call<CategoryListResponse>
+
+      /** Obtain the MTA Card list */
+      @GET("cafes/catalog/products/{productId}")
+      fun getCategoryDetailsProduct(
+        @Header("Authorization") accessToken: String?,
+        @Path(value = "productId", encoded = false) categoryId: String?)
+          : Call<CategoryDetailsProductResponse>
 
       /** Obtain the MTA Card list */
       @GET("classes")

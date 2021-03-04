@@ -52,6 +52,7 @@ class SettingMtaFragment: CoreFragment() {
     }
 
     btn_caffe.setOnClickListener {
+      Hawk.delete(Constant.REQUIRED_CHOICE_PRODUCT)
       CaffeActivity.launchIntent(requireContext())
     }
   }
@@ -77,6 +78,7 @@ class SettingMtaFragment: CoreFragment() {
   private fun onProductCaffeSuccess(productCaffeResponse: ProductCaffeResponse) {
     Hawk.delete(Constant.PRODUCT_CAFFE_LIST)
     Hawk.delete(Constant.KEY_ID_CATEGORY)
+
     Hawk.put((Constant.PRODUCT_CAFFE_LIST), productCaffeResponse.caffeListResponse)
     progress_setting.visibility = View.GONE
     layout_setting.visibility = View.VISIBLE

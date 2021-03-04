@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_schedule"
         android:icon="@drawable/ic_selector_facility_schedule"
-        android:title="Reservation" />
+        android:title="Reservations" />
 
     <item
         android:id="@+id/navigation_events"

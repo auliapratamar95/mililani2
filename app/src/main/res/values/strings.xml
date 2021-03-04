@@ -168,6 +168,11 @@
   <string name="loading">Loading........</string>
   <string name="webview_url_register"><![CDATA[https://www2.mililanitown.org/wbwsc/webtracdemo.wsc/addtocart.html?FromProgram=search&Module=AR&ProcessMultiSelect=yes]]></string>
   <string name="cafe_menu">Cafe Menu</string>
+  <string name="required">Required</string>
+  <string name="special_instruction">Special Instruction</string>
+  <string name="size">Size</string>
+  <string name="add_to_cart">Add To Cart</string>
+  <string name="item_notes">Item notes</string>
 
 
 </resources>

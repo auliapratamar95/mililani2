@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.strategies360.mililani2.R
+import com.strategies360.mililani2.activity.CategoryProductDetailActivity
 import com.strategies360.mililani2.adapter.recycler.CaffeAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.eventbus.EventFlagGetProductCaffe
@@ -25,8 +26,7 @@ class CaffeFragment : DataListFragment() {
 
   private val adapter = CaffeAdapter()
 
-  private var categoryId: String? = null
-  private var isGetProductCaffe = false
+  private var isCategoryName: Boolean? = false
 
   private val viewModel by lazy {
     ViewModelProviders.of(this)
@@ -58,10 +58,11 @@ class CaffeFragment : DataListFragment() {
   }
 
   private fun initViewModel() {
-    viewModel.resourceProductCaffe.observe(viewLifecycleOwner, Observer {
-      updateResource(it)
-      if (viewModel.isLoadFinished) disableInfiniteScrolling()
-    })
+    if (isCategoryName == false) {
+      viewModel.categoryName.observe(viewLifecycleOwner, Observer {
+        txt_title_category.text = it
+      })
+    }
     viewModel.dataProductList.observe(viewLifecycleOwner, Observer {
       updateDataList(it)
     })
@@ -77,6 +78,9 @@ class CaffeFragment : DataListFragment() {
     adapter.setDiffUtilNotifier { oldList, newList ->
       ProductCaffeDetail.DiffUtilCallback(oldList, newList)
     }
+    adapter.onCategoryDetailProductClick = {
+      CategoryProductDetailActivity.launchIntent(requireContext())
+    }
     return adapter as DataListRecyclerViewAdapter<Any, ViewHolder>
   }
 
@@ -91,6 +95,7 @@ class CaffeFragment : DataListFragment() {
   @Subscribe(sticky = true, threadMode = MAIN)
   fun onGetDataProductCaffe(event: EventFlagGetProductCaffe) {
     if (event.isGetProductCaffe) {
+      isCategoryName = true
       txt_title_category.text = event.categoryName
       adapter.notifyDataSetChanged()
       viewModel.fetchProductFromLocal()

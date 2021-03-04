@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/margin_larges"
+      android:orientation="vertical"
+      tools:ignore="UselessParent">
+
+    <TextView
+        android:id="@+id/txt_name_detail_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/special_instruction"
+        android:textSize="@dimen/fo_font_normal"
+        android:layout_marginTop="@dimen/margin_larges"/>
+
+    <EditText
+        android:id="@+id/ed_special_intruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_notes"
+        tools:text="sample sample"
+        android:textSize="@dimen/fo_font_12"
+        android:padding="@dimen/margin_xlarge"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_larges"
+        android:background="@drawable/bg_button_round_grey_primary_two"
+        android:inputType="text"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="@dimen/margin_larges"
+        android:padding="@dimen/margin_default"
+        android:orientation="horizontal">
+
+      <ImageView
+          android:id="@+id/btn_decrement"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_button_decrement"
+          android:foreground="?attr/selectableItemBackground"/>
+
+      <TextView
+          android:id="@+id/txt_qty"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="1"
+          android:textStyle="bold"
+          android:textSize="@dimen/fo_font_normal"
+          android:layout_marginStart="@dimen/fo_spacing_30"
+          android:layout_marginEnd="@dimen/fo_spacing_30"/>
+
+      <ImageView
+          android:id="@+id/btn_increment"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_button_increment"
+          android:foreground="?attr/selectableItemBackground"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_add_to_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:background="@drawable/bg_button_grey"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/add_to_cart"
+        android:textColor="@color/white"/>
+
+  </LinearLayout>
+
+</FrameLayout>

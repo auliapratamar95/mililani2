@@ -25,6 +25,7 @@ class CaffeListViewModel : ViewModel(), LifecycleObserver {
     val resourceProductCaffe = MutableLiveData<Resource<ProductCaffeResponse>>()
 
     /** The LiveData for list of sample products */
+    val categoryName = MutableLiveData<String>()
     val dataList = MutableLiveData<ArrayList<Caffe>>()
     val dataProductCaffeList = MutableLiveData<ArrayList<ProductCaffe>>()
     val dataProductList = MutableLiveData<ArrayList<ProductCaffeDetail>>()
@@ -121,6 +122,7 @@ class CaffeListViewModel : ViewModel(), LifecycleObserver {
             } else {
                 for (i in productCaffe.indices) {
                     if (i == 0) {
+                        categoryName.value = productCaffe[0].title
                         dataProductList.value = productCaffe[i].productCaffeDetailList
                         resourceProductCaffe.value = Resource.success()
                     }

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.R.string
-import com.strategies360.mililani2.activity.ProfileMtaActivity
+import com.strategies360.mililani2.activity.CategoryProductDetailActivity
 import com.strategies360.mililani2.adapter.viewpager.ViewPagerNewsAdapter
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.Resource
@@ -16,7 +16,10 @@ import com.strategies360.mililani2.model.remote.news.News
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.NewsListViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.btn_logout
+import kotlinx.android.synthetic.main.fragment_home.btn_open_profile
+import kotlinx.android.synthetic.main.fragment_home.btn_scan_barcode
+import kotlinx.android.synthetic.main.fragment_home.newsViewPager
 
 class HomeFragment : CoreFragment(), View.OnClickListener {
 
@@ -119,7 +122,8 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
 
   private fun openProfile() {
     Hawk.put((Constant.FLAG_ON_BACK_MENU), false)
-    ProfileMtaActivity.launchIntent(requireContext())
+//    ProfileMtaActivity.launchIntent(requireContext())
+    CategoryProductDetailActivity.launchIntent(requireContext())
   }
 
   override fun onClick(view: View?) {

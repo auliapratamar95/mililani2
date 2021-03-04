@@ -135,6 +135,7 @@
     <color name="brown">#74341F</color>
 
     <color name="shimmer_background">#dddddd</color>
+    <color name="required">#e06363</color>
 
     <!--<color name="default_background">#234551</color>-->
     <color name="default_background">#243e55</color>

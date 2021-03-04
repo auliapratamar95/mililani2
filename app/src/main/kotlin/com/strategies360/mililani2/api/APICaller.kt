@@ -8,6 +8,7 @@ import com.strategies360.mililani2.api.callback.core.CoreCallback
 import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.model.core.AppResponse
 import com.strategies360.mililani2.model.remote.auth.*
+import com.strategies360.mililani2.model.remote.caffe.CategoryDetailsProductResponse
 import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
 import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
@@ -270,6 +271,15 @@ class APICaller<RESPONSE : AppResponse> {
         callback = AppCallback(listener as OnAPIListener<CategoryListResponse>)
         call = APIService.apiInterfaceCaffeMililani.getCategory(true)
         (call as Call<CategoryListResponse>).enqueue(callback as AppCallback<CategoryListResponse>)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getCategoryDetailsProduct(productId: String) {
+        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<CategoryDetailsProductResponse>)
+        call = APIService.apiInterfaceMililani.getCategoryDetailsProduct(accessToken, productId)
+        (call as Call<CategoryDetailsProductResponse>).enqueue(callback as AppCallback<CategoryDetailsProductResponse>)
     }
 
     /**

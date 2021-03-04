@@ -3,6 +3,8 @@ package com.strategies360.mililani2.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -23,6 +25,7 @@ import com.strategies360.mililani2.util.Constant
 import kotlinx.android.synthetic.main.activity_caffe.btn_back
 import kotlinx.android.synthetic.main.activity_caffe.btn_category
 import kotlinx.android.synthetic.main.activity_caffe.btn_scan_barcode
+import kotlinx.android.synthetic.main.activity_caffe.layout_tabs
 import kotlinx.android.synthetic.main.activity_caffe.tabs
 import kotlinx.android.synthetic.main.activity_caffe.viewpager_caffe
 import org.greenrobot.eventbus.EventBus
@@ -35,7 +38,7 @@ class CaffeActivity : CoreActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
+    fade()
     setupViewPager(viewpager_caffe)
     tabs.setupWithViewPager(viewpager_caffe)
     usingTabOnClick()
@@ -84,6 +87,16 @@ class CaffeActivity : CoreActivity() {
     viewPager.adapter = adapter
   }
 
+  fun fade() {
+    val animation1: Animation = AnimationUtils.loadAnimation(
+        applicationContext,
+        R.anim.sample
+    )
+    layout_tabs.startAnimation(animation1)
+//    val objectAnimator = ObjectAnimator.ofInt(layout_tabs, "translationX", 100, 250).setDuration(1000)
+//    objectAnimator.start()
+  }
+
   internal class ViewPagerAdapter(manager: FragmentManager?) : FragmentPagerAdapter(manager!!) {
     private val mFragmentList: MutableList<Fragment> = ArrayList()
     private val mFragmentTitleList: MutableList<String> = ArrayList()
@@ -95,7 +108,10 @@ class CaffeActivity : CoreActivity() {
       return mFragmentList.size
     }
 
-    fun addFrag(fragment: Fragment, title: String) {
+    fun addFrag(
+      fragment: Fragment,
+      title: String
+    ) {
       mFragmentList.add(fragment)
       mFragmentTitleList.add(title)
     }
@@ -126,16 +142,19 @@ class CaffeActivity : CoreActivity() {
                 )
               } else {
                 EventBus.getDefault().postSticky(
-                    EventFlagGetSubProductCaffe(true, tab.text.toString()))
+                    EventFlagGetSubProductCaffe(true, tab.text.toString())
+                )
               }
               break
             }
           }
         }
       }
+
       override fun onTabUnselected(tab: TabLayout.Tab) {
 
       }
+
       override fun onTabReselected(tab: TabLayout.Tab) {
 
       }

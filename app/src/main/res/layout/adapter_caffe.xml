@@ -6,23 +6,27 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/btn_open_category_details_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/fo_spacing_3"
+        android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/img_product"
             android:layout_width="@dimen/fo_spacing_88"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_default" />
+            android:layout_height="@dimen/fo_spacing_88"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_default"
+            tools:src="@drawable/ic_sample"/>
 
         <LinearLayout
-            android:id="@+id/btn_layout_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackground"
-            android:orientation="vertical"
-            android:padding="@dimen/fo_spacing_normal">
+            android:padding="@dimen/fo_spacing_tiny"
+            android:layout_marginStart="@dimen/margin_default"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,7 +75,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="#262626"
-                    android:textSize="@dimen/fo_font_16"
                     android:textStyle="bold"
                     tools:text="Let's Danse 2021" />
 
@@ -81,9 +84,9 @@
                 android:id="@+id/txt_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fo_spacing_tiny"
                 android:textSize="@dimen/fo_font_tiny"
-                tools:text="Fresh brewed drip coffee however you take it. " />
+                android:maxLines="2"
+                tools:text="Similar to drip coffee but made with shots of espresso resulting in a smooth cup of coffee. Tell us how you like it and we'll make it; cream, vanilla syrup, extra ice? " />
 
             <TextView
                 android:id="@+id/txt_price"
@@ -92,7 +95,7 @@
                 android:textColor="#262626"
                 android:textSize="@dimen/fo_font_15"
                 android:textStyle="bold"
-                android:layout_marginTop="-25dp"
+                android:layout_marginTop="@dimen/fo_spacing_tiny"
                 tools:text="$3.25 - $3.95" />
 
         </LinearLayout>

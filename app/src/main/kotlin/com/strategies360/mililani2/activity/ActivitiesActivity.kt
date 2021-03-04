@@ -7,7 +7,8 @@ import androidx.fragment.app.FragmentManager
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.core.CoreActivity
 import com.strategies360.mililani2.fragment.MTACardBottomListFragment
-import kotlinx.android.synthetic.main.activity_activities.*
+import kotlinx.android.synthetic.main.activity_activities.btn_back
+import kotlinx.android.synthetic.main.activity_activities.btn_scan_barcode
 
 class ActivitiesActivity : CoreActivity() {
 
