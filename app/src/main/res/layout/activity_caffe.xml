@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -120,14 +120,41 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <RelativeLayout
         android:id="@+id/btn_float_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fo_spacing_large"
-        android:backgroundTint="@color/white"
+        android:background="@drawable/bg_circle_white"
         android:elevation="2dp"
-        android:src="@drawable/ic_cart" />
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/fo_spacing_50"
+        android:layout_marginEnd="@dimen/fo_spacing_50"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cart"/>
+
+        <RelativeLayout
+            android:layout_width="@dimen/fo_spacing_20"
+            android:layout_height="@dimen/fo_spacing_20"
+            android:background="@drawable/bg_circle_red"
+            android:layout_marginTop="@dimen/fo_spacing_20"
+            android:layout_marginStart="@dimen/fo_spacing_20">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

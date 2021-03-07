@@ -12,6 +12,7 @@ import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.adapter.recycler.CategoryDetailsProductAdapter.ViewHolder
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.eventbus.EventPriceProduct
+import com.strategies360.mililani2.model.remote.caffe.AllowedValues
 import com.strategies360.mililani2.model.remote.caffe.ProductOptions
 import com.strategies360.mililani2.model.remote.caffe.RequiredChoiceChecked
 import com.strategies360.mililani2.util.Constant
@@ -76,11 +77,7 @@ class CategoryDetailsProductAdapter : DataListRecyclerViewAdapter<ProductOptions
           if (listRequiredCheckedProduct.size != 0) {
             for (i in listRequiredCheckedProduct.indices) {
               if (listRequiredCheckedProduct[i].category == data.name) {
-                listRequiredCheckedProduct[i].id = allowedValues.id
-                listRequiredCheckedProduct[i].name = allowedValues.name
-                listRequiredCheckedProduct[i].amount = allowedValues.amount
-                isRequieredChecked = false
-                Hawk.put((Constant.REQUIRED_CHOICE_PRODUCT), listRequiredCheckedProduct)
+                setDataRequiredChecked(data.name, allowedValues)
                 break
               } else {
                 isRequieredChecked = true
@@ -88,37 +85,45 @@ class CategoryDetailsProductAdapter : DataListRecyclerViewAdapter<ProductOptions
             }
 
             if (isRequieredChecked) {
-              val requiredChoiceChecked = RequiredChoiceChecked()
-              requiredChoiceChecked.category = data.name
-              requiredChoiceChecked.id = allowedValues.id
-              requiredChoiceChecked.name = allowedValues.name
-              requiredChoiceChecked.amount = allowedValues.amount
-              listRequiredCheckedProduct.add(requiredChoiceChecked)
-              Hawk.put((Constant.REQUIRED_CHOICE_PRODUCT), listRequiredCheckedProduct)
+              setDataRequiredChecked(data.name, allowedValues)
             }
           } else {
-            val requiredChoiceChecked = RequiredChoiceChecked()
-            requiredChoiceChecked.category = data.name
-            requiredChoiceChecked.id = allowedValues.id
-            requiredChoiceChecked.name = allowedValues.name
-            requiredChoiceChecked.amount = allowedValues.amount
-            listRequiredCheckedProduct.add(requiredChoiceChecked)
-            Hawk.put((Constant.REQUIRED_CHOICE_PRODUCT), listRequiredCheckedProduct)
+            setDataRequiredChecked(data.name, allowedValues)
           }
         } else {
-          val requiredChoiceChecked = RequiredChoiceChecked()
-          requiredChoiceChecked.category = data.name
-          requiredChoiceChecked.id = allowedValues.id
-          requiredChoiceChecked.name = allowedValues.name
-          requiredChoiceChecked.amount = allowedValues.amount
-          listRequiredCheckedProduct.add(requiredChoiceChecked)
-          Hawk.put((Constant.REQUIRED_CHOICE_PRODUCT), listRequiredCheckedProduct)
+          setDataRequiredChecked(data.name, allowedValues)
         }
 
         EventBus.getDefault().postSticky(EventPriceProduct(true))
       }
       itemView.recycler_sub_category_product_detail.adapter = adapter
       adapter.notifyDataSetChanged()
+    }
+  }
+
+  private fun setDataRequiredChecked(category: String?, allowedValues: AllowedValues) {
+    val requiredChoiceChecked = RequiredChoiceChecked()
+
+    if (Hawk.contains(Constant.REQUIRED_CHOICE_PRODUCT)) {
+      val listRequiredCheckedProduct: ArrayList<RequiredChoiceChecked> = Hawk.get(Constant.REQUIRED_CHOICE_PRODUCT)
+      requiredChoiceChecked.totalRequired = getFilteredDataList().size
+      requiredChoiceChecked.category = category
+      requiredChoiceChecked.id = allowedValues.id
+      requiredChoiceChecked.name = allowedValues.name
+      requiredChoiceChecked.amount = allowedValues.amount
+
+      listRequiredCheckedProduct.add(requiredChoiceChecked)
+      Hawk.put((Constant.REQUIRED_CHOICE_PRODUCT), listRequiredCheckedProduct)
+    } else {
+      val listRequiredCheckedProduct: ArrayList<RequiredChoiceChecked> = ArrayList()
+      requiredChoiceChecked.totalRequired = getFilteredDataList().size
+      requiredChoiceChecked.category = category
+      requiredChoiceChecked.id = allowedValues.id
+      requiredChoiceChecked.name = allowedValues.name
+      requiredChoiceChecked.amount = allowedValues.amount
+
+      listRequiredCheckedProduct.add(requiredChoiceChecked)
+      Hawk.put((Constant.REQUIRED_CHOICE_PRODUCT), listRequiredCheckedProduct)
     }
   }
 }

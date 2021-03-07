@@ -25,7 +25,8 @@
       android:layout_width="match_parent"
       android:layout_height="256dp"
       android:fitsSystemWindows="true"
-      android:visibility="gone">
+      android:visibility="gone"
+      tools:visibility="visible">
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
         android:id="@+id/collapsing_toolbar"
@@ -68,10 +69,11 @@
 
   <androidx.core.widget.NestedScrollView
       android:id="@+id/layout_list_detail_product_price"
-      android:visibility="gone"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_marginTop="-40dp"
+      android:visibility="gone"
+      tools:visibility="visible"
       app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout

@@ -14,6 +14,7 @@ import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAda
 import com.strategies360.mililani2.eventbus.EventPriceProduct
 import com.strategies360.mililani2.model.remote.caffe.ModifierChoiceChecked
 import com.strategies360.mililani2.model.remote.caffe.ModifierGroups
+import com.strategies360.mililani2.model.remote.caffe.Modifiers
 import com.strategies360.mililani2.util.Constant
 import kotlinx.android.synthetic.main.adapter_category_modifiers_groups.view.btn_sub_category_detail_product
 import kotlinx.android.synthetic.main.adapter_category_modifiers_groups.view.recycler_sub_category_modifiers_group
@@ -25,6 +26,7 @@ class CategoryModifiersGroupAdapter : DataListRecyclerViewAdapter<ModifierGroups
   private var isLayoutClickItem = false
 
   var mLayoutManager: LayoutManager? = null
+  var listModifierChoiceChecked: ArrayList<ModifierChoiceChecked> = ArrayList()
 
   override fun onCreateDataViewHolder(
     parent: ViewGroup,
@@ -67,18 +69,11 @@ class CategoryModifiersGroupAdapter : DataListRecyclerViewAdapter<ModifierGroups
 
       adapter.setDataList(data.modifiersList)
       adapter.onCategoryModifierDetailProductClick = { isAddFlagAction, modifier ->
-        var listModifierChoiceChecked: ArrayList<ModifierChoiceChecked> = ArrayList()
         if (Hawk.contains(Constant.MODIFIER_CHOICE_PRODUCT)) {
           listModifierChoiceChecked = Hawk.get(Constant.MODIFIER_CHOICE_PRODUCT)
           if (listModifierChoiceChecked.size != 0) {
             if (isAddFlagAction) {
-              val modifierChoiceChecked = ModifierChoiceChecked()
-              modifierChoiceChecked.category = data.name
-              modifierChoiceChecked.id = modifier.id
-              modifierChoiceChecked.name = modifier.name
-              modifierChoiceChecked.amount = modifier.prices?.defaultPrices?.amount
-              listModifierChoiceChecked.add(modifierChoiceChecked)
-              Hawk.put((Constant.MODIFIER_CHOICE_PRODUCT), listModifierChoiceChecked)
+              setDataModifiers(data, modifier)
             } else {
               for (i in listModifierChoiceChecked.indices) {
                 if (listModifierChoiceChecked[i].name == modifier.name) {
@@ -89,27 +84,39 @@ class CategoryModifiersGroupAdapter : DataListRecyclerViewAdapter<ModifierGroups
               Hawk.put((Constant.MODIFIER_CHOICE_PRODUCT), listModifierChoiceChecked)
             }
           } else {
-            val modifierChoiceChecked = ModifierChoiceChecked()
-            modifierChoiceChecked.category = data.name
-            modifierChoiceChecked.id = modifier.id
-            modifierChoiceChecked.name = modifier.name
-            modifierChoiceChecked.amount = modifier.prices?.defaultPrices?.amount
-            listModifierChoiceChecked.add(modifierChoiceChecked)
-            Hawk.put((Constant.MODIFIER_CHOICE_PRODUCT), listModifierChoiceChecked)
+            setDataModifiers(data, modifier)
           }
         } else {
-          val modifierChoiceChecked = ModifierChoiceChecked()
-          modifierChoiceChecked.category = data.name
-          modifierChoiceChecked.id = modifier.id
-          modifierChoiceChecked.name = modifier.name
-          modifierChoiceChecked.amount = modifier.prices?.defaultPrices?.amount
-          listModifierChoiceChecked.add(modifierChoiceChecked)
-          Hawk.put((Constant.MODIFIER_CHOICE_PRODUCT), listModifierChoiceChecked)
+          setDataModifiers(data, modifier)
         }
         EventBus.getDefault().postSticky(EventPriceProduct(true))
       }
       itemView.recycler_sub_category_modifiers_group.adapter = adapter
       adapter.notifyDataSetChanged()
+    }
+  }
+
+  private fun setDataModifiers(data: ModifierGroups, modifier: Modifiers) {
+    if (Hawk.contains(Constant.MODIFIER_CHOICE_PRODUCT)) {
+      val listModifierChoiceChecked: ArrayList<ModifierChoiceChecked> = Hawk.get(Constant.MODIFIER_CHOICE_PRODUCT)
+      val modifierChoiceChecked = ModifierChoiceChecked()
+      modifierChoiceChecked.modifierGroupId = data.id
+      modifierChoiceChecked.category = data.name
+      modifierChoiceChecked.id = modifier.id
+      modifierChoiceChecked.name = modifier.name
+      modifierChoiceChecked.amount = modifier.prices?.defaultPrices?.amount
+      listModifierChoiceChecked.add(modifierChoiceChecked)
+      Hawk.put((Constant.MODIFIER_CHOICE_PRODUCT), listModifierChoiceChecked)
+    } else {
+      val listModifierChoiceChecked: ArrayList<ModifierChoiceChecked> = ArrayList()
+      val modifierChoiceChecked = ModifierChoiceChecked()
+      modifierChoiceChecked.modifierGroupId = data.id
+      modifierChoiceChecked.category = data.name
+      modifierChoiceChecked.id = modifier.id
+      modifierChoiceChecked.name = modifier.name
+      modifierChoiceChecked.amount = modifier.prices?.defaultPrices?.amount
+      listModifierChoiceChecked.add(modifierChoiceChecked)
+      Hawk.put((Constant.MODIFIER_CHOICE_PRODUCT), listModifierChoiceChecked)
     }
   }
 }

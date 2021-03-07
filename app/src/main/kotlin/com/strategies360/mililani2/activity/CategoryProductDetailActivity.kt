@@ -2,6 +2,7 @@ package com.strategies360.mililani2.activity
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -28,8 +29,12 @@ import com.strategies360.mililani2.model.remote.caffe.ModifierChoiceChecked
 import com.strategies360.mililani2.model.remote.caffe.ModifierGroups
 import com.strategies360.mililani2.model.remote.caffe.ProductOptions
 import com.strategies360.mililani2.model.remote.caffe.RequiredChoiceChecked
+import com.strategies360.mililani2.model.remote.caffe.cart.CartModifiers
+import com.strategies360.mililani2.model.remote.caffe.cart.CartRequest
+import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.CategoryDetailsProductViewModel
+import com.strategies360.mililani2.viewmodel.SubmitDataCartViewModel
 import kotlinx.android.synthetic.main.activity_category_product_detail.appbar
 import kotlinx.android.synthetic.main.activity_category_product_detail.btn_back
 import kotlinx.android.synthetic.main.activity_category_product_detail.img_product
@@ -55,6 +60,8 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
   private var customAdapter = CategoryDetailsProductAdapter()
   private var adapterModifiersGroup = CategoryModifiersGroupAdapter()
 
+  private var productId: String? = null
+
   private var isRequiredChecked: Boolean? = null
   private var isModifierChecked: Boolean? = null
 
@@ -73,6 +80,11 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
         .get(CategoryDetailsProductViewModel::class.java)
   }
 
+  private val addCartViewModel by lazy {
+    ViewModelProviders.of(this)
+        .get(SubmitDataCartViewModel::class.java)
+  }
+
   override val viewRes: Int
     get() = R.layout.activity_category_product_detail
 
@@ -80,7 +92,6 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
     super.onCreate(savedInstanceState)
     val toolbar: Toolbar = findViewById<View>(R.id.toolbar) as Toolbar
     setSupportActionBar(toolbar)
-
     appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
       //measuring for alpha
       btn_back.visibility = View.VISIBLE
@@ -115,6 +126,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
     btn_back.setOnClickListener(this)
     btn_decrement.setOnClickListener(this)
     btn_increment.setOnClickListener(this)
+    btn_add_to_cart.setOnClickListener(this)
 
     if (Hawk.contains(Constant.KEY_ID_PRODUCT)) {
       val productId: String = Hawk.get(Constant.KEY_ID_PRODUCT)
@@ -123,6 +135,10 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
   }
 
   private fun initViewModel() {
+    addCartViewModel.liveData.observeForever{
+
+    }
+
     viewModel.resource.observeForever {
       when (it?.status) {
         Resource.LOADING -> onCategoryDetailProductLoading()
@@ -167,6 +183,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
         Constant.URL_IMAGE_DETAIL_PRODUCT + response.categoryDetailsProductResponse?.primaryMedia?.url
     )
 
+    productId = response.categoryDetailsProductResponse?.id
     txt_title.text = response.categoryDetailsProductResponse?.fullName
     txt_description.text = HtmlCompat.fromHtml(
         response.categoryDetailsProductResponse?.description.toString(),
@@ -251,12 +268,16 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
         val listRequiredData: ArrayList<RequiredChoiceChecked> = Hawk.get(
             Constant.REQUIRED_CHOICE_PRODUCT
         )
-        if (listRequiredData.size != 0 && listRequiredData.size >= 3) {
-          isRequiredChecked = true
-          for (i in listRequiredData.indices) {
-            if (listRequiredData[i].amount != null) {
-              amountRequired += listRequiredData[i].amount!!
+        if (listRequiredData.size != 0) {
+          if (listRequiredData.size >= listRequiredData[0].totalRequired!!) {
+            isRequiredChecked = true
+            for (i in listRequiredData.indices) {
+              if (listRequiredData[i].amount != null) {
+                amountRequired += listRequiredData[i].amount!!
+              }
             }
+          } else {
+            isRequiredChecked = false
           }
         } else {
           isRequiredChecked = false
@@ -291,11 +312,15 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
     } else if (isRequiredChecked == true && isModifierChecked == true) {
       priceProduct = amountRequired + amountModifier
 
-      btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(priceProduct!!)
+      btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(
+          priceProduct!!
+      )
     } else if (isRequiredChecked == true && !isModifierChecked!!) {
       priceProduct = amountRequired
 
-      btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(priceProduct!!)
+      btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(
+          priceProduct!!
+      )
     } else {
       btn_add_to_cart.text = getString(string.add_to_cart)
     }
@@ -325,6 +350,9 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       }
       btn_back -> {
         onBackPressed()
+      }
+      btn_add_to_cart -> {
+        generateCartRequestModel()
       }
     }
   }
@@ -393,5 +421,66 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       }
       txt_total_price.text = "$$minValue - $$maxValue"
     }
+  }
+
+  private fun generateCartRequestModel() {
+    val cartModifiersList: ArrayList<CartModifiers> = ArrayList()
+    val cardRequest = CartRequest()
+    val data: MutableMap<String, Any> = HashMap()
+    val qty = txt_qty.text.toString()
+
+    if (Hawk.contains(Constant.REQUIRED_CHOICE_PRODUCT)) {
+      val listRequiredData: ArrayList<RequiredChoiceChecked> = Hawk.get(
+          Constant.REQUIRED_CHOICE_PRODUCT
+      )
+      if (listRequiredData.size != 0) {
+        if (listRequiredData.size >= listRequiredData[0].totalRequired!!) {
+          isRequiredChecked = true
+          for (i in listRequiredData.indices) {
+            val key : String = listRequiredData[i].category.toString()
+            val value : String = listRequiredData[i].name.toString()
+            data[key] = value
+          }
+
+          if (Hawk.contains(Constant.MODIFIER_CHOICE_PRODUCT)) {
+            val listModifierChoiceChecked: ArrayList<ModifierChoiceChecked> = Hawk.get(
+                Constant.MODIFIER_CHOICE_PRODUCT
+            )
+            if (listModifierChoiceChecked.size != 0) {
+              isModifierChecked = true
+              for (i in listModifierChoiceChecked.indices) {
+                val cartModifiers = CartModifiers()
+                cartModifiers.modifierGroupId = listModifierChoiceChecked[i].modifierGroupId
+                cartModifiers.modifierId = listModifierChoiceChecked[i].id
+                cartModifiersList.add(cartModifiers)
+              }
+              cardRequest.cartModifiers = cartModifiersList
+            } else {
+              isModifierChecked = false
+            }
+          } else {
+            isModifierChecked = false
+          }
+
+          cardRequest.productId = productId
+          cardRequest.quantity = qty.toInt()
+          cardRequest.productOptions = data
+
+          addCartViewModel.submitDataCart(cardRequest)
+        } else {
+          showErrorMessage()
+        }
+      } else {
+        showErrorMessage()
+      }
+    } else {
+      showErrorMessage()
+    }
+  }
+
+  private fun showErrorMessage() {
+    isRequiredChecked = false
+    Common.showMessageDialog(this, "Error", "Please complete all \"Required\" fields before adding item to cart.",
+        DialogInterface.OnDismissListener { Common.dismissProgressDialog() })
   }
 }

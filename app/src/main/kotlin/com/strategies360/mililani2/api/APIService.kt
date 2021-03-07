@@ -10,6 +10,7 @@ import com.strategies360.mililani2.model.remote.caffe.CategoryDetailsProductResp
 import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
 import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
+import com.strategies360.mililani2.model.remote.caffe.cart.CartRequest
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
@@ -184,6 +185,12 @@ object APIService {
               @QueryMap options: MutableMap<String, String>
       ): Call<ClassesListResponse>?
 
+      /** Logs the user into the system */
+      @POST("cart/items")
+      fun submitDataCart(
+        @Body body: CartRequest?)
+          : Call<PayloadResponse>
+
       /** Obtain the user profile */
         @GET("profile")
         fun getProfile(
@@ -199,5 +206,6 @@ object APIService {
                 @Header("Token") accessToken: String?,
                 @Query("page") page: Int?)
                 : Call<SampleProductListResponse>
+
     }
 }

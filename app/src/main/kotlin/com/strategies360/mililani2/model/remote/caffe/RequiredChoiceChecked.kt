@@ -6,4 +6,5 @@ class RequiredChoiceChecked {
   var id: String? = null
   var name: String? = null
   var amount: Double? = null
+  var totalRequired: Int? = null
 }

@@ -12,6 +12,7 @@ import com.strategies360.mililani2.model.remote.caffe.CategoryDetailsProductResp
 import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
 import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
+import com.strategies360.mililani2.model.remote.caffe.cart.CartRequest
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
@@ -293,6 +294,19 @@ class APICaller<RESPONSE : AppResponse> {
         callback = AppCallback(listener as OnAPIListener<ProfileResponse>)
         call = APIService.apiInterfaceMililani.getProfile(apiKey, accessToken)
         (call as Call<ProfileResponse>).enqueue(callback as AppCallback<ProfileResponse>)
+    }
+
+    /**
+     * Calls the sign in API.
+     * Obtain the user profile.
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun submitDataCart(cartRequest: CartRequest) {
+//        refreshAccessToken()
+
+        callback = AppCallback(listener as OnAPIListener<PayloadResponse>)
+        call = APIService.apiInterfaceCaffeMililani.submitDataCart(cartRequest)
+        (call as Call<PayloadResponse>).enqueue(callback as AppCallback<PayloadResponse>)
     }
 
     /**
