@@ -9,6 +9,9 @@ class CartRequest {
   @SerializedName("quantity")
   var quantity: Int? = null
 
+  @SerializedName("notes")
+  var notes: String? = null
+
   @SerializedName("productOptions")
   var productOptions: Map<String, Any>? = null
 

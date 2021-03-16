@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.strategies360.extension.android.view.inflate
+import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R.layout
+import com.strategies360.mililani2.activity.CategoryProductDetailActivity
 import com.strategies360.mililani2.adapter.recycler.SubProductCaffeAdapter.ViewHolder
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.model.remote.caffe.SubProductCaffe
@@ -41,6 +43,9 @@ class SubProductCaffeAdapter : DataListRecyclerViewAdapter<SubProductCaffe, View
 
       itemView.txt_title.text = data.name
       adapter.setDataList(data.productCaffeDetailList)
+      adapter.onCategorySubProductClick = {
+        CategoryProductDetailActivity.launchIntent(App.context)
+      }
       adapter.notifyDataSetChanged()
       itemView.recycler_sub_product_caffe.adapter = adapter
       itemView.recycler_sub_product_caffe.layoutManager =

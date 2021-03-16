@@ -16,7 +16,7 @@
     <color name="color_primary_dark">#4951aa</color>
     <color name="activity_main_row_title_color">#cccccc</color>
 
-    <color name="white">#ffffff</color>
+    <color name="colorPrimarywhite">#ffffff</color>
     <color name="black">#000000</color>
     <color name="titleMenuBlack">#262626</color>
     <color name="blue">#00549E</color>
@@ -127,6 +127,7 @@
 
     <color name="light_grey1">#F6F6F6</color>
     <color name="light_grey2">#ECEEED</color>
+    <color name="font_grey">#6f6f6f</color>
     <color name="yellow">#F6E642</color>
     <color name="orange">#FF922A</color>
     <color name="dark_orange">#e55934</color>

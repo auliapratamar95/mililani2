@@ -12,19 +12,21 @@ import com.strategies360.mililani2.activity.CaffeActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
+import com.strategies360.mililani2.model.remote.caffe.cart.CartResponse
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.CaffeListViewModel
+import com.strategies360.mililani2.viewmodel.CartListViewModel
 import kotlinx.android.synthetic.main.fragment_setting_mta_card.btn_caffe
 import kotlinx.android.synthetic.main.fragment_setting_mta_card.layout_setting
 import kotlinx.android.synthetic.main.fragment_setting_mta_card.progress_setting
 import kotlinx.android.synthetic.main.include_toolbar.btn_back
 import kotlinx.android.synthetic.main.include_toolbar.btn_barcode
 
-class SettingMtaFragment: CoreFragment() {
-//  private val viewModel by lazy {
-//    ViewModelProviders.of(this)
-//            .get(CategoryListViewModel::class.java)
-//  }
+class SettingMtaFragment : CoreFragment() {
+  private val cartViewModel by lazy {
+    ViewModelProviders.of(this)
+        .get(CartListViewModel::class.java)
+  }
 
   private val viewModel by lazy {
     ViewModelProviders.of(this)
@@ -47,7 +49,7 @@ class SettingMtaFragment: CoreFragment() {
       openBottomCardList()
     }
 
-    btn_back.setOnClickListener{
+    btn_back.setOnClickListener {
       BottomMenuNavigationActivity.launchIntent(requireContext())
     }
 
@@ -69,6 +71,14 @@ class SettingMtaFragment: CoreFragment() {
         Resource.SUCCESS -> onProductCaffeSuccess(it.data!!)
       }
     })
+
+    cartViewModel.resource.observe(viewLifecycleOwner, Observer {
+      when (it?.status) {
+        Resource.LOADING -> onCartLoading()
+        Resource.ERROR -> onCartFailure()
+        Resource.SUCCESS -> onCartSuccess(it.data!!)
+      }
+    })
   }
 
   private fun onProductCaffeLoading() {
@@ -80,11 +90,35 @@ class SettingMtaFragment: CoreFragment() {
     Hawk.delete(Constant.KEY_ID_CATEGORY)
 
     Hawk.put((Constant.PRODUCT_CAFFE_LIST), productCaffeResponse.caffeListResponse)
+    if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
+      val customerId: String = Hawk.get(Constant.KEY_CUSTOMER_ID)
+      cartViewModel.fetchData(customerId)
+    } else {
+      progress_setting.visibility = View.GONE
+      layout_setting.visibility = View.VISIBLE
+    }
+//    progress_setting.visibility = View.GONE
+//    layout_setting.visibility = View.VISIBLE
+  }
+
+  private fun onProductCaffeFailure() {
+    layout_setting.visibility = View.VISIBLE
+    progress_setting.visibility = View.GONE
+  }
+
+  private fun onCartLoading() {
+    progress_setting.visibility = View.VISIBLE
+  }
+
+  private fun onCartSuccess(cartResponse: CartResponse) {
+    Hawk.delete(Constant.KEY_CART_LIST)
+
+    Hawk.put((Constant.KEY_CART_LIST), cartResponse.cart)
     progress_setting.visibility = View.GONE
     layout_setting.visibility = View.VISIBLE
   }
 
-  private fun onProductCaffeFailure() {
+  private fun onCartFailure() {
     layout_setting.visibility = View.VISIBLE
     progress_setting.visibility = View.GONE
   }

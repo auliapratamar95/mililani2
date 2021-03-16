@@ -17,7 +17,7 @@ class SubmitDataCartViewModel : ViewModel() {
     private var apiCaller: APICaller<PayloadResponse>? = null
 
     /** Fetches a sample list from a remote server */
-    fun submitDataCart(request: CartRequest) {
+    fun submitDataCart(cookie: String, request: CartRequest) {
         liveData.value = Resource.loading()
 
         if (apiCaller == null) {
@@ -32,7 +32,7 @@ class SubmitDataCartViewModel : ViewModel() {
             )
         }
 
-        apiCaller?.submitDataCart(request)
+        apiCaller?.submitDataCart(cookie, request)
     }
 
     fun cancelSubmitMTACArd() {

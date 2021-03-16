@@ -6,9 +6,11 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/btn_open_sub_product_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:foreground="?attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/img_product"
@@ -20,7 +22,6 @@
             android:id="@+id/btn_layout_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="?attr/selectableItemBackground"
             android:orientation="vertical"
             android:padding="@dimen/fo_spacing_normal">
 

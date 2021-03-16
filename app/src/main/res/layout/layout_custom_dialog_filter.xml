@@ -134,6 +134,7 @@
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_default"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:foreground="?attr/selectableItemBackground">
 
                 <LinearLayout

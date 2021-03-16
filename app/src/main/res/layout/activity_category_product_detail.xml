@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparent"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
 
   <RelativeLayout
       android:id="@+id/layout_progress_bar"
@@ -81,7 +80,6 @@
         android:layout_height="match_parent"
         android:background="@color/transparent"
         android:orientation="vertical">
-
 
       <LinearLayout
           android:layout_width="match_parent"

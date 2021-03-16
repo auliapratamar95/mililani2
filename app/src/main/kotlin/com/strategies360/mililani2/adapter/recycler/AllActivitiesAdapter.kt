@@ -3,6 +3,7 @@ package com.strategies360.mililani2.adapter.recycler
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.strategies360.extension.android.view.inflate
 import com.strategies360.mililani2.App
@@ -67,7 +68,7 @@ class AllActivitiesAdapter : DataListRecyclerViewAdapter<Classes, ViewHolder>() 
       }
 
       itemView.txt_elgibility.text = data.elgibility
-      itemView.txt_meeting_details.text = data.meetingDetails
+      itemView.txt_meeting_details.text = HtmlCompat.fromHtml(data.meetingDetails.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
       itemView.txt_location.text = data.location
       itemView.txt_fee.text = data.fee
       itemView.txt_comment.text = data.comment

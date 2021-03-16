@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,34 +124,38 @@
 
     <RelativeLayout
         android:id="@+id/btn_float_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/fo_spacing_60"
+        android:layout_height="@dimen/fo_spacing_60"
         android:background="@drawable/bg_circle_white"
         android:elevation="2dp"
         android:gravity="center"
         android:layout_marginBottom="@dimen/fo_spacing_50"
         android:layout_marginEnd="@dimen/fo_spacing_50"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:foreground="?attr/selectableItemBackground">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/fo_spacing_30"
+            android:layout_height="@dimen/fo_spacing_30"
             android:src="@drawable/ic_cart"/>
 
         <RelativeLayout
+            android:id="@+id/badge_count"
             android:layout_width="@dimen/fo_spacing_20"
             android:layout_height="@dimen/fo_spacing_20"
             android:background="@drawable/bg_circle_red"
-            android:layout_marginTop="@dimen/fo_spacing_20"
-            android:layout_marginStart="@dimen/fo_spacing_20">
+            android:layout_marginTop="@dimen/fo_spacing_16"
+            android:layout_marginStart="@dimen/fo_spacing_14">
 
 
             <TextView
+                android:id="@+id/txt_cart_count"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="1"
+                tools:text="9"
+                android:textSize="@dimen/fo_font_12"
                 android:textColor="@color/white"/>
 
         </RelativeLayout>

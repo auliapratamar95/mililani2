@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/btn_open_category_details_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/fo_spacing_3"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_count_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/margin_default"
+                android:text="1x"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/fo_spacing_tiny"
+                android:layout_marginStart="@dimen/margin_default"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:src="@drawable/ic_calender_active" />
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/fo_spacing_90"
+                            android:layout_height="@dimen/fo_spacing_20"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:background="@drawable/bg_button_registered">
+
+                            <TextView
+                                android:id="@+id/txt_status"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/fo_font_9"
+                                android:textStyle="bold"
+                                tools:text="Registered" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColor="#262626"
+                        android:textStyle="bold"
+                        tools:text="Let's Danse 2021" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_detail_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/adapter_detail_cart"/>
+
+                <TextView
+                    android:id="@+id/txt_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#262626"
+                    android:textSize="@dimen/fo_font_15"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/fo_spacing_tiny"
+                    tools:text="$3.95" />
+
+                <TextView
+                    android:id="@+id/btn_edit_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#e55934"
+                    android:textSize="@dimen/fo_font_tiny"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/fo_spacing_2"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:text="Edit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_delete_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_default"
+            android:padding="@dimen/margin_default"
+            android:src="@drawable/ic_delete_card"
+            android:visibility="gone"
+            android:foreground="?attr/selectableItemBackground"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300" />
+
+</LinearLayout>

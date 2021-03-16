@@ -27,6 +27,7 @@ import com.strategies360.mililani2.model.remote.caffe.CategoryDetailsProductResp
 import com.strategies360.mililani2.model.remote.caffe.DetailSkus
 import com.strategies360.mililani2.model.remote.caffe.ModifierChoiceChecked
 import com.strategies360.mililani2.model.remote.caffe.ModifierGroups
+import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.caffe.ProductOptions
 import com.strategies360.mililani2.model.remote.caffe.RequiredChoiceChecked
 import com.strategies360.mililani2.model.remote.caffe.cart.CartModifiers
@@ -48,12 +49,16 @@ import kotlinx.android.synthetic.main.fragment_category_product_detail.recycler_
 import kotlinx.android.synthetic.main.layout_bottom_detail_product.btn_add_to_cart
 import kotlinx.android.synthetic.main.layout_bottom_detail_product.btn_decrement
 import kotlinx.android.synthetic.main.layout_bottom_detail_product.btn_increment
+import kotlinx.android.synthetic.main.layout_bottom_detail_product.ed_special_intruction
 import kotlinx.android.synthetic.main.layout_bottom_detail_product.txt_qty
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode.MAIN
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @SuppressLint("SetTextI18n")
 class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
@@ -73,7 +78,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
   private var tmpMinValue: Double? = null
   private var priceProduct: Double? = null
 
-  private var currentQty = 0
+  private var currentQty = 1
 
   private val viewModel by lazy {
     ViewModelProviders.of(this)
@@ -99,7 +104,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
 
     val collapsingToolbarLayout =
       findViewById<View>(R.id.collapsing_toolbar) as CollapsingToolbarLayout
-    collapsingToolbarLayout.title = "Detail Category"
+    collapsingToolbarLayout.title = "  "
 
     collapsingToolbarLayout.setCollapsedTitleTextColor(
         ContextCompat.getColor(this, R.color.white)
@@ -136,7 +141,11 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
 
   private fun initViewModel() {
     addCartViewModel.liveData.observeForever{
-
+      when (it?.status) {
+        Resource.LOADING -> onCartLoading()
+        Resource.SUCCESS -> onCartSuccess(it.data!!)
+        Resource.ERROR -> onCartFailure(it.error)
+      }
     }
 
     viewModel.resource.observeForever {
@@ -155,6 +164,30 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       initRecyclerModifiersGroup(it)
     }
     lifecycle.addObserver(viewModel)
+  }
+
+  private fun onCartLoading() {
+    Common.showProgressDialog(this)
+  }
+
+  @SuppressLint("SimpleDateFormat")
+  private fun onCartSuccess(response: PayloadResponse) {
+    Common.dismissProgressDialog()
+    val costumerId: String = response.payload?.customer?.id.toString()
+    val expiration = Date(System.currentTimeMillis() + 60 * 60 * 24000)
+    val expires: String = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
+        .format(expiration)
+    val cookie: String =
+      "customerId=" + costumerId + "; " +
+          "path=/; " +
+          "expires=" + expires
+
+    if (!Hawk.contains(Constant.KEY_CUSTOMER_ID)) Hawk.put((Constant.KEY_CUSTOMER_ID), cookie)
+    CartActivity.launchIntent(this)
+  }
+
+  private fun onCartFailure(error: AppError) {
+    Common.dismissProgressDialog()
   }
 
   private fun onCategoryDetailProductLoading() {
@@ -262,6 +295,10 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
   fun onSetPriceProduct(event: EventPriceProduct) {
     var amountRequired = 0.0
     var amountModifier = 0.0
+    val qty: String = txt_qty.text.toString()
+    var totalProduct = 0.0
+    var totalMinProduct = 0.0
+    var totalMaxProduct = 0.0
 
     if (event.isUpdateCart) {
       if (Hawk.contains(Constant.REQUIRED_CHOICE_PRODUCT)) {
@@ -307,19 +344,24 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       tmpMaxValue = amountModifier + maxValue!!
       tmpMinValue = amountModifier + minValue!!
 
+      totalMinProduct = tmpMinValue!! * qty.toInt()
+      totalMaxProduct = tmpMaxValue!! * qty.toInt()
+
       btn_add_to_cart.text = getString(string.add_to_cart) + " " + "$" +
-          setFormatPriceValue(tmpMinValue!!) + " - " + "$" + setFormatPriceValue(tmpMaxValue!!)
+          setFormatPriceValue(totalMinProduct!!) + " - " + "$" + setFormatPriceValue(totalMaxProduct!!)
     } else if (isRequiredChecked == true && isModifierChecked == true) {
       priceProduct = amountRequired + amountModifier
+      totalProduct = priceProduct!! * qty.toInt()
 
       btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(
-          priceProduct!!
+          totalProduct!!
       )
     } else if (isRequiredChecked == true && !isModifierChecked!!) {
       priceProduct = amountRequired
+      totalProduct = priceProduct!! * qty.toInt()
 
       btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(
-          priceProduct!!
+          totalProduct
       )
     } else {
       btn_add_to_cart.text = getString(string.add_to_cart)
@@ -335,6 +377,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
      */
     fun launchIntent(context: Context) {
       val intent = Intent(context, CategoryProductDetailActivity::class.java)
+      intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
       context.startActivity(intent)
     }
   }
@@ -352,6 +395,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
         onBackPressed()
       }
       btn_add_to_cart -> {
+        btn_add_to_cart.isEnabled = false
         generateCartRequestModel()
       }
     }
@@ -364,6 +408,10 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
   }
 
   private fun getPriceOnClick(isFromIncrement: Boolean) {
+    var price = 0.0
+    var minPrice = 0.0
+    var maxPrice = 0.0
+
     if (isFromIncrement) {
       currentQty += 1
       txt_qty.text = currentQty.toString()
@@ -376,23 +424,25 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       }
 
       val qty = currentQty
-      if (!isRequiredChecked!! && isModifierChecked!!) {
-        tmpMaxValue = tmpMaxValue!! * qty
-        tmpMinValue = tmpMinValue!! * qty
+      if(isRequiredChecked!= null && isModifierChecked != null) {
+        if (!isRequiredChecked!! && isModifierChecked!!) {
+          maxPrice = tmpMaxValue!! * qty
+          minPrice = tmpMinValue!! * qty
 
-        btn_add_to_cart.text = getString(string.add_to_cart) + " " + "$$tmpMinValue - $$tmpMaxValue"
-      } else if (isRequiredChecked!! && isModifierChecked!!) {
-        if (price != null) {
-          priceProduct = price!! * qty
-          btn_add_to_cart.text = getString(string.add_to_cart) + " " + "$$priceProduct"
+          btn_add_to_cart.text = getString(string.add_to_cart) + " " + "$$minPrice - $$maxPrice"
+        } else if (isRequiredChecked!! && isModifierChecked!!) {
+          if (priceProduct != null) {
+            price = priceProduct!! * qty
+            btn_add_to_cart.text = getString(string.add_to_cart) + " " + "$$price"
+          }
+        } else if (isRequiredChecked!! && !isModifierChecked!!) {
+          price = priceProduct!! * qty
+
+          btn_add_to_cart.text = getString(string.add_to_cart) + " " + "$$price"
+        } else {
+          btn_add_to_cart.text = getString(string.add_to_cart)
         }
-      } else if (isRequiredChecked!! && !isModifierChecked!!) {
-        priceProduct = priceProduct!! * qty
-
-        btn_add_to_cart.text = getString(string.add_to_cart) + " " + "$$priceProduct"
       }
-    } else {
-      btn_add_to_cart.text = getString(string.add_to_cart)
     }
   }
 
@@ -428,6 +478,8 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
     val cardRequest = CartRequest()
     val data: MutableMap<String, Any> = HashMap()
     val qty = txt_qty.text.toString()
+    var cookie = ""
+    var notes: String = ed_special_intruction.text.toString()
 
     if (Hawk.contains(Constant.REQUIRED_CHOICE_PRODUCT)) {
       val listRequiredData: ArrayList<RequiredChoiceChecked> = Hawk.get(
@@ -466,7 +518,12 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
           cardRequest.quantity = qty.toInt()
           cardRequest.productOptions = data
 
-          addCartViewModel.submitDataCart(cardRequest)
+          if (notes != "")  cardRequest.notes = notes
+
+          if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
+            cookie = Hawk.get(Constant.KEY_CUSTOMER_ID)
+          }
+          addCartViewModel.submitDataCart(cookie, cardRequest)
         } else {
           showErrorMessage()
         }

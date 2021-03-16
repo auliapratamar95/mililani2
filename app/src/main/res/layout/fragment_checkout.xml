@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:layout_gravity="center"
+        android:padding="@dimen/fo_spacing_180"
+        android:indeterminate="true"
+        tools:visibility="gone"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/fo_spacing_90"
+        android:scrollbars="vertical">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@color/colorPrimary"
+          android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fo_bg_bottom_sheet"
+            android:layout_marginTop="@dimen/margin_default"
+            android:orientation="vertical">
+
+          <LinearLayout
+              android:id="@+id/layout_content_cart"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_pickup_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/margin_xxlarge"
+                  android:padding="@dimen/margin_default"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:text="@string/pickup_time"
+                  android:textStyle="bold"/>
+
+
+              <EditText
+                  android:id="@+id/edit_select_time"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/select_time"
+                  android:imeOptions="actionNext"
+                  android:inputType="none"
+                  android:focusable="false"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"
+                  android:visibility="gone"/>
+
+              <com.strategies360.mililani2.view.spinner.SampleProductTextInputSpinner
+                  android:id="@+id/spinner_sample_product"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"/>
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/fo_size_1"
+                  android:background="@color/grey_300"
+                  android:layout_marginTop="@dimen/margin_xlarge"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/margin_default"
+                  android:padding="@dimen/margin_default"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:text="@string/tip"
+                  android:textStyle="bold"/>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginTop="@dimen/margin_default"
+                  android:padding="@dimen/fo_spacing_tiny"
+                  android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/layout_no_tip"
+                    android:layout_width="@dimen/fo_spacing_90"
+                    android:layout_height="@dimen/fo_spacing_40"
+                    android:background="@drawable/bg_button_round_primary"
+                    android:gravity="center"
+                    android:foreground="?attr/selectableItemBackground">
+
+                  <TextView
+                      android:id="@+id/txt_no_tip"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="No Tip"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_tip_5"
+                    android:layout_width="@dimen/fo_spacing_90"
+                    android:layout_height="@dimen/fo_spacing_40"
+                    android:background="@drawable/bg_button_round_grey_primary"
+                    android:layout_marginStart="@dimen/margin_larges"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:foreground="?attr/selectableItemBackground">
+
+                  <TextView
+                      android:id="@+id/txt_percent_tip_5"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="5%"/>
+
+                  <TextView
+                      android:id="@+id/txt_amount_tip_5"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="$0.13"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_tip_10"
+                    android:layout_width="@dimen/fo_spacing_90"
+                    android:layout_height="@dimen/fo_spacing_40"
+                    android:background="@drawable/bg_button_round_grey_primary"
+                    android:layout_marginStart="@dimen/margin_larges"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:foreground="?attr/selectableItemBackground">
+
+                  <TextView
+                      android:id="@+id/txt_percent_tip_10"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="10%"/>
+
+                  <TextView
+                      android:id="@+id/txt_amount_tip_10"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="$0.27"/>
+
+                </LinearLayout>
+
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginTop="@dimen/margin_default"
+                  android:padding="@dimen/fo_spacing_tiny"
+                  android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/layout_tip_15"
+                    android:layout_width="@dimen/fo_spacing_90"
+                    android:layout_height="@dimen/fo_spacing_40"
+                    android:background="@drawable/bg_button_round_grey_primary"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:foreground="?attr/selectableItemBackground">
+
+                  <TextView
+                      android:id="@+id/txt_percent_tip_15"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="15%"/>
+
+                  <TextView
+                      android:id="@+id/txt_amount_tip_15"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="$0.40"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_tip_custom"
+                    android:layout_width="@dimen/fo_spacing_90"
+                    android:layout_height="@dimen/fo_spacing_40"
+                    android:background="@drawable/bg_button_round_grey_primary"
+                    android:layout_marginStart="@dimen/margin_larges"
+                    android:gravity="center"
+                    android:foreground="?attr/selectableItemBackground">
+
+                  <TextView
+                      android:id="@+id/txt_custom_tip"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="Custom Tip"/>
+
+                </RelativeLayout>
+
+              </LinearLayout>
+
+              <EditText
+                  android:id="@+id/edit_custom_tip"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginTop="@dimen/margin_default"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/custom_tip"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"
+                  android:visibility="gone"/>
+
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/fo_size_1"
+                  android:background="@color/grey_300"
+                  android:layout_marginTop="@dimen/margin_xlarge"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_contact_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/margin_default"
+                  android:padding="@dimen/margin_default"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:text="@string/contact_info"
+                  android:textStyle="bold"/>
+
+              <EditText
+                  android:id="@+id/edit_full_name"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/full_name"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <EditText
+                  android:id="@+id/edit_phone_number"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/phone"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <EditText
+                  android:id="@+id/edit_email"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/email"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/fo_size_1"
+                  android:background="@color/grey_300"
+                  android:layout_marginTop="@dimen/margin_xlarge"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_payment_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/margin_default"
+                  android:padding="@dimen/margin_default"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:text="@string/payment_detail"
+                  android:textStyle="bold"/>
+
+              <EditText
+                  android:id="@+id/edit_name_on_card"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/name_on_card"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <EditText
+                  android:id="@+id/edit_card_number"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/card_number"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:maxLength="16"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <EditText
+                  android:id="@+id/edit_expiration"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/expiration_date_mm_yy"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <EditText
+                  android:id="@+id/edit_cvv"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/cvv"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <EditText
+                  android:id="@+id/edit_postal_code"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  android:hint="@string/postal_code"
+                  android:imeOptions="actionNext"
+                  android:backgroundTint="@color/colorPrimary"
+                  android:importantForAutofill="no"
+                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:padding="@dimen/margin_default"
+                  android:maxLines="5"
+                  android:textColorHint="@color/Register_Text_Hint"
+                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                  android:textSize="@dimen/fo_font_normal"
+                  tools:ignore="TextFields"/>
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/fo_size_1"
+                  android:background="@color/grey_300"
+                  android:layout_marginTop="@dimen/margin_xlarge"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/margin_default"
+                  android:padding="@dimen/margin_default"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:text="@string/item"
+                  android:textStyle="bold"/>
+
+              <androidx.recyclerview.widget.RecyclerView
+                  android:id="@+id/recycler_cart"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="@dimen/margin_default"
+                  android:scrollbars="vertical"
+                  app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                  tools:listitem="@layout/adapter_cart"/>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="@dimen/margin_default"
+                  android:layout_marginTop="@dimen/margin_larges"
+                  android:layout_marginBottom="@dimen/margin_larges"
+                  android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:orientation="vertical">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:text="@string/subtotal"/>
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/tax"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:layout_marginTop="@dimen/margin_xsmall"/>
+
+                  <TextView
+                      android:id="@+id/btn_promo"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/have_a_promo_code"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:textColor="@color/primary_card"
+                      android:layout_marginTop="@dimen/margin_xsmall"
+                      android:foreground="?attr/selectableItemBackground"/>
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/order_total"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:layout_marginTop="@dimen/margin_xsmall"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:orientation="vertical">
+
+                  <TextView
+                      android:id="@+id/txt_subtotal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="@dimen/fo_font_tiny"
+                      tools:text="3.45"/>
+
+                  <TextView
+                      android:id="@+id/txt_tax"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      tools:text="3.45"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:layout_marginTop="@dimen/margin_xsmall"/>
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      tools:text="3.45"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:visibility="invisible"
+                      android:layout_marginTop="@dimen/margin_xsmall"/>
+
+                  <TextView
+                      android:id="@+id/txt_order_total"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      tools:text="3.45"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:layout_marginTop="@dimen/margin_xsmall"/>
+
+                </LinearLayout>
+
+              </LinearLayout>
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                  android:background="@color/grey_300"/>
+
+            </LinearLayout>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_xlarge"
+        android:orientation="vertical">
+
+      <Button
+          android:id="@+id/btn_checkout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/place_my_order"
+          android:textColor="@color/white"
+          android:background="@drawable/bg_button_round_primary"
+          android:foreground="?attr/selectableItemBackground"/>
+
+    </LinearLayout>
+
+  </RelativeLayout>
+
+</FrameLayout>

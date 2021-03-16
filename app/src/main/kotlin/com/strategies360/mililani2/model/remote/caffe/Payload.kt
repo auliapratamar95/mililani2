@@ -1,6 +1,7 @@
 package com.strategies360.mililani2.model.remote.caffe
 
 import com.google.gson.annotations.SerializedName
+import com.strategies360.mililani2.model.remote.caffe.cart.Customer
 
 class Payload {
     @SerializedName("data")
@@ -14,4 +15,7 @@ class Payload {
 
     @SerializedName("currentPage")
     var currentPage: Int? = null
+
+    @SerializedName("customer")
+    var customer: Customer? = null
 }

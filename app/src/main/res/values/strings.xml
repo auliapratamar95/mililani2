@@ -173,6 +173,29 @@
   <string name="size">Size</string>
   <string name="add_to_cart">Add To Cart</string>
   <string name="item_notes">Item notes</string>
+  <string name="subtotal">Subtotal</string>
+  <string name="tax">Tax</string>
+  <string name="have_a_promo_code">Have a promo code?</string>
+  <string name="order_total">Order Total</string>
+  <string name="pickup_time">Pickup Time</string>
+  <string name="select_time">Select Time</string>
+  <string name="tip">Tip</string>
+  <string name="custom_tip">Custom Tip</string>
+  <string name="contact_info">Contact Info</string>
+  <string name="full_name">Full Name</string>
+  <string name="phone">Phone</string>
+  <string name="payment_detail">Payment Details</string>
+  <string name="name_on_card">Name on Card</string>
+  <string name="card_number">Card Number</string>
+  <string name="expiration_date_mm_yy">Expiration date MM/YY</string>
+  <string name="cvv">CVV</string>
+  <string name="postal_code">Postal Code</string>
+  <string name="place_my_order">PLACE MY ORDER</string>
+  <string name="item">Items</string>
+  <string name="enter_promo_code_here">Enter promo code here</string>
+  <string name="promo_code">promo code</string>
+  <string name="apply">Apply</string>
+  <string name="submit">Submit</string>
 
 
 </resources>

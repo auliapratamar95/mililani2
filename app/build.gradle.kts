@@ -24,7 +24,7 @@ android {
         minSdkVersion(Android.min)
         targetSdkVersion(Android.target)
         versionCode = 1
-        versionName = "ver-1.0.6-debug"
+        versionName = "ver-1.0.7-debug"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Add a BuildConfig timestamp

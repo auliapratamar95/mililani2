@@ -1,10 +1,17 @@
 package com.strategies360.mililani2.api.util
 
 import com.ashokvarma.gander.GanderInterceptor
+import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.BuildConfig
+import com.strategies360.mililani2.util.Constant
+import okhttp3.Interceptor
+import okhttp3.Interceptor.Chain
 import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 /**
@@ -41,17 +48,44 @@ class OkHttpClientHelper {
         if (BuildConfig.DEBUG) {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
+//            okHttpClientBuilder.addInterceptor(AddCookiesInterceptor(App.context)); // VERY VERY IMPORTANT
+//            okHttpClientBuilder.addInterceptor(CookieInterceptor());
             okHttpClientBuilder.addInterceptor(logging)
         }
 
         // Add Gander interceptor
-        okHttpClientBuilder.addInterceptor(GanderInterceptor(App.context)
-                .showNotification(true))
+        okHttpClientBuilder.addInterceptor(
+            GanderInterceptor(App.context)
+                .showNotification(true)
+        )
 
         // Set timeout duration
         okHttpClientBuilder.connectTimeout(30, TimeUnit.SECONDS)
         okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
 
         return okHttpClientBuilder.build()
+    }
+
+    internal class CookieInterceptor : Interceptor {
+        @Volatile
+        private var cookie: String? = null
+        @Throws(IOException::class) override fun intercept(chain: Chain): Response {
+            var request: Request = chain.request()
+            if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
+//                val expiration = Date(System.currentTimeMillis() + 60 * 60 * 1000)
+//                val expires: String = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz")
+//                    .format(expiration)
+//                cookie =
+//                    "customerId=" + Hawk.get(Constant.KEY_CUSTOMER_ID + "; " +
+//                        "path=/; " +
+//                        "expires=" + expires)
+            }
+            if (cookie != null) {
+                request = request.newBuilder()
+                    .header("set-cookie", cookie!!)
+                    .build()
+            }
+            return chain.proceed(request)
+        }
     }
 }

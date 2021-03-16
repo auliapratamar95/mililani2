@@ -48,15 +48,16 @@
           android:layout_width="0dp"
           android:layout_height="match_parent"
           android:layout_weight="1"
-          android:layout_marginTop="@dimen/margin_larges"
+          android:padding="@dimen/fo_spacing_5"
           android:gravity="right">
 
         <ImageView
             android:id="@+id/ic_plus_min_date"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_small"
             android:src="@drawable/ic_plus"
-            android:layout_marginEnd="@dimen/margin_small"/>
+            />
 
       </RelativeLayout>
 

@@ -118,6 +118,14 @@
             android:name="com.strategies360.mililani2.activity.CategoryProductDetailActivity"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name="com.strategies360.mililani2.activity.CartActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.strategies360.mililani2.activity.CheckoutActivity"
+            android:windowSoftInputMode="stateHidden" />
+
         <!-- Account auth service -->
         <service
             android:name="itsmagic.present.simpleaccountmanager.AccountAuthService"

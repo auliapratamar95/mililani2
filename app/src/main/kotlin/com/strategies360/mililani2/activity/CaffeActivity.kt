@@ -3,6 +3,7 @@ package com.strategies360.mililani2.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
@@ -21,12 +22,16 @@ import com.strategies360.mililani2.fragment.CategoryProductListFragment
 import com.strategies360.mililani2.fragment.MTACardBottomListFragment
 import com.strategies360.mililani2.fragment.SubCaffeFragment
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffe
+import com.strategies360.mililani2.model.remote.caffe.cart.Cart
 import com.strategies360.mililani2.util.Constant
+import kotlinx.android.synthetic.main.activity_caffe.badge_count
 import kotlinx.android.synthetic.main.activity_caffe.btn_back
 import kotlinx.android.synthetic.main.activity_caffe.btn_category
+import kotlinx.android.synthetic.main.activity_caffe.btn_float_cart
 import kotlinx.android.synthetic.main.activity_caffe.btn_scan_barcode
 import kotlinx.android.synthetic.main.activity_caffe.layout_tabs
 import kotlinx.android.synthetic.main.activity_caffe.tabs
+import kotlinx.android.synthetic.main.activity_caffe.txt_cart_count
 import kotlinx.android.synthetic.main.activity_caffe.viewpager_caffe
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -42,6 +47,8 @@ class CaffeActivity : CoreActivity() {
     setupViewPager(viewpager_caffe)
     tabs.setupWithViewPager(viewpager_caffe)
     usingTabOnClick()
+    initCartCount()
+
     btn_back.setOnClickListener {
       onBackPressed()
       finish()
@@ -53,6 +60,10 @@ class CaffeActivity : CoreActivity() {
 
     btn_category.setOnClickListener {
       openCategory()
+    }
+
+    btn_float_cart.setOnClickListener {
+      CartActivity.launchIntent(this)
     }
   }
 
@@ -87,14 +98,12 @@ class CaffeActivity : CoreActivity() {
     viewPager.adapter = adapter
   }
 
-  fun fade() {
+  private fun fade() {
     val animation1: Animation = AnimationUtils.loadAnimation(
         applicationContext,
         R.anim.sample
     )
     layout_tabs.startAnimation(animation1)
-//    val objectAnimator = ObjectAnimator.ofInt(layout_tabs, "translationX", 100, 250).setDuration(1000)
-//    objectAnimator.start()
   }
 
   internal class ViewPagerAdapter(manager: FragmentManager?) : FragmentPagerAdapter(manager!!) {
@@ -159,6 +168,25 @@ class CaffeActivity : CoreActivity() {
 
       }
     })
+  }
+
+  private fun initCartCount() {
+    if (Hawk.contains(Constant.KEY_CART_LIST)) {
+      val cart: Cart = Hawk.get(Constant.KEY_CART_LIST)
+      if (cart.orderItems != null) {
+        if (cart.orderItems?.size != 0) {
+          val count: Int = cart.orderItems?.size!!
+          txt_cart_count.text = count.toString()
+          badge_count.visibility = View.VISIBLE
+        } else {
+          badge_count.visibility = View.GONE
+        }
+      } else {
+        badge_count.visibility = View.GONE
+      }
+    } else {
+      badge_count.visibility = View.GONE
+    }
   }
 
   @Subscribe(sticky = true, threadMode = MAIN)
