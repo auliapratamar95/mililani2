@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_marginStart="@dimen/margin_small"
-    android:padding="@dimen/margin_default"
     android:foreground="?attr/selectableItemBackground">
 
 <!--  <LinearLayout-->
@@ -53,6 +52,9 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
+      android:padding="@dimen/margin_default"
+      android:layout_marginTop="@dimen/fo_spacing_tiny"
+      android:layout_marginBottom="@dimen/fo_spacing_tiny"
       android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
@@ -63,7 +65,7 @@
       <LinearLayout
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_weight="1"
+          android:layout_weight="8"
           android:orientation="horizontal">
 
         <TextView
@@ -71,6 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Size"
+            android:textStyle="bold"
             android:textSize="@dimen/fo_font_normal"/>
 
 
@@ -108,7 +111,6 @@
   <View
       android:layout_width="match_parent"
       android:layout_height="1dp"
-      android:background="@color/grey_300"
-      android:layout_marginTop="@dimen/margin_large"/>
+      android:background="@color/grey_300"/>
 
 </LinearLayout>

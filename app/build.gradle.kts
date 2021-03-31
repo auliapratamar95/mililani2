@@ -1,12 +1,12 @@
 plugins {
-    id(AndroidPlugin.application)
-    id(AndroidPlugin.kotlin)
-    id(AndroidPlugin.kotlinExtensions)
-    id(AndroidPlugin.kotlinKapt)
-    id(AndroidPlugin.report)
-    id(AndroidPlugin.dexcount)
-    id(AndroidPlugin.fabric)
-    id(AndroidPlugin.googleService)
+  id(AndroidPlugin.application)
+  id(AndroidPlugin.kotlin)
+  id(AndroidPlugin.kotlinExtensions)
+  id(AndroidPlugin.kotlinKapt)
+  id(AndroidPlugin.report)
+  id(AndroidPlugin.dexcount)
+  id(AndroidPlugin.fabric)
+  id(AndroidPlugin.googleService)
 }
 
 // To view the dependency tree, open your terminal and run this command:
@@ -16,40 +16,41 @@ plugins {
 // "\\build\reports\project\dependencies\index.html"
 
 android {
-    buildToolsVersion(Android.buildTools)
-    compileSdkVersion(Android.compile)
+  buildToolsVersion(Android.buildTools)
+  compileSdkVersion(Android.compile)
 
-    defaultConfig {
-        applicationId = "com.strategies360.mililani2"
-        minSdkVersion(Android.min)
-        targetSdkVersion(Android.target)
-        versionCode = 1
-        versionName = "ver-1.0.7-debug"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+  defaultConfig {
+    applicationId = "com.strategies360.mililani2"
+    minSdkVersion(Android.min)
+    targetSdkVersion(Android.target)
+    versionCode = 1
+    versionName = "ver-1.0.9-debug"
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // Add a BuildConfig timestamp
-        buildConfigField("long", "M_TIMESTAMP", "${System.currentTimeMillis()}L")
+    // Add a BuildConfig timestamp
+    buildConfigField("long", "M_TIMESTAMP", "${System.currentTimeMillis()}L")
 
-        // Manifest placeholders
-        manifestPlaceholders = mapOf(
-            "FABRIC_API_KEY" to "d5443dc729a470b899c6c7b732d3a3db59d37e2d")
+    // Manifest placeholders
+    manifestPlaceholders = mapOf(
+        "FABRIC_API_KEY" to "d5443dc729a470b899c6c7b732d3a3db59d37e2d"
+    )
+  }
+
+  // Enable Java 8 features
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
+
+  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+      jvmTarget = "1.8"
     }
+  }
 
-    // Enable Java 8 features
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
-
-    // Set the source path
-    sourceSets["main"].java.srcDir("src/main/kotlin")
-    sourceSets["test"].java.srcDir("src/test/kotlin")
+  // Set the source path
+  sourceSets["main"].java.srcDir("src/main/kotlin")
+  sourceSets["test"].java.srcDir("src/test/kotlin")
 
 //    // Split APKs for each screen dimension
 //    splits {
@@ -59,26 +60,26 @@ android {
 //        }
 //    }
 
-    // Specify the build dimension and flavors
-    flavorDimensions("api")
-    productFlavors {
-        create("mock") {
-            setDimension("api")
-            applicationIdSuffix = ".mock"
-            versionNameSuffix = "-mock"
+  // Specify the build dimension and flavors
+  flavorDimensions("api")
+  productFlavors {
+    create("mock") {
+      setDimension("api")
+      applicationIdSuffix = ".mock"
+      versionNameSuffix = "-mock"
 
 //            E.g. to use the manifest placeholder in your manifest, use ${FACEBOOK_APP_ID}
 //            manifestPlaceholders["FACEBOOK_APP_ID"] = "12345"
 //            manifestPlaceholders["FABRIC_API_KEY"] = "12345"
-        }
-        create("staging") {
-            setDimension("api")
-            applicationIdSuffix = ".staging"
-            versionNameSuffix = "-staging"
-        }
-        create("production") {
-            setDimension("api")
-        }
+    }
+    create("staging") {
+      setDimension("api")
+      applicationIdSuffix = ".staging"
+      versionNameSuffix = "-staging"
+    }
+    create("production") {
+      setDimension("api")
+    }
 
 //        create("free") {
 //            setDimension("mode")
@@ -87,117 +88,126 @@ android {
 //        create("pro") {
 //            setDimension("mode")
 //        }
+  }
+
+  // Configure the build types
+  buildTypes {
+    getByName("debug") {
+      isDebuggable = true
+      isMinifyEnabled = false
+
+      proguardFiles(
+          getDefaultProguardFile(ProGuard.defaultAndroid),
+          ProGuard.app,
+          ProGuard.android,
+          ProGuard.androidX,
+          ProGuard.crashlytics,
+          ProGuard.fabric,
+          ProGuard.google,
+          ProGuard.gson,
+          ProGuard.itsmagic,
+          ProGuard.okhttp,
+          ProGuard.retrofit
+      )
     }
 
-    // Configure the build types
-    buildTypes {
-        getByName("debug") {
-            isDebuggable = true
-            isMinifyEnabled = false
+    getByName("release") {
+      isDebuggable = false
+      isMinifyEnabled = true
 
-            proguardFiles(
-                getDefaultProguardFile(ProGuard.defaultAndroid),
-                ProGuard.app,
-                ProGuard.android,
-                ProGuard.androidX,
-                ProGuard.crashlytics,
-                ProGuard.fabric,
-                ProGuard.google,
-                ProGuard.gson,
-                ProGuard.itsmagic,
-                ProGuard.okhttp,
-                ProGuard.retrofit)
-        }
-
-        getByName("release") {
-            isDebuggable = false
-            isMinifyEnabled = true
-
-            proguardFiles(
-                getDefaultProguardFile(ProGuard.defaultAndroid),
-                ProGuard.app,
-                ProGuard.android,
-                ProGuard.androidX,
-                ProGuard.crashlytics,
-                ProGuard.fabric,
-                ProGuard.google,
-                ProGuard.gson,
-                ProGuard.itsmagic,
-                ProGuard.okhttp,
-                ProGuard.retrofit)
-        }
+      proguardFiles(
+          getDefaultProguardFile(ProGuard.defaultAndroid),
+          ProGuard.app,
+          ProGuard.android,
+          ProGuard.androidX,
+          ProGuard.crashlytics,
+          ProGuard.fabric,
+          ProGuard.google,
+          ProGuard.gson,
+          ProGuard.itsmagic,
+          ProGuard.okhttp,
+          ProGuard.retrofit
+      )
     }
+  }
 
-    externalNativeBuild {
-        cmake {
-            setPath("src/main/cpp/CMakeLists.txt")
-            setVersion(Android.cMake)
-        }
+  externalNativeBuild {
+    cmake {
+      setPath("src/main/cpp/CMakeLists.txt")
+      setVersion(Android.cMake)
     }
+  }
 }
 
 dependencies {
-    implementation("androidx.viewpager:viewpager:1.0.0")
+  implementation("androidx.viewpager:viewpager:1.0.0")
+  implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
+  implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
   testImplementation(LibTest.junit)
-    androidTestImplementation(LibTest.testRunner)
-    androidTestImplementation(LibTest.espresso)
+  androidTestImplementation(LibTest.testRunner)
+  androidTestImplementation(LibTest.espresso)
 
-    // .jar libs
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+  // .jar libs
+  implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    // Kotlin
-    implementation(LibKotlin.jdk)
+  // Kotlin
+  implementation(LibKotlin.jdk)
 
-    // AndroidX
-    implementation(LibAndroidX.appCompat)
-    implementation(LibAndroidX.legacyUtils)
-    implementation(LibAndroidX.exifInterface)
-    implementation(LibAndroidX.constraintLayout)
-    implementation(LibAndroidX.material)
+  // AndroidX
+  implementation(LibAndroidX.appCompat)
+  implementation(LibAndroidX.legacyUtils)
+  implementation(LibAndroidX.exifInterface)
+  implementation(LibAndroidX.constraintLayout)
+  implementation(LibAndroidX.material)
 
-    implementation(LibAndroidX.navigationFragment)
-    implementation(LibAndroidX.navigationFragmentKtx)
-    implementation(LibAndroidX.navigationUi)
-    implementation(LibAndroidX.navigationUiKtx)
+  implementation(LibAndroidX.navigationFragment)
+  implementation(LibAndroidX.navigationFragmentKtx)
+  implementation(LibAndroidX.navigationUi)
+  implementation(LibAndroidX.navigationUiKtx)
 
-    implementation(LibAndroidXLifecycle.extension)
-    implementation(LibAndroidXLifecycle.viewModel)
-    implementation(LibAndroidXLifecycle.liveData)
+  implementation(LibAndroidXLifecycle.extension)
+  implementation(LibAndroidXLifecycle.viewModel)
+  implementation(LibAndroidXLifecycle.liveData)
 
-    // Modules
-    implementation(project(LibModule.simpleAccountManager))
-    implementation(project(LibModule.easierSpinner))
-    implementation(project(LibModule.imagePicker))
-    implementation(project(LibModule.permissionHelper))
+  // Modules
+  implementation(project(LibModule.simpleAccountManager))
+  implementation(project(LibModule.easierSpinner))
+  implementation(project(LibModule.imagePicker))
+  implementation(project(LibModule.permissionHelper))
 
-    // Other libraries
-    implementation(Lib.retrofit)
-    implementation(Lib.retrofiConverterGson)
-    implementation(Lib.retrofitLogger)
-    implementation(Lib.gson)
-    debugImplementation(Lib.gander)
-    releaseImplementation(Lib.ganderNoOp)
-    implementation(Lib.crashlytics)
-    implementation(Lib.customCrashActivity)
-    implementation(Lib.imageCropper)
-    implementation(Lib.kensBurnAnimation)
-    implementation(Lib.coroutinesCore)
-    implementation(Lib.coroutinesAndroid)
-    implementation(Lib.otpView)
-    implementation(Lib.barcode)
-    implementation(Lib.hawk)
-    implementation(Lib.circleImage)
-    implementation(Lib.MaskEditText)
-    implementation(Lib.Coil)
-    implementation(Lib.eventBus)
-    implementation(Lib.scrollPagerIndicator)
-    implementation(Lib.customMasked)
+  // Other libraries
+  implementation(Lib.retrofit)
+  implementation(Lib.retrofiConverterGson)
+  implementation(Lib.retrofitLogger)
+  implementation(Lib.retrofitXml)
+  implementation(Lib.gson)
+  debugImplementation(Lib.gander)
+  releaseImplementation(Lib.ganderNoOp)
+  implementation(Lib.crashlytics)
+  implementation(Lib.customCrashActivity)
+  implementation(Lib.imageCropper)
+  implementation(Lib.kensBurnAnimation)
+  implementation(Lib.coroutinesCore)
+  implementation(Lib.coroutinesAndroid)
+  implementation(Lib.otpView)
+  implementation(Lib.barcode)
+  implementation(Lib.hawk)
+  implementation(Lib.circleImage)
+  implementation(Lib.MaskEditText)
+  implementation(Lib.Coil)
+  implementation(Lib.eventBus)
+  implementation(Lib.scrollPagerIndicator)
+  implementation(Lib.customMasked)
 
-    implementation(Lib.firebaseAnalytic)
-    implementation(Lib.firebaseAuth)
+  implementation(Lib.rxjava2)
+  implementation(Lib.rxandroid)
+  implementation(Lib.rxjava)
+
+  implementation(Lib.firebaseAnalytic)
+  implementation(Lib.firebaseAuth)
 
 }
 
 dexcount {
-    includeTotalMethodCount = true
+  includeTotalMethodCount = true
 }

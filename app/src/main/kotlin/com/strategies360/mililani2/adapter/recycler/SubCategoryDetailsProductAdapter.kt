@@ -44,7 +44,7 @@ class SubCategoryDetailsProductAdapter : DataListRecyclerViewAdapter<AllowedValu
     fun bindView() {
       val data = getDataList()[adapterPosition]
       if (data.amount != null) {
-        itemView.txt_price.text = "$" + data.amount.toString()
+        itemView.txt_price.text = "$" + data.amount.toString() + "0"
       } else {
         itemView.txt_price.text = "0"
       }

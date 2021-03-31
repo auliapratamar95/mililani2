@@ -16,10 +16,16 @@ import com.strategies360.mililani2.adapter.recycler.AllActivitiesAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.fragment.core.DataListFragment
+import com.strategies360.mililani2.model.core.AppError
+import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
+import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.FilterClassesListViewModel
-import kotlinx.android.synthetic.main.fragment_all_activities.*
+import kotlinx.android.synthetic.main.fragment_all_activities.btn_filter
+import kotlinx.android.synthetic.main.fragment_all_activities.btn_open_profile
+import kotlinx.android.synthetic.main.fragment_all_activities.btn_scan_barcode
+import kotlinx.android.synthetic.main.fragment_all_activities.recycler_activities
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode.MAIN
@@ -69,7 +75,11 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
 
   private fun initViewModel() {
     viewModel.resource.observe(viewLifecycleOwner, Observer {
-      updateResource(it)
+      when (it?.status) {
+        Resource.LOADING -> onActivitiesLoading()
+        Resource.ERROR -> onActivitiesFailure(it.error)
+        Resource.SUCCESS -> onActivitiesSuccess()
+      }
       if (viewModel.isLoadFinished) disableInfiniteScrolling()
     })
     viewModel.dataList.observe(viewLifecycleOwner, Observer {
@@ -97,6 +107,28 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
   override fun fetchData() {
     val listHash: HashMap<String, String> = HashMap()
     viewModel.fetchFilterFromRemote(listHash)
+  }
+
+  private fun onActivitiesLoading() {
+    activity?.let {
+      Common.showProgressDialog(it , onBackPress = {
+        viewModel.cancel()
+        Common.dismissProgressDialog()
+      })
+    }
+  }
+
+  private fun onActivitiesSuccess() {
+    activity?.let {
+      Common.dismissProgressDialog()
+    }
+  }
+
+  private fun onActivitiesFailure(error: AppError) {
+    activity?.let {
+      Common.dismissProgressDialog()
+      Common.showMessageDialog(it, "Error", error.message)
+    }
   }
 
   private fun openBottomFilter() {

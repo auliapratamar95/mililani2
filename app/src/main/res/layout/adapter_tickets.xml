@@ -18,7 +18,7 @@
             android:scrollbars="vertical">
 
             <LinearLayout
-                android:id="@+id/btn_layout_class"
+                android:id="@+id/btn_layout_tickets"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -151,7 +151,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_detail_activities"
+                    android:id="@+id/layout_detail_tickets"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
@@ -177,40 +177,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_large"
-                        android:text="@string/meeting_details"
+                        android:text="@string/retrication"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_meeting_details"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/fo_font_tiny"
-                        tools:text="MTA REC 2 94-300 Anania Drive, Mililani, HI, 96789
-            (808)440-2602 Facility: Rec 2 Pool " />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:text="@string/location"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/fo_font_tiny"
-                        tools:text="Recreation Center 2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:text="@string/fee_s"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_fee"
+                        android:id="@+id/txt_retrication"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/fo_font_tiny"
@@ -230,35 +201,14 @@
                         android:textSize="@dimen/fo_font_tiny"
                         tools:text="Participants, ages 8-17 years old, work on stroke refinement and endurance necessary to become proficient swimmers. This program is a non-competitive alternative to swim teams. Prerequisite: Participants must have passed Level 6 of MTA’s Learn-to-Swim program. If the interested participant did not attend MTA’s swim programs, please contact the Aquatics Manager to set up a swim test. Interested participants must be able to perform the back and front crawl stroke, breaststroke, elementary backstroke, sidestroke, butterfly and open and flip turns." />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:text="@string/enrollment_counts"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_enrollment_max_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/fo_font_tiny"
-                        tools:text="Overall Max Count: 6" />
-
-
-                    <TextView
-                        android:id="@+id/txt_enrollment_total_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/fo_font_tiny"
-                        tools:text="Overall Total Enrolled: 1" />
 
                     <Button
-                        android:id="@+id/btn_register"
+                        android:id="@+id/btn_book_now"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_xlarge"
                         android:background="@drawable/bg_button_round_primary"
-                        android:text="@string/title_register"
+                        android:text="@string/book_now"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

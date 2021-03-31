@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.orhanobut.hawk.Hawk
+import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.CaffeActivity
 import com.strategies360.mililani2.activity.CheckoutActivity
@@ -20,6 +21,7 @@ import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.caffe.cart.Cart
 import com.strategies360.mililani2.model.remote.caffe.cart.CartResponse
 import com.strategies360.mililani2.model.remote.caffe.cart.OrderItems
+import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.CartListViewModel
 import kotlinx.android.synthetic.main.fragment_cart.btn_caffe
@@ -90,9 +92,9 @@ class CartFragment : DataListFragment() {
   }
 
   override fun initRecyclerAdapter(): DataListRecyclerViewAdapter<Any, ViewHolder> {
-    adapter.emptyText = resources.getString(R.string.info_no_data)
+    adapter.emptyText = App.context.resources.getString(R.string.info_cart_empty)
     adapter.onItemCartClick = { pos, data ->
-      val categoryId: String = Hawk.get(Constant.KEY_CUSTOMER_ID)
+      val categoryId: String = Common.getCookies()
       viewModel.deleteCartFromRemote(data.id.toString(), categoryId)
     }
     adapter.setDiffUtilNotifier { oldList, newList ->
@@ -107,7 +109,7 @@ class CartFragment : DataListFragment() {
 
   override fun fetchData() {
     if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
-      val customerId: String = Hawk.get(Constant.KEY_CUSTOMER_ID)
+      val customerId: String = Common.getCookies()
       viewModel.fetchData(customerId)
     } else {
       txt_cart_empty.visibility = View.VISIBLE
@@ -135,8 +137,15 @@ class CartFragment : DataListFragment() {
   }
 
   private fun initData(cart: Cart?) {
-    txt_subtotal.text = "$" + cart?.subTotal?.amount.toString()
-    txt_tax.text = "$" + cart?.totalTax?.amount.toString()
-    txt_order_total.text = "$" + cart?.total?.amount.toString()
+    if (cart != null) {
+      if (cart.orderItems != null) {
+        txt_subtotal.text = "$" + cart.subTotal?.amount.toString() + "0"
+        txt_tax.text = "$" + cart.totalTax?.amount.toString() + "0"
+        txt_order_total.text = "$" + cart.total?.amount.toString() + "0"
+        btn_checkout.isEnabled = true
+      } else {
+        btn_checkout.isEnabled = false
+      }
+    }
   }
 }

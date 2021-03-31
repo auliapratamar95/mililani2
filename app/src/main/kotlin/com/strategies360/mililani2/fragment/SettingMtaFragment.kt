@@ -13,6 +13,7 @@ import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
 import com.strategies360.mililani2.model.remote.caffe.cart.CartResponse
+import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.CaffeListViewModel
 import com.strategies360.mililani2.viewmodel.CartListViewModel
@@ -91,7 +92,7 @@ class SettingMtaFragment : CoreFragment() {
 
     Hawk.put((Constant.PRODUCT_CAFFE_LIST), productCaffeResponse.caffeListResponse)
     if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
-      val customerId: String = Hawk.get(Constant.KEY_CUSTOMER_ID)
+      val customerId: String = Common.getCookies()
       cartViewModel.fetchData(customerId)
     } else {
       progress_setting.visibility = View.GONE

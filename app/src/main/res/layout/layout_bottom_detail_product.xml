@@ -24,12 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/item_notes"
-        tools:text="sample sample"
+        android:textColorHint="#989898"
         android:textSize="@dimen/fo_font_12"
         android:padding="@dimen/margin_xlarge"
         android:layout_marginTop="@dimen/margin_default"
         android:layout_marginBottom="@dimen/margin_larges"
-        android:background="@drawable/bg_button_round_grey_primary_two"
+        android:background="@drawable/bg_button_round_grey"
         android:inputType="text"/>
 
 

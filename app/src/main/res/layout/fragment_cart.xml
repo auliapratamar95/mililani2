@@ -83,7 +83,7 @@
                   android:scrollbars="vertical"
                   app:layout_behavior="@string/appbar_scrolling_view_behavior"
                   tools:listitem="@layout/adapter_cart"
-                  tools:visibility="gone"/>
+                  tools:visibility="visible"/>
 
             </RelativeLayout>
 
@@ -91,6 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_default"
+                android:layout_marginStart="@dimen/fo_spacing_3"
+                android:layout_marginEnd="@dimen/fo_spacing_3"
                 android:layout_marginTop="@dimen/margin_larges"
                 android:layout_marginBottom="@dimen/margin_larges"
                 android:orientation="horizontal">

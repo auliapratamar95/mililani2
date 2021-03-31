@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.R.string
-import com.strategies360.mililani2.activity.CategoryProductDetailActivity
+import com.strategies360.mililani2.activity.ProfileMtaActivity
 import com.strategies360.mililani2.adapter.viewpager.ViewPagerNewsAdapter
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.core.Resource
@@ -122,8 +122,7 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
 
   private fun openProfile() {
     Hawk.put((Constant.FLAG_ON_BACK_MENU), false)
-//    ProfileMtaActivity.launchIntent(requireContext())
-    CategoryProductDetailActivity.launchIntent(requireContext())
+    ProfileMtaActivity.launchIntent(requireContext())
   }
 
   override fun onClick(view: View?) {

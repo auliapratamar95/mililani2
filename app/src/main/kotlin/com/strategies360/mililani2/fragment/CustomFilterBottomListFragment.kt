@@ -22,12 +22,35 @@ import com.strategies360.mililani2.R.style
 import com.strategies360.mililani2.activity.ActivitiesActivity
 import com.strategies360.mililani2.eventbus.EventFilterResult
 import com.strategies360.mililani2.widget.DatePickerDialog
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.layout_custom_dialog_filter.*
+import kotlinx.android.synthetic.clearFindViewByIdCache
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_category
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_date_range
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_location
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_reset
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.btn_show
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_aquatics
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_aquatics_adult
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_aquatics_master
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_aquatics_mlearn
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_aquatics_one
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_aquatics_parent
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_aquatics_specials
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_seniors
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_seniors_detail
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_tiny_tots
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_tiny_tots_detail
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_women
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.cb_womens_detail
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ed_end_date
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ed_start_date
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_category
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_date
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.ic_plus_min_location
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_category
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_date_range
+import kotlinx.android.synthetic.main.layout_custom_dialog_filter.layout_location
 import org.greenrobot.eventbus.EventBus
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+import java.util.Calendar
 
 class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClickListener,
     DatePickerDialog.OnDateSetListener {
@@ -475,10 +498,11 @@ class CustomFilterBottomListFragment : BottomSheetDialogFragment(), View.OnClick
             }
         }
       }
-      EventBus.getDefault().postSticky(
-              EventFilterResult(listHash)
-      )
-      dismiss()
     }
+
+    EventBus.getDefault().postSticky(
+        EventFilterResult(listHash)
+    )
+    dismiss()
   }
 }

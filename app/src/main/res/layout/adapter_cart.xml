@@ -23,15 +23,17 @@
                 android:id="@+id/txt_count_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="@dimen/margin_default"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_small"
+                android:layout_marginTop="@dimen/fo_spacing_2"
+                android:layout_marginEnd="@dimen/fo_spacing_7"
+                android:textSize="@dimen/fo_font_12"
                 android:text="1x"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/fo_spacing_tiny"
-                android:layout_marginStart="@dimen/margin_default"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -119,13 +121,14 @@
 
         <ImageView
             android:id="@+id/btn_delete_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/margin_default"
-            android:padding="@dimen/margin_default"
+            android:layout_width="@dimen/fo_spacing_26"
+            android:layout_height="@dimen/fo_spacing_26"
+            android:layout_marginStart="@dimen/margin_small"
+            android:padding="@dimen/margin_small"
+            android:layout_marginTop="@dimen/fo_spacing_3"
             android:src="@drawable/ic_delete_card"
             android:visibility="gone"
+            tools:visibility="visible"
             android:foreground="?attr/selectableItemBackground"/>
 
     </LinearLayout>

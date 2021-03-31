@@ -15,12 +15,24 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentActivity
+import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.color
-import com.strategies360.mililani2.util.Common.FontType.*
+import com.strategies360.mililani2.util.Common.FontType.DROID_SANS
+import com.strategies360.mililani2.util.Common.FontType.GIBSON_BOLD
+import com.strategies360.mililani2.util.Common.FontType.GIBSON_REGULAR
+import com.strategies360.mililani2.util.Common.FontType.ROBOTO_BOLD
+import com.strategies360.mililani2.util.Common.FontType.ROBOTO_REGULAR
+import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_BOLD
+import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_LIGHT
+import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_REGULAR
+import com.strategies360.mililani2.util.Common.FontType.SOURCE_SANS_PRO_SEMIBOLD
 import com.strategies360.mililani2.view.OnProgressBackPressed
 import com.strategies360.mililani2.view.ProgressDialog
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 /**
  *
@@ -274,5 +286,19 @@ object Common {
         animate.duration = 500
         animate.fillAfter = true
         view.startAnimation(animate)
+    }
+
+    fun getCookies(): String{
+        var customerId = ""
+        val expiration = Date(System.currentTimeMillis() + 60 * 60 * 24000)
+        val expires: String = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
+            .format(expiration)
+
+        if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
+            customerId = Hawk.get(Constant.KEY_CUSTOMER_ID)
+        }
+        return "customerId=" + customerId + "; " +
+            "path=/; " +
+            "expires=" + expires
     }
 }

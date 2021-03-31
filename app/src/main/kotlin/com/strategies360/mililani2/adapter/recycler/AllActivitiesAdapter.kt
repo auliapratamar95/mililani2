@@ -70,10 +70,10 @@ class AllActivitiesAdapter : DataListRecyclerViewAdapter<Classes, ViewHolder>() 
       itemView.txt_elgibility.text = data.elgibility
       itemView.txt_meeting_details.text = HtmlCompat.fromHtml(data.meetingDetails.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
       itemView.txt_location.text = data.location
-      itemView.txt_fee.text = data.fee
+      itemView.txt_fee.text = "$" + data.fee
       itemView.txt_comment.text = data.comment
-      itemView.txt_enrollment_total_count.text = data.totalCount
-      itemView.txt_enrollment_max_count.text = data.maxCount
+      itemView.txt_enrollment_total_count.text = "Overall Total Enrolled: " + data.totalCount
+      itemView.txt_enrollment_max_count.text = "Overall Max Count: " + data.maxCount
 
       itemView.txt_title.text = data.description
       itemView.txt_date.text = data.date

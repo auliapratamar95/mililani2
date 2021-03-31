@@ -56,9 +56,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode.MAIN
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 @SuppressLint("SetTextI18n")
 class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
@@ -174,15 +171,15 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
   private fun onCartSuccess(response: PayloadResponse) {
     Common.dismissProgressDialog()
     val costumerId: String = response.payload?.customer?.id.toString()
-    val expiration = Date(System.currentTimeMillis() + 60 * 60 * 24000)
-    val expires: String = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
-        .format(expiration)
-    val cookie: String =
-      "customerId=" + costumerId + "; " +
-          "path=/; " +
-          "expires=" + expires
+//    val expiration = Date(System.currentTimeMillis() + 60 * 60 * 24000)
+//    val expires: String = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
+//        .format(expiration)
+//    val cookie: String =
+//      "customerId=" + costumerId + "; " +
+//          "path=/; " +
+//          "expires=" + expires
 
-    if (!Hawk.contains(Constant.KEY_CUSTOMER_ID)) Hawk.put((Constant.KEY_CUSTOMER_ID), cookie)
+    if (!Hawk.contains(Constant.KEY_CUSTOMER_ID)) Hawk.put((Constant.KEY_CUSTOMER_ID), costumerId)
     CartActivity.launchIntent(this)
   }
 
@@ -354,7 +351,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       totalProduct = priceProduct!! * qty.toInt()
 
       btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(
-          totalProduct!!
+          totalProduct
       )
     } else if (isRequiredChecked == true && !isModifierChecked!!) {
       priceProduct = amountRequired
@@ -395,7 +392,6 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
         onBackPressed()
       }
       btn_add_to_cart -> {
-        btn_add_to_cart.isEnabled = false
         generateCartRequestModel()
       }
     }
@@ -479,7 +475,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
     val data: MutableMap<String, Any> = HashMap()
     val qty = txt_qty.text.toString()
     var cookie = ""
-    var notes: String = ed_special_intruction.text.toString()
+    val notes: String = ed_special_intruction.text.toString()
 
     if (Hawk.contains(Constant.REQUIRED_CHOICE_PRODUCT)) {
       val listRequiredData: ArrayList<RequiredChoiceChecked> = Hawk.get(
@@ -521,7 +517,7 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
           if (notes != "")  cardRequest.notes = notes
 
           if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
-            cookie = Hawk.get(Constant.KEY_CUSTOMER_ID)
+            cookie = Common.getCookies()
           }
           addCartViewModel.submitDataCart(cookie, cardRequest)
         } else {

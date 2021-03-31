@@ -4,12 +4,14 @@
 
 
   <string name="date_filter_dd_mm_yyyy">%1$d-%2$d-%3$d</string>
+  <string name="date_filter_yyyy_mm_dd">%3$d-%2$d-%1$d</string>
 
   <string name="emoji_sad" translatable="false">:(</string>
 
   <string name="info_loading">Loading…</string>
   <string name="info_warning">Warning</string>
   <string name="info_no_data">No Data</string>
+  <string name="info_cart_empty">Your cart is empty</string>
 
   <string name="action_done">Done</string>
   <string name="action_remove_image">Remove image</string>
@@ -156,7 +158,7 @@
   <string name="my_activities">My Activities</string>
   <string name="setting">Setting</string>
   <string name="tile_log_out">Log Out</string>
-  <string name="elgibility">Elgibility :</string>
+  <string name="elgibility">Eligibility :</string>
   <string name="meeting_details">Meeting Details :</string>
   <string name="fee_s">Fee(s):</string>
   <string name="comment_s">Comment(s):</string>
@@ -169,7 +171,7 @@
   <string name="webview_url_register"><![CDATA[https://www2.mililanitown.org/wbwsc/webtracdemo.wsc/addtocart.html?FromProgram=search&Module=AR&ProcessMultiSelect=yes]]></string>
   <string name="cafe_menu">Cafe Menu</string>
   <string name="required">Required</string>
-  <string name="special_instruction">Special Instruction</string>
+  <string name="special_instruction">Special instructions</string>
   <string name="size">Size</string>
   <string name="add_to_cart">Add To Cart</string>
   <string name="item_notes">Item notes</string>
@@ -196,6 +198,16 @@
   <string name="promo_code">promo code</string>
   <string name="apply">Apply</string>
   <string name="submit">Submit</string>
+  <string name="advance_ticket_search_criteria">Advance Ticket Search Criteria</string>
+  <string name="keyword_search">Keyword Search</string>
+  <string name="ticket_code">Ticket Code</string>
+  <string name="begin_date">Begin Date</string>
+  <string name="end_datee">End Date</string>
+  <string name="search">Search</string>
+  <string name="book_now">BOOK NOW</string>
+  <string name="retrication">Restrictions:</string>
+  <string name="search_results">Search Results</string>
+  <string name="total_result">Total Result</string>
 
 
 </resources>

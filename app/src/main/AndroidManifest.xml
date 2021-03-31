@@ -103,6 +103,10 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name="com.strategies360.mililani2.activity.EventsResultActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name="com.strategies360.mililani2.activity.ProfileMtaActivity"
             android:windowSoftInputMode="stateHidden" />
 

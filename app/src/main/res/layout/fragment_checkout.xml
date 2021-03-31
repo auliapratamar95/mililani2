@@ -80,7 +80,6 @@
                   android:padding="@dimen/margin_default"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"
                   android:visibility="gone"/>
 
@@ -270,7 +269,6 @@
                   android:padding="@dimen/margin_default"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"
                   android:visibility="gone"/>
 
@@ -308,11 +306,9 @@
                   android:imeOptions="actionNext"
                   android:backgroundTint="@color/colorPrimary"
                   android:importantForAutofill="no"
-                  android:inputType="textFilter|textNoSuggestions|phone"
                   android:padding="@dimen/margin_default"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <EditText
@@ -327,9 +323,9 @@
                   android:importantForAutofill="no"
                   android:inputType="textFilter|textNoSuggestions|phone"
                   android:padding="@dimen/margin_default"
+                  android:maxLength="10"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <EditText
@@ -342,11 +338,10 @@
                   android:imeOptions="actionNext"
                   android:backgroundTint="@color/colorPrimary"
                   android:importantForAutofill="no"
-                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:inputType="textEmailAddress"
                   android:padding="@dimen/margin_default"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <View
@@ -382,11 +377,9 @@
                   android:imeOptions="actionNext"
                   android:backgroundTint="@color/colorPrimary"
                   android:importantForAutofill="no"
-                  android:inputType="textFilter|textNoSuggestions|phone"
                   android:padding="@dimen/margin_default"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <EditText
@@ -404,7 +397,6 @@
                   android:padding="@dimen/margin_default"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <EditText
@@ -421,7 +413,6 @@
                   android:padding="@dimen/margin_default"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <EditText
@@ -434,11 +425,11 @@
                   android:imeOptions="actionNext"
                   android:backgroundTint="@color/colorPrimary"
                   android:importantForAutofill="no"
-                  android:inputType="textFilter|textNoSuggestions|phone"
+                  android:inputType="number"
                   android:padding="@dimen/margin_default"
+                  android:maxLength="4"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <EditText
@@ -456,7 +447,6 @@
                   android:maxLines="5"
                   android:textColorHint="@color/Register_Text_Hint"
                   android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  android:textSize="@dimen/fo_font_normal"
                   tools:ignore="TextFields"/>
 
               <View

@@ -15,6 +15,10 @@ import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
 import com.strategies360.mililani2.model.remote.caffe.cart.CartRequest
 import com.strategies360.mililani2.model.remote.caffe.cart.CartResponse
+import com.strategies360.mililani2.model.remote.caffe.checkout.BillingRequest
+import com.strategies360.mililani2.model.remote.caffe.checkout.PayTicketResponse
+import com.strategies360.mililani2.model.remote.caffe.checkout.PickupRequest
+import com.strategies360.mililani2.model.remote.caffe.checkout.PickupResponse
 import com.strategies360.mililani2.model.remote.caffe.store.StoreResponse
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
@@ -22,6 +26,7 @@ import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.model.remote.news.NewsResponse
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
+import com.strategies360.mililani2.model.remote.tickets.EventsResponse
 import com.strategies360.mililani2.util.Constant
 import retrofit2.Call
 import retrofit2.Callback
@@ -253,6 +258,22 @@ class APICaller<RESPONSE : AppResponse> {
   }
 
   @Suppress("UNCHECKED_CAST")
+  fun getTickets(
+    ticketCode: String,
+    beginEventDate: String,
+    endEventDate: String,
+    key: String
+  ) {
+    refreshAccessToken()
+
+    callback = AppCallback(listener as OnAPIListener<EventsResponse>)
+    call = APIService.apiInterfaceMililani.getTickets(
+        ticketCode, beginEventDate, endEventDate, key
+    )
+    (call as Call<EventsResponse>).enqueue(callback as AppCallback<EventsResponse>)
+  }
+
+  @Suppress("UNCHECKED_CAST")
   fun getCustomFilterClass(data: MutableMap<String, String>) {
     refreshAccessToken()
 
@@ -375,6 +396,66 @@ class APICaller<RESPONSE : AppResponse> {
     callback = AppCallback(listener as OnAPIListener<CartResponse>)
     call = APIService.apiInterfaceCaffeMililani.deleteCart(productId, cookie)
     (call as Call<CartResponse>).enqueue(callback as AppCallback<CartResponse>)
+  }
+
+  /**
+   * Calls the cart in API.
+   */
+  @Suppress("UNCHECKED_CAST")
+  fun putPickup(
+    cookie: String, pickupRequest: PickupRequest
+  ) {
+    callback = AppCallback(listener as OnAPIListener<PickupResponse>)
+    call = APIService.apiInterfaceCaffeMililani.putPickupCart(cookie, pickupRequest)
+    (call as Call<PickupResponse>).enqueue(callback as AppCallback<PickupResponse>)
+  }
+
+  /**
+   * Calls the cart in API.
+   */
+  @Suppress("UNCHECKED_CAST")
+  fun getPayTicket(
+    cookie: String
+  ) {
+    callback = AppCallback(listener as OnAPIListener<PayTicketResponse>)
+    call = APIService.apiInterfaceCaffeMililani.getPayTicket(cookie)
+    (call as Call<PayTicketResponse>).enqueue(callback as AppCallback<PayTicketResponse>)
+  }
+
+  /**
+   * Calls the cart in API.
+   */
+  @Suppress("UNCHECKED_CAST")
+  fun submitBiling(
+    cookie: String, billingRequest: BillingRequest
+  ) {
+    callback = AppCallback(listener as OnAPIListener<PickupResponse>)
+    call = APIService.apiInterfaceCaffeMililani.submitBiling(cookie, billingRequest)
+    (call as Call<PickupResponse>).enqueue(callback as AppCallback<PickupResponse>)
+  }
+
+  /**
+   * Calls the cart in API.
+   */
+  @Suppress("UNCHECKED_CAST")
+  fun submitCheckout(
+    cookie: String
+  ) {
+    callback = AppCallback(listener as OnAPIListener<PickupResponse>)
+    call = APIService.apiInterfaceCaffeMililani.submitCheckout(cookie)
+    (call as Call<PickupResponse>).enqueue(callback as AppCallback<PickupResponse>)
+  }
+
+  /**
+   * Calls the cart in API.
+   */
+  @Suppress("UNCHECKED_CAST")
+  fun submitTip(
+    cookie: String, tip: Double
+  ) {
+    callback = AppCallback(listener as OnAPIListener<PickupResponse>)
+    call = APIService.apiInterfaceCaffeMililani.submitTip(cookie, tip)
+    (call as Call<PickupResponse>).enqueue(callback as AppCallback<PickupResponse>)
   }
 
   /**

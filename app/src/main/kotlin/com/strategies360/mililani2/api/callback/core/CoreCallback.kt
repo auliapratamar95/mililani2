@@ -1,13 +1,16 @@
 package com.strategies360.mililani2.api.callback.core
 
 import android.util.Log
+import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.BuildConfig
 import com.strategies360.mililani2.R
+import com.strategies360.mililani2.activity.LoginActivity
 import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.model.core.AppError
 import com.strategies360.mililani2.model.core.AppResponse
 import com.strategies360.mililani2.util.Common
+import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.util.Debugger
 import itsmagic.present.simpleaccountmanager.AccountHelper
 import retrofit2.Call
@@ -218,7 +221,10 @@ abstract class CoreCallback<RESPONSE : AppResponse>(private val listener: OnAPIL
         Debugger.log(Log.ERROR, javaClass.simpleName, "Removing saved account from this device")
 
         AccountHelper(App.context).removeAccount()
+        Hawk.delete(Constant.KEY_TOKEN)
+
         Common.showToast(R.string.error_auth_log_in_expired)
+        LoginActivity.launchIntent(App.context)
     }
 
     /** Called when the obtained response is successful  */

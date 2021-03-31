@@ -115,6 +115,7 @@ object Lib {
         const val retrofit = "2.6.1"
         const val retrofiConverterGson = "2.6.1"
         const val retrofitLogger = "3.12.3"
+        const val retrofitXml = "2.5.0"
         const val gson = "2.8.5"
         const val gander = "3.1.0"
         const val crashlytics = "2.10.1"
@@ -134,11 +135,16 @@ object Lib {
         const val eventbus = "3.2.0"
         const val customMasked = "2.0"
         const val scrollPagerIndicator = "1.0.6"
+
+        const val rxjava = "2.1.9"
+        const val rxandroid = "2.0.2"
+        const val rxjava2 = "2.3.0"
     }
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
     const val retrofiConverterGson = "com.squareup.retrofit2:converter-gson:${Version.retrofiConverterGson}"
     const val retrofitLogger = "com.squareup.okhttp3:logging-interceptor:${Version.retrofitLogger}"
+    const val retrofitXml = "com.squareup.retrofit2:converter-simplexml:${Version.retrofitXml}"
     const val gson = "com.google.code.gson:gson:${Version.gson}"
     const val gander = "com.ashokvarma.android:gander-persistence:${Version.gander}"
     const val ganderNoOp = "com.ashokvarma.android:gander-no-op:${Version.gander}"
@@ -160,6 +166,10 @@ object Lib {
     const val eventBus = "org.greenrobot:eventbus:${Version.eventbus}"
     const val customMasked = "mk.webfactory.dz:maskededittext:${Version.customMasked}"
     const val scrollPagerIndicator = "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:${Version.scrollPagerIndicator}"
+
+    const val rxjava= "io.reactivex.rxjava2:rxjava:${Version.rxjava}"
+    const val rxandroid= "io.reactivex.rxjava2:rxandroid:${Version.rxandroid}"
+    const val rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Version.rxjava2}"
 }
 
 object ProGuard {

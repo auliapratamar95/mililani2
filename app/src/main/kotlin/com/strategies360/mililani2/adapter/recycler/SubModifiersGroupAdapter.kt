@@ -46,7 +46,7 @@ class SubModifiersGroupAdapter : DataListRecyclerViewAdapter<Modifiers, ViewHold
         itemView.txt_price.text = "0"
       } else {
         itemView.txt_name.text = data.name
-        itemView.txt_price.text = "$" + data.prices?.defaultPrices?.amount.toString()
+        itemView.txt_price.text = "$" + data.prices?.defaultPrices?.amount.toString() + "0"
       }
 
 //      itemView.cb_required_category.setOnCheckedChangeListener { buttonView, isChecked ->
