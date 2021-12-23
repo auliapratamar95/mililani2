@@ -7,6 +7,7 @@ plugins {
   id(AndroidPlugin.dexcount)
   id(AndroidPlugin.fabric)
   id(AndroidPlugin.googleService)
+  id(AndroidPlugin.oneSignal)
 }
 
 // To view the dependency tree, open your terminal and run this command:
@@ -19,12 +20,12 @@ android {
   buildToolsVersion(Android.buildTools)
   compileSdkVersion(Android.compile)
 
+
   defaultConfig {
     applicationId = "com.strategies360.mililani2"
     minSdkVersion(Android.min)
     targetSdkVersion(Android.target)
-    versionCode = 1
-    versionName = "ver-1.0.9-debug"
+     versionName = "ver-1.0.21-debug"
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     // Add a BuildConfig timestamp
@@ -32,25 +33,24 @@ android {
 
     // Manifest placeholders
     manifestPlaceholders = mapOf(
-        "FABRIC_API_KEY" to "d5443dc729a470b899c6c7b732d3a3db59d37e2d"
+      "FABRIC_API_KEY" to "d5443dc729a470b899c6c7b732d3a3db59d37e2d"
     )
   }
-
-  // Enable Java 8 features
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-  }
-
-  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-      jvmTarget = "1.8"
+    // Enable Java 8 features
+    compileOptions {
+      sourceCompatibility = JavaVersion.VERSION_1_8
+      targetCompatibility = JavaVersion.VERSION_1_8
     }
-  }
 
-  // Set the source path
-  sourceSets["main"].java.srcDir("src/main/kotlin")
-  sourceSets["test"].java.srcDir("src/test/kotlin")
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+      kotlinOptions {
+        jvmTarget = "1.8"
+      }
+    }
+
+    // Set the source path
+    sourceSets["main"].java.srcDir("src/main/kotlin")
+    sourceSets["test"].java.srcDir("src/test/kotlin")
 
 //    // Split APKs for each screen dimension
 //    splits {
@@ -60,26 +60,26 @@ android {
 //        }
 //    }
 
-  // Specify the build dimension and flavors
-  flavorDimensions("api")
-  productFlavors {
-    create("mock") {
-      setDimension("api")
-      applicationIdSuffix = ".mock"
-      versionNameSuffix = "-mock"
+    // Specify the build dimension and flavors
+    flavorDimensions("api")
+    productFlavors {
+      create("mock") {
+        setDimension("api")
+        applicationIdSuffix = ".mock"
+        versionNameSuffix = "-mock"
 
 //            E.g. to use the manifest placeholder in your manifest, use ${FACEBOOK_APP_ID}
 //            manifestPlaceholders["FACEBOOK_APP_ID"] = "12345"
 //            manifestPlaceholders["FABRIC_API_KEY"] = "12345"
-    }
-    create("staging") {
-      setDimension("api")
-      applicationIdSuffix = ".staging"
-      versionNameSuffix = "-staging"
-    }
-    create("production") {
-      setDimension("api")
-    }
+      }
+      create("staging") {
+        setDimension("api")
+        applicationIdSuffix = ".staging"
+        versionNameSuffix = "-staging"
+      }
+      create("production") {
+        setDimension("api")
+      }
 
 //        create("free") {
 //            setDimension("mode")
@@ -88,15 +88,15 @@ android {
 //        create("pro") {
 //            setDimension("mode")
 //        }
-  }
+    }
 
-  // Configure the build types
-  buildTypes {
-    getByName("debug") {
-      isDebuggable = true
-      isMinifyEnabled = false
+    // Configure the build types
+    buildTypes {
+      getByName("debug") {
+        isDebuggable = true
+        isMinifyEnabled = false
 
-      proguardFiles(
+        proguardFiles(
           getDefaultProguardFile(ProGuard.defaultAndroid),
           ProGuard.app,
           ProGuard.android,
@@ -108,14 +108,14 @@ android {
           ProGuard.itsmagic,
           ProGuard.okhttp,
           ProGuard.retrofit
-      )
-    }
+        )
+      }
 
-    getByName("release") {
-      isDebuggable = false
-      isMinifyEnabled = true
+      getByName("release") {
+        isDebuggable = false
+        isMinifyEnabled = true
 
-      proguardFiles(
+        proguardFiles(
           getDefaultProguardFile(ProGuard.defaultAndroid),
           ProGuard.app,
           ProGuard.android,
@@ -127,25 +127,30 @@ android {
           ProGuard.itsmagic,
           ProGuard.okhttp,
           ProGuard.retrofit
-      )
+        )
+      }
     }
-  }
 
-  externalNativeBuild {
-    cmake {
-      setPath("src/main/cpp/CMakeLists.txt")
-      setVersion(Android.cMake)
+    externalNativeBuild {
+      cmake {
+        setPath("src/main/cpp/CMakeLists.txt")
+        setVersion(Android.cMake)
+      }
     }
   }
-}
 
 dependencies {
   implementation("androidx.viewpager:viewpager:1.0.0")
   implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
   implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
+  implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
   testImplementation(LibTest.junit)
   androidTestImplementation(LibTest.testRunner)
   androidTestImplementation(LibTest.espresso)
+
+  implementation("com.onesignal:OneSignal:[4.0.0, 4.99.99]")
 
   // .jar libs
   implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
@@ -159,6 +164,7 @@ dependencies {
   implementation(LibAndroidX.exifInterface)
   implementation(LibAndroidX.constraintLayout)
   implementation(LibAndroidX.material)
+  implementation(LibAndroidX.maps)
 
   implementation(LibAndroidX.navigationFragment)
   implementation(LibAndroidX.navigationFragmentKtx)
@@ -202,10 +208,16 @@ dependencies {
   implementation(Lib.rxjava2)
   implementation(Lib.rxandroid)
   implementation(Lib.rxjava)
+//  implementation(Lib.oneSignal)
 
   implementation(Lib.firebaseAnalytic)
   implementation(Lib.firebaseAuth)
-
+  implementation(Lib.firebaseMessaging)
+  implementation(Lib.tagLayout)
+  implementation(Lib.pdfDownload)
+  implementation(Lib.pdfViewer)
+  implementation(Lib.glide)
+  annotationProcessor(Lib.glideAnnotation)
 }
 
 dexcount {

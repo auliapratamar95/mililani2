@@ -13,7 +13,7 @@ import com.strategies360.mililani2.util.Config
  *
  * Debug builds will show more detailed version, but release build will only show the version name.
  */
-class VersionTextView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : AppCompatTextView(context, attrs, defStyleAttr) {
+class VersionTextView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : AppCompatTextView(context!!, attrs, defStyleAttr) {
 
     constructor(context: Context?) : this(context, null, 0)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)

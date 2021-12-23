@@ -127,7 +127,7 @@ class SubmitManuallyMtaCardFragment : CoreFragment(), View.OnClickListener {
       if (error.code == 1000)
         openDialogNotice()
       else
-        Common.showMessageDialog(it, "Error", error.message)
+        Common.showMessageDialog(it, "Error","Card Not Found")
     }
   }
 

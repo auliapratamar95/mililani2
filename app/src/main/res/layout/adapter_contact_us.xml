@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_large"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btn_maps"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fo_size_150"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_dummy_maps"/>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/maps"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fo_size_150"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="true"/>
+
+            <TextView
+                android:id="@+id/txtMapsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Administrative Office"
+                android:textStyle="bold"
+                android:textColor="@color/primary_card"
+                android:textSize="@dimen/fo_font_19"
+                android:layout_marginTop="@dimen/margin_default"/>
+
+            <TextView
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="95-303 Kaloapau Street, Mililani, HI 96789"
+                android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Phone:"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fo_font_13"/>
+
+                <TextView
+                    android:id="@+id/txtPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="(808) 623-7300"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fo_font_13"
+                    android:gravity="right"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/adapter_contact_us_schedule"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

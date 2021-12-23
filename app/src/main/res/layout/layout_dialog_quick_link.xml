@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/margin_large"
+      android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small"
+        android:src="@drawable/ic_dismiss"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="@string/quick_link_added_to_home"/>
+
+    <Button
+        android:id="@+id/btn_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fo_size_20"
+        android:layout_marginRight="@dimen/fo_size_20"
+        android:textSize="@dimen/fo_font_tiny"
+        android:text="@string/gander_dismiss"
+        android:layout_marginTop="@dimen/margin_xxlarge"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/bg_button_round_grey_primary"/>
+
+    <CheckBox
+        android:id="@+id/cb_quick_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/do_not_show_this_message_again"
+        android:layout_marginLeft="@dimen/fo_size_20"
+        android:layout_marginRight="@dimen/fo_size_20"
+        android:layout_marginTop="@dimen/margin_larges"
+        android:textSize="@dimen/fo_font_11"
+        android:buttonTint="@color/colorPrimary"/>
+
+  </LinearLayout>
+
+
+</LinearLayout>

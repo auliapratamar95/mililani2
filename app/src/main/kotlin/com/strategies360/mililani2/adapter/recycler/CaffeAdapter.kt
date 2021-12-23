@@ -58,6 +58,7 @@ class CaffeAdapter : DataListRecyclerViewAdapter<ProductCaffeDetail, ViewHolder>
         crossfade(750)
         scale(Scale.FIT)
       }
+
       itemView.txt_price.text = data.price
       itemView.btn_open_category_details_product.setOnClickListener {
         Hawk.delete(Constant.SKU_LIST)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.R.string
 import com.strategies360.mililani2.activity.core.CoreActivity
+import kotlinx.android.synthetic.main.activity_add_scan_mta_card.*
 
 /**
  * A Submit Scan MTA Card activity.
@@ -20,6 +21,14 @@ class AddScanMtaCardActivity : CoreActivity() {
     super.onCreate(savedInstanceState)
 
     isBottomCardList = (intent.getBooleanExtra(getString(string.prefs_is_add_bottom_card_list), false))
+
+    btn_back.setOnClickListener {
+      if (isBottomCardList) {
+        BottomMenuNavigationActivity.launchIntent(this)
+      } else {
+        onBackPressed()
+      }
+    }
   }
 
   override fun onBackPressed() {

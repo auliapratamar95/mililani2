@@ -15,6 +15,7 @@
         android:id="@+id/txt_name_detail_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="@string/special_instruction"
         android:textSize="@dimen/fo_font_normal"
         android:layout_marginTop="@dimen/margin_larges"/>

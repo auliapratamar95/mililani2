@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/btn_open_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
@@ -15,40 +16,72 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="@dimen/fo_size_100">
 
             <ImageView
                 android:id="@+id/image"
                 android:src="@drawable/dummy_news"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="150dp" />
 
-            <TextView
-                android:id="@+id/title"
-                android:textColor="#262626"
-                android:layout_below="@id/image"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                tools:text="Brochure"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/desc"
-                android:layout_below="@id/title"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:maxLines="3"
-                android:drawablePadding="10dp"
-                android:ellipsize="end"
-                android:textSize="@dimen/fo_font_11"
-                tools:text="Description jaklsjdlja akjdlakjdlaj/.,aak;slk;d ;lak;dlak a;lk;slka ;;a;lke;ak lak sadla lkjdlajdlajlsdkj akjdlkajslkjdlaj akjdlakjdlkajldj ;ajd;ajdjalksjd ;adj;akjd;ajs; ;aljd;ajd;a ;k;alkd a; Description jaklsjdlja akjdlakjdlaj/.,aak;slk;d ;lak;dlak a;lk;slka ;;a;lke;ak lak sadla lkjdlajdlajlsdkj akjdlkajslkjdlaj akjdlakjdlkajldj ;ajd;ajdjalksjd ;adj;akjd;ajs; ;aljd;ajd;a ;k;alkd a;"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:id="@+id/sample"
+                    android:layout_width="@dimen/fo_spacing_24"
+                    android:layout_height="@dimen/fo_spacing_24"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="@dimen/fo_spacing_10"
+                    android:padding="@dimen/fo_spacing_tiny"
+                    android:background="@drawable/bg_icon_circle_primary">
+
+                    <ImageView
+                        android:layout_width="@dimen/fo_spacing_20"
+                        android:layout_height="@dimen/fo_spacing_20"
+                        android:src="@drawable/ic_news_white"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:textColor="#262626"
+                        android:layout_below="@id/image"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="@dimen/fo_spacing_10"
+                        tools:text="Brochure"
+                        android:textSize="@dimen/fo_font_small"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/desc"
+                        android:layout_below="@id/title"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="@dimen/fo_spacing_10"
+                        android:layout_marginRight="16dp"
+                        android:maxLines="3"
+                        android:drawablePadding="10dp"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/fo_font_11"
+                        tools:text="Description jaklsjdlja akjdlakjdlaj/.,aak;slk;d ;lak;dlak a;lk;slka ;;a;lke;ak lak sadla lkjdlajdlajlsdkj akjdlkajslkjdlaj akjdlakjdlkajldj ;ajd;ajdjalksjd ;adj;akjd;ajs; ;aljd;ajd;a ;k;alkd a; Description jaklsjdlja akjdlakjdlaj/.,aak;slk;d ;lak;dlak a;lk;slka ;;a;lke;ak lak sadla lkjdlajdlajlsdkj akjdlkajslkjdlaj akjdlakjdlkajldj ;ajd;ajdjalksjd ;adj;akjd;ajs; ;aljd;ajd;a ;k;alkd a;"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 

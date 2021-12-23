@@ -9,11 +9,7 @@ import com.strategies360.mililani2.R.layout
 import com.strategies360.mililani2.adapter.recycler.SubCategoryDetailsProductAdapter.ViewHolder
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.model.remote.caffe.AllowedValues
-import kotlinx.android.synthetic.main.adapter_sub_category_detail_product.view.btn_checked
-import kotlinx.android.synthetic.main.adapter_sub_category_detail_product.view.img_checked
-import kotlinx.android.synthetic.main.adapter_sub_category_detail_product.view.img_unchecked
-import kotlinx.android.synthetic.main.adapter_sub_category_detail_product.view.txt_name
-import kotlinx.android.synthetic.main.adapter_sub_category_detail_product.view.txt_price
+import kotlinx.android.synthetic.main.adapter_sub_category_detail_product.view.*
 
 class SubCategoryDetailsProductAdapter : DataListRecyclerViewAdapter<AllowedValues, ViewHolder>() {
 
@@ -44,9 +40,9 @@ class SubCategoryDetailsProductAdapter : DataListRecyclerViewAdapter<AllowedValu
     fun bindView() {
       val data = getDataList()[adapterPosition]
       if (data.amount != null) {
-        itemView.txt_price.text = "$" + data.amount.toString() + "0"
+        itemView.txt_price.text = "$" + data.amount.toString()
       } else {
-        itemView.txt_price.text = "0"
+        itemView.txt_price.text = ""
       }
       itemView.txt_name.text = data.name
       itemView.btn_checked.setOnClickListener {

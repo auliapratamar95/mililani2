@@ -82,77 +82,230 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/layout_header_home"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="@dimen/margin_large"
-                android:background="@drawable/fo_bg_bottom_sheet"
-                android:orientation="vertical">
-
-                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/layout_header_home"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:background="@drawable/fo_bg_bottom_sheet"
+                    android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:scrollbars="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:layout_marginStart="@dimen/margin_large"
-                        android:padding="@dimen/margin_default">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_height="wrap_content"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:text="@string/recent_news"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/fo_font_16"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|right"
-                        android:layout_marginTop="@dimen/margin_large"
-                        android:layout_marginEnd="@dimen/margin_xlarge"
-                        tools:ignore="RtlHardcoded">
-
-                        <TextView
                             android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginStart="@dimen/margin_large"
+                                android:padding="@dimen/margin_default">
+
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:text="@string/recent_news"
+                                    android:textStyle="bold"
+                                    android:textSize="@dimen/fo_font_16"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/btn_open_news"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|right"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginEnd="@dimen/margin_xlarge"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:text="@string/see_all"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:textStyle="bold"
+                                    android:gravity="right"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/newsViewPager"
                             android:layout_width="match_parent"
-                            android:text="@string/see_all"
+                            android:layout_height="@dimen/fo_size_125"
+                            android:foregroundGravity="center"
+                            android:overScrollMode="never"
+                            android:clipToPadding="false"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginStart="@dimen/margin_large"
+                                android:padding="@dimen/margin_default">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/quick_links"
+                                    android:textSize="@dimen/fo_font_16"
+                                    android:textStyle="bold" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|right"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginEnd="@dimen/margin_xlarge"
+                                tools:ignore="RtlHardcoded">
+
+                                <TextView
+                                    android:id="@+id/btn_edit_quick_link"
+                                    android:layout_width="@dimen/fo_size_50"
+                                    android:layout_height="match_parent"
+                                    android:gravity="right|center"
+                                    android:text="@string/edit"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/fo_font_tiny"
+                                    android:textStyle="bold" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <include
+                            layout="@layout/layout_menu_quick_link"/>
+
+                        <Button
+                            android:id="@+id/btn_logout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Logout"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/fo_font_tiny"
-                            android:textStyle="bold"
-                            android:gravity="right"/>
+                            android:layout_margin="@dimen/margin_xxlarge"
+                            android:visibility="gone"
+                            android:background="@drawable/bg_button_round_grey_primary"/>
 
-                    </RelativeLayout>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btn_pool_schedule"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/fo_spacing_200"
+                            app:cardCornerRadius="8dp"
+                            android:elevation="10dp"
+                            android:layout_margin="@dimen/margin_large"
+                            android:padding="@dimen/margin_default">
 
-                </LinearLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/newsViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/fo_spacing_250"
-                    android:foregroundGravity="center"
-                    android:overScrollMode="never"
-                    android:clipToPadding="false"/>
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="fitXY"
+                                    android:foreground="@drawable/bg_dark_overlay"
+                                    android:src="@drawable/img_pool_schedule"/>
 
-                <Button
-                    android:id="@+id/btn_logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Logout"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_margin="@dimen/margin_xxlarge"
-                    android:visibility="gone"
-                    android:background="@drawable/bg_button_round_grey_primary"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="@string/pool_schedule"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/fo_size_20"
+                                    android:textStyle="bold" />
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_contact_us"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/fo_spacing_125"
+                            android:layout_margin="@dimen/margin_large"
+                            app:cardCornerRadius="8dp"
+                            app:cardBackgroundColor="@color/colorPrimary"
+                            android:layout_gravity="center"
+                            android:elevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.5"
+                                    android:padding="@dimen/margin_default"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/contact_us"
+                                        android:textSize="@dimen/fo_font_large"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Questions? Send us an email"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="right">
+
+                                    <ImageView
+                                        android:layout_width="150dp"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/img_contact" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
 
             </LinearLayout>
+
 
         </RelativeLayout>
 

@@ -254,24 +254,37 @@
 
               </LinearLayout>
 
-              <EditText
-                  android:id="@+id/edit_custom_tip"
+              <androidx.appcompat.widget.LinearLayoutCompat
+                  android:id="@+id/layout_custom_tip"
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+                  android:layout_height="wrap_content"
                   android:layout_marginTop="@dimen/margin_default"
-                  android:layout_marginStart="@dimen/margin_small"
                   android:layout_marginEnd="@dimen/margin_small"
-                  android:hint="@string/custom_tip"
-                  android:imeOptions="actionNext"
-                  android:backgroundTint="@color/colorPrimary"
-                  android:importantForAutofill="no"
-                  android:inputType="textFilter|textNoSuggestions|phone"
                   android:padding="@dimen/margin_default"
-                  android:textColorHint="@color/Register_Text_Hint"
-                  android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
-                  tools:ignore="TextFields"
-                  android:visibility="gone"/>
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/fo_font_16"
+                    android:text="$"/>
+
+                <EditText
+                    android:id="@+id/edit_custom_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/custom_tip"
+                    android:imeOptions="actionNext"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:importantForAutofill="no"
+                    android:inputType="textFilter|textNoSuggestions|phone"
+                    android:textColorHint="@color/Register_Text_Hint"
+                    android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
+                    tools:ignore="TextFields"
+                    />
+
+              </androidx.appcompat.widget.LinearLayoutCompat>
 
               <View
                   android:layout_width="match_parent"
@@ -478,6 +491,7 @@
                   android:layout_height="match_parent"
                   android:padding="@dimen/margin_default"
                   android:scrollbars="vertical"
+                  tools:visibility="gone"
                   app:layout_behavior="@string/appbar_scrolling_view_behavior"
                   tools:listitem="@layout/adapter_cart"/>
 
@@ -510,6 +524,13 @@
                       android:layout_marginTop="@dimen/margin_xsmall"/>
 
                   <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/tip"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:layout_marginTop="@dimen/margin_xsmall"/>
+
+                  <TextView
                       android:id="@+id/btn_promo"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -517,6 +538,7 @@
                       android:textSize="@dimen/fo_font_tiny"
                       android:textColor="@color/primary_card"
                       android:layout_marginTop="@dimen/margin_xsmall"
+                      android:visibility="gone"
                       android:foreground="?attr/selectableItemBackground"/>
 
                   <TextView
@@ -553,11 +575,19 @@
                       android:layout_marginTop="@dimen/margin_xsmall"/>
 
                   <TextView
+                      android:id="@+id/txt_tip"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       tools:text="3.45"
                       android:textSize="@dimen/fo_font_tiny"
-                      android:visibility="invisible"
+                      android:layout_marginTop="@dimen/margin_xsmall"/>
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      tools:text="3.45"
+                      android:textSize="@dimen/fo_font_tiny"
+                      android:visibility="gone"
                       android:layout_marginTop="@dimen/margin_xsmall"/>
 
                   <TextView

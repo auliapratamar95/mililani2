@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.zxing.Result
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.BottomMenuNavigationActivity
+import com.strategies360.mililani2.activity.HelpMtaActivity
 import com.strategies360.mililani2.activity.SubmitFinishMtaCardActivity
 import com.strategies360.mililani2.activity.SubmitManuallyMtaCardActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
@@ -26,152 +27,156 @@ import kotlinx.android.synthetic.main.fragment_submit_scan_mta_card.*
 import me.dm7.barcodescanner.core.IViewFinder
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
-class SubmitScanMtaCardFragment : CoreFragment(), ZXingScannerView.ResultHandler, View.OnClickListener{
+class SubmitScanMtaCardFragment : CoreFragment(), ZXingScannerView.ResultHandler,
+    View.OnClickListener {
 
-  private lateinit var mScannerView: ZXingScannerView
+    private lateinit var mScannerView: ZXingScannerView
 
-  private var code: String = ""
+    private var code: String = ""
 
-  /** The view model for sign in */
-  private val submitMTACardViewModel by lazy {
-    ViewModelProviders.of(this)
-        .get(SubmitMTACardViewModel::class.java)
-  }
-
-  override val viewRes = R.layout.fragment_submit_scan_mta_card
-
-  override fun onViewCreated(
-    view: View,
-    savedInstanceState: Bundle?
-  ) {
-    super.onViewCreated(view, savedInstanceState)
-
-    btn_manually_mta_card.setOnClickListener(this)
-    btn_skip_personal_information.setOnClickListener(this)
-
-    initViewModel()
-    initBarcodeMTA()
-  }
-
-  override fun onStart() {
-    mScannerView.startCamera()
-    mScannerView.setAutoFocus(true)
-    doRequestPermission()
-    super.onStart()
-  }
-
-  private fun doRequestPermission() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      if (requireContext().checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-        requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
-      }
+    /** The view model for sign in */
+    private val submitMTACardViewModel by lazy {
+        ViewModelProviders.of(this)
+            .get(SubmitMTACardViewModel::class.java)
     }
-  }
 
-  override fun onRequestPermissionsResult(
-    requestCode: Int,
-    permissions: Array<out String>,
-    grantResults: IntArray
-  ) {
-    when (requestCode) {
-      100 -> {
-        mScannerView.startCamera()
+    override val viewRes = R.layout.fragment_submit_scan_mta_card
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btn_manually_mta_card.setOnClickListener(this)
+        btn_skip_personal_information.setOnClickListener(this)
+
+        initViewModel()
         initBarcodeMTA()
-      }
-      else -> {
-        /* nothing to do in here */
-      }
-    }
-  }
-
-  override fun onPause() {
-    mScannerView.stopCamera()
-    super.onPause()
-  }
-
-  private fun initBarcodeMTA() {
-    mScannerView = object : ZXingScannerView(context) {
-      override fun createViewFinderView(context: Context?): IViewFinder {
-        return CustomViewFinderView(context!!)
-      }
     }
 
-    mScannerView.setAutoFocus(true)
-    mScannerView.setResultHandler(this)
-    frame_layout_camera.addView(mScannerView)
-  }
-
-  override fun onClick(v: View?) {
-    when (v?.id) {
-      R.id.btn_manually_mta_card -> {
-        mScannerView.resumeCameraPreview(this)
-        SubmitManuallyMtaCardActivity.launchIntent(requireContext(), false)
-      }
-      R.id.btn_skip_personal_information -> {
-        mScannerView.resumeCameraPreview(this)
-        BottomMenuNavigationActivity.launchIntent(requireContext())
-      }
-      else -> {
-        /* nothing to do in here */
-      }
-    }
-  }
-
-  override fun handleResult(rawResult: Result?) {
-    try {
-      val  notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-      val r = RingtoneManager.getRingtone(context, notification)
-      val mtaCardRequest = MTACardRequest()
-      r.play()
-      code = rawResult?.text.toString()
-
-      mtaCardRequest.cardNumber = code
-      submitMTACard(mtaCardRequest)
-    } catch (e: Exception) {
-
+    override fun onStart() {
+        mScannerView.startCamera()
+        mScannerView.setAutoFocus(true)
+        doRequestPermission()
+        super.onStart()
     }
 
-  }
+    private fun doRequestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (requireContext().checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
+            }
+        }
+    }
 
-  private fun initViewModel() {
-    submitMTACardViewModel.liveData.observe(viewLifecycleOwner, Observer {
-      when (it?.status) {
-        Resource.LOADING -> onSubmitMTACardLoading()
-        Resource.ERROR -> onSubmitMTACardFailure(it.error)
-        Resource.SUCCESS -> onSubmitMTACardSuccess(it.data!!)
-      }
-    })
-  }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            100 -> {
+                mScannerView.startCamera()
+                initBarcodeMTA()
+            }
+            else -> {
+                /* nothing to do in here */
+            }
+        }
+    }
 
-  /** Load user's profile from a remote server (async)  */
-  private fun submitMTACard(data: MTACardRequest) {
-    submitMTACardViewModel.submitInMililani(data)
-  }
+    override fun onPause() {
+        mScannerView.stopCamera()
+        super.onPause()
+    }
 
-  private fun onSubmitMTACardLoading() {
-    activity?.let {
-      Common.showProgressDialog(it, onBackPress = {
-        submitMTACardViewModel.cancelSubmitMTACArd()
+    private fun initBarcodeMTA() {
+        mScannerView = object : ZXingScannerView(context) {
+            override fun createViewFinderView(context: Context?): IViewFinder {
+                return CustomViewFinderView(context!!)
+            }
+        }
+
+        mScannerView.setAutoFocus(true)
+        mScannerView.setResultHandler(this)
+        frame_layout_camera.addView(mScannerView)
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn_manually_mta_card -> {
+                mScannerView.resumeCameraPreview(this)
+                SubmitManuallyMtaCardActivity.launchIntent(requireContext(), false)
+            }
+            R.id.btn_skip_personal_information -> {
+                mScannerView.resumeCameraPreview(this)
+                BottomMenuNavigationActivity.launchIntent(requireContext())
+            }
+            R.id.btn_help -> {
+                HelpMtaActivity.launchIntent(requireContext())
+            }
+            else -> {
+                /* nothing to do in here */
+            }
+        }
+    }
+
+    override fun handleResult(rawResult: Result?) {
+        try {
+            val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val r = RingtoneManager.getRingtone(context, notification)
+            val mtaCardRequest = MTACardRequest()
+            r.play()
+            code = rawResult?.text.toString()
+
+            mtaCardRequest.cardNumber = code
+            submitMTACard(mtaCardRequest)
+        } catch (e: Exception) {
+
+        }
+
+    }
+
+    private fun initViewModel() {
+        submitMTACardViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            when (it?.status) {
+                Resource.LOADING -> onSubmitMTACardLoading()
+                Resource.ERROR -> onSubmitMTACardFailure(it.error)
+                Resource.SUCCESS -> onSubmitMTACardSuccess(it.data!!)
+            }
+        })
+    }
+
+    /** Load user's profile from a remote server (async)  */
+    private fun submitMTACard(data: MTACardRequest) {
+        submitMTACardViewModel.submitInMililani(data)
+    }
+
+    private fun onSubmitMTACardLoading() {
+        activity?.let {
+            Common.showProgressDialog(it, onBackPress = {
+                submitMTACardViewModel.cancelSubmitMTACArd()
+                Common.dismissProgressDialog()
+            })
+        }
+    }
+
+    private fun onSubmitMTACardSuccess(response: SignInMililaniResponse) {
         Common.dismissProgressDialog()
-      })
+        if (response.data != null) {
+            SubmitFinishMtaCardActivity.launchIntent(requireContext(), code)
+            requireActivity().finish()
+        }
     }
-  }
 
-  private fun onSubmitMTACardSuccess(response: SignInMililaniResponse) {
-    Common.dismissProgressDialog()
-    if (response.data != null) {
-      SubmitFinishMtaCardActivity.launchIntent(requireContext(), code)
-      requireActivity().finish()
+    private fun onSubmitMTACardFailure(error: AppError) {
+        activity?.let {
+            Common.dismissProgressDialog()
+            if (error.code == 1000)
+                SubmitFinishMtaCardActivity.launchIntent(requireContext(), code)
+            else
+                Common.showMessageDialog(it, "Error", "Card Not Found")
+        }
     }
-  }
-
-  private fun onSubmitMTACardFailure(error: AppError) {
-    activity?.let {
-      Common.dismissProgressDialog()
-      if (error.code == 1000)
-        SubmitFinishMtaCardActivity.launchIntent(requireContext(), code)
-      else
-        Common.showMessageDialog(it, "Error", error.message)
-    }
-  }
 }

@@ -15,15 +15,15 @@
         <ImageView
             android:id="@+id/img_product"
             android:layout_width="@dimen/fo_spacing_88"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/fo_spacing_88"
             android:layout_margin="@dimen/margin_default" />
 
         <LinearLayout
-            android:id="@+id/btn_layout_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/fo_spacing_normal">
+            android:padding="@dimen/fo_spacing_tiny"
+            android:layout_marginStart="@dimen/margin_default"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,8 +72,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="#262626"
-                    android:textSize="@dimen/fo_font_16"
                     android:textStyle="bold"
+                    android:maxLines="1"
                     tools:text="Let's Danse 2021" />
 
             </LinearLayout>
@@ -82,21 +82,103 @@
                 android:id="@+id/txt_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fo_spacing_tiny"
                 android:textSize="@dimen/fo_font_tiny"
-                tools:text="Fresh brewed drip coffee however you take it. " />
+                android:maxLines="2"
+                tools:text="Similar to drip coffee but made with shots of espresso resulting in a smooth cup of coffee. Tell us how you like it and we'll make it; cream, vanilla syrup, extra ice? " />
 
             <TextView
                 android:id="@+id/txt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#262626"
-                android:textSize="@dimen/fo_font_15"
+                android:textSize="@dimen/fo_font_12"
                 android:textStyle="bold"
-                android:layout_marginTop="-25dp"
+                android:layout_marginTop="@dimen/fo_spacing_tiny"
                 tools:text="$3.25 - $3.95" />
 
         </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/btn_layout_class"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="@dimen/fo_spacing_tiny"-->
+<!--            android:layout_marginStart="@dimen/margin_default">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="right"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:visibility="gone">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/margin_default"-->
+<!--                        android:layout_marginTop="@dimen/margin_small"-->
+<!--                        android:src="@drawable/ic_calender_active" />-->
+
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="@dimen/fo_spacing_90"-->
+<!--                        android:layout_height="@dimen/fo_spacing_20"-->
+<!--                        android:layout_marginTop="@dimen/margin_small"-->
+<!--                        android:background="@drawable/bg_button_registered">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/txt_status"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:gravity="center"-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="@dimen/fo_font_9"-->
+<!--                            android:textStyle="bold"-->
+<!--                            tools:text="Registered" />-->
+
+<!--                    </RelativeLayout>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_title"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:textColor="#262626"-->
+<!--                    android:textSize="@dimen/fo_font_16"-->
+<!--                    android:textStyle="bold"-->
+<!--                    tools:text="Let's Danse 2021" />-->
+
+<!--            </LinearLayout>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txt_description"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/fo_spacing_tiny"-->
+<!--                android:maxLines="2"-->
+<!--                android:textSize="@dimen/fo_font_tiny"-->
+<!--                tools:text="Fresh brewed drip coffee however you take it. " />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txt_price"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="#262626"-->
+<!--                android:textSize="@dimen/fo_font_15"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginTop="-25dp"-->
+<!--                tools:text="$3.25 - $3.95" />-->
+
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
+import com.strategies360.mililani2.activity.CaffeActivity
+import com.strategies360.mililani2.activity.ThakyouPageActivity
 import com.strategies360.mililani2.adapter.recycler.CartAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
 import com.strategies360.mililani2.fragment.core.DataListFragment
@@ -30,41 +32,19 @@ import com.strategies360.mililani2.viewmodel.CartListViewModel
 import com.strategies360.mililani2.viewmodel.CheckoutViewModel
 import com.vicmikhailau.maskededittext.MaskedFormatter
 import com.vicmikhailau.maskededittext.MaskedWatcher
-import kotlinx.android.synthetic.main.fragment_checkout.btn_checkout
-import kotlinx.android.synthetic.main.fragment_checkout.edit_card_number
-import kotlinx.android.synthetic.main.fragment_checkout.edit_custom_tip
-import kotlinx.android.synthetic.main.fragment_checkout.edit_cvv
-import kotlinx.android.synthetic.main.fragment_checkout.edit_email
-import kotlinx.android.synthetic.main.fragment_checkout.edit_expiration
-import kotlinx.android.synthetic.main.fragment_checkout.edit_full_name
-import kotlinx.android.synthetic.main.fragment_checkout.edit_name_on_card
+import kotlinx.android.synthetic.main.fragment_checkout.*
 import kotlinx.android.synthetic.main.fragment_checkout.edit_phone_number
-import kotlinx.android.synthetic.main.fragment_checkout.edit_postal_code
-import kotlinx.android.synthetic.main.fragment_checkout.edit_select_time
-import kotlinx.android.synthetic.main.fragment_checkout.layout_content_cart
-import kotlinx.android.synthetic.main.fragment_checkout.layout_no_tip
-import kotlinx.android.synthetic.main.fragment_checkout.layout_tip_10
-import kotlinx.android.synthetic.main.fragment_checkout.layout_tip_15
-import kotlinx.android.synthetic.main.fragment_checkout.layout_tip_5
-import kotlinx.android.synthetic.main.fragment_checkout.layout_tip_custom
-import kotlinx.android.synthetic.main.fragment_checkout.progress_bar
-import kotlinx.android.synthetic.main.fragment_checkout.recycler_cart
-import kotlinx.android.synthetic.main.fragment_checkout.spinner_sample_product
-import kotlinx.android.synthetic.main.fragment_checkout.txt_amount_tip_10
-import kotlinx.android.synthetic.main.fragment_checkout.txt_amount_tip_15
-import kotlinx.android.synthetic.main.fragment_checkout.txt_amount_tip_5
-import kotlinx.android.synthetic.main.fragment_checkout.txt_custom_tip
-import kotlinx.android.synthetic.main.fragment_checkout.txt_no_tip
-import kotlinx.android.synthetic.main.fragment_checkout.txt_order_total
-import kotlinx.android.synthetic.main.fragment_checkout.txt_percent_tip_10
-import kotlinx.android.synthetic.main.fragment_checkout.txt_percent_tip_15
-import kotlinx.android.synthetic.main.fragment_checkout.txt_percent_tip_5
-import kotlinx.android.synthetic.main.fragment_checkout.txt_subtotal
-import kotlinx.android.synthetic.main.fragment_checkout.txt_tax
+import kotlinx.android.synthetic.main.fragment_login_phone_number.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Date
+import android.text.Editable
+
+import android.text.TextWatcher
+
+
+
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CheckoutFragment : DataListFragment(), View.OnClickListener {
@@ -79,6 +59,7 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
   private var tip5: Double = 0.0
   private var tip10: Double = 0.0
   private var tip15: Double = 0.0
+  private var orderTotal: Double = 0.0
 
   private val viewModel by lazy {
     ViewModelProviders.of(this)
@@ -116,9 +97,12 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
 
   @SuppressLint("SetTextI18n")
   private fun initData(cart: Cart?) {
+    var customTip = "0.00"
     tip5 = (cart?.total?.amount!! * 5) / 100
     tip10 = (cart.total?.amount!! * 10) / 100
     tip15 = (cart.total?.amount!! * 15) / 100
+    orderTotal = cart.total?.amount!!
+    txt_tip.text = "$0.00"
 
     txt_amount_tip_5.text = setFormatPriceValue(tip5)
     txt_amount_tip_10.text = setFormatPriceValue(tip10)
@@ -126,7 +110,32 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
 
     txt_subtotal.text = "$" + cart.subTotal?.amount.toString()
     txt_tax.text = "$" + cart.totalTax?.amount.toString()
-    txt_order_total.text = "$" + cart.total?.amount.toString()
+
+    txt_order_total.text = "$$orderTotal"
+
+    edit_custom_tip.addTextChangedListener(object : TextWatcher {
+      override fun afterTextChanged(s: Editable) {}
+      override fun beforeTextChanged(
+        s: CharSequence, start: Int,
+        count: Int, after: Int
+      ) {
+      }
+
+      override fun onTextChanged(
+        s: CharSequence, start: Int,
+        before: Int, count: Int
+      ) {
+        if (s.isNotEmpty()) {
+          var valueTip = 0.00
+          customTip = s.toString()
+          valueTip = customTip.toDouble() + orderTotal
+          val df = DecimalFormat("#.##")
+          df.format(valueTip)
+          txt_tip.text = "$$customTip"
+          txt_order_total.text = "$" + df.format(valueTip)
+        }
+      }
+    })
   }
 
   private fun initViewModel() {
@@ -153,6 +162,15 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
         Resource.ERROR -> onGetCartFailure()
       }
     })
+
+    checkoutViewModel.resourceCheckout.observe(viewLifecycleOwner, Observer {
+      when (it?.status) {
+        Resource.LOADING -> onCheckoutLoading()
+        Resource.SUCCESS -> onCheckoutSuccess()
+        Resource.ERROR -> onCheckoutFailure(it.error)
+      }
+    })
+
     viewModel.dataList.observe(viewLifecycleOwner, Observer {
       updateDataList(it)
     })
@@ -167,7 +185,7 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
     adapter.emptyText = resources.getString(R.string.info_no_data)
     adapter.onItemCartClick = { pos, data ->
       val categoryId: String = Common.getCookies()
-      viewModel.deleteCartFromRemote(data.id.toString(), categoryId)
+      viewModel.deleteCartFromRemote(data.id.toString(), categoryId, true)
     }
     adapter.setDiffUtilNotifier { oldList, newList ->
       OrderItems.DiffUtilCallback(oldList, newList)
@@ -222,6 +240,18 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
     if (error.code == 400) Common.showMessageDialog(requireContext(), " We're sorry... ", "Given schedule time is not available")
   }
 
+  private fun onCheckoutLoading() {}
+
+  private fun onCheckoutSuccess() {
+    ThakyouPageActivity.launchIntent(requireContext())
+  }
+
+  private fun onCheckoutFailure(error: AppError) {
+    progress_bar.visibility = View.GONE
+    layout_content_cart.visibility = View.VISIBLE
+    Common.showMessageDialog(requireContext(), "Error", error.message)
+  }
+
   private fun onGetPayTicketLoading() {
     progress_bar.visibility = View.VISIBLE
     layout_content_cart.visibility = View.GONE
@@ -244,6 +274,7 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
     layout_content_cart.visibility = View.VISIBLE
   }
 
+  @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
   override fun onClick(view: View?) {
     if (view == layout_no_tip) {
       layout_no_tip.background = requireContext().getDrawable(R.drawable.bg_button_round_primary)
@@ -267,7 +298,9 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
       layout_tip_custom.background =
         requireContext().getDrawable(R.drawable.bg_button_round_grey_primary)
       txt_custom_tip.setTextColor(App.context.getColor(R.color.colorPrimary))
-      edit_custom_tip.visibility = View.GONE
+      layout_custom_tip.visibility = View.GONE
+      txt_tip.text = "$0.00"
+      customOrderTotal(0.00)
     } else if (view == layout_tip_5) {
       tip = tip5
       layout_no_tip.background =
@@ -291,7 +324,9 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
       layout_tip_custom.background =
         requireContext().getDrawable(R.drawable.bg_button_round_grey_primary)
       txt_custom_tip.setTextColor(App.context.getColor(R.color.colorPrimary))
-      edit_custom_tip.visibility = View.GONE
+      layout_custom_tip.visibility = View.GONE
+      txt_tip.text = txt_amount_tip_5.text.toString()
+      customOrderTotal(tip5)
     } else if (view == layout_tip_10) {
       tip = tip10
       layout_no_tip.background =
@@ -315,7 +350,9 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
       layout_tip_custom.background =
         requireContext().getDrawable(R.drawable.bg_button_round_grey_primary)
       txt_custom_tip.setTextColor(App.context.getColor(R.color.colorPrimary))
-      edit_custom_tip.visibility = View.GONE
+      layout_custom_tip.visibility = View.GONE
+      txt_tip.text = txt_amount_tip_10.text.toString()
+      customOrderTotal(tip10)
     } else if (view == layout_tip_15) {
       tip = tip15
       layout_no_tip.background =
@@ -339,7 +376,9 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
       layout_tip_custom.background =
         requireContext().getDrawable(R.drawable.bg_button_round_grey_primary)
       txt_custom_tip.setTextColor(App.context.getColor(R.color.colorPrimary))
-      edit_custom_tip.visibility = View.GONE
+      layout_custom_tip.visibility = View.GONE
+      txt_tip.text = txt_amount_tip_15.text.toString()
+      customOrderTotal(tip15)
     } else if (view == layout_tip_custom) {
       layout_no_tip.background =
         requireContext().getDrawable(R.drawable.bg_button_round_grey_primary)
@@ -363,11 +402,11 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
       layout_tip_custom.background =
         requireContext().getDrawable(R.drawable.bg_button_round_primary)
       txt_custom_tip.setTextColor(App.context.getColor(R.color.white))
-      edit_custom_tip.visibility = View.VISIBLE
+      layout_custom_tip.visibility = View.VISIBLE
     } else if (view == edit_select_time) {
       openPickup()
     } else if (view == btn_checkout) {
-      if (edit_custom_tip.visibility == View.VISIBLE) {
+      if (layout_custom_tip.visibility == View.VISIBLE) {
         val customTip = edit_custom_tip.text.toString()
         tip = customTip.toDouble()
       }
@@ -449,7 +488,7 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
   private fun setFormatPriceValue(priceValue: Double): String {
     val formatter = DecimalFormat("#.##")
     formatter.roundingMode = RoundingMode.CEILING
-    return formatter.format(priceValue)
+    return "$" + formatter.format(priceValue)
   }
 
   private fun setMask(mask: String) {
@@ -457,5 +496,19 @@ class CheckoutFragment : DataListFragment(), View.OnClickListener {
     formatter?.let{
       edit_expiration.addTextChangedListener(MaskedWatcher(it, edit_expiration))
     }
+  }
+
+  @SuppressLint("SetTextI18n")
+  private fun customOrderTotal(tip: Double) {
+    val valueTip: Double = when {
+        tip != 0.00 -> {
+          tip + orderTotal
+        } else -> {
+          orderTotal
+        }
+    }
+    val df = DecimalFormat("#.##")
+    df.format(valueTip)
+    txt_order_total.text = "$" + df.format(valueTip)
   }
 }

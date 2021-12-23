@@ -58,6 +58,20 @@
           android:textSize="@dimen/text_xlarge"
           />
 
+      <Button
+          android:id="@+id/btn_help"
+          android:layout_width="@dimen/fo_size_60"
+          android:layout_height="@dimen/fo_size_27"
+          android:layout_marginTop="@dimen/margin_default"
+          android:text="@string/Help"
+          android:textSize="@dimen/fo_font_tiny"
+          android:textAllCaps="false"
+          android:foreground="?attr/selectableItemBackground"
+          android:background="@drawable/bg_button_round_grey_primary_two"
+          android:drawableEnd="@drawable/ic_question"
+          android:padding="@dimen/margin_small"
+          android:gravity="center"/>
+
       <FrameLayout
           android:id="@+id/frame_layout_camera"
           android:layout_width="match_parent"

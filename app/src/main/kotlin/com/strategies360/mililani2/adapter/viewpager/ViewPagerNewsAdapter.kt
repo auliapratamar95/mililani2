@@ -4,9 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.text.HtmlCompat
 import androidx.viewpager.widget.PagerAdapter
+import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
+import com.strategies360.mililani2.activity.NewsActivity
 import com.strategies360.mililani2.model.remote.news.News
 import kotlinx.android.synthetic.main.adapter_news.view.*
 
@@ -45,6 +48,9 @@ class ViewPagerNewsAdapter : PagerAdapter() {
     item.desc.text =
       HtmlCompat.fromHtml(models[position].postContent.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
 
+    item.btn_open_news.setOnClickListener {
+      NewsActivity.launchIntent(App.context)
+    }
     container.addView(item)
     return item
   }

@@ -8,6 +8,7 @@ import cat.ereza.customactivityoncrash.config.CaocConfig
 import com.ashokvarma.gander.Gander
 import com.ashokvarma.gander.persistence.GanderPersistence
 import com.crashlytics.android.Crashlytics
+import com.onesignal.OneSignal
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.account.AccountConstant
 import com.strategies360.mililani2.activity.SampleAuthActivity
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit
  * important initializations should take place here.
  */
 class App : Application() {
+    private val ONESIGNAL_APP_ID = "96dfcb3d-199e-4dff-9f0f-65df16c0c2c4"
 
     override fun onCreate() {
         super.onCreate()
@@ -44,6 +46,13 @@ class App : Application() {
 
         //Hawk
         Hawk.init(this).build()
+
+        // Enable verbose OneSignal logging to debug issues if needed.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this)
+
     }
 
     companion object {

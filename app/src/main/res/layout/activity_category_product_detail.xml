@@ -165,8 +165,7 @@
               android:layout_marginBottom="@dimen/fo_spacing_180"
               android:gravity="center">
 
-            <include
-                layout="@layout/fragment_category_product_detail"/>
+            <include layout="@layout/fragment_category_product_detail" />
 
           </RelativeLayout>
 

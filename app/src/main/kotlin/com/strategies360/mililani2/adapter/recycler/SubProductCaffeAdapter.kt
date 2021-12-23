@@ -46,7 +46,6 @@ class SubProductCaffeAdapter : DataListRecyclerViewAdapter<SubProductCaffe, View
       adapter.onCategorySubProductClick = {
         CategoryProductDetailActivity.launchIntent(App.context)
       }
-      adapter.notifyDataSetChanged()
       itemView.recycler_sub_product_caffe.adapter = adapter
       itemView.recycler_sub_product_caffe.layoutManager =
         LinearLayoutManager(
@@ -55,6 +54,8 @@ class SubProductCaffeAdapter : DataListRecyclerViewAdapter<SubProductCaffe, View
       itemView.recycler_sub_product_caffe.isNestedScrollingEnabled = false
 
       mLayoutManager = itemView.recycler_sub_product_caffe.layoutManager
+      adapter.notifyItemChanged(adapterPosition)
+
     }
   }
 }

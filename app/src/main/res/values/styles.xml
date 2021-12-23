@@ -17,6 +17,19 @@
         <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
     </style>
 
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorPrimary</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f
+        </item>
+    </style>
+
     <style name="AppTheme.Toolbar" parent="AppTheme">
         <!-- Color of the title text in the Toolbar -->
         <item name="android:textColorPrimary">@android:color/white</item>

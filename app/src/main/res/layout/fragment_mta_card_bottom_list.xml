@@ -30,26 +30,23 @@
                     android:id="@+id/btn_help"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/fo_spacing_30"
-                    android:padding="@dimen/margin_default"
-                    android:gravity="center"
                     android:foreground="?attr/selectableItemBackground"
-                    android:background="@drawable/bg_button_round_grey_primary_two">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/Help"
-                        android:textAllCaps="true"
-                        android:textSize="@dimen/fo_font_11"
-                        android:layout_marginStart="@dimen/margin_small"
-                        android:gravity="center"/>
+                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_question"
-                        android:layout_marginStart="@dimen/margin_default"
-                        android:layout_marginEnd="@dimen/margin_small"/>
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:src="@drawable/ic_mta_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/mta_cards"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/fo_font_11"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -137,7 +134,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:layout_marginTop="@dimen/margin_default"
             android:orientation="horizontal">
 
             <Button

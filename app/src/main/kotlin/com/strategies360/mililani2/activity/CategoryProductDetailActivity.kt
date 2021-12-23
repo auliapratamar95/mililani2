@@ -34,6 +34,7 @@ import com.strategies360.mililani2.model.remote.caffe.cart.CartModifiers
 import com.strategies360.mililani2.model.remote.caffe.cart.CartRequest
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
+import com.strategies360.mililani2.viewmodel.CartListViewModel
 import com.strategies360.mililani2.viewmodel.CategoryDetailsProductViewModel
 import com.strategies360.mililani2.viewmodel.SubmitDataCartViewModel
 import kotlinx.android.synthetic.main.activity_category_product_detail.appbar
@@ -77,9 +78,16 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
 
   private var currentQty = 1
 
+  private var isDetailOptionNotEmpty: Boolean = false
+
   private val viewModel by lazy {
     ViewModelProviders.of(this)
         .get(CategoryDetailsProductViewModel::class.java)
+  }
+
+  private val cartViewModel by lazy {
+    ViewModelProviders.of(this)
+      .get(CartListViewModel::class.java)
   }
 
   private val addCartViewModel by lazy {
@@ -153,6 +161,14 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       }
     }
 
+    cartViewModel.resource.observeForever {
+      when (it?.status) {
+        Resource.LOADING -> onDeleteLoading()
+        Resource.SUCCESS -> onDeleteSuccess()
+        Resource.ERROR -> onDeleteFailure(it.error)
+      }
+    }
+
     viewModel.dataList.observeForever {
       initRecyclerCategory(it)
     }
@@ -170,20 +186,35 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
   @SuppressLint("SimpleDateFormat")
   private fun onCartSuccess(response: PayloadResponse) {
     Common.dismissProgressDialog()
-    val costumerId: String = response.payload?.customer?.id.toString()
-//    val expiration = Date(System.currentTimeMillis() + 60 * 60 * 24000)
-//    val expires: String = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US)
-//        .format(expiration)
-//    val cookie: String =
-//      "customerId=" + costumerId + "; " +
-//          "path=/; " +
-//          "expires=" + expires
+    val customerId: String = response.payload?.customer?.id.toString()
 
-    if (!Hawk.contains(Constant.KEY_CUSTOMER_ID)) Hawk.put((Constant.KEY_CUSTOMER_ID), costumerId)
-    CartActivity.launchIntent(this)
+    if (!Hawk.contains(Constant.KEY_CUSTOMER_ID)) Hawk.put((Constant.KEY_CUSTOMER_ID), customerId)
+
+    if (Hawk.contains(Constant.ORDER_ID)) {
+      val orderId: String = Hawk.get(Constant.ORDER_ID)
+      val id: String = Common.getCookies()
+      cartViewModel.deleteCartFromRemote(orderId, id, false)
+    } else {
+      CartActivity.launchIntent(this)
+    }
   }
 
   private fun onCartFailure(error: AppError) {
+    Common.dismissProgressDialog()
+  }
+
+  private fun onDeleteLoading() {
+    Common.showProgressDialog(this)
+  }
+
+  @SuppressLint("SimpleDateFormat")
+  private fun onDeleteSuccess() {
+    Common.dismissProgressDialog()
+    Hawk.delete(Constant.ORDER_ID)
+    CartActivity.launchIntent(this)
+  }
+
+  private fun onDeleteFailure(error: AppError) {
     Common.dismissProgressDialog()
   }
 
@@ -267,24 +298,39 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
         }
       }
     }
-    customAdapter.setDataList(categoryProductList)
-    recycler_product_options.adapter = customAdapter
-    recycler_product_options.layoutManager =
-      LinearLayoutManager(
-          recycler_product_options.context, LinearLayoutManager.VERTICAL, false
-      )
 
-    recycler_product_options.isNestedScrollingEnabled = false
+    if (categoryProductList.size != 0) {
+      isDetailOptionNotEmpty = true
+      customAdapter.setDataList(categoryProductList)
+      recycler_product_options.adapter = customAdapter
+      recycler_product_options.layoutManager =
+        LinearLayoutManager(
+          recycler_product_options.context, LinearLayoutManager.VERTICAL, false
+        )
+
+      recycler_product_options.isNestedScrollingEnabled = false
+      recycler_product_options.visibility = View.VISIBLE
+    } else {
+      isDetailOptionNotEmpty = false
+      recycler_product_options.visibility = View.GONE
+    }
   }
 
   private fun initRecyclerModifiersGroup(categoryProductList: ArrayList<ModifierGroups>) {
     adapterModifiersGroup.setDataList(categoryProductList)
-    recycler_modifier_groups.adapter = adapterModifiersGroup
-    recycler_modifier_groups.layoutManager =
-      LinearLayoutManager(
+
+    if (categoryProductList.size != 0) {
+      recycler_modifier_groups.adapter = adapterModifiersGroup
+      recycler_modifier_groups.layoutManager =
+        LinearLayoutManager(
           recycler_modifier_groups.context, LinearLayoutManager.VERTICAL, false
-      )
-    recycler_modifier_groups.isNestedScrollingEnabled = false
+        )
+      recycler_modifier_groups.isNestedScrollingEnabled = false
+      recycler_modifier_groups.visibility = View.VISIBLE
+
+    } else {
+      recycler_modifier_groups.visibility = View.GONE
+    }
   }
 
   @SuppressLint("SetTextI18n")
@@ -357,9 +403,13 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
       priceProduct = amountRequired
       totalProduct = priceProduct!! * qty.toInt()
 
-      btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(
+      if (totalProduct != 0.0) {
+        btn_add_to_cart.text = getString(string.add_to_cart) + " - $" + setFormatPriceValue(
           totalProduct
-      )
+        )
+      } else {
+        btn_add_to_cart.text = getString(string.add_to_cart)
+      }
     } else {
       btn_add_to_cart.text = getString(string.add_to_cart)
     }
@@ -446,6 +496,8 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
     listSkus = listDetailSkus
     val listAmount: ArrayList<Double> = ArrayList()
     var amount: Double?
+    var minValueChar: String? = ""
+    var maxValueChar: String? = ""
 
     for (i in listSkus.indices) {
       amount = listSkus[i].priceSkus?.amount
@@ -465,11 +517,39 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
           minValue = listAmount[i]
         }
       }
-      txt_total_price.text = "$$minValue - $$maxValue"
+      minValueChar = if (minValue.toString().length == 3) {
+        minValue.toString() + "0"
+      } else {
+        minValue.toString()
+      }
+
+      maxValueChar = if (maxValue.toString().length == 3) {
+        maxValue.toString() + "0"
+      } else {
+        maxValue.toString()
+      }
+
+      if (minValueChar == maxValueChar) {
+        txt_total_price.text = "$$minValueChar"
+      } else {
+        txt_total_price.text = "$$minValueChar - $$maxValueChar"
+      }
     }
   }
 
   private fun generateCartRequestModel() {
+    if (Hawk.contains(Constant.REQUIRED_CHOICE_PRODUCT)) {
+      saveProductCart()
+    } else {
+      if (isDetailOptionNotEmpty) {
+        showErrorMessage()
+      } else {
+        saveNotChoice()
+      }
+    }
+  }
+
+  private fun saveProductCart(){
     val cartModifiersList: ArrayList<CartModifiers> = ArrayList()
     val cardRequest = CartRequest()
     val data: MutableMap<String, Any> = HashMap()
@@ -477,58 +557,72 @@ class CategoryProductDetailActivity: CoreActivity(), View.OnClickListener {
     var cookie = ""
     val notes: String = ed_special_intruction.text.toString()
 
-    if (Hawk.contains(Constant.REQUIRED_CHOICE_PRODUCT)) {
-      val listRequiredData: ArrayList<RequiredChoiceChecked> = Hawk.get(
-          Constant.REQUIRED_CHOICE_PRODUCT
-      )
-      if (listRequiredData.size != 0) {
-        if (listRequiredData.size >= listRequiredData[0].totalRequired!!) {
-          isRequiredChecked = true
-          for (i in listRequiredData.indices) {
-            val key : String = listRequiredData[i].category.toString()
-            val value : String = listRequiredData[i].name.toString()
-            data[key] = value
-          }
+    val listRequiredData: ArrayList<RequiredChoiceChecked> = Hawk.get(
+      Constant.REQUIRED_CHOICE_PRODUCT
+    )
+    if (listRequiredData.size != 0) {
+      if (listRequiredData.size >= listRequiredData[0].totalRequired!!) {
+        isRequiredChecked = true
+        for (i in listRequiredData.indices) {
+          val key : String = listRequiredData[i].category.toString()
+          val value : String = listRequiredData[i].name.toString()
+          data[key] = value
+        }
 
-          if (Hawk.contains(Constant.MODIFIER_CHOICE_PRODUCT)) {
-            val listModifierChoiceChecked: ArrayList<ModifierChoiceChecked> = Hawk.get(
-                Constant.MODIFIER_CHOICE_PRODUCT
-            )
-            if (listModifierChoiceChecked.size != 0) {
-              isModifierChecked = true
-              for (i in listModifierChoiceChecked.indices) {
-                val cartModifiers = CartModifiers()
-                cartModifiers.modifierGroupId = listModifierChoiceChecked[i].modifierGroupId
-                cartModifiers.modifierId = listModifierChoiceChecked[i].id
-                cartModifiersList.add(cartModifiers)
-              }
-              cardRequest.cartModifiers = cartModifiersList
-            } else {
-              isModifierChecked = false
+        if (Hawk.contains(Constant.MODIFIER_CHOICE_PRODUCT)) {
+          val listModifierChoiceChecked: ArrayList<ModifierChoiceChecked> = Hawk.get(
+            Constant.MODIFIER_CHOICE_PRODUCT
+          )
+          if (listModifierChoiceChecked.size != 0) {
+            isModifierChecked = true
+            for (i in listModifierChoiceChecked.indices) {
+              val cartModifiers = CartModifiers()
+              cartModifiers.modifierGroupId = listModifierChoiceChecked[i].modifierGroupId
+              cartModifiers.modifierId = listModifierChoiceChecked[i].id
+              cartModifiersList.add(cartModifiers)
             }
+            cardRequest.cartModifiers = cartModifiersList
           } else {
             isModifierChecked = false
           }
-
-          cardRequest.productId = productId
-          cardRequest.quantity = qty.toInt()
-          cardRequest.productOptions = data
-
-          if (notes != "")  cardRequest.notes = notes
-
-          if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
-            cookie = Common.getCookies()
-          }
-          addCartViewModel.submitDataCart(cookie, cardRequest)
         } else {
-          showErrorMessage()
+          isModifierChecked = false
         }
+
+        cardRequest.productId = productId
+        cardRequest.quantity = qty.toInt()
+        cardRequest.productOptions = data
+
+        if (notes != "")  cardRequest.notes = notes
+
+        if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
+          cookie = Common.getCookies()
+        }
+        addCartViewModel.submitDataCart(cookie, cardRequest)
       } else {
         showErrorMessage()
       }
     } else {
       showErrorMessage()
     }
+  }
+
+  private fun saveNotChoice() {
+    val cardRequest = CartRequest()
+    val qty = txt_qty.text.toString()
+    val notes: String = ed_special_intruction.text.toString()
+    var cookie = ""
+
+    cardRequest.productId = productId
+    cardRequest.quantity = qty.toInt()
+    cardRequest.productOptions = null
+
+    if (notes != "")  cardRequest.notes = notes
+
+    if (Hawk.contains(Constant.KEY_CUSTOMER_ID)) {
+      cookie = Common.getCookies()
+    }
+    addCartViewModel.submitDataCart(cookie, cardRequest)
   }
 
   private fun showErrorMessage() {

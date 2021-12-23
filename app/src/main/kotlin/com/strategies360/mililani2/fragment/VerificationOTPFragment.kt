@@ -59,7 +59,6 @@ class VerificationOTPFragment : CoreFragment() {
 
   private var f: FragmentActivity? = null
 
-  lateinit var auth: FirebaseAuth
   var job: Deferred<Unit>? = null
 
   var mCallback: OnVerificationStateChangedCallbacks? = null
@@ -89,29 +88,32 @@ class VerificationOTPFragment : CoreFragment() {
 
   private fun initDataOTP() {
     startFirebaseLogin()
+  }
+
+  private fun initView(auth: FirebaseAuth) {
     phoneNumber = (requireActivity().intent.getStringExtra(getString(string.prefs_phone_number)))
     phoneNumberMask = (requireActivity().intent.getStringExtra(getString(string.prefs_phone_number_unmask)))
-    txt_phone_number.text = phoneNumberMask
+    txt_phone_number.text = phoneNumber
     getOtpNumber(phoneNumber)
 
     txt_resend_code.setOnClickListener {
-      if (phoneNumber != "") getOtpNumber(phoneNumber)
+      if (phoneNumber != "") getOtpNumber("0895327005753")
     }
 
     btn_verify_otp.setOnClickListener {
       otp = edit_otp_view.otp.toString()
       if (otp != "") {
         val credential =
-          PhoneAuthProvider.getCredential(verificationCode, otp)
-        SigninWithPhone(credential)
+                PhoneAuthProvider.getCredential(verificationCode, otp)
+        SigninWithPhone(auth, credential)
       } else {
         Toast
-            .makeText(
-                requireContext(),
-                "Please type OTP number",
-                Toast.LENGTH_SHORT
-            )
-            .show()
+                .makeText(
+                        requireContext(),
+                        "Please type OTP number",
+                        Toast.LENGTH_SHORT
+                )
+                .show()
       }
     }
 
@@ -121,13 +123,13 @@ class VerificationOTPFragment : CoreFragment() {
 
   }
 
-  private fun SigninWithPhone(credential: PhoneAuthCredential) {
+  private fun SigninWithPhone(auth: FirebaseAuth, credential: PhoneAuthCredential) {
     auth.signInWithCredential(credential)
         .addOnCompleteListener { task ->
           if (task.isSuccessful) {
             if (job!!.isActive)
               job!!.cancel()
-            setPhoneNumber()
+            setPhoneNumber(auth)
           } else {
             Toast.makeText(requireContext(), "Incorrect OTP", Toast.LENGTH_SHORT)
                 .show()
@@ -135,7 +137,7 @@ class VerificationOTPFragment : CoreFragment() {
         }
   }
 
-  private fun setPhoneNumber() {
+  private fun setPhoneNumber(auth: FirebaseAuth) {
     val user = auth.currentUser
     try {
       // User ID token retrival  TODO: not sure what to do with the token yet.
@@ -164,24 +166,22 @@ class VerificationOTPFragment : CoreFragment() {
   }
 
   private fun startFirebaseLogin() {
-    auth = FirebaseAuth.getInstance()
+    val auth = FirebaseAuth.getInstance()
     mCallback = object : OnVerificationStateChangedCallbacks() {
       override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-        Toast.makeText(requireContext(), "verification completed", Toast.LENGTH_SHORT)
-            .show()
+//        Toast.makeText(requireContext(), "verification completed", Toast.LENGTH_SHORT)
+//            .show()
         otp = phoneAuthCredential.smsCode.toString()
         edit_otp_view?.setOTP(otp)
         isShowResendCode(true)
       }
 
       override fun onVerificationFailed(e: FirebaseException) {
-        Common.showMessageDialog(requireContext(), "", e.message, DialogInterface.OnDismissListener { LoginPhoneNumberActivity.launchIntent(requireContext()) })
-
-//        Toast.makeText(
-//            requireContext(), "The format of the phone number provided is incorrect.",
-//            Toast.LENGTH_SHORT
-//        ).show()
-        Log.d("FirebaseException", e.toString())
+        Common.showMessageDialog(requireContext(), "", e.message)
+        {
+          LoginPhoneNumberActivity.launchIntent(requireContext())
+        }
+        e.printStackTrace();
       }
 
       override fun onCodeSent(
@@ -195,7 +195,6 @@ class VerificationOTPFragment : CoreFragment() {
 
         if (edit_phone_number.text.isNotEmpty()) {
           phoneNumber = edit_phone_number.text.toString()
-//          txt_phone_number.text = phoneNumber
         }
 
         job = if (job == null || job!!.isCancelled)
@@ -206,6 +205,8 @@ class VerificationOTPFragment : CoreFragment() {
         }
       }
     }
+
+    initView(auth)
   }
 
   private fun countDownAsync() = GlobalScope.async(Dispatchers.IO) {
@@ -271,6 +272,7 @@ class VerificationOTPFragment : CoreFragment() {
   private fun signIn(tokenID: String?) {
     val signInMililaniRequest = SignInMililaniRequest()
     signInMililaniRequest.idToken = tokenID
+    signInMililaniRequest.oneSignalUserId = "96dfcb3d-199e-4dff-9f0f-65df16c0c2c4"
     authViewModel.signInMililani(signInMililaniRequest)
   }
 

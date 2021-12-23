@@ -216,6 +216,7 @@ class SplashScreenActivity : CoreActivity() {
             BottomMenuNavigationActivity.launchIntent(this)
           else
             LoginPhoneNumberActivity.launchIntent(this)
+//          BottomMenuNavigationActivity.launchIntent(this)
 
           finish()
         }

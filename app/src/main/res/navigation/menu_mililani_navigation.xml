@@ -12,21 +12,21 @@
 
   <fragment
       android:id="@+id/navigation_classes"
-      android:name="com.strategies360.mililani2.fragment.AllActivitiesFragment"
+      android:name="com.strategies360.mililani2.fragment.ClassesWebviewFragment"
       tools:layout="@layout/fragment_registration" />
 
   <fragment
       android:id="@+id/navigation_schedule"
-      android:name="com.strategies360.mililani2.fragment.HomeFragment"
+      android:name="com.strategies360.mililani2.fragment.ReservationWebviewFragment"
       tools:layout="@layout/fragment_home" />
 
   <fragment
       android:id="@+id/navigation_events"
-      android:name="com.strategies360.mililani2.fragment.TicketsFragment"
+      android:name="com.strategies360.mililani2.fragment.EventWebviewFragment"
       tools:layout="@layout/fragment_events" />
 
   <fragment
       android:id="@+id/navigation_setting"
-      android:name="com.strategies360.mililani2.fragment.SettingMtaFragment"
+      android:name="com.strategies360.mililani2.fragment.MoreMenuFragment"
       tools:layout="@layout/fragment_setting_mta_card" />
 </navigation>

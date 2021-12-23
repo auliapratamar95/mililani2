@@ -68,6 +68,7 @@ class WebviewRegisterActivity : CoreActivity() {
       if (prDialog.isShowing) {
         prDialog.dismiss()
       }
+      view.scrollTo(0,0)
     }
 
     init {

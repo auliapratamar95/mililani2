@@ -13,9 +13,13 @@ import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.CaffeActivity
+import com.strategies360.mililani2.activity.CategoryProductDetailActivity
 import com.strategies360.mililani2.activity.CheckoutActivity
 import com.strategies360.mililani2.adapter.recycler.CartAdapter
 import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAdapter
+import com.strategies360.mililani2.eventbus.EventChangeCount
+import com.strategies360.mililani2.eventbus.EventChangeViewCategoryCaffe
+import com.strategies360.mililani2.eventbus.EventPromoCode
 import com.strategies360.mililani2.fragment.core.DataListFragment
 import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.caffe.cart.Cart
@@ -24,16 +28,11 @@ import com.strategies360.mililani2.model.remote.caffe.cart.OrderItems
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
 import com.strategies360.mililani2.viewmodel.CartListViewModel
-import kotlinx.android.synthetic.main.fragment_cart.btn_caffe
-import kotlinx.android.synthetic.main.fragment_cart.btn_checkout
-import kotlinx.android.synthetic.main.fragment_cart.btn_promo
-import kotlinx.android.synthetic.main.fragment_cart.layout_content_cart
-import kotlinx.android.synthetic.main.fragment_cart.progress_bar
-import kotlinx.android.synthetic.main.fragment_cart.recycler_cart
-import kotlinx.android.synthetic.main.fragment_cart.txt_cart_empty
-import kotlinx.android.synthetic.main.fragment_cart.txt_order_total
-import kotlinx.android.synthetic.main.fragment_cart.txt_subtotal
-import kotlinx.android.synthetic.main.fragment_cart.txt_tax
+import kotlinx.android.synthetic.main.activity_caffe.*
+import kotlinx.android.synthetic.main.fragment_cart.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 @SuppressLint("SetTextI18n")
 class CartFragment : DataListFragment() {
@@ -56,6 +55,16 @@ class CartFragment : DataListFragment() {
     super.onViewCreated(view, savedInstanceState)
     Hawk.put((Constant.IS_FLAG_BUTTON_DELETE), true)
     initView()
+  }
+
+  override fun onStart() {
+    super.onStart()
+    EventBus.getDefault().register(this)
+  }
+
+  override fun onStop() {
+    super.onStop()
+    EventBus.getDefault().unregister(this)
   }
 
   private fun initView() {
@@ -93,9 +102,15 @@ class CartFragment : DataListFragment() {
 
   override fun initRecyclerAdapter(): DataListRecyclerViewAdapter<Any, ViewHolder> {
     adapter.emptyText = App.context.resources.getString(R.string.info_cart_empty)
+    adapter.onEditItemCartClick = { pos, data ->
+      Hawk.put((Constant.KEY_ID_PRODUCT), data.product?.id)
+      Hawk.put((Constant.ORDER_ID), data.id.toString())
+      CategoryProductDetailActivity.launchIntent(requireContext())
+    }
+
     adapter.onItemCartClick = { pos, data ->
       val categoryId: String = Common.getCookies()
-      viewModel.deleteCartFromRemote(data.id.toString(), categoryId)
+      viewModel.deleteCartFromRemote(data.id.toString(), categoryId, true)
     }
     adapter.setDiffUtilNotifier { oldList, newList ->
       OrderItems.DiffUtilCallback(oldList, newList)
@@ -127,8 +142,17 @@ class CartFragment : DataListFragment() {
   private fun onGetCartSuccess(cartResponse: CartResponse) {
     progress_bar.visibility = View.GONE
     layout_content_cart.visibility = View.VISIBLE
-
+    Hawk.put((Constant.KEY_CART_LIST), cartResponse.cart)
+    EventBus.getDefault().postSticky(EventChangeCount(true))
     initData(cartResponse.cart)
+  }
+
+  private fun getLastNCharsOfString(str: String, n: Int): String {
+    var lastnChars = str
+    if (lastnChars.length > n) {
+      lastnChars = lastnChars.substring(lastnChars.length - n, lastnChars.length)
+    }
+    return lastnChars
   }
 
   private fun onGetCartFailure() {
@@ -139,13 +163,32 @@ class CartFragment : DataListFragment() {
   private fun initData(cart: Cart?) {
     if (cart != null) {
       if (cart.orderItems != null) {
-        txt_subtotal.text = "$" + cart.subTotal?.amount.toString() + "0"
-        txt_tax.text = "$" + cart.totalTax?.amount.toString() + "0"
-        txt_order_total.text = "$" + cart.total?.amount.toString() + "0"
+        layout_subtotal_cart.visibility = View.VISIBLE
+        txt_subtotal.text = "$" + cart.subTotal?.amount.toString()
+        txt_tax.text = "$" + cart.totalTax?.amount.toString()
+        getLastNCharsOfString(cart.total?.amount.toString(), 1)
+        if (getLastNCharsOfString(cart.total?.amount.toString(), 1) == "0") {
+          val result = cart.total?.amount.toString().dropLast(1)
+          txt_order_total.text = "$$result"
+        } else {
+          txt_order_total.text = "$" + cart.total?.amount.toString()
+        }
         btn_checkout.isEnabled = true
       } else {
+        layout_subtotal_cart.visibility = View.GONE
         btn_checkout.isEnabled = false
       }
+    }
+  }
+
+  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+  fun onPromoCode(event: EventPromoCode) {
+    if (!event.equals("")) {
+      val promo: String = event.promoCode
+      txt_promo.visibility = View.VISIBLE
+      txt_promo.text = promo
+      btn_promo.text = "Promo Code"
+      EventBus.getDefault().removeStickyEvent(event)
     }
   }
 }

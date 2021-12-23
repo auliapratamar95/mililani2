@@ -19,9 +19,6 @@ class SubModifiersGroupAdapter : DataListRecyclerViewAdapter<Modifiers, ViewHold
 
   var onCategoryModifierDetailProductClick: onCategoryModifierDetailProductClick? = null
 
-  private var tmpPosition = 0
-  private var isLayoutClickItem = false
-
   override fun onCreateDataViewHolder(
     parent: ViewGroup,
     viewType: Int
@@ -43,16 +40,11 @@ class SubModifiersGroupAdapter : DataListRecyclerViewAdapter<Modifiers, ViewHold
       val data = getDataList()[adapterPosition]
       if (data.prices?.defaultPrices?.amount?.equals(0.00) == true) {
         itemView.txt_name.text = data.name
-        itemView.txt_price.text = "0"
+        itemView.txt_price.text = ""
       } else {
         itemView.txt_name.text = data.name
         itemView.txt_price.text = "$" + data.prices?.defaultPrices?.amount.toString() + "0"
       }
-
-//      itemView.cb_required_category.setOnCheckedChangeListener { buttonView, isChecked ->
-//        val amount = data.prices?.defaultPrices?.amount
-//        EventBus.getDefault().postSticky(EventPriceProduct(amount!!))
-//      }
 
       itemView.btn_checked.setOnClickListener {
         if (itemView.img_checked.visibility == View.VISIBLE) {

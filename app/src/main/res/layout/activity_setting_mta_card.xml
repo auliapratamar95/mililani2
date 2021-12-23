@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.strategies360.mililani2.fragment.SettingMtaFragment"
+        android:name="com.strategies360.mililani2.fragment.SampleSettingMtaFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_setting_mta_card" />

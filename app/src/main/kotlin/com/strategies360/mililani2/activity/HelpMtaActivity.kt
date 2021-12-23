@@ -18,7 +18,7 @@ class HelpMtaActivity : CoreActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        title_toolbar.text = getString(R.string.help_page)
+        title_toolbar.text = ""
 
         btn_back.setOnClickListener(this)
         btn_barcode.setOnClickListener(this)

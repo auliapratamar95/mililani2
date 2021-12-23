@@ -34,6 +34,8 @@ class CheckoutViewModel : ViewModel(), LifecycleObserver {
 
   val resourcePayTicket = MutableLiveData<Resource<PayTicket>>()
 
+  val resourceCheckout = MutableLiveData<Resource<PickupResponse>>()
+
   val resourceSecurePayment = MutableLiveData<Resource<Any>>()
 
   /** The API Caller */
@@ -42,6 +44,10 @@ class CheckoutViewModel : ViewModel(), LifecycleObserver {
   private var apiPayTicketCaller: APICaller<PayTicketResponse>? = null
 
   private var apiBilingCaller: APICaller<PickupResponse>? = null
+
+  private var apiTipCaller: APICaller<PickupResponse>? = null
+
+  private var apiCheckoutCaller: APICaller<PickupResponse>? = null
 
 //  private var apiSecurePaymentCaller: APICaller<Sample>? = null
 
@@ -182,15 +188,11 @@ class CheckoutViewModel : ViewModel(), LifecycleObserver {
     if (apiBilingCaller == null) {
       apiBilingCaller = APICaller<PickupResponse>().withListener(
           { response ->
-            fetchTip(cookies, tip)
-            fetchCheckout(cookies)
-//            if (response.payTicket != null) {
-//              resourcePayTicket.postValue(Resource.success(response.payTicket))
-//              Hawk.put((Constant.KEY_URL_PAYMENT), response)
-//
-//            } else {
-//              resourcePayTicket.postValue(Resource.error(AppError(AppError.DEVELOPMENT_UNKNOWN, "Data list is null!")))
-//            }
+            if (response.pickupResponse != null) {
+              fetchTip(cookies, tip)
+            } else {
+              resourcePayTicket.postValue(Resource.error(AppError(AppError.DEVELOPMENT_UNKNOWN, "Data list is null!")))
+            }
           },
           { error ->
             resourcePayTicket.postValue(Resource.error(error))
@@ -204,9 +206,14 @@ class CheckoutViewModel : ViewModel(), LifecycleObserver {
   private fun fetchTip(cookies: String, tip: Double) {
     resourcePayTicket.value = Resource.loading()
 
-    if (apiBilingCaller == null) {
-      apiBilingCaller = APICaller<PickupResponse>().withListener(
+    if (apiTipCaller == null) {
+      apiTipCaller = APICaller<PickupResponse>().withListener(
           { response ->
+            if (response.pickupResponse != null) {
+              fetchCheckout(cookies)
+            } else {
+              resourcePayTicket.postValue(Resource.error(AppError(AppError.DEVELOPMENT_UNKNOWN, "Data list is null!")))
+            }
           },
           { error ->
             resourcePayTicket.postValue(Resource.error(error))
@@ -214,31 +221,30 @@ class CheckoutViewModel : ViewModel(), LifecycleObserver {
       )
     }
 
-    apiBilingCaller?.submitTip(cookies, tip)
+    apiTipCaller?.submitTip(cookies, tip)
   }
 
   private fun fetchCheckout(cookies: String) {
-    resourcePayTicket.value = Resource.loading()
+    resourceCheckout.value = Resource.loading()
 
-    if (apiBilingCaller == null) {
-      apiBilingCaller = APICaller<PickupResponse>().withListener(
+    if (apiCheckoutCaller == null) {
+      apiCheckoutCaller = APICaller<PickupResponse>().withListener(
           { response ->
-//            if (response.payTicket != null) {
-//              resourcePayTicket.postValue(Resource.success(response.payTicket))
+            if (response.pickupResponse != null) {
+              resourceCheckout.postValue(Resource.success(response))
 //              Hawk.put((Constant.KEY_URL_PAYMENT), response)
-//
-//            } else {
-//              resourcePayTicket.postValue(Resource.error(AppError(AppError.DEVELOPMENT_UNKNOWN, "Data list is null!")))
-//            }
+
+            } else {
+              resourceCheckout.postValue(Resource.error(AppError(AppError.DEVELOPMENT_UNKNOWN, "Data list is null!")))
+            }
           },
           { error ->
-            Common.showMessageDialog(App.context, "Error", error.message)
-            resourcePayTicket.postValue(Resource.error(error))
+            resourceCheckout.postValue(Resource.error(error))
           }
       )
     }
 
-    apiBilingCaller?.submitCheckout(cookies)
+    apiCheckoutCaller?.submitCheckout(cookies)
   }
 
   @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

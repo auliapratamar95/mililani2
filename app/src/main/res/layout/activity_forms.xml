@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_header_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_default"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/btn_open_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/btn_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/margin_large"
+                        android:src="@drawable/ic_arrow_back_white"
+                        android:background="?attr/selectableItemBackground"/>
+
+                    <TextView
+                        android:id="@+id/title_toolbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="@string/forms"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_large"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/btn_scan_barcode"
+                        android:layout_width="@dimen/fo_spacing_30"
+                        android:layout_height="@dimen/fo_spacing_30"
+                        android:src="@drawable/ic_scan_barcode"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:backgroundTint="@color/white"
+                        android:foreground="?attr/selectableItemBackground"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <fragment
+                android:id="@+id/fragment"
+                android:name="com.strategies360.mililani2.fragment.FormsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_forms"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

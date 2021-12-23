@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fo_bg_bottom_sheet"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="@dimen/fo_size_180"
+            android:indeterminate="true"
+            tools:visibility="visible"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_marginBottom="@dimen/fo_size_84"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/layout_assessment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/fo_size_92"
+                    android:layout_marginStart="@dimen/margin_larges"
+                    android:layout_marginEnd="@dimen/margin_larges"
+                    android:background="@drawable/fo_bg_bottom_sheet"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="8dp"
+                        android:elevation="10dp">
+
+                        <ImageView
+                            android:id="@+id/img_assessment"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/fo_size_200"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/dummy_news" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/btn_open_quaterly"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_xlarge"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txt_quaterly_assessment"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:maxLines="1"
+                                tools:text="Question? Send us an email"
+                                android:textSize="@dimen/fo_font_normal"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:id="@+id/ic_plus_quaterly"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txt_quaterly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:visibility="gone"
+                            tools:text="The MTA quarterly assessment is collected in accordance with Article VI, Section 6.02 of the Mililani Town DCCR. Assessments are due and payable by each MTA homeowner in equal quarterly installments on or before the first day of every January, April, July and October. Effective April 1, 2020, the quarterly assessment was set at $125. " />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:background="@color/colorPrimary"/>
+
+                        <LinearLayout
+                            android:id="@+id/btn_online_payment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_default"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txt_title_payment_site"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:maxLines="1"
+                                tools:text="New Online Payment Site"
+                                android:textSize="@dimen/fo_font_normal"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:id="@+id/ic_plus_online"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_online_payment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_payment_online"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/margin_small"
+                                tools:text="First time users must click the Register Now Button  to setup your account. "/>
+
+                            <Button
+                                android:id="@+id/btn_register"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_xlarge"
+                                android:text="@string/title_register_now"
+                                android:textAllCaps="false"
+                                android:background="@drawable/bg_button_round_grey_primary"
+                                android:foreground="?attr/selectableItemBackground"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="If you need assistance paying online, please email Payonline@mililanitown.org."
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:background="@color/colorPrimary"/>
+
+                        <LinearLayout
+                            android:id="@+id/btn_assessment_due_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_default"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txt_assessment_due_date"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                tools:text="Assessment Due Dates"
+                                android:textSize="@dimen/fo_font_normal"
+                                android:textStyle="bold"
+                                android:maxLines="1"/>
+
+                            <ImageView
+                                android:id="@+id/ic_plus_assessment"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_assessment_due_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:padding="@dimen/margin_small"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_assesment_content_one"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                tools:text="January 1"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"/>
+
+                            <TextView
+                                android:id="@+id/txt_detail_assesment_content_effective"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                tools:text="January 1"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_xsmall"
+                                tools:ignore="RtlHardcoded" />
+
+                            <TextView
+                                android:id="@+id/txt_assesment_content_effective"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                tools:text="January 1"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_xsmall"
+                                tools:ignore="RtlHardcoded" />
+
+                            <TextView
+                                android:id="@+id/txt_assessment_late_charge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                tools:text="Late charge: Per Administrative Resolution #7, adopted 02/16/94, a late charge in the amount of $10.00 will be assessed on all delinquent accounts after the 10th day of the month in which the assessment is due."/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:background="@color/colorPrimary"/>
+
+                        <LinearLayout
+                            android:id="@+id/btn_reminder_notice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_default"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txt_title_remainder_notice"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:maxLines="1"
+                                tools:text="Reminder Notice"
+                                android:textSize="@dimen/fo_font_normal"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:id="@+id/ic_plus_reminder"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_reminder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_default"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_detail_remainder"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="As a courtesy to our homeowners, reminder notices are sent with any balance due approximately 15 days before the assessment due date."/>
+
+                            <TextView
+                                android:id="@+id/txt_sub_title_detail_remainder"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                tools:text="Please note the following: "/>
+
+                            <TextView
+                                android:id="@+id/txt_detail_sub_title_detail_remainder"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                tools:text="Please note the following: "/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/bg_circle_black"
+                                    android:textStyle="bold"
+                                    android:textSize="30sp"
+                                    android:padding="@dimen/margin_default"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Reminders are not mailed to homeowners who have a zero or credit balance or are on MTA’s SurePay Automatic Payment Plan."/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/bg_circle_black"
+                                    android:textStyle="bold"
+                                    android:textSize="30sp"
+                                    android:padding="@dimen/margin_default"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" homeowners who have a zero or  balance or are on MTA’s SurePay Automatic Payment Plan."/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:background="@color/colorPrimary"/>
+
+                        <LinearLayout
+                            android:id="@+id/btn_statement"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_default"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txt_title_statement"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                tools:text="e-Statements"
+                                android:maxLines="1"
+                                android:textSize="@dimen/fo_font_normal"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:id="@+id/ic_plus_statement"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_statement"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_default"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_detail_assessment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="If you plan to pay your assessments online and would like a pdf version of your quarterly reminder statement emailed to you, enroll for estatements by clicking the link below and follow the simple steps: "/>
+
+                            <TextView
+                                android:id="@+id/txt_sub_detail_assessment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="Please note the following: "
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"/>
+
+                            <Button
+                                android:id="@+id/btn_enroll"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_xlarge"
+                                android:textAllCaps="false"
+                                android:text="e-Statement: Enrollment and Management"
+                                android:background="@drawable/bg_button_round_grey_primary"
+                                android:foreground="?attr/selectableItemBackground"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:background="@color/colorPrimary"/>
+
+                        <LinearLayout
+                            android:id="@+id/btn_how_pay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_default"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txt_title_how_pay"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                tools:text="How To Pay"
+                                android:maxLines="1"
+                                android:textSize="@dimen/fo_font_normal"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:id="@+id/ic_plus_how_pay"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_how_pay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_default"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:background="?attr/selectableItemBackground"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_subtitle_accordion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:maxLines="1"
+                                tools:text="5 Different ways to pay: "/>
+
+                            <LinearLayout
+                                android:id="@+id/btn_sure_pay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:background="?attr/selectableItemBackground"
+                                android:layout_marginBottom="@dimen/fo_spacing_tiny"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="30"
+                                    android:textStyle="bold"
+                                    android:text="1. SurePay Automatic Payment Plan"/>
+
+                                <ImageView
+                                    android:id="@+id/ic_plus_detail_sure_pay"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/ic_plus"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_detail_sure_pay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="SurePay allows your bank to electronically transfer your quarterly assessment payments from your checking or savings account through ACH to Mililani Town Association. Approximately 30% of our 15,800 homeowners are currently using our SurePay Program. Assessment dues will be deducted automatically from your account on January 5th, April 5th, July 5th and October 5th of each year. If the 5th falls on a weekend or holiday, the funds will be deducted on the next business day."/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="How To Apply for SurePay:"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:layout_marginBottom="@dimen/margin_default"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="For more information, call our Administrative office at 623-7300 or download the SurePay Application Form. The application form is used to start, change, or stop SurePay Automatic Payment services at any time (please allow ample processing time). To enroll, simply complete the SurePay form and return it to MTA. In order to process your application, your MTA account must be $0.00 (you must not have an outstanding balance due). Applications must be received by the 1st day of the month prior to the quarter (i.e. for the July quarterly dues, applications are due June 1st). Applications received after the deadline will be held and processed the following quarter. Once you have completed the SurePay application form, you may:"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Mail or hand deliver: Rec Center 3 , 95-281 Kaloapau Street, Mililani  HI 96789-1249"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Fax: (808) 623-3474"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Email: surepay@mililanitown.org"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary"/>
+
+                            <LinearLayout
+                                android:id="@+id/btn_detail_pay_online"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="30"
+                                    android:textStyle="bold"
+                                    android:text="2. Pay Online"/>
+
+                                <ImageView
+                                    android:id="@+id/ic_plus_detail_pay_online"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/ic_plus"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_detail_pay_online"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pay Online with your checking account or your credit card (Visa, MasterCard, or Discover) with NO FEES.  Please register your online payment profile using your 5-digit ACCOUNT number (No leading zeros) and 11-digit PIN. (BUR Number without dashes)"/>
+
+                                <Button
+                                    android:id="@+id/btn_pay_assessment_online"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_xlarge"
+                                    android:layout_marginBottom="@dimen/margin_xlarge"
+                                    android:text="@string/pay_assessments_online"
+                                    android:background="@drawable/bg_button_round_grey_primary"
+                                    android:foreground="?attr/selectableItemBackground"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="NOTE:  Obtain your account number and BUR number from the bottom portion of your statement, or email PayOnline@mililanitown.org with your name (owners only) and property address to obtain your login information.  Allow 2 business days for receipt of online payments.  Allow 2 business days for receipt of online payments."/>
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary"/>
+
+                            <LinearLayout
+                                android:id="@+id/btn_detail_pay_person"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="30"
+                                    android:textStyle="bold"
+                                    android:text="3. Pay in Person"/>
+
+                                <ImageView
+                                    android:id="@+id/ic_plus_detail_pay_person"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/ic_plus"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_detail_pay_person"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Payments can be made by cash, check, or credit card (Visa, Mastercard, or Discover) at the Admin Office, Rec Center 3, or Rec Center 7:"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Admin Office: 8:00 a.m. to 4:00 p.m. Monday through Friday Closed until further notice. Visit Rec 3 Business Office"/>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rec Center 3 Business Office: Weekdays, nights and weekends"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rec Center 7 Business Office: Weekdays, nights and weekends"/>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary"/>
+
+                            <LinearLayout
+                                android:id="@+id/btn_detail_user"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="?attr/selectableItemBackground"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="30"
+                                    android:textStyle="bold"
+                                    android:text="4. User Our Secure Drop-Box"/>
+
+                                <ImageView
+                                    android:id="@+id/ic_plus_detail_user"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/ic_plus"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_detail_user"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="During normal office hours, there is a drop-box located inside the Admin Office for your use."/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:text="Unavailable due to Admin office closure. "/>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary"/>
+
+                            <LinearLayout
+                                android:id="@+id/btn_pay_mail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="30"
+                                    android:textStyle="bold"
+                                    android:text="5. Pay by Mail"/>
+
+                                <ImageView
+                                    android:id="@+id/ic_plus_detail_pay_mail"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/ic_plus"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_pay_mail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="With the remittance stub:"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="A check with the remittance stub should be mailed to our Bank of Hawaii “Lock Box” Service:"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:textStyle="bold"
+                                    android:text="Mililani Town Association"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="P.O. Box 29380"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="Honolulu, HI 96820-1780"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:text="When using this option, please remember the following:"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_small"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Only the payment will be processed. Please do not write notes or address changes on your remittance stubs as they are viewed by the processing center and not MTA. Requests for address changes must be made to our Administrative Office. Please do not send correspondence to our P.O. Box address."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_small"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="If you are using a bill payer service, you must have the service send your payment to our Administrative Office address: 95-303 Kaloapau St., Mililani, HI 96789-1249."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_small"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="To avoid late fees, please allow ample time for mail delivery and for your payments to post as received."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_small"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:src="@drawable/bg_circle_black"
+                                        android:textStyle="bold"
+                                        android:textSize="30sp"
+                                        android:padding="@dimen/margin_default"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Homeowners with multiple properties must submit a separate remittance for each property address."/>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_small"
+                                    android:layout_marginBottom="@dimen/margin_small"
+                                    android:textStyle="bold"
+                                    android:text="Without the remittance stub:"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="A check without the remittance stub or with the remittance stub and other correspondence or enclosures (such as name or mailing address changes) should be mailed to our Administrative Office:"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:text="Mililani Town Association"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="95-303 Kaloapau Street"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mililani, HI 96789-1249"/>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:background="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_xxlarge"
+                android:background="@color/grey_400"/>
+
+            <Button
+                android:id="@+id/btn_reservations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_larges"
+                android:background="@drawable/bg_button_round_primary"
+                android:text="@string/pay_assessments"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

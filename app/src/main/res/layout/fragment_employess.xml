@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fo_bg_bottom_sheet"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="520dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            tools:visibility="gone"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/layout_employment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_larges"
+                    android:layout_marginEnd="@dimen/margin_larges"
+                    android:background="@drawable/fo_bg_bottom_sheet"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="8dp"
+                        android:elevation="10dp">
+
+                        <ImageView
+                            android:id="@+id/img_employment"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/fo_size_200"
+                            android:scaleType="centerCrop"
+                            tools:src="@drawable/dummy_news" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/margin_small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/dark_orange"
+                            android:textStyle="bold"
+                            tools:text="EMPLOYMENT"
+                            android:textSize="@dimen/fo_font_large"
+                            android:layout_marginTop="@dimen/margin_xlarge"/>
+
+                        <TextView
+                            android:id="@+id/txt_subtitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:textSize="@dimen/fo_font_18"
+                            android:text="Working for MTA"/>
+
+                        <TextView
+                            android:id="@+id/txt_detail_employment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_default"/>
+
+                        <TextView
+                            android:id="@+id/txt_detail_bullet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/fo_font_18"
+                            android:text="Employment Application"/>
+
+                        <TextView
+                            android:id="@+id/txt_detail_applications"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_mta_employment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MTA Employment Application"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:background="@drawable/bg_button_round_grey_primary"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/btn_open_question"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:text="Design Committee"
+                                android:textSize="@dimen/fo_font_normal"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:id="@+id/ic_plus_question"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txt_question"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_default"
+                            android:visibility="gone"
+                            android:text="The MTA quarterly assessment is collected in accordance with Article VI, Section 6.02 of the Mililani Town DCCR. Assessments are due and payable by each MTA homeowner in equal quarterly installments on or before the first day of every January, April, July and October. Effective April 1, 2020, the quarterly assessment was set at $125. " />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/margin_small"
+                            android:layout_marginEnd="@dimen/margin_small"
+                            android:background="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txt_content_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/margin_xlarge"
+                        android:textSize="@dimen/fo_font_18"
+                        android:text="Current Openings"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_employment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/adapter_employment"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

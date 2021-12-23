@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.core.CoreActivity
+import com.strategies360.mililani2.eventbus.EventChangeCount
 import com.strategies360.mililani2.eventbus.EventChangeViewCategoryCaffe
 import com.strategies360.mililani2.eventbus.EventFlagGetProductCaffe
 import com.strategies360.mililani2.eventbus.EventFlagGetSubProductCaffe
@@ -24,15 +25,7 @@ import com.strategies360.mililani2.fragment.SubCaffeFragment
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffe
 import com.strategies360.mililani2.model.remote.caffe.cart.Cart
 import com.strategies360.mililani2.util.Constant
-import kotlinx.android.synthetic.main.activity_caffe.badge_count
-import kotlinx.android.synthetic.main.activity_caffe.btn_back
-import kotlinx.android.synthetic.main.activity_caffe.btn_category
-import kotlinx.android.synthetic.main.activity_caffe.btn_float_cart
-import kotlinx.android.synthetic.main.activity_caffe.btn_scan_barcode
-import kotlinx.android.synthetic.main.activity_caffe.layout_tabs
-import kotlinx.android.synthetic.main.activity_caffe.tabs
-import kotlinx.android.synthetic.main.activity_caffe.txt_cart_count
-import kotlinx.android.synthetic.main.activity_caffe.viewpager_caffe
+import kotlinx.android.synthetic.main.activity_caffe.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode.MAIN
@@ -190,7 +183,15 @@ class CaffeActivity : CoreActivity() {
   }
 
   @Subscribe(sticky = true, threadMode = MAIN)
-  fun onChangeViewCategory(event: EventChangeViewCategoryCaffe) {
+  fun onChangeViewCategory(event: EventChangeCount) {
+    if (event.isChangeCount) {
+      initCartCount()
+      EventBus.getDefault().removeStickyEvent(event)
+    }
+  }
+
+  @Subscribe(sticky = true, threadMode = MAIN)
+  fun onChangeCounnt(event: EventChangeViewCategoryCaffe) {
     if (event.isGetProductCaffe) {
       viewpager_caffe.currentItem = event.currentItem
       EventBus.getDefault().removeStickyEvent(event)

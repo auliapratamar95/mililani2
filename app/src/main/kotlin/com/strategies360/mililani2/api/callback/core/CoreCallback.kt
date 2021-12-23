@@ -6,6 +6,7 @@ import com.strategies360.mililani2.App
 import com.strategies360.mililani2.BuildConfig
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.LoginActivity
+import com.strategies360.mililani2.activity.LoginPhoneNumberActivity
 import com.strategies360.mililani2.api.util.OnAPIListener
 import com.strategies360.mililani2.model.core.AppError
 import com.strategies360.mililani2.model.core.AppResponse
@@ -220,11 +221,11 @@ abstract class CoreCallback<RESPONSE : AppResponse>(private val listener: OnAPIL
         Debugger.log(Log.ERROR, javaClass.simpleName, "Unauthorized access: $errorMessage - Removing account")
         Debugger.log(Log.ERROR, javaClass.simpleName, "Removing saved account from this device")
 
-        AccountHelper(App.context).removeAccount()
-        Hawk.delete(Constant.KEY_TOKEN)
+//        AccountHelper(App.context).removeAccount()
+//        Hawk.delete(Constant.KEY_TOKEN)
 
         Common.showToast(R.string.error_auth_log_in_expired)
-        LoginActivity.launchIntent(App.context)
+        LoginPhoneNumberActivity.launchIntent(App.context)
     }
 
     /** Called when the obtained response is successful  */

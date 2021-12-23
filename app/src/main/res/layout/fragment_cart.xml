@@ -83,11 +83,12 @@
                   android:scrollbars="vertical"
                   app:layout_behavior="@string/appbar_scrolling_view_behavior"
                   tools:listitem="@layout/adapter_cart"
-                  tools:visibility="visible"/>
+                  tools:visibility="visible" />
 
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/layout_subtotal_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_default"
@@ -95,6 +96,8 @@
                 android:layout_marginEnd="@dimen/fo_spacing_3"
                 android:layout_marginTop="@dimen/margin_larges"
                 android:layout_marginBottom="@dimen/margin_larges"
+                android:visibility="gone"
+                tools:visibility="visible"
                 android:orientation="horizontal">
 
               <LinearLayout
@@ -161,6 +164,7 @@
                     android:layout_marginTop="@dimen/margin_xsmall"/>
 
                 <TextView
+                    android:id="@+id/txt_promo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="3.45"
@@ -179,11 +183,6 @@
               </LinearLayout>
 
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/grey_300"/>
 
           </LinearLayout>
 

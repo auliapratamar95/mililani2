@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.zxing.Result
 import com.strategies360.mililani2.R
+import com.strategies360.mililani2.activity.HelpMtaActivity
 import com.strategies360.mililani2.activity.SubmitManuallyMtaCardActivity
 import com.strategies360.mililani2.activity.SubmitNicknameMtaCardActivity
 import com.strategies360.mililani2.fragment.core.CoreFragment
@@ -22,7 +23,7 @@ import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.CustomViewFinderView
 import com.strategies360.mililani2.viewmodel.SubmitMTACardViewModel
-import kotlinx.android.synthetic.main.fragment_submit_scan_mta_card.*
+import kotlinx.android.synthetic.main.fragment_add_scan_mta_card.*
 import me.dm7.barcodescanner.core.IViewFinder
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
@@ -53,6 +54,7 @@ class AddScanMtaCardFragment : CoreFragment(),
     initBarcodeMTA()
 
     btn_manually_mta_card.setOnClickListener(this)
+    btn_help.setOnClickListener(this)
   }
 
   override fun onStart() {
@@ -111,6 +113,9 @@ class AddScanMtaCardFragment : CoreFragment(),
       R.id.btn_manually_mta_card -> {
         mScannerView.resumeCameraPreview(this)
         SubmitManuallyMtaCardActivity.launchIntent(requireContext(), true)
+      }
+      R.id.btn_help -> {
+        HelpMtaActivity.launchIntent(requireContext())
       }
       else -> {
         /* nothing to do in here */
@@ -176,7 +181,7 @@ class AddScanMtaCardFragment : CoreFragment(),
         initBarcodeMTA()
         openDialogNotice()
       } else
-        Common.showMessageDialog(it, "Error", error.message)
+        Common.showMessageDialog(it, "Error", "Card Not Found")
     }
   }
 

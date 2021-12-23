@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_default"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_date_notification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="14"
+        android:textColor="@color/primary_card"
+        android:textStyle="bold"
+        tools:text="Coffe &amp; Espresso" />
+
+    <TextView
+        android:id="@+id/txt_detail_notification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="14"
+        android:layout_marginTop="@dimen/margin_default"
+        tools:text="Coffe &amp; Espresso" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"
+        android:layout_marginTop="@dimen/margin_default" />
+
+</LinearLayout>

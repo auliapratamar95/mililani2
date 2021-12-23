@@ -123,7 +123,8 @@ class CartListViewModel : ViewModel(), LifecycleObserver {
   /** Fetches a sample list from a remote server */
   fun deleteCartFromRemote(
       productId: String,
-      cookie: String
+      cookie: String,
+      isDeleteFromCart: Boolean
   ) {
     resource.value = Resource.loading()
 
@@ -131,7 +132,8 @@ class CartListViewModel : ViewModel(), LifecycleObserver {
       apiCaller = APICaller<CartResponse>().withListener(
           { response ->
               if (response.cart != null) {
-                  fetchCartFromRemote(cookie)
+                  if (isDeleteFromCart) fetchCartFromRemote(cookie)
+                  resource.postValue(Resource.success(response))
               } else {
                   resource.postValue(
                       Resource.error(AppError(AppError.DEVELOPMENT_UNKNOWN, "Data list is null!"))

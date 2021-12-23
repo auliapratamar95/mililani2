@@ -23,7 +23,7 @@
       android:text="@string/enter_promo_code_here"/>
 
   <EditText
-      android:id="@+id/btn_delete_card"
+      android:id="@+id/ed_promo"
       android:layout_width="@dimen/fo_spacing_300"
       android:layout_height="wrap_content"
       android:hint="@string/promo_code"

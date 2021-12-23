@@ -33,6 +33,7 @@ object AndroidPlugin {
     const val dexcount = "com.getkeepsafe.dexcount"
     const val fabric = "io.fabric"
     const val googleService = "com.google.gms.google-services"
+    const val oneSignal = "com.onesignal.androidsdk.onesignal-gradle-plugin"
 }
 
 object Android {
@@ -69,6 +70,7 @@ object LibAndroidX {
         const val exifInterface = "1.0.0"
         const val constraintLayout = "1.1.3"
         const val material = "1.0.0"
+        const val maps = "17.0.0"
 
         const val navigationFragment = "2.2.2"
         const val navigationUi = "2.2.2"
@@ -81,6 +83,7 @@ object LibAndroidX {
     const val exifInterface = "androidx.exifinterface:exifinterface:${Version.exifInterface}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
     const val material = "com.google.android.material:material:${Version.material}"
+    const val maps = "com.google.android.gms:play-services-maps:${Version.maps}"
 
     const val navigationFragment = "androidx.navigation:navigation-fragment:${Version.navigationFragment}"
     const val navigationUi = "androidx.navigation:navigation-ui:${Version.navigationUi}"
@@ -124,6 +127,7 @@ object Lib {
         const val kensBurn = "1.0.7"
         const val firebaseAnalytics = "17.2.1"
         const val firebaseAuth = "19.2.0"
+        const val firebaseMessaging = "21.1.0"
         const val coroutinesCore = "1.3.2"
         const val coroutinesAndroid = "1.3.2"
         const val otpView = "v1.1.2-ktx"
@@ -134,15 +138,19 @@ object Lib {
         const val Coil = "1.1.0"
         const val eventbus = "3.2.0"
         const val customMasked = "2.0"
+        const val tagLayout = "1.4@aar"
         const val scrollPagerIndicator = "1.0.6"
 
         const val rxjava = "2.1.9"
         const val rxandroid = "2.0.2"
         const val rxjava2 = "2.3.0"
+        const val glide = "4.12.0"
+//        const val oneSignal = "[4.0.0, 4.99.99]"
     }
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
-    const val retrofiConverterGson = "com.squareup.retrofit2:converter-gson:${Version.retrofiConverterGson}"
+    const val retrofiConverterGson =
+        "com.squareup.retrofit2:converter-gson:${Version.retrofiConverterGson}"
     const val retrofitLogger = "com.squareup.okhttp3:logging-interceptor:${Version.retrofitLogger}"
     const val retrofitXml = "com.squareup.retrofit2:converter-simplexml:${Version.retrofitXml}"
     const val gson = "com.google.code.gson:gson:${Version.gson}"
@@ -152,11 +160,16 @@ object Lib {
     const val customCrashActivity = "cat.ereza:customactivityoncrash:${Version.customCrashActivity}"
     const val imageCropper = "com.theartofdev.edmodo:android-image-cropper:${Version.imageCropper}"
     const val kensBurnAnimation = "com.flaviofaria:kenburnsview:${Version.kensBurn}"
-    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutinesCore}"
-    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutinesAndroid}"
+    const val coroutinesCore =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutinesCore}"
+    const val coroutinesAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutinesAndroid}"
 
-    const val firebaseAnalytic = "com.google.firebase:firebase-analytics:${Version.firebaseAnalytics}"
+    const val firebaseAnalytic =
+        "com.google.firebase:firebase-analytics:${Version.firebaseAnalytics}"
     const val firebaseAuth = "com.google.firebase:firebase-auth:${Version.firebaseAuth}"
+    const val firebaseMessaging =
+        "com.google.firebase:firebase-messaging:${Version.firebaseMessaging}"
     const val otpView = "com.github.aabhasr1:OtpView:${Version.otpView}"
     const val barcode = "me.dm7.barcodescanner:zxing:${Version.barcode}"
     const val hawk = "com.orhanobut:hawk:${Version.hawk}"
@@ -164,12 +177,20 @@ object Lib {
     const val MaskEditText = "com.vicmikhailau:MaskedEditText:${Version.MaskEditText}"
     const val Coil = "io.coil-kt:coil:${Version.Coil}"
     const val eventBus = "org.greenrobot:eventbus:${Version.eventbus}"
+    const val tagLayout = "me.gujun.android.taggroup:library:${Version.tagLayout}"
     const val customMasked = "mk.webfactory.dz:maskededittext:${Version.customMasked}"
-    const val scrollPagerIndicator = "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:${Version.scrollPagerIndicator}"
+    const val scrollPagerIndicator =
+        "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:${Version.scrollPagerIndicator}"
 
-    const val rxjava= "io.reactivex.rxjava2:rxjava:${Version.rxjava}"
-    const val rxandroid= "io.reactivex.rxjava2:rxandroid:${Version.rxandroid}"
+    const val rxjava = "io.reactivex.rxjava2:rxjava:${Version.rxjava}"
+    const val rxandroid = "io.reactivex.rxjava2:rxandroid:${Version.rxandroid}"
     const val rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Version.rxjava2}"
+
+    //    const val oneSignal = "com.onesignal:OneSignal:${Version.oneSignal}"
+    const val pdfViewer = "com.github.barteksc:android-pdf-viewer:2.8.2"
+    const val pdfDownload = "com.mindorks.android:prdownloader:0.6.0"
+    const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
+    const val glideAnnotation = "com.github.bumptech.glide:compiler:${Version.glide}"
 }
 
 object ProGuard {

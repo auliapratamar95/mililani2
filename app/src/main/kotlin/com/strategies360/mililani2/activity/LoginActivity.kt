@@ -49,15 +49,12 @@ class LoginActivity : CoreActivity() {
 
   private var f: FragmentActivity? = null
 
-  lateinit var auth: FirebaseAuth
+//  lateinit var auth: FirebaseAuth
   var job: Deferred<Unit>? = null
 
   var mCallback: OnVerificationStateChangedCallbacks? = null
   var verificationCode: String = ""
   var phoneNumber: String = ""
-
-  /** The view model for sign in */
-  private val authViewModel by lazy { ViewModelProviders.of(this).get(AuthMililaniViewModel::class.java) }
 
   private fun Activity.hideKeyboard() = hideKeyboard(currentFocus ?: View(this))
 
@@ -113,13 +110,13 @@ class LoginActivity : CoreActivity() {
     }
   }
 
-  private fun SigninWithPhone(credential: PhoneAuthCredential) {
+  private fun SigninWithPhone(auth: FirebaseAuth, credential: PhoneAuthCredential) {
     auth.signInWithCredential(credential)
         .addOnCompleteListener { task ->
           if (task.isSuccessful) {
             if (job!!.isActive)
               job!!.cancel()
-            setPhoneNumber()
+            setPhoneNumber(auth)
           } else {
             Toast.makeText(this@LoginActivity, "Incorrect OTP", Toast.LENGTH_SHORT)
                 .show()
@@ -127,17 +124,14 @@ class LoginActivity : CoreActivity() {
         }
   }
 
-  private fun setPhoneNumber() {
+  private fun setPhoneNumber(auth: FirebaseAuth) {
     val user = auth.currentUser
     try {
-      // User ID token retrival  TODO: not sure what to do with the token yet.
       user!!.getIdToken(true)
           .addOnCompleteListener { task: Task<GetTokenResult> ->
             if (task.isSuccessful) {
               val idToken = task.result?.token
               txt_sample.text = idToken
-//              Toast.makeText(this, "Token = $idToken", Toast.LENGTH_SHORT).show()
-//              txt_phone_number.text = user.phoneNumber
               SubmitScanMtaCardActivity.launchIntent(this)
             }
           }
@@ -157,11 +151,9 @@ class LoginActivity : CoreActivity() {
   }
 
   private fun startFirebaseLogin() {
-    auth = FirebaseAuth.getInstance()
+    val auth = FirebaseAuth.getInstance()
     mCallback = object : OnVerificationStateChangedCallbacks() {
       override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-        Toast.makeText(this@LoginActivity, "verification completed", Toast.LENGTH_SHORT)
-            .show()
         val otp = phoneAuthCredential.smsCode.toString()
         edit_otp_view?.setOTP(otp)
 
@@ -169,7 +161,7 @@ class LoginActivity : CoreActivity() {
           if (edit_otp_view.isNotEmpty()) {
             val credential =
               PhoneAuthProvider.getCredential(verificationCode, otp)
-            SigninWithPhone(credential)
+            SigninWithPhone(auth, credential)
           } else {
             Toast
                 .makeText(
@@ -179,8 +171,6 @@ class LoginActivity : CoreActivity() {
                 )
                 .show()
           }
-//          SubmitScanMtaCardActivity.launchIntent(this@LoginActivity)
-
         }
       }
 

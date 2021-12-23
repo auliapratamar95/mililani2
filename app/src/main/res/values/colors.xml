@@ -12,6 +12,7 @@
     <color name="gray">#bdbdbd</color>
     <color name="splash_background">#FFFFFF</color>
 
+    <color name="color_gray_dash">#b2b0b0</color>
     <color name="color_primary">#3F51B5</color>
     <color name="color_primary_dark">#4951aa</color>
     <color name="activity_main_row_title_color">#cccccc</color>
@@ -124,6 +125,7 @@
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_200">#FAFAFA</color>
     <color name="grey_300">#E0E0E0</color>
+    <color name="grey_newsletter">#f0f0f0</color>
     <color name="grey_400">#E9E9E9</color>
 
     <color name="light_grey1">#F6F6F6</color>

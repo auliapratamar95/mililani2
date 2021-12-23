@@ -25,6 +25,7 @@ class LoginPhoneNumberActivity : CoreActivity() {
          */
         fun launchIntent(context: Context) {
             val intent = Intent(context, LoginPhoneNumberActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
     }

@@ -3,5 +3,7 @@
     <!-- TODO: Configure your domains -->
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">api.mililanitown.s360.is</domain>
+        <domain includeSubdomains="true">www2.mililanitown.org</domain>
+        <domain includeSubdomains="true">www.secure.directbiller.com</domain>
     </domain-config>
 </network-security-config>

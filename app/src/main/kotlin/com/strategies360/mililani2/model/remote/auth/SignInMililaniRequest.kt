@@ -7,7 +7,11 @@ class SignInMililaniRequest() {
     @SerializedName("id_token")
     var idToken: String? = null
 
-    constructor(idToken: String) : this() {
+    @SerializedName("one_signal_user_id")
+    var oneSignalUserId: String? = null
+
+    constructor(idToken: String, oneSignalUserId: String) : this() {
         this.idToken = idToken
+        this.oneSignalUserId = oneSignalUserId
     }
 }

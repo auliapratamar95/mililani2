@@ -114,6 +114,7 @@
     <dimen name="fo_font_large_ssp">18sp</dimen>
     <dimen name="fo_font_normal_ssp">18sp</dimen>
 
+    <dimen name="fo_font_8">8sp</dimen>
     <dimen name="fo_font_9">9sp</dimen>
     <dimen name="fo_font_10">10sp</dimen>
     <dimen name="fo_font_11">11sp</dimen>
@@ -207,5 +208,6 @@
     <dimen name="fo_radius_large">60dp</dimen>
     <dimen name="fo_spacing_88">88dp</dimen>
   <dimen name="fo_spacing_200">200dp</dimen>
+    <dimen name="fo_size_82">82dp</dimen>
 
 </resources>

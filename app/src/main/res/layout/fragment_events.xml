@@ -158,13 +158,11 @@
                     android:textCursorDrawable="@drawable/bg_color_edit_text_page_login"
                     tools:ignore="TextFields"/>
 
-                <com.strategies360.mililani2.view.spinner.SampleProductTextInputSpinner
+                <com.strategies360.mililani2.view.spinner.KeywordEventTextInputSpinner
                     android:id="@+id/spinner_keyword_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small"
-                    android:layout_marginEnd="@dimen/margin_small"
-                    android:visibility="gone"/>
+                    android:layout_marginEnd="@dimen/margin_small"/>
 
             </LinearLayout>
 

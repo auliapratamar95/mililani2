@@ -5,29 +5,32 @@ import com.google.gson.GsonBuilder
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.api.util.OkHttpClientHelper
 import com.strategies360.mililani2.model.remote.DateResponse
-import com.strategies360.mililani2.model.remote.auth.ProfileResponse
-import com.strategies360.mililani2.model.remote.auth.SignInMililaniRequest
-import com.strategies360.mililani2.model.remote.auth.SignInMililaniResponse
-import com.strategies360.mililani2.model.remote.auth.SignInRequest
-import com.strategies360.mililani2.model.remote.auth.SignInResponse
+import com.strategies360.mililani2.model.remote.assessment.AssessmentResponse
+import com.strategies360.mililani2.model.remote.auth.*
 import com.strategies360.mililani2.model.remote.caffe.CategoryDetailsProductResponse
 import com.strategies360.mililani2.model.remote.caffe.CategoryListResponse
 import com.strategies360.mililani2.model.remote.caffe.PayloadResponse
 import com.strategies360.mililani2.model.remote.caffe.ProductCaffeResponse
 import com.strategies360.mililani2.model.remote.caffe.cart.CartRequest
 import com.strategies360.mililani2.model.remote.caffe.cart.CartResponse
-import com.strategies360.mililani2.model.remote.caffe.checkout.BillingRequest
-import com.strategies360.mililani2.model.remote.caffe.checkout.MonetraResp
-import com.strategies360.mililani2.model.remote.caffe.checkout.PayTicketResponse
-import com.strategies360.mililani2.model.remote.caffe.checkout.PickupRequest
-import com.strategies360.mililani2.model.remote.caffe.checkout.PickupResponse
+import com.strategies360.mililani2.model.remote.caffe.checkout.*
 import com.strategies360.mililani2.model.remote.caffe.store.StoreResponse
+import com.strategies360.mililani2.model.remote.contact.Contact
+import com.strategies360.mililani2.model.remote.employment.Employment
+import com.strategies360.mililani2.model.remote.form.FormResponse
 import com.strategies360.mililani2.model.remote.mtaCard.ClassesListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.DeleteMtaCardRequest
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardListResponse
 import com.strategies360.mililani2.model.remote.mtaCard.MTACardRequest
+import com.strategies360.mililani2.model.remote.news.News
 import com.strategies360.mililani2.model.remote.news.NewsResponse
+import com.strategies360.mililani2.model.remote.newsletter.Newsletter
+import com.strategies360.mililani2.model.remote.notification.Notification
+import com.strategies360.mililani2.model.remote.notification.NotificationResponse
 import com.strategies360.mililani2.model.remote.product.SampleProductListResponse
+import com.strategies360.mililani2.model.remote.reservation.ReservationsResponse
+import com.strategies360.mililani2.model.remote.reservation.facilitySchedule.FacilityScheduleFile
+import com.strategies360.mililani2.model.remote.reservation.recCenters.RecCenter
 import com.strategies360.mililani2.model.remote.tickets.EventsResponse
 import com.strategies360.mililani2.util.Constant
 import io.reactivex.Observable
@@ -36,19 +39,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.HTTP
-import retrofit2.http.Header
-import retrofit2.http.PATCH
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
+import retrofit2.http.*
 
 /**
  *
@@ -63,10 +54,56 @@ object APIService {
   /** The [APIInterface] object */
   val apiInterfaceMililani: APIInterface by lazy {
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://api.mililanitown.s360.is/v1/")
+        .baseUrl("https://mobile-api.mililanitown.org/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .client(OkHttpClientHelper().initOkHttpClient())
         .build()
+
+    retrofit.create(APIInterface::class.java)
+  }
+
+  /** The [APIInterface] object */
+  val apiInterfaceCaffeCatalogMililani: APIInterface by lazy {
+    val retrofit = Retrofit.Builder()
+      .baseUrl("https://www.mililanitown.org/wp-json/mililani/v1/pages/30/")
+      .addConverterFactory(GsonConverterFactory.create())
+      .client(OkHttpClientHelper().initOkHttpClient())
+      .build()
+
+    retrofit.create(APIInterface::class.java)
+  }
+
+  /** The [APIInterface] object */
+  val apiCustomInterface: APIInterface by lazy {
+    val retrofit = Retrofit.Builder()
+            .baseUrl("https://mililani.dev.s360.is/wp-json/mililani/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClientHelper().initCustomOkHttpClient())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+
+    retrofit.create(APIInterface::class.java)
+  }
+
+  /** The [APIInterface] object */
+  val apiCustomNewsletterInterface: APIInterface by lazy {
+    val retrofit = Retrofit.Builder()
+      .baseUrl("https://www.mililanitown.org/wp-json/mililani/v1/")
+      .addConverterFactory(GsonConverterFactory.create())
+      .client(OkHttpClientHelper().initCustomOkHttpClient())
+      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .build()
+
+    retrofit.create(APIInterface::class.java)
+  }
+
+  /** The [APIInterface] object */
+  val apiCustomContactUsInterface: APIInterface by lazy {
+    val retrofit = Retrofit.Builder()
+            .baseUrl("https://www.mililanitown.org/wp-json/mililani/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClientHelper().initOkHttpClient())
+            .build()
 
     retrofit.create(APIInterface::class.java)
   }
@@ -150,6 +187,7 @@ object APIService {
     @POST("cards")
     fun submitMTACard(
       @Header("Authorization") accessToken: String?,
+      @Header("Accept") accept: String?,
       @Body body: MTACardRequest?
     )
         : Call<SignInMililaniResponse>
@@ -187,11 +225,17 @@ object APIService {
         : Call<MTACardListResponse>
 
     /** Obtain the MTA Card list */
-    @GET("news")
-    fun getNews(
-      @Header("Authorization") accessToken: String?
-    )
-        : Call<NewsResponse>
+//    @GET("notifications")
+//    fun getNotification(
+//      @Header("Authorization") accessToken: String?
+//    )
+//            : Call<NotificationResponse>
+
+    @GET("notifications")
+    fun getNotification(
+      @Header("Authorization") accessToken: String?,
+      @Query("posts_per_page") page: String?)
+            : Observable<List<Notification>>
 
     /** Obtain the MTA Card list */
     @GET("classes")
@@ -258,9 +302,19 @@ object APIService {
     )
         : Call<EventsResponse>
 
+    /** Obtain the MTA Card list */
+    @GET("reservations")
+    fun getReservations(
+            @Header("Authorization") accessToken: String?,
+            @Query("facility_location") facilityLocation: String?,
+            @Query("facility_class") facilityClass: String?
+    )
+            : Call<ReservationsResponse>
+
     @GET("classes")
     fun getCustomFilterClass(
-      @QueryMap options: MutableMap<String, String>
+      @QueryMap options: MutableMap<String, String>,
+      @Header("Authorization") accessToken: String?
     ): Call<ClassesListResponse>?
 
     /** Logs the user into the system */
@@ -363,6 +417,45 @@ object APIService {
       @Query("Token") accessToken: String?
     )
         : Call<ProfileResponse>
+
+    /** Obtain the user profile */
+    @GET("pages/4705")
+    fun getContactUs()
+            : Call<Contact>
+
+    /** Obtain the user profile */
+    @GET("pages/45")
+    fun getForm()
+            : Call<FormResponse>
+
+    /** Obtain the user profile */
+    @GET("pages/41")
+    fun getEmployment()
+            : Call<Employment>
+
+    /** Obtain the user profile */
+    @GET("pages/3682")
+    fun getAssessment()
+            : Call<AssessmentResponse>
+
+    @GET("newsletter")
+    fun getNewsletter(
+      @Query("posts_per_page") page: String?)
+            : Observable<List<Newsletter>>
+
+    @GET("facility-schedule")
+    fun getFacilitySchedule()
+            : Observable<List<FacilityScheduleFile>>
+
+    @GET("news")
+    fun getNews(
+      @Query("posts_per_page") page: String?)
+            : Observable<List<News>>
+
+    @GET("rec_centers")
+    fun getRecCenters(
+      @Query("sort") sort: String?)
+            : Observable<List<RecCenter>>
 
     /** Obtain the product list */
     @GET("products")

@@ -21,6 +21,7 @@ import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.mtaCard.Classes
 import com.strategies360.mililani2.util.Common
 import com.strategies360.mililani2.util.Constant
+import com.strategies360.mililani2.viewmodel.AllClassesListViewModel
 import com.strategies360.mililani2.viewmodel.FilterClassesListViewModel
 import kotlinx.android.synthetic.main.fragment_all_activities.btn_filter
 import kotlinx.android.synthetic.main.fragment_all_activities.btn_open_profile
@@ -34,10 +35,10 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
 
   private val adapter = AllActivitiesAdapter()
 
-//  private val viewModel by lazy {
-//    ViewModelProviders.of(this)
-//        .get(AllClassesListViewModel::class.java)
-//  }
+  private val classViewModel by lazy {
+    ViewModelProviders.of(this)
+        .get(AllClassesListViewModel::class.java)
+  }
 
   private val viewModel by lazy {
     ViewModelProviders.of(this)
@@ -74,6 +75,15 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
   }
 
   private fun initViewModel() {
+    classViewModel.resource.observe(viewLifecycleOwner, Observer {
+      when (it?.status) {
+        Resource.LOADING -> onActivitiesLoading()
+        Resource.ERROR -> onActivitiesFailure(it.error)
+        Resource.SUCCESS -> onActivitiesSuccess()
+      }
+      if (classViewModel.isLoadFinished) disableInfiniteScrolling()
+    })
+
     viewModel.resource.observe(viewLifecycleOwner, Observer {
       when (it?.status) {
         Resource.LOADING -> onActivitiesLoading()
@@ -82,7 +92,12 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
       }
       if (viewModel.isLoadFinished) disableInfiniteScrolling()
     })
+
     viewModel.dataList.observe(viewLifecycleOwner, Observer {
+      updateDataList(it)
+    })
+
+    classViewModel.dataList.observe(viewLifecycleOwner, Observer {
       updateDataList(it)
     })
     lifecycle.addObserver(viewModel)
@@ -105,8 +120,7 @@ class AllActivitiesFragment : DataListFragment(), View.OnClickListener {
   }
 
   override fun fetchData() {
-    val listHash: HashMap<String, String> = HashMap()
-    viewModel.fetchFilterFromRemote(listHash)
+    classViewModel.fetchData()
   }
 
   private fun onActivitiesLoading() {

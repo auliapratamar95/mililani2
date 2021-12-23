@@ -5,11 +5,8 @@ import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.App
 import com.strategies360.mililani2.BuildConfig
 import com.strategies360.mililani2.util.Constant
-import okhttp3.Interceptor
+import okhttp3.*
 import okhttp3.Interceptor.Chain
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -55,8 +52,34 @@ class OkHttpClientHelper {
 
         // Add Gander interceptor
         okHttpClientBuilder.addInterceptor(
-            GanderInterceptor(App.context)
-                .showNotification(true)
+                GanderInterceptor(App.context)
+                        .showNotification(true)
+        )
+
+        // Set timeout duration
+        okHttpClientBuilder.connectTimeout(30, TimeUnit.SECONDS)
+        okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
+
+        return okHttpClientBuilder.build()
+    }
+
+    fun initCustomOkHttpClient(): OkHttpClient {
+        val okHttpClientBuilder = OkHttpClient.Builder()
+
+        // Add logging for debug builds
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            okHttpClientBuilder.addInterceptor(logging)
+        }
+
+        // Add Gander interceptor
+        okHttpClientBuilder.addInterceptor(
+                GanderInterceptor(App.context)
+                        .showNotification(true)
+        )
+        okHttpClientBuilder.addInterceptor(
+                BasicAuthInterceptor("s360", "weg")
         )
 
         // Set timeout duration
@@ -87,5 +110,18 @@ class OkHttpClientHelper {
             }
             return chain.proceed(request)
         }
+    }
+
+    class BasicAuthInterceptor(user: String?, password: String?) : Interceptor {
+        private val credentials: String = Credentials.basic(user.toString(), password.toString())
+
+        @Throws(IOException::class)
+        override fun intercept(chain: Chain): Response {
+            val request = chain.request()
+            val authenticatedRequest = request.newBuilder()
+                    .header("Authorization", credentials).build()
+            return chain.proceed(authenticatedRequest)
+        }
+
     }
 }
