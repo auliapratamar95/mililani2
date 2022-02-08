@@ -14,4 +14,5 @@ class News {
 
   @SerializedName ("post_content")
   val postContent: String? = null
+  var isSelected: Boolean = false
 }

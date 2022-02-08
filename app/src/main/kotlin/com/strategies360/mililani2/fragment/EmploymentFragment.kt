@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.View
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModelProviders
@@ -23,6 +24,7 @@ import com.strategies360.mililani2.model.core.Resource
 import com.strategies360.mililani2.model.remote.employment.Employment
 import com.strategies360.mililani2.viewmodel.EmploymentViewModel
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.adapter_employment.view.*
 import kotlinx.android.synthetic.main.fragment_employess.*
 
 class EmploymentFragment : CoreFragment(), View.OnClickListener {
@@ -112,6 +114,9 @@ class EmploymentFragment : CoreFragment(), View.OnClickListener {
       txt_subtitle.text = employment.postContentEmployment?.titleCarousel?.subtitle
       txt_detail_employment.text = HtmlCompat.fromHtml(htmlAsString.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
       txt_detail_applications.text = HtmlCompat.fromHtml(htmlContentTwoEmployment.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
+      txt_detail_applications.movementMethod = LinkMovementMethod.getInstance()
+      txt_detail_employment.movementMethod = LinkMovementMethod.getInstance()
+      txt_subtitle.movementMethod = LinkMovementMethod.getInstance()
 
       btn_mta_employment.setOnClickListener {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mililanitown.org/wp-content/uploads/2019/07/MTA-Application-Rev-20190709.pdf"))

@@ -40,7 +40,7 @@ class NewsListViewModel : ViewModel(), LifecycleObserver {
     fun fetchFromRemote() {
         resource.value = Resource.loading()
         val apiService = APIService.apiCustomNewsletterInterface
-        apiService.getNews("12")
+        apiService.getNews()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : CustomObserver<Any>() {

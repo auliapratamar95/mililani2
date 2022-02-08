@@ -447,10 +447,12 @@ object APIService {
     fun getFacilitySchedule()
             : Observable<List<FacilityScheduleFile>>
 
+//    @GET("news")
+//    fun getNews(
+//      @Query("posts_per_page") page: String?)
+//            : Observable<List<News>>
     @GET("news")
-    fun getNews(
-      @Query("posts_per_page") page: String?)
-            : Observable<List<News>>
+    fun getNews(): Observable<List<News>>
 
     @GET("rec_centers")
     fun getRecCenters(

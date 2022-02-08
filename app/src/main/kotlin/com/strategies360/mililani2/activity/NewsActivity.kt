@@ -3,15 +3,21 @@ package com.strategies360.mililani2.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings.Global.getString
 import androidx.fragment.app.FragmentManager
 import com.strategies360.mililani2.R
 import com.strategies360.mililani2.activity.core.CoreActivity
+import com.strategies360.mililani2.adapter.recycler.NewsListAdapter
 import com.strategies360.mililani2.fragment.MTACardBottomListFragment
+import com.strategies360.mililani2.fragment.NewsFragment
 import kotlinx.android.synthetic.main.activity_activities.btn_back
 import kotlinx.android.synthetic.main.activity_activities.btn_scan_barcode
+import javax.inject.Inject
+
 
 class NewsActivity : CoreActivity() {
 
+  @Inject
   override val viewRes: Int = R.layout.activity_news
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +45,14 @@ class NewsActivity : CoreActivity() {
      * Launch this activity.
      * @param context the context
      */
-    fun launchIntent(context: Context) {
+
+    var SELECTED_INDEX = 0
+    fun launchIntent(context: Context, position : Int? = 0) {
       val intent = Intent(context, NewsActivity::class.java)
+      intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+      if (position != null) {
+        SELECTED_INDEX = position
+      }
       context.startActivity(intent)
     }
   }

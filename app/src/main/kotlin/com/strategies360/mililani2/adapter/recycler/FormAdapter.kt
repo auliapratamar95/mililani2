@@ -1,6 +1,7 @@
 package com.strategies360.mililani2.adapter.recycler
 
 import android.annotation.SuppressLint
+import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
@@ -38,6 +39,7 @@ class FormAdapter :
             val data = getDataList()[adapterPosition]
             itemView.txt_title_accordion_form.text =  HtmlCompat.fromHtml(data.heading.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
             itemView.txt_detail_accordion.text = HtmlCompat.fromHtml(data.desc.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
+            itemView.txt_detail_accordion.movementMethod = LinkMovementMethod.getInstance()
             itemView.btn_accordion.setOnClickListener {
                 if (itemView.txt_detail_accordion.visibility == View.GONE) {
                     itemView.txt_detail_accordion.visibility = View.VISIBLE

@@ -50,6 +50,7 @@ class SubmitScanMtaCardFragment : CoreFragment(), ZXingScannerView.ResultHandler
 
         btn_manually_mta_card.setOnClickListener(this)
         btn_skip_personal_information.setOnClickListener(this)
+        btn_help.setOnClickListener(this)
 
         initViewModel()
         initBarcodeMTA()

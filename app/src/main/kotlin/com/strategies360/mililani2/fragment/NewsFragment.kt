@@ -1,21 +1,25 @@
 package com.strategies360.mililani2.fragment
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.hawk.Hawk
 import com.strategies360.mililani2.R
+import com.strategies360.mililani2.activity.NewsActivity
 import com.strategies360.mililani2.adapter.recycler.NewsListAdapter
+import com.strategies360.mililani2.adapter.viewpager.ViewPagerNewsAdapter
 import com.strategies360.mililani2.fragment.core.CoreFragment
 import com.strategies360.mililani2.model.remote.news.News
 import com.strategies360.mililani2.util.Constant
 import kotlinx.android.synthetic.main.fragment_news.*
 
-class NewsFragment : CoreFragment(){
+class NewsFragment() : CoreFragment(){
 
   var mLayoutManager: RecyclerView.LayoutManager? = null
-
+  var selectedIndex : Int = 0
 
   override val viewRes: Int = R.layout.fragment_news
 
@@ -28,9 +32,9 @@ class NewsFragment : CoreFragment(){
 
     if (Hawk.contains(Constant.KEY_LIST_NEWS)) {
       progress_setting.visibility = View.GONE
+
       val newsList: ArrayList<News> = Hawk.get(Constant.KEY_LIST_NEWS)
       val adapter = NewsListAdapter()
-
       recycler_news.layoutManager =
         LinearLayoutManager(
           recycler_news.context, LinearLayoutManager.VERTICAL,

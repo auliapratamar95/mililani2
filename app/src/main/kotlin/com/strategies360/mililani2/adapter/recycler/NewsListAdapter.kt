@@ -1,6 +1,8 @@
 package com.strategies360.mililani2.adapter.recycler
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
@@ -14,11 +16,11 @@ import com.strategies360.mililani2.adapter.recycler.core.DataListRecyclerViewAda
 import com.strategies360.mililani2.model.remote.news.News
 import kotlinx.android.synthetic.main.adapter_list_news.view.*
 
-class NewsListAdapter : DataListRecyclerViewAdapter<News, NewsListAdapter.ViewHolder>() {
+class NewsListAdapter() : DataListRecyclerViewAdapter<News, NewsListAdapter.ViewHolder>() {
   private var tmpPosition = 0
   private var isLayoutClickItem = false
-
   var mLayoutManager: LayoutManager? = null
+  var newsList = getDataList()
 
   override fun onCreateDataViewHolder(
     parent: ViewGroup,
@@ -38,13 +40,11 @@ class NewsListAdapter : DataListRecyclerViewAdapter<News, NewsListAdapter.ViewHo
 
     @SuppressLint("SetTextI18n")
     fun bindView() {
-      val data = getDataList()[adapterPosition]
-
+      val data = newsList[adapterPosition]
       itemView.txt_title.text = data.postTitle
       itemView.txt_content_news.text = HtmlCompat.fromHtml(
         data.postContent.toString(),
         HtmlCompat.FROM_HTML_MODE_LEGACY)
-
       itemView.btn_category_detail.setOnClickListener {
         if (itemView.txt_content_news.visibility == View.GONE) {
           itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_min))
@@ -58,6 +58,17 @@ class NewsListAdapter : DataListRecyclerViewAdapter<News, NewsListAdapter.ViewHo
 //        notifyDataSetChanged()
       }
 
+      if (data.isSelected){
+        if (itemView.txt_content_news.visibility == View.GONE) {
+          itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_min))
+          itemView.txt_content_news.visibility = View.VISIBLE
+        } else {
+          itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_plus))
+          itemView.txt_content_news.visibility = View.GONE
+        }
+        data.isSelected = false
+      }
+
 //      if (isLayoutClickItem) {
 //        if (tmpPosition == adapterPosition) {
 //          isLayoutClickItem = false
@@ -69,5 +80,14 @@ class NewsListAdapter : DataListRecyclerViewAdapter<News, NewsListAdapter.ViewHo
 //        itemView.txt_content_news.visibility = View.GONE
 //      }
     }
+  }
+
+  fun openSelectedindex(position: Int) {
+//    selectedIndex = position
+    notifyItemChanged(position)
+  }
+
+  interface pitek {
+    fun onClickIndex(position: View.OnClickListener)
   }
 }

@@ -1,9 +1,12 @@
 package com.strategies360.mililani2.fragment
 
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -35,7 +38,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class HomeFragment : CoreFragment(), View.OnClickListener {
+class HomeFragment : CoreFragment(), View.OnClickListener, ViewPagerNewsAdapter.onSelectedIndex {
 
   private var isBottomCardList = false
   private var customAdapter = ViewPagerNewsAdapter()
@@ -172,7 +175,7 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
   }
 
   private fun initRecyclerCategory() {
-    customAdapter.viewPagerKotlinAdapter(dataList, requireContext())
+    customAdapter.viewPagerKotlinAdapter(dataList, requireContext(), this)
     newsViewPager.adapter = customAdapter
     newsViewPager.setPadding(50, 0, 100, 0)
   }
@@ -704,8 +707,8 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
       btn_pool_schedule -> {
         if (dataFacilityScheduleList.size != 0) {
           if (dataFacilityScheduleList[0].facilityScheduleFile?.size  != 0) {
-            Hawk.put((Constant.KEY_POOL_SCHEDULE), dataFacilityScheduleList[0].facilityScheduleFile?.last()?.facilitySchedule?.url)
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataFacilityScheduleList[0].facilityScheduleFile?.last()?.facilitySchedule?.url))
+            Hawk.put((Constant.KEY_POOL_SCHEDULE), dataFacilityScheduleList[0].facilityScheduleFile?.first()?.facilitySchedule?.url)
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(dataFacilityScheduleList[0].facilityScheduleFile?.first()?.facilitySchedule?.url))
             startActivity(browserIntent)
           }
         }
@@ -822,5 +825,9 @@ class HomeFragment : CoreFragment(), View.OnClickListener {
   fun onChangeQuickLink(event: EventChangeQuickLink) {
     getCategoryQuickLink()
     EventBus.getDefault().removeStickyEvent(event)
+  }
+
+  override fun onClickIndex(position: Int) {
+    NewsActivity.launchIntent(requireContext(), position)
   }
 }
