@@ -38,7 +38,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class HomeFragment : CoreFragment(), View.OnClickListener, ViewPagerNewsAdapter.onSelectedIndex {
+class HomeFragment : CoreFragment(), View.OnClickListener {
 
   private var isBottomCardList = false
   private var customAdapter = ViewPagerNewsAdapter()
@@ -175,7 +175,7 @@ class HomeFragment : CoreFragment(), View.OnClickListener, ViewPagerNewsAdapter.
   }
 
   private fun initRecyclerCategory() {
-    customAdapter.viewPagerKotlinAdapter(dataList, requireContext(), this)
+    customAdapter.viewPagerKotlinAdapter(dataList, requireContext())
     newsViewPager.adapter = customAdapter
     newsViewPager.setPadding(50, 0, 100, 0)
   }
@@ -825,9 +825,5 @@ class HomeFragment : CoreFragment(), View.OnClickListener, ViewPagerNewsAdapter.
   fun onChangeQuickLink(event: EventChangeQuickLink) {
     getCategoryQuickLink()
     EventBus.getDefault().removeStickyEvent(event)
-  }
-
-  override fun onClickIndex(position: Int) {
-    NewsActivity.launchIntent(requireContext(), position)
   }
 }

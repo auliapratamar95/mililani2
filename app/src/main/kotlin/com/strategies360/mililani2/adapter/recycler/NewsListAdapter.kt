@@ -40,11 +40,20 @@ class NewsListAdapter() : DataListRecyclerViewAdapter<News, NewsListAdapter.View
 
     @SuppressLint("SetTextI18n")
     fun bindView() {
-      val data = newsList[adapterPosition]
+      val data = getDataList()[adapterPosition]
       itemView.txt_title.text = data.postTitle
       itemView.txt_content_news.text = HtmlCompat.fromHtml(
-        data.postContent.toString(),
-        HtmlCompat.FROM_HTML_MODE_LEGACY)
+              data.postContent.toString(),
+              HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+      if (data.isExpandData == false) {
+        itemView.txt_content_news.visibility = View.GONE
+        itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_plus))
+      } else {
+        itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_min))
+        itemView.txt_content_news.visibility = View.VISIBLE
+      }
+
       itemView.btn_category_detail.setOnClickListener {
         if (itemView.txt_content_news.visibility == View.GONE) {
           itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_min))
@@ -55,39 +64,8 @@ class NewsListAdapter() : DataListRecyclerViewAdapter<News, NewsListAdapter.View
         }
         tmpPosition = adapterPosition
         isLayoutClickItem = true
-//        notifyDataSetChanged()
       }
-
-      if (data.isSelected){
-        if (itemView.txt_content_news.visibility == View.GONE) {
-          itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_min))
-          itemView.txt_content_news.visibility = View.VISIBLE
-        } else {
-          itemView.ic_plus_min_date.setImageDrawable(App.context.getDrawable(R.drawable.ic_plus))
-          itemView.txt_content_news.visibility = View.GONE
-        }
-        data.isSelected = false
-      }
-
-//      if (isLayoutClickItem) {
-//        if (tmpPosition == adapterPosition) {
-//          isLayoutClickItem = false
-//          itemView.txt_content_news.visibility = View.VISIBLE
-//        } else {
-//          itemView.txt_content_news.visibility = View.GONE
-//        }
-//      } else {
-//        itemView.txt_content_news.visibility = View.GONE
-//      }
     }
   }
 
-  fun openSelectedindex(position: Int) {
-//    selectedIndex = position
-    notifyItemChanged(position)
-  }
-
-  interface pitek {
-    fun onClickIndex(position: View.OnClickListener)
-  }
 }

@@ -46,13 +46,11 @@ class NewsActivity : CoreActivity() {
      * @param context the context
      */
 
-    var SELECTED_INDEX = 0
     fun launchIntent(context: Context, position : Int? = 0) {
       val intent = Intent(context, NewsActivity::class.java)
+      intent.putExtra(context.getString(R.string.prefs_index_news),
+              position)
       intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-      if (position != null) {
-        SELECTED_INDEX = position
-      }
       context.startActivity(intent)
     }
   }

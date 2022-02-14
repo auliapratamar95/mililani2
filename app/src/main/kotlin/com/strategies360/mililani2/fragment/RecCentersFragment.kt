@@ -3,6 +3,7 @@ package com.strategies360.mililani2.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,12 +39,19 @@ class RecCentersFragment : CoreFragment(), View.OnClickListener {
   ) {
     super.onViewCreated(view, savedInstanceState)
     initView()
+    val recCenter: RecCenter = Hawk.get(Constant.KEY_REC_CENTER_DETAIL)
     btn_classes.setOnClickListener(this)
     btn_events.setOnClickListener(this)
     btn_reservations.setOnClickListener(this)
     btn_rec_Center_rules.setOnClickListener(this)
     btn_facility_rental_rules.setOnClickListener(this)
     btn_facility_schedule.setOnClickListener(this)
+//    txtPhone.setOnClickListener {
+//      val intent = Intent(Intent.ACTION_CALL)
+//      intent.data = Uri.parse("tel:${recCenter.phone}")
+//      startActivity(intent)
+//    }
+    txtPhone.setOnClickListener(this)
   }
 
   private fun initView() {
@@ -75,6 +83,7 @@ class RecCentersFragment : CoreFragment(), View.OnClickListener {
   }
 
   override fun onClick(view: View?) {
+    val recCenter: RecCenter = Hawk.get(Constant.KEY_REC_CENTER_DETAIL)
     if (view == btn_classes) {
       BottomMenuNavigationActivity.launchIntent(requireContext(), "classes")
     } else if (view == btn_events) {
@@ -91,6 +100,9 @@ class RecCentersFragment : CoreFragment(), View.OnClickListener {
       }
     } else if (view == btn_reservations) {
       BottomMenuNavigationActivity.launchIntent(requireContext(), "reservation")
+    } else if (view == txtPhone){
+      val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${recCenter.phone}"))
+      startActivity(intent)
     }
   }
 }

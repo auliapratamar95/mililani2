@@ -1,6 +1,7 @@
 package com.strategies360.mililani2.adapter.recycler
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +37,14 @@ class ReccenterScheduleHoursAdapter : DataListRecyclerViewAdapter<DetailReccente
 
       if (data.hours != "") {
         itemView.txt_reccenter_schedule_day.text = data.day
-        itemView.txt_reccenter_schedule_hour.text = "(" + data.hours + ")"
+                ?.replace("&nbsp","")
+                ?.replace("&nbsp", "")
+                ?.replace("<Strong>", "")
+                ?.replace("</Strong>", "")
+                ?.replace("* ", "")
+                ?.replace("*", "")
+
+        itemView.txt_reccenter_schedule_hour.text = data.hours?.replace("&nbsp","")
       } else {
         itemView.txt_reccenter_schedule_day.visibility = View.GONE
         itemView.txt_reccenter_schedule_hour.visibility = View.GONE
